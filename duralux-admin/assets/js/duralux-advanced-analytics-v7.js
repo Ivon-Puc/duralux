@@ -30,7 +30,7 @@ class DuraluxAdvancedAnalytics {
             console.log('🚀 Inicializando Duralux Advanced Analytics v7.0');
             
             this.setupEventListeners();
-            await this.loadPainel de Controle();
+            await this.loadDashboard();
             this.startRealTimeUpdates();
             this.setupChartResizing();
             
@@ -48,13 +48,13 @@ class DuraluxAdvancedAnalytics {
         // Filtros de data
         const dateRangePicker = document.getElementById('analyticsDateRange');
         if (dateRangePicker) {
-            dateRangePicker.addEventListener('change', () => this.updatePainel de Controle());
+            dateRangePicker.addEventListener('change', () => this.updateDashboard());
         }
         
         // Botão de atualização manual
         const refreshBtn = document.getElementById('btnRefreshAnalytics');
         if (refreshBtn) {
-            refreshBtn.addEventListener('click', () => this.loadPainel de Controle(true));
+            refreshBtn.addEventListener('click', () => this.loadDashboard(true));
         }
         
         // Exportararar relatórios
@@ -79,7 +79,7 @@ class DuraluxAdvancedAnalytics {
     /**
      * Carrega dashboard principal
      */
-    async loadPainel de Controle(forceRefresh = false) {
+    async loadDashboard(forceRefresh = false) {
         try {
             this.showLoading(true);
             

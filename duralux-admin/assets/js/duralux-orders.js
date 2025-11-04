@@ -122,7 +122,7 @@ class DuraluxOrders {
         try {
             this.showLoading(true);
 
-            const queryParams = new URLBuscarParams({
+            const queryParams = new URLSearchParams({
                 page: this.currentPage,
                 limit: this.itemsPerPage,
                 ...this.filters
@@ -247,7 +247,7 @@ class DuraluxOrders {
                     <div class="btn-group">
                         <button class="btn btn-sm btn-outline-primary" 
                                 onclick="duraluxOrders.viewOrder(${order.id})" 
-                                title="Visualizar">
+                                title="View">
                             <i class="bi bi-eye"></i>
                         </button>
                         <button class="btn btn-sm btn-outline-secondary" 
@@ -262,7 +262,7 @@ class DuraluxOrders {
                         </button>
                         <button class="btn btn-sm btn-outline-danger" 
                                 onclick="duraluxOrders.deleteOrder(${order.id})" 
-                                title="Excluir">
+                                title="Delete">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>
@@ -346,7 +346,7 @@ class DuraluxOrders {
         document.getElementById('paymentStatus').value = order.payment_status;
         document.getElementById('orderNotes').value = order.notes || '';
 
-        // Adicionar itens
+        // Add itens
         if (order.items && order.items.length > 0) {
             order.items.forEach(item => this.addOrderItem(item));
         }
@@ -485,7 +485,7 @@ class DuraluxOrders {
                 // Atualizar pedido existente
                 response = await this.apiRequest('PUT', `/orders/${orderId}`, formData);
             } else {
-                // Criar novo pedido
+                // Create novo pedido
                 response = await this.apiRequest('POST', '/orders', formData);
             }
 
@@ -580,7 +580,7 @@ class DuraluxOrders {
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Detalhes do Pedido ${order.order_number}</h5>
+                            <h5 class="modal-title">Details do Pedido ${order.order_number}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
@@ -657,7 +657,7 @@ class DuraluxOrders {
             existingModal.remove();
         }
 
-        // Adicionar novo modal
+        // Add novo modal
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         
         // Mostrar modal
@@ -893,7 +893,7 @@ class DuraluxOrders {
         // Implementar sistema de toasts
         console.log(`${type.toUpperCase()}: ${message}`);
         
-        // Criar toast bootstrap se disponível
+        // Create toast bootstrap se disponível
         const toastContainer = document.getElementById('toastContainer') || this.createToastContainer();
         const toastId = 'toast-' + Date.now();
         

@@ -240,7 +240,7 @@ class DuraluxLeads {
                             <h5>Nenhum lead encontrado</h5>
                             <p class="text-muted">Não há leads para os filtros selecionados.</p>
                             <button class="btn btn-primary btn-sm" onclick="duraluxLeads.showCreateModal()">
-                                <i class="feather-plus me-2"></i>Criar Primeiro Lead
+                                <i class="feather-plus me-2"></i>Create Primeiro Lead
                             </button>
                         </div>
                     </td>
@@ -304,7 +304,7 @@ class DuraluxLeads {
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#" onclick="duraluxLeads.viewLead(${lead.id})">
-                                <i class="feather-eye me-2"></i>Ver Detalhes</a></li>
+                                <i class="feather-eye me-2"></i>Ver Details</a></li>
                             <li><a class="dropdown-item" href="#" onclick="duraluxLeads.editLead(${lead.id})">
                                 <i class="feather-edit me-2"></i>Editar</a></li>
                             ${!lead.converted ? `
@@ -538,7 +538,7 @@ class DuraluxLeads {
     }
 
     /**
-     * Excluir lead
+     * Delete lead
      */
     async deleteLead(leadId) {
         if (!confirm('Tem certeza que deseja excluir este lead? Esta ação não pode ser desfeita.')) return;
@@ -734,7 +734,7 @@ class DuraluxLeads {
      * Mostrar toast
      */
     showToast(message, type = 'info') {
-        // Criar elemento toast
+        // Create elemento toast
         const toastHtml = `
             <div class="toast align-items-center text-white bg-${type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info'} border-0" role="alert">
                 <div class="d-flex">
@@ -747,7 +747,7 @@ class DuraluxLeads {
             </div>
         `;
 
-        // Adicionar ao container
+        // Add ao container
         let container = document.querySelector('.toast-container');
         if (!container) {
             container = document.createElement('div');

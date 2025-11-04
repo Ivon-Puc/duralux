@@ -11,7 +11,7 @@
 
 class DuraluxProjects {
     constructor() {
-        // Configurações da API
+        // Settings da API
         this.apiBase = '../backend/api/router.php';
         this.endpoints = {
             projects: {
@@ -114,7 +114,7 @@ class DuraluxProjects {
         document.getElementById('taskForm')?.addEventListener('submit', (e) => this.handleTaskSubmit(e));
         
         // Filtros e pesquisa
-        document.getElementById('searchProjects')?.addEventListener('input', (e) => this.handleBuscar(e));
+        document.getElementById('searchProjects')?.addEventListener('input', (e) => this.handleSearch(e));
         document.getElementById('filterStatus')?.addEventListener('change', () => this.applyFiltrars());
         document.getElementById('filterPriority')?.addEventListener('change', () => this.applyFiltrars());
         document.getElementById('filterCustomer')?.addEventListener('change', () => this.applyFiltrars());
@@ -195,7 +195,7 @@ class DuraluxProjects {
     async loadProjects() {
         try {
             // Monta URL com parâmetros
-            const params = new URLBuscarParams({
+            const params = new URLSearchParams({
                 page: this.currentPage,
                 limit: this.itemsPerPage,
                 sort_field: this.currentSort.field,
@@ -369,7 +369,7 @@ class DuraluxProjects {
                 </td>
                 <td>
                     <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-outline-primary btn-sm" onclick="duraluxProjects.viewProject(${project.id})" title="Ver Detalhes">
+                        <button type="button" class="btn btn-outline-primary btn-sm" onclick="duraluxProjects.viewProject(${project.id})" title="Ver Details">
                             <i class="fas fa-eye"></i>
                         </button>
                         <button type="button" class="btn btn-outline-secondary btn-sm" onclick="duraluxProjects.editProject(${project.id})" title="Editar">
@@ -378,7 +378,7 @@ class DuraluxProjects {
                         <button type="button" class="btn btn-outline-info btn-sm" onclick="duraluxProjects.manageProjectTasks(${project.id})" title="Gerenciar Tarefas">
                             <i class="fas fa-tasks"></i>
                         </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="duraluxProjects.deleteProject(${project.id})" title="Excluir">
+                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="duraluxProjects.deleteProject(${project.id})" title="Delete">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -451,7 +451,7 @@ class DuraluxProjects {
     /**
      * Handle search input
      */
-    handleBuscar(event) {
+    handleSearch(event) {
         // Debounce search
         clearTimeout(this.searchTimeout);
         this.searchTimeout = setTimeout(() => {
@@ -874,7 +874,7 @@ class DuraluxProjects {
                                 <button class="btn btn-outline-success" onclick="duraluxProjects.toggleTaskStatus(${task.id})" title="Alterar Status">
                                     <i class="fas fa-check"></i>
                                 </button>
-                                <button class="btn btn-outline-danger" onclick="duraluxProjects.deleteTask(${task.id})" title="Excluir">
+                                <button class="btn btn-outline-danger" onclick="duraluxProjects.deleteTask(${task.id})" title="Delete">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>

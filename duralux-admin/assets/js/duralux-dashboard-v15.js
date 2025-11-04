@@ -17,11 +17,11 @@
 
 'use strict';
 
-class DuraluxPainel de Controle {
+class DuraluxDashboard {
     constructor() {
-        console.log('🚀 Inicializando Duralux Painel de Controle Analytics v1.5...');
+        console.log('🚀 Inicializando Duralux Dashboard Analytics v1.5...');
         
-        // Configurações da API
+        // Settings da API
         this.apiBase = '../backend/api/router.php';
         this.refreshInterval = 30000; // 30 segundos
         this.charts = {};
@@ -33,7 +33,7 @@ class DuraluxPainel de Controle {
         this.realTimeMode = false;
         this.lastUpdate = null;
         
-        // Configurações de KPIs
+        // Settings de KPIs
         this.kpiConfig = {
             revenue: { format: 'currency', color: 'success', target: 100000 },
             leads: { format: 'number', color: 'primary', target: 100 },
@@ -57,7 +57,7 @@ class DuraluxPainel de Controle {
             await this.checkAuthentication();
             
             // Carregar configurações do usuário
-            await this.loadUserConfigurações();
+            await this.loadUserSettings();
             
             // Configurar elementos DOM
             this.setupDOMElements();
@@ -66,7 +66,7 @@ class DuraluxPainel de Controle {
             this.setupEventListeners();
             
             // Carregar dados iniciais
-            await this.loadPainel de ControleData();
+            await this.loadDashboardData();
             
             // Iniciar modo tempo real se habilitado
             if (this.settings.realTimeMode) {
@@ -76,8 +76,8 @@ class DuraluxPainel de Controle {
             // Configurar auto-refresh
             this.setupAutoRefresh();
             
-            console.log('✅ Painel de Controle Analytics v1.5 inicializado com sucesso!');
-            this.showNotification('Painel de Controle Executivo carregado com sucesso!', 'success');
+            console.log('✅ Dashboard Analytics v1.5 inicializado com sucesso!');
+            this.showNotification('Dashboard Executivo carregado com sucesso!', 'success');
             
         } catch (error) {
             console.error('❌ Erro ao inicializar dashboard:', error);
@@ -133,7 +133,7 @@ class DuraluxPainel de Controle {
         if (this.elements.periodSelector) {
             this.elements.periodSelector.addEventListener('change', (e) => {
                 this.currentPeriod = e.target.value;
-                this.loadPainel de ControleData();
+                this.loadDashboardData();
             });
         }
 
@@ -141,7 +141,7 @@ class DuraluxPainel de Controle {
         if (this.elements.comparisonSelector) {
             this.elements.comparisonSelector.addEventListener('change', (e) => {
                 this.comparisonMode = e.target.value;
-                this.loadPainel de ControleData();
+                this.loadDashboardData();
             });
         }
 
@@ -149,7 +149,7 @@ class DuraluxPainel de Controle {
         if (this.elements.refreshButton) {
             this.elements.refreshButton.addEventListener('click', () => {
                 this.clearCache();
-                this.loadPainel de ControleData();
+                this.loadDashboardData();
             });
         }
 
@@ -178,13 +178,13 @@ class DuraluxPainel de Controle {
     /**
      * Carregar todos os dados do dashboard
      */
-    async loadPainel de ControleData() {
+    async loadDashboardData() {
         try {
             this.showLoading(true);
             
             // Carregar dados em paralelo
             const [
-                executivePainel de Controle,
+                executiveDashboard,
                 smartAlerts,
                 realTimeMetrics
             ] = await Promise.all([
@@ -214,7 +214,7 @@ class DuraluxPainel de Controle {
     /**
      * Carregar dashboard executivo via API
      */
-    async loadExecutivePainel de Controle() {
+    async loadExecutiveDashboard() {
         const cacheKey = `executive_dashboard_${this.currentPeriod}_${this.comparisonMode}`;
         
         if (this.cache.has(cacheKey)) {
@@ -963,7 +963,7 @@ class DuraluxPainel de Controle {
     /**
      * Carregar configurações do usuário
      */
-    async loadUserConfigurações() {
+    async loadUserSettings() {
         try {
             this.settings = await this.apiRequest('get_dashboard_settings');
             

@@ -3,7 +3,7 @@
  * Carrega dados reais das APIs e atualiza o dashboard em tempo real
  */
 
-class DuraluxPainel de Controle {
+class DuraluxDashboard {
     constructor() {
         this.apiBase = '../backend/api/router.php';
         this.isAuthenticated = false;
@@ -18,7 +18,7 @@ class DuraluxPainel de Controle {
         this.showLoading();
         
         if (await this.checkAuthentication()) {
-            await this.loadPainel de ControleData();
+            await this.loadDashboardData();
             this.setupAutoRefresh();
             this.setupEventListeners();
             this.hideLoading();
@@ -76,7 +76,7 @@ class DuraluxPainel de Controle {
         }
     }
 
-    async loadPainel de ControleData() {
+    async loadDashboardData() {
         try {
             // Carrega todos os dados do dashboard em paralelo
             const [statsData, revenueData, leadsData, projectsData] = await Promise.all([
@@ -403,7 +403,7 @@ class DuraluxPainel de Controle {
 
     setupAutoRefresh() {
         this.intervalId = setInterval(() => {
-            this.loadPainel de ControleData();
+            this.loadDashboardData();
         }, this.refreshInterval);
     }
 
@@ -412,14 +412,14 @@ class DuraluxPainel de Controle {
         document.addEventListener('click', (e) => {
             if (e.target.matches('[data-bs-toggle="refresh"]')) {
                 e.preventDefault();
-                this.loadPainel de ControleData();
+                this.loadDashboardData();
             }
         });
 
         // Listener para mudança de período
         document.addEventListener('change', (e) => {
             if (e.target.matches('.period-selector')) {
-                this.loadPainel de ControleData();
+                this.loadDashboardData();
             }
         });
 

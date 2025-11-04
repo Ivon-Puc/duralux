@@ -27,7 +27,7 @@ class DuraluxReports {
     async init() {
         try {
             this.setupEventListeners();
-            await this.loadPainel de ControleReport();
+            await this.loadDashboardReport();
             this.initializeDatePickers();
         } catch (error) {
             console.error('Erro ao inicializar sistema de relatórios:', error);
@@ -54,7 +54,7 @@ class DuraluxReports {
         });
 
         // Botões de relatórios
-        document.getElementById('dashboardReportBtn')?.addEventListener('click', () => this.loadPainel de ControleReport());
+        document.getElementById('dashboardReportBtn')?.addEventListener('click', () => this.loadDashboardReport());
         document.getElementById('salesReportBtn')?.addEventListener('click', () => this.loadVendasReport());
         document.getElementById('leadsReportBtn')?.addEventListener('click', () => this.loadLeadsReport());
         document.getElementById('projectsReportBtn')?.addEventListener('click', () => this.loadProjectsReport());
@@ -94,18 +94,18 @@ class DuraluxReports {
         }
     }
 
-    async loadPainel de ControleReport() {
+    async loadDashboardReport() {
         try {
             this.showLoading(true);
             this.setActiveTab('dashboard');
             this.filters.report_type = 'dashboard';
 
-            const queryParams = new URLBuscarParams(this.filters);
+            const queryParams = new URLSearchParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/dashboard?${queryParams}`);
 
             if (response.success) {
                 this.currentReport = response.data;
-                this.renderPainel de ControleReport(response.data);
+                this.renderDashboardReport(response.data);
             } else {
                 throw new Error(response.message || 'Erro ao carregar relatório dashboard');
             }
@@ -124,7 +124,7 @@ class DuraluxReports {
             this.setActiveTab('sales');
             this.filters.report_type = 'sales';
 
-            const queryParams = new URLBuscarParams(this.filters);
+            const queryParams = new URLSearchParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/sales?${queryParams}`);
 
             if (response.success) {
@@ -148,7 +148,7 @@ class DuraluxReports {
             this.setActiveTab('leads');
             this.filters.report_type = 'leads';
 
-            const queryParams = new URLBuscarParams(this.filters);
+            const queryParams = new URLSearchParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/leads?${queryParams}`);
 
             if (response.success) {
@@ -172,7 +172,7 @@ class DuraluxReports {
             this.setActiveTab('projects');
             this.filters.report_type = 'projects';
 
-            const queryParams = new URLBuscarParams(this.filters);
+            const queryParams = new URLSearchParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/projects?${queryParams}`);
 
             if (response.success) {
@@ -196,7 +196,7 @@ class DuraluxReports {
             this.setActiveTab('customers');
             this.filters.report_type = 'customers';
 
-            const queryParams = new URLBuscarParams(this.filters);
+            const queryParams = new URLSearchParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/customers?${queryParams}`);
 
             if (response.success) {
@@ -220,7 +220,7 @@ class DuraluxReports {
             this.setActiveTab('financial');
             this.filters.report_type = 'financial';
 
-            const queryParams = new URLBuscarParams(this.filters);
+            const queryParams = new URLSearchParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/financial?${queryParams}`);
 
             if (response.success) {
@@ -238,7 +238,7 @@ class DuraluxReports {
         }
     }
 
-    renderPainel de ControleReport(data) {
+    renderDashboardReport(data) {
         // Renderizar métricas principais
         this.renderGeneralMetrics(data.general_metrics);
         
@@ -567,7 +567,7 @@ class DuraluxReports {
             });
 
             if (response.ok) {
-                // Criar download do arquivo
+                // Create download do arquivo
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -594,7 +594,7 @@ class DuraluxReports {
     loadCurrentReport() {
         switch (this.filters.report_type) {
             case 'dashboard':
-                this.loadPainel de ControleReport();
+                this.loadDashboardReport();
                 break;
             case 'sales':
                 this.loadVendasReport();
@@ -612,7 +612,7 @@ class DuraluxReports {
                 this.loadFinancialReport();
                 break;
             default:
-                this.loadPainel de ControleReport();
+                this.loadDashboardReport();
         }
     }
 
@@ -622,7 +622,7 @@ class DuraluxReports {
             tab.classList.remove('active');
         });
         
-        // Adicionar classe ativa à aba atual
+        // Add classe ativa à aba atual
         const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
         if (activeTab) {
             activeTab.classList.add('active');
@@ -706,7 +706,7 @@ class DuraluxReports {
         // Implementar sistema de toasts
         console.log(`${type.toUpperCase()}: ${message}`);
         
-        // Criar toast bootstrap se disponível
+        // Create toast bootstrap se disponível
         const toastContainer = document.getElementById('toastContainer') || this.createToastContainer();
         const toastId = 'toast-' + Date.now();
         

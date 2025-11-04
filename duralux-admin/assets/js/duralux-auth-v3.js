@@ -133,7 +133,7 @@ class DuraluxAuthSystem {
     }
     
     /**
-     * Sair do usuário
+     * Logout do usuário
      */
     async logout() {
         try {
@@ -459,7 +459,7 @@ class DuraluxAuthSystem {
         window.fetch = async (...args) => {
             const [url, options = {}] = args;
             
-            // Adicionar token de autorização se disponível
+            // Add token de autorização se disponível
             if (this.getToken() && !options.headers?.Authorization) {
                 options.headers = {
                     ...options.headers,
@@ -624,7 +624,7 @@ DuraluxAuth.on('loginSuccess', (data) => {
 });
 
 DuraluxAuth.on('logoutSuccess', () => {
-    console.log('👋 Sair realizado com sucesso!');
+    console.log('👋 Logout realizado com sucesso!');
     
     // Redirecionar para login
     if (!window.location.pathname.includes('auth-')) {

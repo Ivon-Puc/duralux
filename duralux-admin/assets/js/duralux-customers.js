@@ -127,7 +127,7 @@ class DuraluxCustomers {
         this.showLoading();
         
         try {
-            const params = new URLBuscarParams({
+            const params = new URLSearchParams({
                 page: this.currentPage,
                 limit: this.itemsPerPage,
                 ...this.currentFiltrars
@@ -220,7 +220,7 @@ class DuraluxCustomers {
                     <td>
                         <div class="hstack gap-2 justify-content-end">
                             <a href="javascript:void(0)" class="avatar-text avatar-md btn-view-customer" 
-                               data-customer-id="${customer.id}" title="Visualizar">
+                               data-customer-id="${customer.id}" title="View">
                                 <i class="feather feather-eye"></i>
                             </a>
                             <div class="dropdown">
@@ -388,7 +388,7 @@ class DuraluxCustomers {
                 // Atualizar cliente existente
                 response = await this.apiCall(`customers/${customerId}`, 'PUT', customerData);
             } else {
-                // Criar novo cliente
+                // Create novo cliente
                 response = await this.apiCall('customers', 'POST', customerData);
             }
             
@@ -618,7 +618,7 @@ class DuraluxCustomers {
         try {
             this.showLoading();
             
-            const params = new URLBuscarParams({
+            const params = new URLSearchParams({
                 format: format,
                 ...this.currentFiltrars
             });
@@ -664,7 +664,7 @@ class DuraluxCustomers {
     
     showCustomerDetails(customer) {
         // Implementar modal ou página de detalhes do cliente
-        console.log('Detalhes do cliente:', customer);
+        console.log('Details do cliente:', customer);
     }
 }
 
