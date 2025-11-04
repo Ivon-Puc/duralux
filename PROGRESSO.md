@@ -298,4 +298,4 @@ duralux/
 
 ---
 
-**Desenvolvido com ❤️ por [Ivon Martins](https://github.com/Ivon-Puc) - Novembro 2025**
+**Desenvolvido com ❤️ por [Ivon Matos](https://github.com/Ivon-Puc) - Novembro 2025**
