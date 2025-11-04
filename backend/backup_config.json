@@ -1,0 +1,54 @@
+{
+    "backup_directory": "backups",
+    "retention_days": 30,
+    "compression_level": 6,
+    "schedule_time": "02:00",
+    "schedule_days": ["monday", "wednesday", "friday"],
+    "email_notifications": false,
+    "email_recipients": [],
+    "database": {
+        "host": "localhost",
+        "port": 3306,
+        "name": "duralux_crm",
+        "user": "root",
+        "password": ""
+    },
+    "backup_types": {
+        "full": true,
+        "incremental": true,
+        "database_only": true,
+        "files_only": false
+    },
+    "exclude_patterns": [
+        "*.log",
+        "*.tmp",
+        "__pycache__",
+        ".git",
+        "node_modules",
+        "vendor",
+        "*.cache",
+        "backups",
+        "temp"
+    ],
+    "include_directories": [
+        "duralux-admin",
+        "backend",
+        "docs"
+    ],
+    "mysql_dump_path": "mysqldump",
+    "mysql_path": "mysql",
+    "notifications": {
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "smtp_username": "",
+        "smtp_password": "",
+        "use_tls": true
+    },
+    "advanced_options": {
+        "verify_backups": true,
+        "create_checksums": true,
+        "parallel_compression": false,
+        "max_backup_size_mb": 2048,
+        "split_large_backups": true
+    }
+}

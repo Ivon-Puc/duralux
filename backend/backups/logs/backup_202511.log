@@ -1,0 +1,21 @@
+2025-11-04 08:31:09,423 - INFO - 🚀 Duralux Backup System v7.0 inicializado
+2025-11-04 08:31:16,696 - INFO - 🚀 Duralux Backup System v7.0 inicializado
+2025-11-04 08:31:16,696 - INFO - 📁 Iniciando backup dos arquivos...
+2025-11-04 08:31:16,696 - INFO - 📂 Coletando arquivos de: c:\Users\ivonm\OneDrive - sga.pucminas.br\Github\duralux\duralux\duralux-admin
+2025-11-04 08:31:16,813 - INFO - 📂 Coletando arquivos de: c:\Users\ivonm\OneDrive - sga.pucminas.br\Github\duralux\duralux\backend
+2025-11-04 08:31:16,823 - INFO - 📂 Coletando arquivos de: c:\Users\ivonm\OneDrive - sga.pucminas.br\Github\duralux\duralux\docs
+2025-11-04 08:31:17,321 - INFO - 📦 Arquivos processados: 100
+2025-11-04 08:31:17,509 - INFO - 📦 Arquivos processados: 200
+2025-11-04 08:31:17,660 - INFO - 📦 Arquivos processados: 300
+2025-11-04 08:31:17,771 - INFO - 📦 Arquivos processados: 400
+2025-11-04 08:31:17,960 - INFO - 📦 Arquivos processados: 500
+2025-11-04 08:31:18,118 - INFO - 📦 Arquivos processados: 600
+2025-11-04 08:31:18,281 - INFO - 📦 Arquivos processados: 700
+2025-11-04 08:31:18,417 - INFO - 📦 Arquivos processados: 800
+2025-11-04 08:31:18,556 - INFO - 📦 Arquivos processados: 900
+2025-11-04 08:31:18,714 - INFO - 📦 Arquivos processados: 1000
+2025-11-04 08:31:19,294 - INFO - 📦 Arquivos processados: 1100
+2025-11-04 08:31:19,899 - INFO - 📦 Arquivos processados: 1200
+2025-11-04 08:31:20,045 - INFO - ✅ Backup criado: duralux_backup_files_only_20251104_083116.zip
+2025-11-04 08:31:20,045 - INFO - 📊 Arquivos: 1252 | Original: 50.4 MB | Comprimido: 15.7 MB | Compressão: 68.9%
+2025-11-04 08:31:20,054 - INFO - ✅ Backup dos arquivos finalizado em 3.3s
