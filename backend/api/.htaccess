@@ -1,0 +1,33 @@
+RewriteEngine On
+
+# Redirecionar todas as requisições da API para router.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ router.php [QSA,L]
+
+# Headers de segurança
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+
+# Configurações PHP
+php_flag display_errors Off
+php_value memory_limit 256M
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+
+# Bloquear acesso a arquivos sensíveis
+<Files "*.log">
+    Deny from all
+</Files>
+
+<Files "*.db">
+    Deny from all
+</Files>
+
+# Permitir CORS (apenas para desenvolvimento)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With, X-CSRF-Token"
+</IfModule>

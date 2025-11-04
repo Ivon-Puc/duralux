@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste da API - Duralux CRM</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test-section { border: 1px solid #ddd; margin: 20px 0; padding: 15px; border-radius: 5px; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        .result { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste da API - Duralux CRM</h1>
+    
+    <div class="test-section">
+        <h2>🔍 Teste de Conectividade</h2>
+        <button onclick="testConnection()">Testar Conexão</button>
+        <div id="connection-result" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔐 Teste de Autenticação</h2>
+        <div>
+            <label>Email: <input type="email" id="login-email" value="admin@duralux.com"></label><br><br>
+            <label>Senha: <input type="password" id="login-password" value="admin123"></label><br><br>
+            <button onclick="testLogin()">Fazer Login</button>
+            <button onclick="testMe()">Verificar Usuário Logado</button>
+            <button onclick="testLogout()">Fazer Logout</button>
+        </div>
+        <div id="auth-result" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>👥 Teste de Registro</h2>
+        <div>
+            <label>Nome: <input type="text" id="reg-name" value="João Silva"></label><br><br>
+            <label>Email: <input type="email" id="reg-email" value="joao@teste.com"></label><br><br>
+            <label>Senha: <input type="password" id="reg-password" value="123456"></label><br><br>
+            <label>Confirmar: <input type="password" id="reg-confirm" value="123456"></label><br><br>
+            <button onclick="testRegister()">Registrar Usuário</button>
+        </div>
+        <div id="register-result" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>📊 Status do Sistema</h2>
+        <div id="system-status"></div>
+    </div>
+
+    <script>
+        const API_BASE = './';
+        let authToken = null;
+        
+        function showResult(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = isError ? 'result error' : 'result success';
+            element.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+        
+        async function apiCall(endpoint, method = 'GET', data = null) {
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            if (data) {
+                options.body = JSON.stringify(data);
+            }
+            
+            try {
+                const response = await fetch(API_BASE + endpoint, options);
+                const result = await response.json();
+                
+                return {
+                    status: response.status,
+                    data: result,
+                    success: response.ok
+                };
+            } catch (error) {
+                return {
+                    status: 0,
+                    data: { error: error.message },
+                    success: false
+                };
+            }
+        }
+        
+        async function testConnection() {
+            const result = await apiCall('test');
+            showResult('connection-result', result, !result.success);
+        }
+        
+        async function testLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const result = await apiCall('auth/login', 'POST', { email, password });
+            showResult('auth-result', result, !result.success);
+            
+            if (result.success && result.data.data && result.data.data.csrf_token) {
+                authToken = result.data.data.csrf_token;
+            }
+        }
+        
+        async function testMe() {
+            const result = await apiCall('auth/me');
+            showResult('auth-result', result, !result.success);
+        }
+        
+        async function testLogout() {
+            const result = await apiCall('auth/logout', 'POST');
+            showResult('auth-result', result, !result.success);
+            authToken = null;
+        }
+        
+        async function testRegister() {
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const password_confirm = document.getElementById('reg-confirm').value;
+            
+            const result = await apiCall('auth/register', 'POST', {
+                name, email, password, password_confirm
+            });
+            showResult('register-result', result, !result.success);
+        }
+        
+        async function loadSystemStatus() {
+            try {
+                // Testar conectividade básica
+                const testResult = await apiCall('test');
+                
+                const statusElement = document.getElementById('system-status');
+                
+                let html = '<h3>Status dos Componentes:</h3>';
+                html += '<ul>';
+                html += testResult.success ? 
+                    '<li>✅ API Router: Funcionando</li>' : 
+                    '<li>❌ API Router: Falha na conexão</li>';
+                
+                html += '<li>🔄 Verificando banco de dados...</li>';
+                html += '<li>🔄 Verificando sessões...</li>';
+                html += '</ul>';
+                
+                if (testResult.success && testResult.data.data) {
+                    html += '<p><strong>Última verificação:</strong> ' + testResult.data.data.timestamp + '</p>';
+                }
+                
+                statusElement.innerHTML = html;
+                
+            } catch (error) {
+                document.getElementById('system-status').innerHTML = 
+                    '<p style="color: red;">❌ Erro ao verificar status: ' + error.message + '</p>';
+            }
+        }
+        
+        // Carregar status ao inicializar página
+        document.addEventListener('DOMContentLoaded', loadSystemStatus);
+    </script>
+</body>
+</html>
