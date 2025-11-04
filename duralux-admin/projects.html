@@ -2356,10 +2356,14 @@
                                     </a>
                                 </div>
                             </div>
-                            <a href="projects-create.html" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" id="btnNewProject">
                                 <i class="feather-plus me-2"></i>
-                                <span>Create Prject</span>
-                            </a>
+                                <span>Novo Projeto</span>
+                            </button>
+                            <button type="button" class="btn btn-light-brand" id="btnRefreshProjects">
+                                <i class="feather-refresh-cw me-2"></i>
+                                <span>Atualizar</span>
+                            </button>
                         </div>
                     </div>
                     <div class="d-md-none d-flex align-items-center">
@@ -2376,22 +2380,21 @@
                             <div class="card stretch stretch-full">
                                 <div class="card-body">
                                     <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">Not Started</span>
-                                        <span class="fs-24 fw-bolder d-block">04</span>
+                                        <span class="d-block">Total de Projetos</span>
+                                        <span class="fs-24 fw-bolder d-block" id="totalProjects">0</span>
                                     </a>
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <a href="javascript:void(0);" class="fs-12 fw-medium text-muted">
-                                                <span>Invoices Awaiting</span>
+                                                <span>Total Cadastrado</span>
                                                 <i class="feather-link-2 fs-10 ms-1"></i>
                                             </a>
                                             <div>
-                                                <span class="fs-12 text-muted">$5,569</span>
-                                                <span class="fs-11 text-muted">(56%)</span>
+                                                <span class="fs-12 text-muted">100%</span>
                                             </div>
                                         </div>
                                         <div class="progress mt-2 ht-3">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 56%"></div>
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -2401,22 +2404,21 @@
                             <div class="card stretch stretch-full">
                                 <div class="card-body">
                                     <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">In Progress</span>
-                                        <span class="fs-24 fw-bolder d-block">06</span>
+                                        <span class="d-block">Projetos Ativos</span>
+                                        <span class="fs-24 fw-bolder d-block" id="activeProjects">0</span>
                                     </a>
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <a href="javascript:void(0);" class="fs-12 fw-medium text-muted">
-                                                <span>Projects In Progress</span>
+                                                <span>Em Andamento</span>
                                                 <i class="feather-link-2 fs-10 ms-1"></i>
                                             </a>
                                             <div>
-                                                <span class="fs-12 text-muted">16 Completed</span>
-                                                <span class="fs-11 text-muted">(78%)</span>
+                                                <span class="fs-12 text-muted">Ativos</span>
                                             </div>
                                         </div>
                                         <div class="progress mt-2 ht-3">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 78%"></div>
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -2426,22 +2428,21 @@
                             <div class="card stretch stretch-full">
                                 <div class="card-body">
                                     <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">Cancelled</span>
-                                        <span class="fs-24 fw-bolder d-block">02</span>
+                                        <span class="d-block">Projetos Concluídos</span>
+                                        <span class="fs-24 fw-bolder d-block" id="completedProjects">0</span>
                                     </a>
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <a href="javascript:void(0);" class="fs-12 fw-medium text-muted">
-                                                <span>Converted Leads</span>
+                                                <span>Finalizados</span>
                                                 <i class="feather-link-2 fs-10 ms-1"></i>
                                             </a>
                                             <div>
-                                                <span class="fs-12 text-muted">52 Completed</span>
-                                                <span class="fs-11 text-muted">(63%)</span>
+                                                <span class="fs-12 text-muted">Completos</span>
                                             </div>
                                         </div>
                                         <div class="progress mt-2 ht-3">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 63%"></div>
+                                            <div class="progress-bar bg-teal" role="progressbar" style="width: 60%"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -2451,22 +2452,21 @@
                             <div class="card stretch stretch-full">
                                 <div class="card-body">
                                     <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">Finished</span>
-                                        <span class="fs-24 fw-bolder d-block">25</span>
+                                        <span class="d-block">Projetos Atrasados</span>
+                                        <span class="fs-24 fw-bolder d-block" id="overdueProjects">0</span>
                                     </a>
                                     <div class="pt-4">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <a href="javascript:void(0);" class="fs-12 fw-medium text-muted">
-                                                <span>Conversion Rate</span>
+                                                <span>Vencidos</span>
                                                 <i class="feather-link-2 fs-10 ms-1"></i>
                                             </a>
                                             <div>
-                                                <span class="fs-12 text-muted">$2,254</span>
-                                                <span class="fs-11 text-muted">(46%)</span>
+                                                <span class="fs-12 text-muted">Atraso</span>
                                             </div>
                                         </div>
                                         <div class="progress mt-2 ht-3">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 46%"></div>
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -2478,6 +2478,66 @@
             <!-- [ page-header ] end -->
             <!-- [ Main Content ] start -->
             <div class="main-content">
+                <!-- Filtros e Controles -->
+                <div class="row mb-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label">Pesquisar Projetos</label>
+                                        <input type="text" class="form-control" id="searchProjects" placeholder="Buscar por nome, descrição...">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-select" id="filterStatus">
+                                            <option value="">Todos os Status</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Prioridade</label>
+                                        <select class="form-select" id="filterPriority">
+                                            <option value="">Todas as Prioridades</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Cliente</label>
+                                        <select class="form-select" id="filterCustomer">
+                                            <option value="">Todos os Clientes</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Itens por página</label>
+                                        <select class="form-select" id="itemsPerPage">
+                                            <option value="10">10 itens</option>
+                                            <option value="25">25 itens</option>
+                                            <option value="50">50 itens</option>
+                                            <option value="100">100 itens</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ações em Massa -->
+                <div class="row mb-3" id="bulkActions" style="display: none;">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Projetos selecionados</span>
+                                <div>
+                                    <button type="button" class="btn btn-sm btn-danger" id="btnBulkDelete">
+                                        <i class="fas fa-trash me-1"></i>
+                                        Excluir Selecionados
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card stretch stretch-full">
@@ -2487,140 +2547,273 @@
                                         <thead>
                                             <tr>
                                                 <th class="wd-30">
-                                                    <div class="btn-group mb-1">
-                                                        <div class="custom-control custom-checkbox ms-1">
-                                                            <input type="checkbox" class="custom-control-input" id="checkAllProject">
-                                                            <label class="custom-control-label" for="checkAllProject"></label>
-                                                        </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="selectAllProjects">
                                                     </div>
                                                 </th>
-                                                <th>Project Name</th>
-                                                <th>Customer</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
-                                                <th>Assigned</th>
-                                                <th>Status</th>
-                                                <th class="text-end">Actions</th>
+                                                <th class="sort-header" data-sort="name">
+                                                    Nome do Projeto
+                                                    <i class="sort-icon fas fa-sort ms-1"></i>
+                                                </th>
+                                                <th class="sort-header" data-sort="status">
+                                                    Status
+                                                    <i class="sort-icon fas fa-sort ms-1"></i>
+                                                </th>
+                                                <th class="sort-header" data-sort="priority">
+                                                    Prioridade
+                                                    <i class="sort-icon fas fa-sort ms-1"></i>
+                                                </th>
+                                                <th class="sort-header" data-sort="customer_id">
+                                                    Cliente
+                                                    <i class="sort-icon fas fa-sort ms-1"></i>
+                                                </th>
+                                                <th>Progresso</th>
+                                                <th class="sort-header" data-sort="due_date">
+                                                    Prazo de Entrega
+                                                    <i class="sort-icon fas fa-sort ms-1"></i>
+                                                </th>
+                                                <th class="text-end">Ações</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr class="single-item">
-                                                <td>
-                                                    <div class="item-checkbox ms-1">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_1">
-                                                            <label class="custom-control-label" for="checkBox_1"></label>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="project-name-td">
-                                                    <div class="hstack gap-4">
-                                                        <div class="avatar-image border-0">
-                                                            <img src="assets/images/brand/app-store.png" alt="" class="img-fluid">
-                                                        </div>
-                                                        <div>
-                                                            <a href="projects-view.html" class="text-truncate-1-line">Spark: This name could work well for a project related to innovation, creativity, or inspiration.</a>
-                                                            <p class="fs-12 text-muted mt-2 text-truncate-1-line project-list-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                                            <div class="project-list-action fs-12 d-flex align-items-center gap-3 mt-2">
-                                                                <a href="javascript:void(0);">Start</a>
-                                                                <span class="vr text-muted"></span>
-                                                                <a href="javascript:void(0);">Edit</a>
-                                                                <span class="vr text-muted"></span>
-                                                                <a href="javascript:void(0);" class="text-danger">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="projects-view.html" class="hstack gap-3">
-                                                        <div class="avatar-image avatar-md">
-                                                            <img src="assets/images/avatar/1.png" alt="" class="img-fluid">
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-truncate-1-line">Alexandra Della</span>
-                                                        </div>
-                                                    </a>
-                                                </td>
-                                                <td>2023-04-05</td>
-                                                <td>2023-04-10</td>
-                                                <td>
-                                                    <select class="form-select form-control" data-select2-selector="user">
-                                                        <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
-                                                        <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
-                                                        <option value="green.cutte@outlook.com" data-user="3">green.cutte@outlook.com</option>
-                                                        <option value="nancy.elliot@outlook.com" data-user="4">nancy.elliot@outlook.com</option>
-                                                        <option value="mar.audrey@gmail.com" data-user="5">mar.audrey@gmail.com</option>
-                                                        <option value="erna.serpa@outlook.com" data-user="6">erna.serpa@outlook.com</option>
-                                                        <option value="green.cutte@outlook.com" data-user="7">green.cutte@outlook.com</option>
-                                                        <option value="nancy.elliot@outlook.com" data-user="8">nancy.elliot@outlook.com</option>
-                                                        <option value="mar.audrey@gmail.com" data-user="9" selected>mar.audrey@gmail.com</option>
-                                                        <option value="erna.serpa@outlook.com" data-user="10">erna.serpa@outlook.com</option>
-                                                        <option value="mar.audrey@gmail.com" data-user="11">mar.audrey@gmail.com</option>
-                                                        <option value="erna.serpa@outlook.com" data-user="12">erna.serpa@outlook.com</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-control" data-select2-selector="status">
-                                                        <option value="primary" data-bg="bg-primary" selected>In Projress</option>
-                                                        <option value="warning" data-bg="bg-warning">Not Started</option>
-                                                        <option value="success" data-bg="bg-success">On Hold</option>
-                                                        <option value="danger" data-bg="bg-danger">Declined</option>
-                                                        <option value="teal" data-bg="bg-teal">Finished</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <div class="hstack gap-2 justify-content-end">
-                                                        <a href="projects-view.html" class="avatar-text avatar-md">
-                                                            <i class="feather feather-eye"></i>
-                                                        </a>
-                                                        <div class="dropdown">
-                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-offset="0,21">
-                                                                <i class="feather feather-more-horizontal"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu">
-                                                                <li>
-                                                                    <a class="dropdown-item" href="javascript:void(0)">
-                                                                        <i class="feather feather-edit-3 me-3"></i>
-                                                                        <span>Edit</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item printBTN" href="javascript:void(0)">
-                                                                        <i class="feather feather-printer me-3"></i>
-                                                                        <span>Print</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item" href="javascript:void(0)">
-                                                                        <i class="feather feather-clock me-3"></i>
-                                                                        <span>Remind</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="dropdown-divider"></li>
-                                                                <li>
-                                                                    <a class="dropdown-item" href="javascript:void(0)">
-                                                                        <i class="feather feather-archive me-3"></i>
-                                                                        <span>Archive</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item" href="javascript:void(0)">
-                                                                        <i class="feather feather-alert-octagon me-3"></i>
-                                                                        <span>Report Spam</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="dropdown-divider"></li>
-                                                                <li>
-                                                                    <a class="dropdown-item" href="javascript:void(0)">
-                                                                        <i class="feather feather-trash-2 me-3"></i>
-                                                                        <span>Delete</span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="projectsTableBody">
+                                            <!-- Conteúdo será carregado dinamicamente via JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- Paginação -->
+                                <div class="card-footer d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span id="paginationInfo" class="text-muted fs-12">Carregando...</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" id="btnPrevPage">
+                                            <i class="fas fa-chevron-left"></i>
+                                            Anterior
+                                        </button>
+                                        <div id="paginationNumbers" class="d-flex gap-1">
+                                            <!-- Números das páginas serão inseridos aqui -->
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" id="btnNextPage">
+                                            Próximo
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Projeto -->
+                <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="projectModalLabel">Novo Projeto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                            </div>
+                            <form id="projectForm">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="projectName" class="form-label">Nome do Projeto *</label>
+                                            <input type="text" class="form-control" id="projectName" name="name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="projectCustomerId" class="form-label">Cliente *</label>
+                                            <select class="form-select" id="projectCustomerId" name="customer_id" required>
+                                                <option value="">Selecione um cliente</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="projectDescription" class="form-label">Descrição</label>
+                                            <textarea class="form-control" id="projectDescription" name="description" rows="3"></textarea>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="projectStatus" class="form-label">Status *</label>
+                                            <select class="form-select" id="projectStatus" name="status" required>
+                                                <option value="planning">Planejamento</option>
+                                                <option value="in_progress">Em Andamento</option>
+                                                <option value="review">Em Revisão</option>
+                                                <option value="completed">Concluído</option>
+                                                <option value="on_hold">Pausado</option>
+                                                <option value="cancelled">Cancelado</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="projectPriority" class="form-label">Prioridade *</label>
+                                            <select class="form-select" id="projectPriority" name="priority" required>
+                                                <option value="low">Baixa</option>
+                                                <option value="medium">Média</option>
+                                                <option value="high">Alta</option>
+                                                <option value="urgent">Urgente</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="projectBudget" class="form-label">Orçamento (R$)</label>
+                                            <input type="number" class="form-control" id="projectBudget" name="budget" step="0.01" min="0">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="projectStartDate" class="form-label">Data de Início</label>
+                                            <input type="date" class="form-control" id="projectStartDate" name="start_date">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="projectDueDate" class="form-label">Data de Entrega</label>
+                                            <input type="date" class="form-control" id="projectDueDate" name="due_date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Salvar Projeto</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Detalhes do Projeto -->
+                <div class="modal fade" id="projectDetailsModal" tabindex="-1" aria-labelledby="projectDetailsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="projectDetailsModalLabel">Detalhes do Projeto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <h6 class="text-muted">Nome do Projeto</h6>
+                                        <p id="detailProjectName" class="mb-0 fw-bold"></p>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <h6 class="text-muted">Descrição</h6>
+                                        <p id="detailProjectDescription" class="mb-0"></p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-muted">Status</h6>
+                                        <div id="detailProjectStatus"></div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-muted">Prioridade</h6>
+                                        <div id="detailProjectPriority"></div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-muted">Cliente</h6>
+                                        <p id="detailProjectCustomer" class="mb-0"></p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-muted">Orçamento</h6>
+                                        <p id="detailProjectBudget" class="mb-0"></p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-muted">Data de Início</h6>
+                                        <p id="detailProjectStartDate" class="mb-0"></p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-muted">Data de Entrega</h6>
+                                        <p id="detailProjectDueDate" class="mb-0"></p>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <h6 class="text-muted">Progresso do Projeto</h6>
+                                        <div id="detailProjectProgress"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Tarefas do Projeto -->
+                <div class="modal fade" id="projectTasksModal" tabindex="-1" aria-labelledby="projectTasksModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="projectTasksModalLabel">
+                                    Tarefas do Projeto: <span id="taskModalProjectName"></span>
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="mb-0">Lista de Tarefas</h6>
+                                    <button type="button" class="btn btn-primary btn-sm" id="btnNewTask">
+                                        <i class="fas fa-plus me-1"></i>
+                                        Nova Tarefa
+                                    </button>
+                                </div>
+                                <div id="projectTasksList">
+                                    <!-- Lista de tarefas será carregada aqui -->
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Nova Tarefa -->
+                <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="taskModalLabel">Nova Tarefa</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                            </div>
+                            <form id="taskForm">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="taskTitle" class="form-label">Título da Tarefa *</label>
+                                        <input type="text" class="form-control" id="taskTitle" name="title" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="taskDescription" class="form-label">Descrição</label>
+                                        <textarea class="form-control" id="taskDescription" name="description" rows="3"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="taskStatus" class="form-label">Status *</label>
+                                            <select class="form-select" id="taskStatus" name="status" required>
+                                                <option value="pending">Pendente</option>
+                                                <option value="in_progress">Em Andamento</option>
+                                                <option value="completed">Concluída</option>
+                                                <option value="cancelled">Cancelada</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="taskPriority" class="form-label">Prioridade *</label>
+                                            <select class="form-select" id="taskPriority" name="priority" required>
+                                                <option value="low">Baixa</option>
+                                                <option value="medium">Média</option>
+                                                <option value="high">Alta</option>
+                                                <option value="urgent">Urgente</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="taskDueDate" class="form-label">Data de Vencimento</label>
+                                            <input type="date" class="form-control" id="taskDueDate" name="due_date">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="taskEstimatedHours" class="form-label">Horas Estimadas</label>
+                                            <input type="number" class="form-control" id="taskEstimatedHours" name="estimated_hours" step="0.5" min="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Salvar Tarefa</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
                                             <tr class="single-item">
                                                 <td>
                                                     <div class="item-checkbox ms-1">
@@ -4067,7 +4260,7 @@
     <!--! END: Vendors JS !-->
     <!--! BEGIN: Apps Init  !-->
     <script src="assets/js/common-init.min.js"></script>
-    <script src="assets/js/projects-init.min.js"></script>
+    <script src="assets/js/duralux-projects.js"></script>
     <!--! END: Apps Init !-->
     <!--! BEGIN: Theme Customizer  !-->
     <script src="assets/js/theme-customizer-init.min.js"></script>
