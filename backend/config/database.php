@@ -105,12 +105,86 @@ class Database {
             FOREIGN KEY (product_id) REFERENCES products(id)
         )";
         
+        $sql_leads = "CREATE TABLE IF NOT EXISTS leads (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name VARCHAR(100) NOT NULL,
+            email VARCHAR(150),
+            phone VARCHAR(20),
+            company VARCHAR(100),
+            position VARCHAR(100),
+            source VARCHAR(50) DEFAULT 'website',
+            status VARCHAR(20) DEFAULT 'new',
+            pipeline_stage VARCHAR(50) DEFAULT 'prospect',
+            value DECIMAL(10,2) DEFAULT 0.00,
+            probability INTEGER DEFAULT 25,
+            notes TEXT,
+            next_contact_date DATE,
+            user_id INTEGER,
+            customer_id INTEGER,
+            converted INTEGER DEFAULT 0,
+            converted_at DATETIME,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id),
+            FOREIGN KEY (customer_id) REFERENCES customers(id)
+        )";
+        
+        $sql_activity_logs = "CREATE TABLE IF NOT EXISTS activity_logs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            action VARCHAR(100) NOT NULL,
+            module VARCHAR(50) NOT NULL,
+            record_id INTEGER,
+            description TEXT,
+            ip_address VARCHAR(45),
+            user_agent TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )";
+        
+        $sql_projects = "CREATE TABLE IF NOT EXISTS projects (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name VARCHAR(200) NOT NULL,
+            description TEXT,
+            customer_id INTEGER NOT NULL,
+            status VARCHAR(20) DEFAULT 'planning',
+            priority VARCHAR(20) DEFAULT 'medium',
+            budget DECIMAL(10,2) DEFAULT 0.00,
+            start_date DATE,
+            end_date DATE,
+            user_id INTEGER,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (customer_id) REFERENCES customers(id),
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )";
+        
+        $sql_project_tasks = "CREATE TABLE IF NOT EXISTS project_tasks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            project_id INTEGER NOT NULL,
+            title VARCHAR(200) NOT NULL,
+            description TEXT,
+            status VARCHAR(20) DEFAULT 'pending',
+            priority VARCHAR(20) DEFAULT 'medium',
+            assigned_to INTEGER,
+            due_date DATE,
+            completed_at DATETIME,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+            FOREIGN KEY (assigned_to) REFERENCES users(id)
+        )";
+        
         try {
             $this->pdo->exec($sql_users);
             $this->pdo->exec($sql_customers);
             $this->pdo->exec($sql_products);
             $this->pdo->exec($sql_orders);
             $this->pdo->exec($sql_order_items);
+            $this->pdo->exec($sql_leads);
+            $this->pdo->exec($sql_activity_logs);
+            $this->pdo->exec($sql_projects);
+            $this->pdo->exec($sql_project_tasks);
             
             echo "✅ Tabelas criadas/verificadas com sucesso!\n";
             

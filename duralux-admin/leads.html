@@ -26,6 +26,59 @@
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/theme.min.css">
+    <style>
+        .pipeline-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        .pipeline-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .lead-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+        }
+        .conversion-progress {
+            height: 6px;
+            border-radius: 3px;
+        }
+        .lead-value {
+            font-weight: 600;
+            color: #28a745;
+        }
+        .pipeline-stage {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+        .source-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+        }
+    </style>
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
     <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->

@@ -51,6 +51,34 @@ if ($action) {
             $controller->handleRequest();
             break;
             
+        // Leads actions
+        case 'get_leads':
+        case 'get_lead':
+        case 'create_lead':
+        case 'update_lead':
+        case 'delete_lead':
+        case 'convert_lead':
+        case 'get_leads_options':
+        case 'get_pipeline_stats':
+        case 'search_leads':
+            $controller = new LeadsController();
+            $controller->handleRequest();
+            break;
+            
+        // Projects actions
+        case 'get_projects':
+        case 'get_project':
+        case 'create_project':
+        case 'update_project':
+        case 'delete_project':
+        case 'manage_tasks':
+        case 'get_project_stats':
+        case 'get_project_options':
+        case 'get_project_customers':
+            $controller = new ProjectController();
+            $controller->handleRequest();
+            break;
+            
         // Auth actions
         case 'login':
         case 'logout':
@@ -96,6 +124,28 @@ class Router {
         $this->routes['POST']['/products'] = 'ProductController@store';
         $this->routes['PUT']['/products/{id}'] = 'ProductController@update';
         $this->routes['DELETE']['/products/{id}'] = 'ProductController@delete';
+        
+        // Rotas de leads
+        $this->routes['GET']['/leads'] = 'LeadsController@index';
+        $this->routes['GET']['/leads/{id}'] = 'LeadsController@show';
+        $this->routes['POST']['/leads'] = 'LeadsController@store';
+        $this->routes['PUT']['/leads/{id}'] = 'LeadsController@update';
+        $this->routes['DELETE']['/leads/{id}'] = 'LeadsController@delete';
+        $this->routes['POST']['/leads/{id}/convert'] = 'LeadsController@convertToCustomer';
+        $this->routes['GET']['/leads/options'] = 'LeadsController@getOptions';
+        $this->routes['GET']['/leads/pipeline'] = 'LeadsController@pipeline';
+        
+        // Rotas de projetos
+        $this->routes['GET']['/projects'] = 'ProjectController@index';
+        $this->routes['GET']['/projects/{id}'] = 'ProjectController@show';
+        $this->routes['POST']['/projects'] = 'ProjectController@store';
+        $this->routes['PUT']['/projects/{id}'] = 'ProjectController@update';
+        $this->routes['DELETE']['/projects/{id}'] = 'ProjectController@delete';
+        $this->routes['GET']['/projects/stats'] = 'ProjectController@getStats';
+        $this->routes['GET']['/projects/options'] = 'ProjectController@getOptions';
+        $this->routes['GET']['/projects/customers'] = 'ProjectController@getCustomers';
+        $this->routes['POST']['/projects/{id}/tasks'] = 'ProjectController@manageTasks';
+        $this->routes['GET']['/projects/{id}/tasks'] = 'ProjectController@manageTasks';
         
         // Rotas de dashboard
         $this->routes['GET']['/dashboard/stats'] = 'DashboardController@getDashboardStats';
