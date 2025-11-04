@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duralux CRM - Sistema Integrado</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+        }
+        .card h3 {
+            margin: 0 0 15px 0;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card p {
+            margin: 0 0 15px 0;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background: #28a745;
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+        .btn-info {
+            background: #17a2b8;
+        }
+        .btn-info:hover {
+            background: #138496;
+        }
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 6px;
+        }
+        .status.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .status.warning {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+        }
+        .icon {
+            font-size: 1.2em;
+        }
+        .features {
+            margin-top: 40px;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .check {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎯 Duralux CRM</div>
+            <div class="subtitle">Sistema de Gestão de Relacionamento com Clientes</div>
+        </div>
+
+        <div class="status success">
+            <span class="icon">✅</span>
+            <div>
+                <strong>Sistema Integrado com Sucesso!</strong><br>
+                Frontend e Backend conectados com API funcional
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>
+                    <span class="icon">🎨</span>
+                    Interface Administrativa
+                </h3>
+                <p>
+                    Interface completa em Bootstrap com sistema de clientes integrado à API backend.
+                    Inclui busca em tempo real, filtros avançados e paginação.
+                </p>
+                <a href="customers.html" class="btn">
+                    <span class="icon">👥</span> Acessar Clientes
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="icon">🔧</span>
+                    API Backend
+                </h3>
+                <p>
+                    API RESTful completa em PHP com SQLite. Inclui autenticação segura,
+                    CRUD de clientes e produtos, validação e logs de atividade.
+                </p>
+                <a href="../backend/api/test.html" class="btn btn-success">
+                    <span class="icon">🧪</span> Testar APIs
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="icon">📊</span>
+                    Painel de Controle
+                </h3>
+                <p>
+                    Dashboard com estatísticas em tempo real, gráficos interativos
+                    e métricas de desempenho do CRM.
+                </p>
+                <a href="index.html" class="btn btn-info">
+                    <span class="icon">📈</span> Ver Dashboard
+                </a>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>🚀 Funcionalidades Implementadas</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Sistema de Autenticação Completo</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>CRUD de Clientes com Validação</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>CRUD de Produtos com SKU Automático</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>API RESTful Documentada</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Banco SQLite com Dados de Exemplo</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Interface Responsiva Bootstrap</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Busca e Filtros Avançados</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Paginação Dinâmica</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Exportação de Dados</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Logs de Atividade</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Validação e Sanitização</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Proteção CSRF</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="status warning" style="margin-top: 40px;">
+            <span class="icon">💡</span>
+            <div>
+                <strong>Próximos Passos:</strong><br>
+                Sistema pronto para produção! Continue com leads, projetos, propostas e relatórios.
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #dee2e6;">
+            <p style="color: #6c757d; margin: 0;">
+                <strong>Duralux CRM v1.0</strong> - Sistema de Gestão Completo<br>
+                Desenvolvido com PHP, SQLite, Bootstrap e JavaScript
+            </p>
+        </div>
+    </div>
+</body>
+</html>

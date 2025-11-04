@@ -2282,80 +2282,80 @@
                             </a>
                         </div>
                         <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                            <a href="javascript:void(0);" class="btn btn-icon btn-light-brand" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            <div class="input-group" style="width: 300px;">
+                                <span class="input-group-text">
+                                    <i class="feather-search"></i>
+                                </span>
+                                <input type="text" class="form-control" id="customer-search" 
+                                       placeholder="Buscar clientes..." autocomplete="off">
+                            </div>
+                            <a href="javascript:void(0);" class="btn btn-icon btn-light-brand" 
+                               data-bs-toggle="collapse" data-bs-target="#collapseOne">
                                 <i class="feather-bar-chart"></i>
                             </a>
                             <div class="dropdown">
-                                <a class="btn btn-icon btn-light-brand" data-bs-toggle="dropdown" data-bs-offset="0, 10" data-bs-auto-close="outside">
+                                <a class="btn btn-icon btn-light-brand" data-bs-toggle="dropdown" 
+                                   data-bs-offset="0, 10" data-bs-auto-close="outside">
                                     <i class="feather-filter"></i>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather-eye me-3"></i>
-                                        <span>All</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather-users me-3"></i>
-                                        <span>Group</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather-flag me-3"></i>
-                                        <span>Country</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather-dollar-sign me-3"></i>
-                                        <span>Invoice</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather-briefcase me-3"></i>
-                                        <span>Project</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather-user-check me-3"></i>
-                                        <span>Active</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather-user-minus me-3"></i>
-                                        <span>Inactive</span>
-                                    </a>
+                                <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 250px;">
+                                    <h6 class="dropdown-header">Filtros</h6>
+                                    <div class="mb-3">
+                                        <label class="form-label">Status:</label>
+                                        <select class="form-select" id="status-filter">
+                                            <option value="">Todos</option>
+                                            <option value="1">Ativos</option>
+                                            <option value="0">Inativos</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Período:</label>
+                                        <select class="form-select" id="period-filter">
+                                            <option value="">Todos os períodos</option>
+                                            <option value="today">Hoje</option>
+                                            <option value="week">Esta semana</option>
+                                            <option value="month">Este mês</option>
+                                            <option value="year">Este ano</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary flex-fill" 
+                                                onclick="clearFilters()">Limpar</button>
+                                        <button type="button" class="btn btn-sm btn-primary flex-fill" 
+                                                onclick="applyFilters()">Aplicar</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <a class="btn btn-icon btn-light-brand" data-bs-toggle="dropdown" data-bs-offset="0, 10" data-bs-auto-close="outside">
-                                    <i class="feather-paperclip"></i>
+                                <a class="btn btn-icon btn-light-brand" data-bs-toggle="dropdown" 
+                                   data-bs-offset="0, 10" data-bs-auto-close="outside">
+                                    <i class="feather-download"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="javascript:void(0);" class="dropdown-item">
+                                    <h6 class="dropdown-header">Exportar Dados</h6>
+                                    <a href="javascript:void(0);" class="dropdown-item btn-export" data-format="pdf">
                                         <i class="bi bi-filetype-pdf me-3"></i>
                                         <span>PDF</span>
                                     </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
+                                    <a href="javascript:void(0);" class="dropdown-item btn-export" data-format="csv">
                                         <i class="bi bi-filetype-csv me-3"></i>
                                         <span>CSV</span>
                                     </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="bi bi-filetype-xml me-3"></i>
-                                        <span>XML</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="bi bi-filetype-txt me-3"></i>
-                                        <span>Text</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="bi bi-filetype-exe me-3"></i>
+                                    <a href="javascript:void(0);" class="dropdown-item btn-export" data-format="excel">
+                                        <i class="bi bi-filetype-xlsx me-3"></i>
                                         <span>Excel</span>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0);" class="dropdown-item">
+                                    <a href="javascript:void(0);" class="dropdown-item" onclick="window.print()">
                                         <i class="bi bi-printer me-3"></i>
-                                        <span>Print</span>
+                                        <span>Imprimir</span>
                                     </a>
                                 </div>
                             </div>
-                            <a href="customers-create.html" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" id="new-customer-btn">
                                 <i class="feather-plus me-2"></i>
-                                <span>Create Customer</span>
-                            </a>
+                                <span>Novo Cliente</span>
+                            </button>
                         </div>
                     </div>
                     <div class="d-md-none d-flex align-items-center">
@@ -2373,17 +2373,17 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-3">
-                                            <div class="avatar-text avatar-xl rounded">
+                                            <div class="avatar-text avatar-xl rounded bg-primary text-white">
                                                 <i class="feather-users"></i>
                                             </div>
                                             <a href="javascript:void(0);" class="fw-bold d-block">
-                                                <span class="text-truncate-1-line">Total Customers</span>
-                                                <span class="fs-24 fw-bolder d-block">26,595</span>
+                                                <span class="text-truncate-1-line">Total de Clientes</span>
+                                                <span class="fs-24 fw-bolder d-block" id="total-customers">0</span>
                                             </a>
                                         </div>
-                                        <div class="badge bg-soft-success text-success">
-                                            <i class="feather-arrow-up fs-10 me-1"></i>
-                                            <span>36.85%</span>
+                                        <div class="badge bg-soft-primary text-primary">
+                                            <i class="feather-trending-up fs-10 me-1"></i>
+                                            <span>100%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2394,38 +2394,17 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-3">
-                                            <div class="avatar-text avatar-xl rounded">
+                                            <div class="avatar-text avatar-xl rounded bg-success text-white">
                                                 <i class="feather-user-check"></i>
                                             </div>
                                             <a href="javascript:void(0);" class="fw-bold d-block">
-                                                <span class="text-truncate-1-line">Active Customers</span>
-                                                <span class="fs-24 fw-bolder d-block">2,245</span>
-                                            </a>
-                                        </div>
-                                        <div class="badge bg-soft-danger text-danger">
-                                            <i class="feather-arrow-down fs-10 me-1"></i>
-                                            <span>24.56%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-md-6">
-                            <div class="card stretch stretch-full">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="avatar-text avatar-xl rounded">
-                                                <i class="feather-user-plus"></i>
-                                            </div>
-                                            <a href="javascript:void(0);" class="fw-bold d-block">
-                                                <span class="text-truncate-1-line">New Customers</span>
-                                                <span class="fs-24 fw-bolder d-block">1,254</span>
+                                                <span class="text-truncate-1-line">Clientes Ativos</span>
+                                                <span class="fs-24 fw-bolder d-block" id="active-customers">0</span>
                                             </a>
                                         </div>
                                         <div class="badge bg-soft-success text-success">
                                             <i class="feather-arrow-up fs-10 me-1"></i>
-                                            <span>33.29%</span>
+                                            <span>Ativos</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2436,17 +2415,38 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-3">
-                                            <div class="avatar-text avatar-xl rounded">
+                                            <div class="avatar-text avatar-xl rounded bg-info text-white">
+                                                <i class="feather-user-plus"></i>
+                                            </div>
+                                            <a href="javascript:void(0);" class="fw-bold d-block">
+                                                <span class="text-truncate-1-line">Novos Clientes</span>
+                                                <span class="fs-24 fw-bolder d-block" id="new-customers">0</span>
+                                            </a>
+                                        </div>
+                                        <div class="badge bg-soft-info text-info">
+                                            <i class="feather-calendar fs-10 me-1"></i>
+                                            <span>Este mês</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="avatar-text avatar-xl rounded bg-warning text-white">
                                                 <i class="feather-user-minus"></i>
                                             </div>
                                             <a href="javascript:void(0);" class="fw-bold d-block">
-                                                <span class="text-truncate-1-line">Inactive Customers</span>
-                                                <span class="fs-24 fw-bolder d-block">4,586</span>
+                                                <span class="text-truncate-1-line">Clientes Inativos</span>
+                                                <span class="fs-24 fw-bolder d-block" id="inactive-customers">0</span>
                                             </a>
                                         </div>
-                                        <div class="badge bg-soft-danger text-danger">
-                                            <i class="feather-arrow-down fs-10 me-1"></i>
-                                            <span>42.47%</span>
+                                        <div class="badge bg-soft-warning text-warning">
+                                            <i class="feather-pause fs-10 me-1"></i>
+                                            <span>Inativos</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2460,7 +2460,29 @@
             <div class="main-content">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card stretch stretch-full">
+                        <!-- Loading Spinner -->
+                        <div id="loading-spinner" class="text-center py-5" style="display: none;">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Carregando...</span>
+                            </div>
+                            <p class="mt-2 text-muted">Carregando clientes...</p>
+                        </div>
+                        
+                        <!-- Auth Required Message -->
+                        <div id="auth-required" class="card stretch stretch-full" style="display: none;">
+                            <div class="card-body text-center py-5">
+                                <i class="feather-lock fs-1 text-muted mb-4"></i>
+                                <h5 class="text-muted">Autenticação Necessária</h5>
+                                <p class="text-muted mb-4">Você precisa estar logado para acessar os clientes.</p>
+                                <a href="../backend/api/test.html" class="btn btn-primary" target="_blank">
+                                    <i class="feather-log-in me-2"></i>
+                                    Fazer Login
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Main Content -->
+                        <div id="main-content" class="card stretch stretch-full">
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-hover" id="customerList">
@@ -2474,13 +2496,13 @@
                                                         </div>
                                                     </div>
                                                 </th>
-                                                <th>Customer</th>
+                                                <th>Cliente</th>
                                                 <th>Email</th>
-                                                <th>Group</th>
-                                                <th>Phone</th>
-                                                <th>Date</th>
+                                                <th>Grupos</th>
+                                                <th>Telefone</th>
+                                                <th>Data de Cadastro</th>
                                                 <th>Status</th>
-                                                <th class="text-end">Actions</th>
+                                                <th class="text-end">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -3447,8 +3469,99 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <!-- Paginação -->
+                                <div class="card-footer">
+                                    <div class="pagination-container"></div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Cliente -->
+            <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="customerModalLabel">Novo Cliente</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="customer-form">
+                            <div class="modal-body">
+                                <input type="hidden" name="customer_id" id="customer-id">
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customer-name" class="form-label">Nome *</label>
+                                        <input type="text" class="form-control" id="customer-name" name="name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customer-email" class="form-label">Email *</label>
+                                        <input type="email" class="form-control" id="customer-email" name="email" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customer-phone" class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" id="customer-phone" name="phone">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customer-company" class="form-label">Empresa</label>
+                                        <input type="text" class="form-control" id="customer-company" name="company">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="customer-address" class="form-label">Endereço</label>
+                                    <textarea class="form-control" id="customer-address" name="address" rows="2"></textarea>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="customer-city" class="form-label">Cidade</label>
+                                        <input type="text" class="form-control" id="customer-city" name="city">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="customer-state" class="form-label">Estado</label>
+                                        <input type="text" class="form-control" id="customer-state" name="state">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="customer-zipcode" class="form-label">CEP</label>
+                                        <input type="text" class="form-control" id="customer-zipcode" name="zipcode">
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="customer-country" class="form-label">País</label>
+                                        <select class="form-select" id="customer-country" name="country">
+                                            <option value="">Selecione o país</option>
+                                            <option value="Brasil" selected>Brasil</option>
+                                            <option value="Argentina">Argentina</option>
+                                            <option value="Chile">Chile</option>
+                                            <option value="Uruguai">Uruguai</option>
+                                            <option value="Paraguai">Paraguai</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-check form-switch mt-4">
+                                            <input class="form-check-input" type="checkbox" id="customer-active" name="active" checked>
+                                            <label class="form-check-label" for="customer-active">
+                                                Cliente Ativo
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="feather-save me-2"></i>Salvar Cliente
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -3992,15 +4105,81 @@
     <!--! BEGIN: Vendors JS !-->
     <script src="assets/vendors/js/vendors.min.js"></script>
     <!-- vendors.min.js {always must need to be top} -->
-    <script src="assets/vendors/js/dataTables.min.js"></script>
-    <script src="assets/vendors/js/dataTables.bs5.min.js"></script>
     <script src="assets/vendors/js/select2.min.js"></script>
     <script src="assets/vendors/js/select2-active.min.js"></script>
     <!--! END: Vendors JS !-->
     <!--! BEGIN: Apps Init  !-->
     <script src="assets/js/common-init.min.js"></script>
-    <script src="assets/js/customers-init.min.js"></script>
     <!--! END: Apps Init !-->
+    <!--! BEGIN: Duralux CRM Integration !-->
+    <script src="assets/js/duralux-customers.js"></script>
+    <style>
+        .loading {
+            pointer-events: none;
+        }
+        .loading::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+        .loading::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            margin: -25px 0 0 -25px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 10000;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .pagination .page-link {
+            border-radius: 6px;
+            margin: 0 2px;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+    <script>
+        // Funções utilitárias globais
+        function clearFilters() {
+            document.getElementById('status-filter').value = '';
+            document.getElementById('period-filter').value = '';
+            document.getElementById('customer-search').value = '';
+            
+            if (window.duraluxCustomers) {
+                window.duraluxCustomers.currentFilters = {};
+                window.duraluxCustomers.loadCustomers();
+            }
+        }
+        
+        function applyFilters() {
+            if (window.duraluxCustomers) {
+                const statusFilter = document.getElementById('status-filter').value;
+                const periodFilter = document.getElementById('period-filter').value;
+                
+                window.duraluxCustomers.currentFilters.active = statusFilter;
+                window.duraluxCustomers.currentFilters.period = periodFilter;
+                window.duraluxCustomers.currentPage = 1;
+                window.duraluxCustomers.loadCustomers();
+            }
+        }
+    </script>
+    <!--! END: Duralux CRM Integration !-->
     <!--! BEGIN: Theme Customizer  !-->
     <script src="assets/js/theme-customizer-init.min.js"></script>
     <!--! END: Theme Customizer !-->

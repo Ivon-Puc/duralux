@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Dashboard Duralux</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        .test-card {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; border: 1px solid #bee5eb; }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <h1 class="mb-4">🔧 Teste do Dashboard Duralux</h1>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="test-card info">
+                    <h5>🚀 Status dos Testes da API</h5>
+                    <p>Testando as rotas do dashboard e conectividade...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="test-results"></div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <button class="btn btn-primary" onclick="runAllTests()">▶️ Executar Todos os Testes</button>
+                <button class="btn btn-secondary" onclick="clearResults()">🗑️ Limpar Resultados</button>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="test-card">
+                    <h6>📊 Dashboard em Tempo Real</h6>
+                    <div id="live-dashboard">
+                        <p>Carregando dados do dashboard...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        class DashboardTester {
+            constructor() {
+                this.apiBase = '../backend/api/router.php';
+                this.tests = [
+                    { name: 'Verificar Autenticação', action: 'check_auth' },
+                    { name: 'Estatísticas do Dashboard', action: 'get_dashboard_stats' },
+                    { name: 'Dados de Receita', action: 'get_revenue_data' },
+                    { name: 'Análises de Leads', action: 'get_leads_analytics' },
+                    { name: 'Análises de Projetos', action: 'get_projects_analytics' },
+                    { name: 'Atividades Recentes', action: 'get_recent_activities' }
+                ];
+            }
+
+            async runTest(test) {
+                const startTime = performance.now();
+                
+                try {
+                    const response = await fetch(this.apiBase, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({
+                            action: test.action
+                        })
+                    });
+
+                    const endTime = performance.now();
+                    const duration = Math.round(endTime - startTime);
+                    
+                    const result = await response.json();
+                    
+                    return {
+                        ...test,
+                        success: response.ok && result.success !== false,
+                        status: response.status,
+                        duration: duration,
+                        data: result,
+                        error: result.success === false ? result.message : null
+                    };
+
+                } catch (error) {
+                    const endTime = performance.now();
+                    const duration = Math.round(endTime - startTime);
+                    
+                    return {
+                        ...test,
+                        success: false,
+                        status: 0,
+                        duration: duration,
+                        data: null,
+                        error: error.message
+                    };
+                }
+            }
+
+            renderTestResult(result) {
+                const statusClass = result.success ? 'success' : 'error';
+                const statusIcon = result.success ? '✅' : '❌';
+                const statusText = result.success ? 'SUCESSO' : 'ERRO';
+                
+                return `
+                    <div class="test-card ${statusClass}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6>${statusIcon} ${result.name}</h6>
+                            <small>
+                                <span class="badge bg-secondary">${result.status}</span>
+                                <span class="badge bg-info">${result.duration}ms</span>
+                            </small>
+                        </div>
+                        
+                        ${result.error ? `
+                            <div class="alert alert-danger mt-2 mb-2">
+                                <strong>Erro:</strong> ${result.error}
+                            </div>
+                        ` : ''}
+                        
+                        ${result.data ? `
+                            <details class="mt-2">
+                                <summary>📄 Ver Resposta (${result.data.success ? 'Sucesso' : 'Erro'})</summary>
+                                <pre>${JSON.stringify(result.data, null, 2)}</pre>
+                            </details>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            async runAllTests() {
+                const resultsContainer = document.getElementById('test-results');
+                resultsContainer.innerHTML = '<div class="test-card info"><h6>🏃‍♂️ Executando testes...</h6></div>';
+                
+                let passedTests = 0;
+                let totalTests = this.tests.length;
+                
+                for (let test of this.tests) {
+                    const result = await this.runTest(test);
+                    
+                    if (result.success) passedTests++;
+                    
+                    resultsContainer.innerHTML += this.renderTestResult(result);
+                }
+                
+                // Adiciona resumo
+                const summaryClass = passedTests === totalTests ? 'success' : 
+                                   passedTests > 0 ? 'info' : 'error';
+                
+                const summaryIcon = passedTests === totalTests ? '🎉' : 
+                                  passedTests > 0 ? '⚠️' : '💥';
+                
+                const summary = `
+                    <div class="test-card ${summaryClass}">
+                        <h5>${summaryIcon} Resumo dos Testes</h5>
+                        <p>
+                            <strong>${passedTests}/${totalTests}</strong> testes passaram
+                            ${passedTests === totalTests ? ' - Dashboard funcionando perfeitamente!' : 
+                              passedTests > 0 ? ' - Alguns problemas encontrados.' : 
+                              ' - Problemas críticos detectados.'}
+                        </p>
+                    </div>
+                `;
+                
+                resultsContainer.innerHTML = summary + resultsContainer.innerHTML;
+                
+                // Se todos os testes passaram, carrega dashboard ao vivo
+                if (passedTests === totalTests) {
+                    this.loadLiveDashboard();
+                }
+            }
+
+            async loadLiveDashboard() {
+                try {
+                    const response = await fetch(this.apiBase, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({
+                            action: 'get_dashboard_stats'
+                        })
+                    });
+
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        const stats = result.data;
+                        document.getElementById('live-dashboard').innerHTML = `
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary">${stats.total_customers}</h5>
+                                            <p class="card-text">Total de Clientes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success">${stats.total_products}</h5>
+                                            <p class="card-text">Total de Produtos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-warning">${stats.total_leads}</h5>
+                                            <p class="card-text">Total de Leads</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-info">${stats.active_projects}</h5>
+                                            <p class="card-text">Projetos Ativos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                } catch (error) {
+                    document.getElementById('live-dashboard').innerHTML = `
+                        <div class="alert alert-danger">
+                            Erro ao carregar dashboard: ${error.message}
+                        </div>
+                    `;
+                }
+            }
+
+            clearResults() {
+                document.getElementById('test-results').innerHTML = '';
+                document.getElementById('live-dashboard').innerHTML = '<p>Carregando dados do dashboard...</p>';
+            }
+        }
+
+        // Instância global
+        const tester = new DashboardTester();
+
+        // Funções globais para os botões
+        function runAllTests() {
+            tester.runAllTests();
+        }
+
+        function clearResults() {
+            tester.clearResults();
+        }
+
+        // Auto-executa os testes quando a página carrega
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                runAllTests();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

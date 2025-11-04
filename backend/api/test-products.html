@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste CRUD Produtos - Duralux CRM</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { border: 1px solid #ddd; margin: 20px 0; padding: 15px; border-radius: 5px; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        .warning { background: #fff3cd; border-color: #ffeaa7; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 3px; }
+        button:hover { background: #0056b3; }
+        button.danger { background: #dc3545; }
+        button.danger:hover { background: #c82333; }
+        button.success { background: #28a745; }
+        button.success:hover { background: #218838; }
+        .result { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 3px; max-height: 400px; overflow-y: auto; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+        .form-group { margin: 10px 0; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px; }
+        .form-row { display: flex; gap: 15px; }
+        .form-row .form-group { flex: 1; }
+        .product-card { background: white; border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; position: relative; }
+        .product-card h4 { margin: 0 0 10px 0; color: #007bff; }
+        .product-actions { margin-top: 10px; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 15px 0; }
+        .stat-card { background: #f8f9fa; padding: 15px; text-align: center; border-radius: 5px; border: 1px solid #dee2e6; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #007bff; }
+        .stock-badge { position: absolute; top: 10px; right: 10px; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .stock-empty { background: #dc3545; color: white; }
+        .stock-low { background: #ffc107; color: #212529; }
+        .stock-medium { background: #17a2b8; color: white; }
+        .stock-high { background: #28a745; color: white; }
+        .price-tag { font-size: 18px; font-weight: bold; color: #28a745; }
+        .filters-section { background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h1>🛒 Teste CRUD de Produtos - Duralux CRM</h1>
+    
+    <!-- Status de Autenticação -->
+    <div class="section">
+        <h2>🔐 Status de Autenticação</h2>
+        <button onclick="checkAuth()">Verificar Login</button>
+        <button onclick="doLogin()">Fazer Login (Admin)</button>
+        <div id="auth-status" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Listar Produtos -->
+    <div class="section">
+        <h2>📦 Listar Produtos</h2>
+        <div class="filters-section">
+            <h4>🔍 Filtros de Busca</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Buscar (nome/descrição/SKU):</label>
+                    <input type="text" id="search-products" placeholder="Digite para buscar...">
+                </div>
+                <div class="form-group">
+                    <label>Categoria:</label>
+                    <select id="filter-category">
+                        <option value="">Todas as categorias</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status:</label>
+                    <select id="filter-active">
+                        <option value="">Todos</option>
+                        <option value="1">Ativos</option>
+                        <option value="0">Inativos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Preço Mínimo:</label>
+                    <input type="number" id="filter-min-price" placeholder="R$ 0,00" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Preço Máximo:</label>
+                    <input type="number" id="filter-max-price" placeholder="R$ 999999,99" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Estoque:</label>
+                    <select id="filter-stock">
+                        <option value="">Todos</option>
+                        <option value="1">Em Estoque</option>
+                        <option value="0">Sem Estoque</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Ordenar por:</label>
+                    <select id="sort-field">
+                        <option value="created_at">Data de Criação</option>
+                        <option value="name">Nome</option>
+                        <option value="price">Preço</option>
+                        <option value="category">Categoria</option>
+                        <option value="stock">Estoque</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ordem:</label>
+                    <select id="sort-order">
+                        <option value="DESC">Decrescente</option>
+                        <option value="ASC">Crescente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="listProducts()">Listar Produtos</button>
+        <button class="success" onclick="getProductStats()">Ver Estatísticas</button>
+        
+        <div id="product-stats" style="display: none;"></div>
+        <div id="products-list" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Criar Produto -->
+    <div class="section">
+        <h2>➕ Criar Novo Produto</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nome do Produto *:</label>
+                <input type="text" id="new-name" placeholder="Nome do produto/serviço" required>
+            </div>
+            <div class="form-group">
+                <label>Preço (R$) *:</label>
+                <input type="number" id="new-price" placeholder="0.00" step="0.01" min="0" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Categoria:</label>
+                <input type="text" id="new-category" placeholder="Ex: Eletrônicos, Serviços, etc">
+            </div>
+            <div class="form-group">
+                <label>SKU:</label>
+                <input type="text" id="new-sku" placeholder="Deixe vazio para gerar automaticamente">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Estoque:</label>
+                <input type="number" id="new-stock" placeholder="0" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label>Imagem (URL):</label>
+                <input type="url" id="new-image" placeholder="https://exemplo.com/imagem.jpg">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Descrição:</label>
+            <textarea id="new-description" rows="3" placeholder="Descrição detalhada do produto..."></textarea>
+        </div>
+        <button onclick="createProduct()">Criar Produto</button>
+        <button onclick="fillSampleProductData()">Preencher Exemplo</button>
+        <div id="create-result" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Buscar Produto Específico -->
+    <div class="section">
+        <h2>🔍 Buscar Produto por ID</h2>
+        <div class="form-group">
+            <label>ID do Produto:</label>
+            <input type="number" id="product-id" placeholder="Digite o ID do produto" min="1">
+        </div>
+        <button onclick="getProduct()">Buscar Produto</button>
+        <div id="product-details" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Atualizar Produto -->
+    <div class="section">
+        <h2>✏️ Atualizar Produto</h2>
+        <div class="form-group">
+            <label>ID do Produto a Atualizar:</label>
+            <input type="number" id="update-id" placeholder="ID do produto" min="1">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Novo Nome:</label>
+                <input type="text" id="update-name" placeholder="Deixe vazio para não alterar">
+            </div>
+            <div class="form-group">
+                <label>Novo Preço (R$):</label>
+                <input type="number" id="update-price" placeholder="Deixe vazio para não alterar" step="0.01" min="0">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nova Categoria:</label>
+                <input type="text" id="update-category" placeholder="Deixe vazio para não alterar">
+            </div>
+            <div class="form-group">
+                <label>Novo Estoque:</label>
+                <input type="number" id="update-stock" placeholder="Deixe vazio para não alterar" min="0">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Novo SKU:</label>
+                <input type="text" id="update-sku" placeholder="Deixe vazio para não alterar">
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select id="update-active">
+                    <option value="">Não alterar</option>
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
+                </select>
+            </div>
+        </div>
+        <button onclick="updateProduct()">Atualizar Produto</button>
+        <div id="update-result" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Excluir Produto -->
+    <div class="section">
+        <h2>🗑️ Excluir Produto</h2>
+        <div class="warning">
+            <strong>Atenção:</strong> Esta ação irá desativar o produto (não excluir permanentemente).
+        </div>
+        <div class="form-group">
+            <label>ID do Produto a Excluir:</label>
+            <input type="number" id="delete-id" placeholder="ID do produto" min="1">
+        </div>
+        <button class="danger" onclick="deleteProduct()">Excluir Produto</button>
+        <div id="delete-result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        const API_BASE = './';
+        let authToken = null;
+        
+        function showResult(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = isError ? 'result error' : 'result success';
+            element.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+        
+        async function apiCall(endpoint, method = 'GET', data = null) {
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            if (authToken) {
+                options.headers['X-CSRF-Token'] = authToken;
+            }
+            
+            if (data) {
+                if (authToken) data.csrf_token = authToken;
+                options.body = JSON.stringify(data);
+            }
+            
+            try {
+                const response = await fetch(API_BASE + endpoint, options);
+                const result = await response.json();
+                
+                return {
+                    status: response.status,
+                    data: result,
+                    success: response.ok
+                };
+            } catch (error) {
+                return {
+                    status: 0,
+                    data: { error: error.message },
+                    success: false
+                };
+            }
+        }
+        
+        async function checkAuth() {
+            const result = await apiCall('auth/me');
+            showResult('auth-status', result, !result.success);
+            
+            if (result.success && result.data.data && result.data.data.csrf_token) {
+                authToken = result.data.data.csrf_token;
+            }
+        }
+        
+        async function doLogin() {
+            const result = await apiCall('auth/login', 'POST', {
+                email: 'admin@duralux.com',
+                password: 'admin123'
+            });
+            
+            showResult('auth-status', result, !result.success);
+            
+            if (result.success && result.data.data && result.data.data.csrf_token) {
+                authToken = result.data.data.csrf_token;
+            }
+        }
+        
+        async function listProducts() {
+            const params = new URLSearchParams({
+                search: document.getElementById('search-products').value,
+                category: document.getElementById('filter-category').value,
+                active: document.getElementById('filter-active').value,
+                min_price: document.getElementById('filter-min-price').value,
+                max_price: document.getElementById('filter-max-price').value,
+                in_stock: document.getElementById('filter-stock').value,
+                sort: document.getElementById('sort-field').value,
+                order: document.getElementById('sort-order').value,
+                page: 1,
+                limit: 10
+            });
+            
+            const result = await apiCall('products?' + params.toString());
+            
+            if (result.success && result.data.data) {
+                displayProductsList(result.data.data);
+                if (result.data.data.statistics) {
+                    displayProductStats(result.data.data.statistics);
+                }
+                if (result.data.data.categories) {
+                    updateCategoriesFilter(result.data.data.categories);
+                }
+            } else {
+                showResult('products-list', result, true);
+            }
+        }
+        
+        function updateCategoriesFilter(categories) {
+            const select = document.getElementById('filter-category');
+            const currentValue = select.value;
+            
+            // Limpar opções exceto a primeira
+            while (select.children.length > 1) {
+                select.removeChild(select.lastChild);
+            }
+            
+            // Adicionar categorias
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                select.appendChild(option);
+            });
+            
+            // Restaurar valor selecionado
+            select.value = currentValue;
+        }
+        
+        function displayProductsList(data) {
+            const element = document.getElementById('products-list');
+            element.style.display = 'block';
+            element.className = 'result success';
+            
+            let html = '<h3>📦 Lista de Produtos:</h3>';
+            
+            if (data.products.length === 0) {
+                html += '<p>Nenhum produto encontrado.</p>';
+            } else {
+                data.products.forEach(product => {
+                    const stockClass = `stock-${product.stock_level.level}`;
+                    html += `
+                        <div class="product-card">
+                            <div class="stock-badge ${stockClass}">${product.stock_level.text}</div>
+                            <h4>${product.name} ${product.active ? '✅' : '❌'}</h4>
+                            <p class="price-tag">${product.price_formatted}</p>
+                            <p><strong>SKU:</strong> ${product.sku}</p>
+                            <p><strong>Categoria:</strong> ${product.category || 'Sem categoria'}</p>
+                            <p><strong>Estoque:</strong> ${product.stock} unidades</p>
+                            <p><strong>Descrição:</strong> ${product.description || 'Sem descrição'}</p>
+                            <p><strong>Cadastrado:</strong> ${product.created_at_formatted}</p>
+                            <div class="product-actions">
+                                <button onclick="loadProductForEdit(${product.id})">Editar</button>
+                                <button onclick="viewProductDetails(${product.id})">Ver Detalhes</button>
+                                <button onclick="adjustStock(${product.id}, ${product.stock})">Ajustar Estoque</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Informações de paginação
+                html += `<div style="margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 3px;">
+                    <strong>Paginação:</strong> Página ${data.pagination.current_page} de ${data.pagination.total_pages} 
+                    (${data.pagination.total} produtos no total)
+                </div>`;
+            }
+            
+            element.innerHTML = html;
+        }
+        
+        function displayProductStats(stats) {
+            const element = document.getElementById('product-stats');
+            element.style.display = 'block';
+            
+            element.innerHTML = `
+                <h3>📊 Estatísticas de Produtos:</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.total}</div>
+                        <div>Total de Produtos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.active_count}</div>
+                        <div>Produtos Ativos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.in_stock_count}</div>
+                        <div>Em Estoque</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.categories_count}</div>
+                        <div>Categorias</div>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.avg_price_formatted}</div>
+                        <div>Preço Médio</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.total_stock}</div>
+                        <div>Estoque Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.out_of_stock_count}</div>
+                        <div>Sem Estoque</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.inactive_count}</div>
+                        <div>Inativos</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function getProductStats() {
+            await listProducts(); // Isso já traz as estatísticas
+        }
+        
+        async function createProduct() {
+            const productData = {
+                name: document.getElementById('new-name').value,
+                price: document.getElementById('new-price').value,
+                category: document.getElementById('new-category').value,
+                sku: document.getElementById('new-sku').value,
+                stock: document.getElementById('new-stock').value,
+                image: document.getElementById('new-image').value,
+                description: document.getElementById('new-description').value
+            };
+            
+            const result = await apiCall('products', 'POST', productData);
+            showResult('create-result', result, !result.success);
+            
+            if (result.success) {
+                // Limpar formulário
+                document.getElementById('new-name').value = '';
+                document.getElementById('new-price').value = '';
+                document.getElementById('new-category').value = '';
+                document.getElementById('new-sku').value = '';
+                document.getElementById('new-stock').value = '0';
+                document.getElementById('new-image').value = '';
+                document.getElementById('new-description').value = '';
+            }
+        }
+        
+        function fillSampleProductData() {
+            document.getElementById('new-name').value = 'Smartphone Samsung Galaxy S23';
+            document.getElementById('new-price').value = '2499.90';
+            document.getElementById('new-category').value = 'Eletrônicos';
+            document.getElementById('new-sku').value = 'SAM-S23-128';
+            document.getElementById('new-stock').value = '25';
+            document.getElementById('new-image').value = 'https://example.com/galaxy-s23.jpg';
+            document.getElementById('new-description').value = 'Smartphone topo de linha com câmera profissional, tela AMOLED 6.1" e processador Snapdragon 8 Gen 2. Armazenamento de 128GB e 8GB RAM.';
+        }
+        
+        async function getProduct() {
+            const id = document.getElementById('product-id').value;
+            if (!id) {
+                alert('Digite o ID do produto');
+                return;
+            }
+            
+            const result = await apiCall(`products/${id}`);
+            showResult('product-details', result, !result.success);
+        }
+        
+        async function viewProductDetails(id) {
+            document.getElementById('product-id').value = id;
+            await getProduct();
+        }
+        
+        async function updateProduct() {
+            const id = document.getElementById('update-id').value;
+            if (!id) {
+                alert('Digite o ID do produto');
+                return;
+            }
+            
+            const updateData = {};
+            
+            // Só incluir campos que foram preenchidos
+            const name = document.getElementById('update-name').value;
+            if (name) updateData.name = name;
+            
+            const price = document.getElementById('update-price').value;
+            if (price) updateData.price = parseFloat(price);
+            
+            const category = document.getElementById('update-category').value;
+            if (category) updateData.category = category;
+            
+            const stock = document.getElementById('update-stock').value;
+            if (stock !== '') updateData.stock = parseInt(stock);
+            
+            const sku = document.getElementById('update-sku').value;
+            if (sku) updateData.sku = sku;
+            
+            const active = document.getElementById('update-active').value;
+            if (active !== '') updateData.active = parseInt(active);
+            
+            if (Object.keys(updateData).length === 0) {
+                alert('Preencha pelo menos um campo para atualizar');
+                return;
+            }
+            
+            const result = await apiCall(`products/${id}`, 'PUT', updateData);
+            showResult('update-result', result, !result.success);
+        }
+        
+        async function loadProductForEdit(id) {
+            document.getElementById('update-id').value = id;
+            
+            // Buscar dados do produto para pré-preencher
+            const result = await apiCall(`products/${id}`);
+            if (result.success && result.data.data) {
+                const product = result.data.data;
+                document.getElementById('update-name').value = product.name || '';
+                document.getElementById('update-price').value = product.price || '';
+                document.getElementById('update-category').value = product.category || '';
+                document.getElementById('update-stock').value = product.stock || '';
+                document.getElementById('update-sku').value = product.sku || '';
+                document.getElementById('update-active').value = product.active.toString();
+                
+                // Rolar para a seção de edição
+                document.querySelector('h2:contains("Atualizar Produto")').scrollIntoView({behavior: 'smooth'});
+            }
+        }
+        
+        async function adjustStock(id, currentStock) {
+            const newStock = prompt(`Estoque atual: ${currentStock}\nDigite o novo estoque:`, currentStock);
+            if (newStock !== null && newStock !== '') {
+                const result = await apiCall(`products/${id}`, 'PUT', { stock: parseInt(newStock) });
+                if (result.success) {
+                    alert('Estoque atualizado com sucesso!');
+                    listProducts(); // Recarregar lista
+                } else {
+                    alert('Erro ao atualizar estoque: ' + (result.data.message || 'Erro desconhecido'));
+                }
+            }
+        }
+        
+        async function deleteProduct() {
+            const id = document.getElementById('delete-id').value;
+            if (!id) {
+                alert('Digite o ID do produto');
+                return;
+            }
+            
+            if (!confirm(`Tem certeza que deseja excluir o produto ID ${id}? Esta ação irá desativá-lo.`)) {
+                return;
+            }
+            
+            const result = await apiCall(`products/${id}`, 'DELETE');
+            showResult('delete-result', result, !result.success);
+        }
+        
+        // Verificar autenticação ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            // Carregar produtos iniciais
+            setTimeout(() => {
+                if (authToken) {
+                    listProducts();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

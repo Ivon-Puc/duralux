@@ -7,6 +7,67 @@
 require_once __DIR__ . '/../init.php';
 require_once __DIR__ . '/../classes/AuthMiddleware.php';
 
+// Verificar se é requisição para dashboard ou API direta
+$data = json_decode(file_get_contents('php://input'), true) ?: [];
+$action = $data['action'] ?? $_GET['action'] ?? '';
+
+// Se a requisição tem uma action, usar o sistema de controllers direto
+if ($action) {
+    // Aplicar middleware de segurança
+    AuthMiddleware::handle();
+    
+    // Roteamento baseado em action
+    switch ($action) {
+        // Dashboard actions
+        case 'get_dashboard_stats':
+        case 'get_revenue_data':
+        case 'get_leads_analytics':
+        case 'get_projects_analytics':
+        case 'get_recent_activities':
+        case 'check_auth':
+            $controller = new DashboardController();
+            $controller->handleRequest();
+            break;
+            
+        // Customer actions
+        case 'get_customers':
+        case 'get_customer':
+        case 'create_customer':
+        case 'update_customer':
+        case 'delete_customer':
+        case 'search_customers':
+            $controller = new CustomerController();
+            $controller->handleRequest();
+            break;
+            
+        // Product actions
+        case 'get_products':
+        case 'get_product':
+        case 'create_product':
+        case 'update_product':
+        case 'delete_product':
+        case 'search_products':
+            $controller = new ProductController();
+            $controller->handleRequest();
+            break;
+            
+        // Auth actions
+        case 'login':
+        case 'logout':
+        case 'register':
+        case 'forgot_password':
+        case 'check_session':
+            $controller = new AuthController();
+            $controller->handleRequest();
+            break;
+            
+        default:
+            jsonResponse(['success' => false, 'message' => 'Ação não encontrada'], 404);
+    }
+    exit;
+}
+
+// Router para URLs RESTful (manter compatibilidade)
 class Router {
     private $routes = [];
     
@@ -36,16 +97,12 @@ class Router {
         $this->routes['PUT']['/products/{id}'] = 'ProductController@update';
         $this->routes['DELETE']['/products/{id}'] = 'ProductController@delete';
         
-        // Rotas de pedidos
-        $this->routes['GET']['/orders'] = 'OrderController@index';
-        $this->routes['GET']['/orders/{id}'] = 'OrderController@show';
-        $this->routes['POST']['/orders'] = 'OrderController@store';
-        $this->routes['PUT']['/orders/{id}'] = 'OrderController@update';
-        $this->routes['DELETE']['/orders/{id}'] = 'OrderController@delete';
-        
         // Rotas de dashboard
-        $this->routes['GET']['/dashboard/stats'] = 'DashboardController@stats';
-        $this->routes['GET']['/dashboard/charts'] = 'DashboardController@charts';
+        $this->routes['GET']['/dashboard/stats'] = 'DashboardController@getDashboardStats';
+        $this->routes['GET']['/dashboard/revenue'] = 'DashboardController@getRevenueData';
+        $this->routes['GET']['/dashboard/leads'] = 'DashboardController@getLeadsAnalytics';
+        $this->routes['GET']['/dashboard/projects'] = 'DashboardController@getProjectsAnalytics';
+        $this->routes['GET']['/dashboard/activities'] = 'DashboardController@getRecentActivities';
         
         // Rotas de upload
         $this->routes['POST']['/upload'] = 'UploadController@upload';

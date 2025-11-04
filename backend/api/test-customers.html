@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste CRUD Clientes - Duralux CRM</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { border: 1px solid #ddd; margin: 20px 0; padding: 15px; border-radius: 5px; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        .warning { background: #fff3cd; border-color: #ffeaa7; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 3px; }
+        button:hover { background: #0056b3; }
+        button.danger { background: #dc3545; }
+        button.danger:hover { background: #c82333; }
+        .result { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 3px; max-height: 400px; overflow-y: auto; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+        .form-group { margin: 10px 0; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px; }
+        .form-row { display: flex; gap: 15px; }
+        .form-row .form-group { flex: 1; }
+        .customer-card { background: white; border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .customer-card h4 { margin: 0 0 10px 0; color: #007bff; }
+        .customer-actions { margin-top: 10px; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 15px 0; }
+        .stat-card { background: #f8f9fa; padding: 15px; text-align: center; border-radius: 5px; border: 1px solid #dee2e6; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste CRUD de Clientes - Duralux CRM</h1>
+    
+    <!-- Status de Autenticação -->
+    <div class="section">
+        <h2>🔐 Status de Autenticação</h2>
+        <button onclick="checkAuth()">Verificar Login</button>
+        <button onclick="doLogin()">Fazer Login (Admin)</button>
+        <div id="auth-status" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Listar Clientes -->
+    <div class="section">
+        <h2>👥 Listar Clientes</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Buscar (nome/email):</label>
+                <input type="text" id="search-customers" placeholder="Digite nome ou email...">
+            </div>
+            <div class="form-group">
+                <label>Cidade:</label>
+                <input type="text" id="filter-city" placeholder="Filtrar por cidade...">
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select id="filter-active">
+                    <option value="">Todos</option>
+                    <option value="1">Ativos</option>
+                    <option value="0">Inativos</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Ordenar por:</label>
+                <select id="sort-field">
+                    <option value="created_at">Data de Criação</option>
+                    <option value="name">Nome</option>
+                    <option value="email">Email</option>
+                    <option value="city">Cidade</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Ordem:</label>
+                <select id="sort-order">
+                    <option value="DESC">Decrescente</option>
+                    <option value="ASC">Crescente</option>
+                </select>
+            </div>
+        </div>
+        <button onclick="listCustomers()">Listar Clientes</button>
+        <button onclick="getCustomerStats()">Ver Estatísticas</button>
+        
+        <div id="customer-stats" style="display: none;"></div>
+        <div id="customers-list" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Criar Cliente -->
+    <div class="section">
+        <h2>➕ Criar Novo Cliente</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nome *:</label>
+                <input type="text" id="new-name" placeholder="Nome completo" required>
+            </div>
+            <div class="form-group">
+                <label>Email *:</label>
+                <input type="email" id="new-email" placeholder="email@exemplo.com" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="text" id="new-phone" placeholder="(11) 99999-9999">
+            </div>
+            <div class="form-group">
+                <label>CEP:</label>
+                <input type="text" id="new-zipcode" placeholder="12345-678">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Endereço:</label>
+                <input type="text" id="new-address" placeholder="Rua, número">
+            </div>
+            <div class="form-group">
+                <label>Cidade:</label>
+                <input type="text" id="new-city" placeholder="Nome da cidade">
+            </div>
+            <div class="form-group">
+                <label>Estado:</label>
+                <input type="text" id="new-state" placeholder="UF" maxlength="2">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Observações:</label>
+            <textarea id="new-notes" rows="3" placeholder="Observações sobre o cliente..."></textarea>
+        </div>
+        <button onclick="createCustomer()">Criar Cliente</button>
+        <button onclick="fillSampleData()">Preencher Dados de Exemplo</button>
+        <div id="create-result" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Buscar Cliente Específico -->
+    <div class="section">
+        <h2>🔍 Buscar Cliente por ID</h2>
+        <div class="form-group">
+            <label>ID do Cliente:</label>
+            <input type="number" id="customer-id" placeholder="Digite o ID do cliente" min="1">
+        </div>
+        <button onclick="getCustomer()">Buscar Cliente</button>
+        <div id="customer-details" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Atualizar Cliente -->
+    <div class="section">
+        <h2>✏️ Atualizar Cliente</h2>
+        <div class="form-group">
+            <label>ID do Cliente a Atualizar:</label>
+            <input type="number" id="update-id" placeholder="ID do cliente" min="1">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Novo Nome:</label>
+                <input type="text" id="update-name" placeholder="Deixe vazio para não alterar">
+            </div>
+            <div class="form-group">
+                <label>Novo Email:</label>
+                <input type="email" id="update-email" placeholder="Deixe vazio para não alterar">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Novo Telefone:</label>
+                <input type="text" id="update-phone" placeholder="Deixe vazio para não alterar">
+            </div>
+            <div class="form-group">
+                <label>Nova Cidade:</label>
+                <input type="text" id="update-city" placeholder="Deixe vazio para não alterar">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <select id="update-active">
+                <option value="">Não alterar</option>
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+        </div>
+        <button onclick="updateCustomer()">Atualizar Cliente</button>
+        <div id="update-result" class="result" style="display: none;"></div>
+    </div>
+    
+    <!-- Excluir Cliente -->
+    <div class="section">
+        <h2>🗑️ Excluir Cliente</h2>
+        <div class="warning">
+            <strong>Atenção:</strong> Esta ação irá desativar o cliente (não excluir permanentemente).
+        </div>
+        <div class="form-group">
+            <label>ID do Cliente a Excluir:</label>
+            <input type="number" id="delete-id" placeholder="ID do cliente" min="1">
+        </div>
+        <button class="danger" onclick="deleteCustomer()">Excluir Cliente</button>
+        <div id="delete-result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        const API_BASE = './';
+        let authToken = null;
+        
+        function showResult(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = isError ? 'result error' : 'result success';
+            element.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+        
+        async function apiCall(endpoint, method = 'GET', data = null) {
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            if (authToken) {
+                options.headers['X-CSRF-Token'] = authToken;
+            }
+            
+            if (data) {
+                if (authToken) data.csrf_token = authToken;
+                options.body = JSON.stringify(data);
+            }
+            
+            try {
+                const response = await fetch(API_BASE + endpoint, options);
+                const result = await response.json();
+                
+                return {
+                    status: response.status,
+                    data: result,
+                    success: response.ok
+                };
+            } catch (error) {
+                return {
+                    status: 0,
+                    data: { error: error.message },
+                    success: false
+                };
+            }
+        }
+        
+        async function checkAuth() {
+            const result = await apiCall('auth/me');
+            showResult('auth-status', result, !result.success);
+            
+            if (result.success && result.data.data && result.data.data.csrf_token) {
+                authToken = result.data.data.csrf_token;
+            }
+        }
+        
+        async function doLogin() {
+            const result = await apiCall('auth/login', 'POST', {
+                email: 'admin@duralux.com',
+                password: 'admin123'
+            });
+            
+            showResult('auth-status', result, !result.success);
+            
+            if (result.success && result.data.data && result.data.data.csrf_token) {
+                authToken = result.data.data.csrf_token;
+            }
+        }
+        
+        async function listCustomers() {
+            const params = new URLSearchParams({
+                search: document.getElementById('search-customers').value,
+                city: document.getElementById('filter-city').value,
+                active: document.getElementById('filter-active').value,
+                sort: document.getElementById('sort-field').value,
+                order: document.getElementById('sort-order').value,
+                page: 1,
+                limit: 10
+            });
+            
+            const result = await apiCall('customers?' + params.toString());
+            
+            if (result.success && result.data.data) {
+                displayCustomersList(result.data.data);
+                if (result.data.data.statistics) {
+                    displayStats(result.data.data.statistics);
+                }
+            } else {
+                showResult('customers-list', result, true);
+            }
+        }
+        
+        function displayCustomersList(data) {
+            const element = document.getElementById('customers-list');
+            element.style.display = 'block';
+            element.className = 'result success';
+            
+            let html = '<h3>📋 Lista de Clientes:</h3>';
+            
+            if (data.customers.length === 0) {
+                html += '<p>Nenhum cliente encontrado.</p>';
+            } else {
+                data.customers.forEach(customer => {
+                    html += `
+                        <div class="customer-card">
+                            <h4>${customer.name} ${customer.active ? '✅' : '❌'}</h4>
+                            <p><strong>Email:</strong> ${customer.email}</p>
+                            <p><strong>Telefone:</strong> ${customer.phone || 'Não informado'}</p>
+                            <p><strong>Cidade:</strong> ${customer.city || 'Não informada'}</p>
+                            <p><strong>Cadastrado:</strong> ${customer.created_at_formatted}</p>
+                            <div class="customer-actions">
+                                <button onclick="loadCustomerForEdit(${customer.id})">Editar</button>
+                                <button onclick="viewCustomerDetails(${customer.id})">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Informações de paginação
+                html += `<div style="margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 3px;">
+                    <strong>Paginação:</strong> Página ${data.pagination.current_page} de ${data.pagination.total_pages} 
+                    (${data.pagination.total} clientes no total)
+                </div>`;
+            }
+            
+            element.innerHTML = html;
+        }
+        
+        function displayStats(stats) {
+            const element = document.getElementById('customer-stats');
+            element.style.display = 'block';
+            
+            element.innerHTML = `
+                <h3>📊 Estatísticas de Clientes:</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.total}</div>
+                        <div>Total de Clientes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.active_count}</div>
+                        <div>Clientes Ativos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.inactive_count}</div>
+                        <div>Clientes Inativos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.cities_count}</div>
+                        <div>Cidades Diferentes</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function getCustomerStats() {
+            await listCustomers(); // Isso já traz as estatísticas
+        }
+        
+        async function createCustomer() {
+            const customerData = {
+                name: document.getElementById('new-name').value,
+                email: document.getElementById('new-email').value,
+                phone: document.getElementById('new-phone').value,
+                address: document.getElementById('new-address').value,
+                city: document.getElementById('new-city').value,
+                state: document.getElementById('new-state').value,
+                zipcode: document.getElementById('new-zipcode').value,
+                notes: document.getElementById('new-notes').value
+            };
+            
+            const result = await apiCall('customers', 'POST', customerData);
+            showResult('create-result', result, !result.success);
+            
+            if (result.success) {
+                // Limpar formulário
+                document.getElementById('new-name').value = '';
+                document.getElementById('new-email').value = '';
+                document.getElementById('new-phone').value = '';
+                document.getElementById('new-address').value = '';
+                document.getElementById('new-city').value = '';
+                document.getElementById('new-state').value = '';
+                document.getElementById('new-zipcode').value = '';
+                document.getElementById('new-notes').value = '';
+            }
+        }
+        
+        function fillSampleData() {
+            document.getElementById('new-name').value = 'Maria Silva Santos';
+            document.getElementById('new-email').value = 'maria.santos@email.com';
+            document.getElementById('new-phone').value = '(11) 98765-4321';
+            document.getElementById('new-address').value = 'Rua das Flores, 123';
+            document.getElementById('new-city').value = 'São Paulo';
+            document.getElementById('new-state').value = 'SP';
+            document.getElementById('new-zipcode').value = '01234-567';
+            document.getElementById('new-notes').value = 'Cliente indicado por João Silva. Interessada em produtos premium.';
+        }
+        
+        async function getCustomer() {
+            const id = document.getElementById('customer-id').value;
+            if (!id) {
+                alert('Digite o ID do cliente');
+                return;
+            }
+            
+            const result = await apiCall(`customers/${id}`);
+            showResult('customer-details', result, !result.success);
+        }
+        
+        async function viewCustomerDetails(id) {
+            document.getElementById('customer-id').value = id;
+            await getCustomer();
+        }
+        
+        async function updateCustomer() {
+            const id = document.getElementById('update-id').value;
+            if (!id) {
+                alert('Digite o ID do cliente');
+                return;
+            }
+            
+            const updateData = {};
+            
+            // Só incluir campos que foram preenchidos
+            const name = document.getElementById('update-name').value;
+            if (name) updateData.name = name;
+            
+            const email = document.getElementById('update-email').value;
+            if (email) updateData.email = email;
+            
+            const phone = document.getElementById('update-phone').value;
+            if (phone) updateData.phone = phone;
+            
+            const city = document.getElementById('update-city').value;
+            if (city) updateData.city = city;
+            
+            const active = document.getElementById('update-active').value;
+            if (active !== '') updateData.active = parseInt(active);
+            
+            if (Object.keys(updateData).length === 0) {
+                alert('Preencha pelo menos um campo para atualizar');
+                return;
+            }
+            
+            const result = await apiCall(`customers/${id}`, 'PUT', updateData);
+            showResult('update-result', result, !result.success);
+        }
+        
+        async function loadCustomerForEdit(id) {
+            document.getElementById('update-id').value = id;
+            
+            // Buscar dados do cliente para pré-preencher
+            const result = await apiCall(`customers/${id}`);
+            if (result.success && result.data.data) {
+                const customer = result.data.data;
+                document.getElementById('update-name').value = customer.name || '';
+                document.getElementById('update-email').value = customer.email || '';
+                document.getElementById('update-phone').value = customer.phone || '';
+                document.getElementById('update-city').value = customer.city || '';
+                document.getElementById('update-active').value = customer.active.toString();
+                
+                // Rolar para a seção de edição
+                document.querySelector('h2:contains("Atualizar Cliente")').scrollIntoView({behavior: 'smooth'});
+            }
+        }
+        
+        async function deleteCustomer() {
+            const id = document.getElementById('delete-id').value;
+            if (!id) {
+                alert('Digite o ID do cliente');
+                return;
+            }
+            
+            if (!confirm(`Tem certeza que deseja excluir o cliente ID ${id}? Esta ação irá desativá-lo.`)) {
+                return;
+            }
+            
+            const result = await apiCall(`customers/${id}`, 'DELETE');
+            showResult('delete-result', result, !result.success);
+        }
+        
+        // Verificar autenticação ao carregar a página
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>
