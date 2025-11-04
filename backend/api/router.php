@@ -169,6 +169,28 @@ if ($action) {
             $controller->handleRequest();
             break;
             
+        // Workflow Automation v5.0 - API Endpoints
+        case 'create_workflow':
+        case 'get_workflows':
+        case 'get_workflow':
+        case 'update_workflow':
+        case 'delete_workflow':
+        case 'toggle_workflow':
+        case 'execute_workflow':
+        case 'get_executions':
+        case 'get_execution_details':
+        case 'create_template':
+        case 'get_templates':
+        case 'use_template':
+        case 'get_workflow_dashboard':
+        case 'get_workflow_stats':
+        case 'process_triggers':
+        case 'test_trigger':
+            require_once __DIR__ . '/../classes/WorkflowController.php';
+            $controller = new WorkflowController($db);
+            $controller->handleRequest();
+            break;
+            
         // Auth actions
         case 'login':
         case 'logout':
@@ -236,6 +258,25 @@ class Router {
         $this->routes['GET']['/projects/customers'] = 'ProjectController@getCustomers';
         $this->routes['POST']['/projects/{id}/tasks'] = 'ProjectController@manageTasks';
         $this->routes['GET']['/projects/{id}/tasks'] = 'ProjectController@manageTasks';
+        
+        // Rotas de Workflows (Workflow Automation Engine v5.0)
+        $this->routes['GET']['/workflows'] = 'WorkflowController@index';
+        $this->routes['GET']['/workflows/list'] = 'WorkflowController@getWorkflows';
+        $this->routes['POST']['/workflows'] = 'WorkflowController@store';
+        $this->routes['POST']['/workflows/create'] = 'WorkflowController@createWorkflow';
+        $this->routes['GET']['/workflows/{id}'] = 'WorkflowController@show';
+        $this->routes['PUT']['/workflows/{id}'] = 'WorkflowController@update';
+        $this->routes['PUT']['/workflows/update'] = 'WorkflowController@updateWorkflow';
+        $this->routes['DELETE']['/workflows/{id}'] = 'WorkflowController@destroy';
+        $this->routes['DELETE']['/workflows/delete'] = 'WorkflowController@deleteWorkflow';
+        $this->routes['POST']['/workflows/{id}/execute'] = 'WorkflowController@execute';
+        $this->routes['POST']['/workflows/execute'] = 'WorkflowController@executeWorkflow';
+        $this->routes['GET']['/workflows/{id}/executions'] = 'WorkflowController@getExecutions';
+        $this->routes['GET']['/workflows/stats'] = 'WorkflowController@getWorkflowStats';
+        $this->routes['GET']['/workflows/templates'] = 'WorkflowController@getTemplates';
+        $this->routes['POST']['/workflows/templates'] = 'WorkflowController@createTemplate';
+        $this->routes['POST']['/workflows/export'] = 'WorkflowController@exportWorkflows';
+        $this->routes['POST']['/workflows/import'] = 'WorkflowController@importWorkflows';
         
         // Rotas de pedidos
         $this->routes['GET']['/orders'] = 'OrderController@index';
