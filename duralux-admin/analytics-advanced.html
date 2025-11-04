@@ -14,42 +14,78 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Date Range Picker -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/duralux-admin.css">
-    <link rel="stylesheet" href="assets/css/analytics.css">
-    
     <style>
-        .analytics-container {
-            padding: 20px;
-            background: #f8f9fa;
+        :root {
+            --duralux-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --duralux-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --duralux-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --duralux-warning: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
         }
+
+        .analytics-container {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
         
+        .analytics-header {
+            background: var(--duralux-primary);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .analytics-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
         .kpi-card {
             background: white;
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             height: 100%;
+            position: relative;
+            overflow: hidden;
         }
         
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--duralux-primary);
+        }
+
         .kpi-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
-        
+
         .kpi-value {
             font-size: 2.5rem;
             font-weight: 700;
             color: #2c3e50;
             margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        
+
         .kpi-label {
             font-size: 0.9rem;
             color: #6c757d;
@@ -57,34 +93,38 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .kpi-trend {
             font-size: 0.85rem;
             font-weight: 600;
             margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        
+
         .trend-up {
-            color: #28a745 !important;
+            color: #28a745;
         }
-        
+
         .trend-down {
-            color: #dc3545 !important;
+            color: #dc3545;
         }
-        
+
         .kpi-progress {
-            height: 6px;
+            height: 8px;
             background: #e9ecef;
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
             margin-top: 15px;
         }
-        
-        .kpi-progress .progress-bar {
+
+        .kpi-progress-bar {
             height: 100%;
-            transition: width 0.6s ease;
+            transition: width 1.5s ease;
+            border-radius: 4px;
         }
-        
+
         .chart-container {
             background: white;
             border-radius: 15px;
@@ -92,7 +132,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             margin-bottom: 25px;
         }
-        
+
         .chart-title {
             font-size: 1.25rem;
             font-weight: 700;
@@ -100,28 +140,11 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        
-        .chart-canvas {
-            height: 300px !important;
-        }
-        
-        .analytics-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .analytics-controls {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-        }
-        
+
         .real-time-indicator {
             display: inline-flex;
             align-items: center;
@@ -129,7 +152,7 @@
             font-size: 0.85rem;
             color: #28a745;
         }
-        
+
         .real-time-dot {
             width: 8px;
             height: 8px;
@@ -137,114 +160,135 @@
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
         }
-        
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        
-        .loading-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .table-responsive {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .table th {
-            background: #667eea;
-            color: white;
-            border: none;
-            font-weight: 600;
-        }
-        
+
         .btn-analytics {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--duralux-primary);
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 8px;
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        
+
         .btn-analytics:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
             color: white;
         }
-        
+
         .activities-list {
             max-height: 400px;
             overflow-y: auto;
         }
-        
+
         .activity-item {
-            padding: 12px;
+            padding: 15px;
             border-left: 3px solid #667eea;
             background: #f8f9fa;
-            margin-bottom: 8px;
-            border-radius: 5px;
+            margin-bottom: 10px;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
         }
-        
+
+        .activity-item:hover {
+            background: #e9ecef;
+            border-left-color: #764ba2;
+        }
+
         .activity-time {
             font-size: 0.8rem;
             color: #6c757d;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .table th {
+            background: var(--duralux-primary);
+            color: white;
+            border: none;
+            font-weight: 600;
+            padding: 15px;
+        }
+
+        .table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .nav-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--duralux-primary);
+            padding: 10px 0;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-bottom .nav-link {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .nav-bottom .nav-link:hover,
+        .nav-bottom .nav-link.active {
+            color: white;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .chart-canvas {
+            max-height: 350px;
+        }
+        
+        @media (max-width: 768px) {
+            .analytics-container {
+                padding: 15px;
+            }
+            
+            .kpi-value {
+                font-size: 2rem;
+            }
+            
+            .chart-title {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Loading Overlay -->
-    <div id="analyticsLoader" class="loading-overlay">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <div class="loading-text">Carregando dados analíticos...</div>
-        </div>
-    </div>
-
-    <div class="analytics-container" id="analyticsContainer">
+    <div class="analytics-container">
         <!-- Header -->
         <div class="analytics-header">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h1><i class="fas fa-chart-line me-3"></i>Analytics Avançado v7.0</h1>
-                    <p class="mb-0">Painel de Controle executivo com análises preditivas e KPIs em tempo real</p>
+                    <h1><i class="fas fa-chart-line me-3"></i>Analytics Avançado</h1>
+                    <p class="mb-0 opacity-75">Painel executivo com análises preditivas e KPIs em tempo real</p>
                 </div>
                 <div class="col-md-4 text-end">
                     <div class="real-time-indicator">
@@ -262,10 +306,13 @@
         <div class="analytics-controls">
             <div class="row align-items-center">
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="analyticsDateRange" class="form-label fw-bold">Período de Análise</label>
-                        <input type="text" class="form-control" id="analyticsDateRange" placeholder="Selecionar período">
-                    </div>
+                    <label class="form-label fw-bold">Período de Análise</label>
+                    <select class="form-select" id="periodSelect">
+                        <option value="7">Últimos 7 dias</option>
+                        <option value="30" selected>Últimos 30 dias</option>
+                        <option value="90">Últimos 90 dias</option>
+                        <option value="365">Último ano</option>
+                    </select>
                 </div>
                 <div class="col-md-3">
                     <div class="form-check form-switch mt-4">
@@ -276,91 +323,92 @@
                     </div>
                 </div>
                 <div class="col-md-5 text-end">
-                    <button type="button" class="btn btn-analytics me-2" id="btnRefreshAnalytics">
-                        <i class="fas fa-sync-alt me-2"></i>Atualizar Dados
+                    <button type="button" class="btn btn-analytics me-2" id="btnRefresh">
+                        <i class="fas fa-sync-alt me-2"></i>Atualizar
                     </button>
-                    <button type="button" class="btn btn-success" id="btnExportarReport">
-                        <i class="fas fa-file-pdf me-2"></i>Exportar Relatório
+                    <button type="button" class="btn btn-success" id="btnExport">
+                        <i class="fas fa-file-pdf me-2"></i>Exportar
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- KPIs Grid -->
-        <div class="row mb-4">
-            <div class="col-lg-2 col-md-4 mb-3">
-                <div class="kpi-card" id="totalLeads">
-                    <div class="kpi-label">Total de Leads</div>
-                    <div class="kpi-value">-</div>
-                    <div class="kpi-trend">-</div>
-                    <div class="kpi-progress">
-                        <div class="progress-bar bg-primary" style="width: 0%"></div>
-                    </div>
+        <div class="stats-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Total de Leads</div>
+                <div class="kpi-value" id="totalLeads">2,847</div>
+                <div class="kpi-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> +12.5%
+                </div>
+                <div class="kpi-progress">
+                    <div class="kpi-progress-bar bg-primary" style="width: 85%"></div>
                 </div>
             </div>
             
-            <div class="col-lg-2 col-md-4 mb-3">
-                <div class="kpi-card" id="conversionRate">
-                    <div class="kpi-label">Taxa Conversão</div>
-                    <div class="kpi-value">-</div>
-                    <div class="kpi-trend">-</div>
-                    <div class="kpi-progress">
-                        <div class="progress-bar bg-success" style="width: 0%"></div>
-                    </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Taxa de Conversão</div>
+                <div class="kpi-value" id="conversionRate">23.8%</div>
+                <div class="kpi-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> +3.2%
+                </div>
+                <div class="kpi-progress">
+                    <div class="kpi-progress-bar bg-success" style="width: 78%"></div>
                 </div>
             </div>
             
-            <div class="col-lg-2 col-md-4 mb-3">
-                <div class="kpi-card" id="monthlyReceita">
-                    <div class="kpi-label">Receita Mensal</div>
-                    <div class="kpi-value">-</div>
-                    <div class="kpi-trend">-</div>
-                    <div class="kpi-progress">
-                        <div class="progress-bar bg-warning" style="width: 0%"></div>
-                    </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Receita Mensal</div>
+                <div class="kpi-value" id="monthlyRevenue">R$ 127.450</div>
+                <div class="kpi-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> +18.7%
+                </div>
+                <div class="kpi-progress">
+                    <div class="kpi-progress-bar bg-warning" style="width: 92%"></div>
                 </div>
             </div>
             
-            <div class="col-lg-2 col-md-4 mb-3">
-                <div class="kpi-card" id="activeCustomers">
-                    <div class="kpi-label">Clientes Ativos</div>
-                    <div class="kpi-value">-</div>
-                    <div class="kpi-trend">-</div>
-                    <div class="kpi-progress">
-                        <div class="progress-bar bg-info" style="width: 0%"></div>
-                    </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Clientes Ativos</div>
+                <div class="kpi-value" id="activeCustomers">456</div>
+                <div class="kpi-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> +7.3%
+                </div>
+                <div class="kpi-progress">
+                    <div class="kpi-progress-bar bg-info" style="width: 68%"></div>
                 </div>
             </div>
             
-            <div class="col-lg-2 col-md-4 mb-3">
-                <div class="kpi-card" id="activeProjects">
-                    <div class="kpi-label">Projetos Ativos</div>
-                    <div class="kpi-value">-</div>
-                    <div class="kpi-trend">-</div>
-                    <div class="kpi-progress">
-                        <div class="progress-bar bg-secondary" style="width: 0%"></div>
-                    </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Projetos Ativos</div>
+                <div class="kpi-value" id="activeProjects">89</div>
+                <div class="kpi-trend trend-down">
+                    <i class="fas fa-arrow-down"></i> -2.1%
+                </div>
+                <div class="kpi-progress">
+                    <div class="kpi-progress-bar bg-secondary" style="width: 55%"></div>
                 </div>
             </div>
             
-            <div class="col-lg-2 col-md-4 mb-3">
-                <div class="kpi-card" id="avgDealSize">
-                    <div class="kpi-label">Ticket Médio</div>
-                    <div class="kpi-value">-</div>
-                    <div class="kpi-trend">-</div>
-                    <div class="kpi-progress">
-                        <div class="progress-bar bg-dark" style="width: 0%"></div>
-                    </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Ticket Médio</div>
+                <div class="kpi-value" id="avgDeal">R$ 4.650</div>
+                <div class="kpi-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> +15.8%
+                </div>
+                <div class="kpi-progress">
+                    <div class="kpi-progress-bar bg-dark" style="width: 73%"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Gráficos Principais -->
+        <!-- Gráficos -->
         <div class="row">
             <div class="col-xl-8">
                 <div class="chart-container">
                     <div class="chart-title">
-                        <i class="fas fa-chart-line me-2"></i>Evolução de Leads por Dia
+                        <i class="fas fa-chart-line text-primary"></i>
+                        Evolução de Leads (Últimos 30 dias)
                     </div>
                     <canvas id="leadsChart" class="chart-canvas"></canvas>
                 </div>
@@ -369,7 +417,8 @@
             <div class="col-xl-4">
                 <div class="chart-container">
                     <div class="chart-title">
-                        <i class="fas fa-project-diagram me-2"></i>Status dos Projetos
+                        <i class="fas fa-project-diagram text-success"></i>
+                        Status dos Projetos
                     </div>
                     <canvas id="projectsChart" class="chart-canvas"></canvas>
                 </div>
@@ -380,7 +429,8 @@
             <div class="col-xl-8">
                 <div class="chart-container">
                     <div class="chart-title">
-                        <i class="fas fa-dollar-sign me-2"></i>Receita Mensal e Previsões
+                        <i class="fas fa-dollar-sign text-warning"></i>
+                        Receita Mensal vs Meta
                     </div>
                     <canvas id="revenueChart" class="chart-canvas"></canvas>
                 </div>
@@ -389,9 +439,10 @@
             <div class="col-xl-4">
                 <div class="chart-container">
                     <div class="chart-title">
-                        <i class="fas fa-filter me-2"></i>Funil de Conversão
+                        <i class="fas fa-filter text-info"></i>
+                        Funil de Conversão
                     </div>
-                    <canvas id="conversionFunnelChart" class="chart-canvas"></canvas>
+                    <canvas id="funnelChart" class="chart-canvas"></canvas>
                 </div>
             </div>
         </div>
@@ -399,28 +450,51 @@
         <!-- Tabelas e Atividades -->
         <div class="row">
             <div class="col-xl-8">
-                <div class="chart-container">
-                    <div class="chart-title">
-                        <i class="fas fa-trophy me-2"></i>Top Clientes por Receita
+                <div class="table-container">
+                    <div class="chart-title" style="margin: 0; padding: 20px; border-bottom: 2px solid #e9ecef;">
+                        <i class="fas fa-trophy text-warning"></i>
+                        Top 10 Clientes por Receita
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped mb-0" id="topCustomersTable">
+                        <table class="table mb-0">
                             <thead>
                                 <tr>
                                     <th>Cliente</th>
                                     <th>Receita Total</th>
                                     <th>Projetos</th>
-                                    <th>Última Atividade</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="topCustomersTable">
                                 <tr>
-                                    <td colspan="5" class="text-center py-4">
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="visually-hidden">Carregando...</span>
-                                        </div>
-                                    </td>
+                                    <td><strong>TechCorp Ltda.</strong></td>
+                                    <td><span class="text-success fw-bold">R$ 45.200</span></td>
+                                    <td><span class="badge bg-primary">8 projetos</span></td>
+                                    <td><span class="badge bg-success">Ativo</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>InnovaSoft SA</strong></td>
+                                    <td><span class="text-success fw-bold">R$ 38.750</span></td>
+                                    <td><span class="badge bg-primary">6 projetos</span></td>
+                                    <td><span class="badge bg-success">Ativo</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Digital Solutions</strong></td>
+                                    <td><span class="text-success fw-bold">R$ 32.100</span></td>
+                                    <td><span class="badge bg-primary">5 projetos</span></td>
+                                    <td><span class="badge bg-warning">Pendente</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MegaCorp Brasil</strong></td>
+                                    <td><span class="text-success fw-bold">R$ 28.900</span></td>
+                                    <td><span class="badge bg-primary">4 projetos</span></td>
+                                    <td><span class="badge bg-success">Ativo</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>StartupXYZ</strong></td>
+                                    <td><span class="text-success fw-bold">R$ 25.650</span></td>
+                                    <td><span class="badge bg-primary">7 projetos</span></td>
+                                    <td><span class="badge bg-success">Ativo</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -431,103 +505,378 @@
             <div class="col-xl-4">
                 <div class="chart-container">
                     <div class="chart-title">
-                        <i class="fas fa-history me-2"></i>Atividades Recentes
+                        <i class="fas fa-history text-info"></i>
+                        Atividades Recentes
                     </div>
-                    <div class="activities-list" id="latestActivities">
-                        <div class="text-center py-4">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Carregando...</span>
-                            </div>
+                    <div class="activities-list">
+                        <div class="activity-item">
+                            <div><strong>Nova proposta enviada</strong></div>
+                            <div class="activity-time">há 5 minutos</div>
+                            <small>TechCorp Ltda. - R$ 15.000</small>
+                        </div>
+                        <div class="activity-item">
+                            <div><strong>Lead convertido</strong></div>
+                            <div class="activity-time">há 12 minutos</div>
+                            <small>StartupXYZ - Projeto Mobile</small>
+                        </div>
+                        <div class="activity-item">
+                            <div><strong>Projeto concluído</strong></div>
+                            <div class="activity-time">há 23 minutos</div>
+                            <small>InnovaSoft SA - Sistema CRM</small>
+                        </div>
+                        <div class="activity-item">
+                            <div><strong>Novo lead qualificado</strong></div>
+                            <div class="activity-time">há 35 minutos</div>
+                            <small>Digital Hub - E-commerce</small>
+                        </div>
+                        <div class="activity-item">
+                            <div><strong>Reunião agendada</strong></div>
+                            <div class="activity-time">há 1 hora</div>
+                            <small>MegaCorp Brasil - Consultoria</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Performance Metrics -->
+        <!-- Métricas de Performance -->
         <div class="row">
             <div class="col-12">
                 <div class="chart-container">
                     <div class="chart-title">
-                        <i class="fas fa-tachometer-alt me-2"></i>Métricas de Performance do Sistema
+                        <i class="fas fa-tachometer-alt text-danger"></i>
+                        Métricas de Performance do Sistema
                     </div>
                     <canvas id="performanceChart" class="chart-canvas"></canvas>
                 </div>
             </div>
         </div>
+
+        <!-- Espaço para navegação bottom -->
+        <div style="height: 80px;"></div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-bottom" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <!-- Navegação Bottom -->
+    <nav class="nav-bottom">
         <div class="container-fluid">
-            <div class="navbar-nav mx-auto">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-home"></i> Painel de Controle
-                </a>
-                <a class="nav-link" href="leads.html">
-                    <i class="fas fa-users"></i> Leads
-                </a>
-                <a class="nav-link" href="projects.html">
-                    <i class="fas fa-project-diagram"></i> Projetos
-                </a>
-                <a class="nav-link active" href="analytics-advanced.html">
-                    <i class="fas fa-chart-line"></i> Analytics
-                </a>
-                <a class="nav-link" href="reports.html">
-                    <i class="fas fa-file-alt"></i> Relatórios
-                </a>
+            <div class="row text-center">
+                <div class="col">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home d-block"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="nav-link" href="leads.html">
+                        <i class="fas fa-users d-block"></i>
+                        Leads
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="nav-link" href="projects.html">
+                        <i class="fas fa-project-diagram d-block"></i>
+                        Projetos
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="nav-link active" href="analytics-advanced.html">
+                        <i class="fas fa-chart-line d-block"></i>
+                        Analytics
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="nav-link" href="reports.html">
+                        <i class="fas fa-file-alt d-block"></i>
+                        Relatórios
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Scripts -->
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Moment.js -->
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/locale/pt-br.js"></script>
-    
-    <!-- Date Range Picker -->
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    
-    <!-- Advanced Analytics -->
-    <script src="assets/js/duralux-advanced-analytics-v7.js"></script>
-    
-    <!-- Inicialização do Date Range Picker -->
     <script>
-        $(document).ready(function() {
-            moment.locale('pt-br');
-            
-            $('#analyticsDateRange').daterangepicker({
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
-                locale: {
-                    format: 'DD/MM/YYYY',
-                    separator: ' - ',
-                    applyLabel: 'Aplicar',
-                    cancelLabel: 'Cancelar',
-                    fromLabel: 'De',
-                    toLabel: 'Até',
-                    customRangeLabel: 'Personalizado',
-                    weekLabel: 'S',
-                    daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                               'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    firstDay: 1
+        // Dados simulados para demonstração
+        const analyticsData = {
+            leads: {
+                daily: [45, 52, 48, 61, 55, 67, 74, 69, 83, 78, 85, 92, 88, 95, 102, 97, 104, 112, 108, 118, 125, 122, 135, 142, 138, 145, 152, 148, 156, 163],
+                labels: Array.from({length: 30}, (_, i) => {
+                    const date = new Date();
+                    date.setDate(date.getDate() - (29 - i));
+                    return date.toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit'});
+                })
+            },
+            projects: {
+                data: [45, 23, 12, 8],
+                labels: ['Em Andamento', 'Concluídos', 'Pausados', 'Atrasados'],
+                colors: ['#007bff', '#28a745', '#ffc107', '#dc3545']
+            },
+            revenue: {
+                atual: [85000, 92000, 78000, 105000, 98000, 127450],
+                meta: [80000, 85000, 90000, 95000, 100000, 110000],
+                labels: ['Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+            },
+            funnel: {
+                data: [2847, 1986, 1245, 678],
+                labels: ['Leads Totais', 'Qualificados', 'Propostas', 'Conversões'],
+                colors: ['#6c757d', '#17a2b8', '#ffc107', '#28a745']
+            },
+            performance: {
+                cpu: [65, 72, 68, 75, 71, 68, 74, 69, 73, 70],
+                memory: [78, 82, 79, 85, 81, 78, 83, 80, 84, 81],
+                requests: [1240, 1380, 1290, 1450, 1350, 1290, 1420, 1310, 1390, 1340],
+                labels: Array.from({length: 10}, (_, i) => `${i*3}min`)
+            }
+        };
+
+        // Função para inicializar gráficos
+        function initCharts() {
+            // Gráfico de Leads
+            const leadsCtx = document.getElementById('leadsChart').getContext('2d');
+            new Chart(leadsCtx, {
+                type: 'line',
+                data: {
+                    labels: analyticsData.leads.labels,
+                    datasets: [{
+                        label: 'Leads Diários',
+                        data: analyticsData.leads.daily,
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#667eea',
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    }]
                 },
-                ranges: {
-                   'Hoje': [moment(), moment()],
-                   'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                   'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
-                   'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
-                   'Este Mês': [moment().startOf('month'), moment().endOf('month')],
-                   'Mês Passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#f1f1f1' } },
+                        x: { grid: { display: false } }
+                    }
                 }
             });
+
+            // Gráfico de Projetos
+            const projectsCtx = document.getElementById('projectsChart').getContext('2d');
+            new Chart(projectsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: analyticsData.projects.labels,
+                    datasets: [{
+                        data: analyticsData.projects.data,
+                        backgroundColor: analyticsData.projects.colors,
+                        borderWidth: 3,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Gráfico de Receita
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'bar',
+                data: {
+                    labels: analyticsData.revenue.labels,
+                    datasets: [
+                        {
+                            label: 'Receita Atual',
+                            data: analyticsData.revenue.atual,
+                            backgroundColor: '#28a745',
+                            borderRadius: 8
+                        },
+                        {
+                            label: 'Meta',
+                            data: analyticsData.revenue.meta,
+                            backgroundColor: '#ffc107',
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'R$ ' + value.toLocaleString('pt-BR');
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de Funil
+            const funnelCtx = document.getElementById('funnelChart').getContext('2d');
+            new Chart(funnelCtx, {
+                type: 'bar',
+                data: {
+                    labels: analyticsData.funnel.labels,
+                    datasets: [{
+                        data: analyticsData.funnel.data,
+                        backgroundColor: analyticsData.funnel.colors,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // Gráfico de Performance
+            const perfCtx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(perfCtx, {
+                type: 'line',
+                data: {
+                    labels: analyticsData.performance.labels,
+                    datasets: [
+                        {
+                            label: 'CPU (%)',
+                            data: analyticsData.performance.cpu,
+                            borderColor: '#dc3545',
+                            backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Memória (%)',
+                            data: analyticsData.performance.memory,
+                            borderColor: '#ffc107',
+                            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Requisições/min',
+                            data: analyticsData.performance.requests,
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            max: 100
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    }
+                }
+            });
+        }
+
+        // Animações dos KPIs
+        function animateKPIs() {
+            const kpiValues = document.querySelectorAll('.kpi-value');
+            kpiValues.forEach(element => {
+                const text = element.textContent;
+                if (text !== '-') {
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        element.style.transition = 'opacity 0.8s ease';
+                        element.style.opacity = '1';
+                    }, Math.random() * 500);
+                }
+            });
+
+            // Animar barras de progresso
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.kpi-progress-bar');
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            }, 500);
+        }
+
+        // Atualizar timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            document.getElementById('lastRefreshTime').textContent = 
+                now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Event Listeners
+        document.getElementById('btnRefresh').addEventListener('click', () => {
+            location.reload();
+        });
+
+        document.getElementById('btnExport').addEventListener('click', () => {
+            alert('Funcionalidade de exportação em desenvolvimento!');
+        });
+
+        document.getElementById('periodSelect').addEventListener('change', (e) => {
+            console.log('Período selecionado:', e.target.value + ' dias');
+        });
+
+        document.getElementById('realTimeToggle').addEventListener('change', (e) => {
+            const indicator = document.querySelector('.real-time-indicator');
+            if (e.target.checked) {
+                indicator.style.opacity = '1';
+            } else {
+                indicator.style.opacity = '0.5';
+            }
+        });
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Inicializando Analytics Avançado...');
+            
+            initCharts();
+            animateKPIs();
+            updateTimestamp();
+            
+            // Atualizar timestamp a cada minuto
+            setInterval(updateTimestamp, 60000);
+            
+            console.log('✅ Analytics Avançado carregado com sucesso!');
         });
     </script>
 </body>
