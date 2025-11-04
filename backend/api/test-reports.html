@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Sistema de Relatórios - Duralux CRM</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --duralux-primary: #2c3e50;
+            --duralux-secondary: #3498db;
+            --duralux-success: #27ae60;
+            --duralux-warning: #f39c12;
+            --duralux-danger: #e74c3c;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        .test-header {
+            background: linear-gradient(135deg, var(--duralux-primary), var(--duralux-secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .test-section h3 {
+            color: var(--duralux-primary);
+            border-bottom: 2px solid var(--duralux-secondary);
+            padding-bottom: 10px;
+        }
+
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+
+        .test-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .test-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .test-info {
+            background-color: #cce7ff;
+            color: #004085;
+            border: 1px solid #b6d4fe;
+        }
+
+        .btn-test {
+            margin: 5px;
+            min-width: 150px;
+        }
+
+        .endpoint-url {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+
+        .json-response {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .test-stats {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="test-header">
+            <h1>
+                <i class="bi bi-gear-fill me-3"></i>
+                Teste Sistema de Relatórios - Duralux CRM v1.4
+            </h1>
+            <p class="lead mb-0">Validação completa dos endpoints e funcionalidades do sistema de relatórios</p>
+        </div>
+
+        <!-- Test Statistics -->
+        <div class="test-stats">
+            <div class="row">
+                <div class="col-md-3 metric-card">
+                    <div class="metric-value" id="totalTests">0</div>
+                    <div>Testes Executados</div>
+                </div>
+                <div class="col-md-3 metric-card">
+                    <div class="metric-value text-success" id="successTests">0</div>
+                    <div>Sucessos</div>
+                </div>
+                <div class="col-md-3 metric-card">
+                    <div class="metric-value text-danger" id="errorTests">0</div>
+                    <div>Erros</div>
+                </div>
+                <div class="col-md-3 metric-card">
+                    <div class="metric-value" id="successRate">0%</div>
+                    <div>Taxa de Sucesso</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Controls -->
+        <div class="test-section">
+            <h3><i class="bi bi-play-circle me-2"></i>Controles de Teste</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-test" onclick="runAllTests()">
+                        <i class="bi bi-play-fill me-2"></i>Executar Todos os Testes
+                    </button>
+                    <button class="btn btn-warning btn-test" onclick="clearResults()">
+                        <i class="bi bi-trash me-2"></i>Limpar Resultados
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="apiBaseUrl" class="form-label">URL Base da API:</label>
+                        <input type="text" class="form-control" id="apiBaseUrl" 
+                               value="/duralux/backend/api" placeholder="Ex: /duralux/backend/api">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Reports Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-speedometer2 me-2"></i>Testes Dashboard Reports</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-success btn-test" onclick="testDashboardReport()">
+                        Dashboard Report
+                    </button>
+                    <button class="btn btn-success btn-test" onclick="testDashboardMetrics()">
+                        Dashboard Métricas
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /reports/dashboard?period=month&start_date=2024-01-01&end_date=2024-12-31
+                    </div>
+                </div>
+            </div>
+            <div id="dashboardResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- Sales Reports Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-graph-up-arrow me-2"></i>Testes Sales Reports</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-info btn-test" onclick="testSalesReport()">
+                        Sales Report
+                    </button>
+                    <button class="btn btn-info btn-test" onclick="testSalesByPeriod()">
+                        Vendas por Período
+                    </button>
+                    <button class="btn btn-info btn-test" onclick="testSalesByProduct()">
+                        Vendas por Produto
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /reports/sales?period=month&format=json
+                    </div>
+                </div>
+            </div>
+            <div id="salesResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- Leads Reports Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-funnel me-2"></i>Testes Leads Reports</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-secondary btn-test" onclick="testLeadsReport()">
+                        Leads Report
+                    </button>
+                    <button class="btn btn-secondary btn-test" onclick="testConversionPipeline()">
+                        Pipeline Conversão
+                    </button>
+                    <button class="btn btn-secondary btn-test" onclick="testLeadsBySource()">
+                        Leads por Fonte
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /reports/leads?conversion_analysis=true
+                    </div>
+                </div>
+            </div>
+            <div id="leadsResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- Projects Reports Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-kanban me-2"></i>Testes Projects Reports</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-dark btn-test" onclick="testProjectsReport()">
+                        Projects Report
+                    </button>
+                    <button class="btn btn-dark btn-test" onclick="testProjectsStatus()">
+                        Status dos Projetos
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /reports/projects?status_analysis=true
+                    </div>
+                </div>
+            </div>
+            <div id="projectsResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- Customers Reports Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-people me-2"></i>Testes Customers Reports</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-test" onclick="testCustomersReport()">
+                        Customers Report
+                    </button>
+                    <button class="btn btn-primary btn-test" onclick="testCustomerSegmentation()">
+                        Segmentação Clientes
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /reports/customers?segmentation=true
+                    </div>
+                </div>
+            </div>
+            <div id="customersResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- Financial Reports Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-cash-coin me-2"></i>Testes Financial Reports</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-warning btn-test" onclick="testFinancialReport()">
+                        Financial Report
+                    </button>
+                    <button class="btn btn-warning btn-test" onclick="testCashFlow()">
+                        Fluxo de Caixa
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /reports/financial?cash_flow=true
+                    </div>
+                </div>
+            </div>
+            <div id="financialResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- Export Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-download me-2"></i>Testes Export Functions</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-danger btn-test" onclick="testExportPDF()">
+                        Export PDF
+                    </button>
+                    <button class="btn btn-success btn-test" onclick="testExportExcel()">
+                        Export Excel
+                    </button>
+                    <button class="btn btn-info btn-test" onclick="testExportCSV()">
+                        Export CSV
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        POST /reports/export (format=pdf/excel/csv)
+                    </div>
+                </div>
+            </div>
+            <div id="exportResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- Chart Data Tests -->
+        <div class="test-section">
+            <h3><i class="bi bi-bar-chart me-2"></i>Testes Chart Data</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-outline-primary btn-test" onclick="testTimeEvolutionChart()">
+                        Time Evolution Chart
+                    </button>
+                    <button class="btn btn-outline-secondary btn-test" onclick="testConversionFunnelChart()">
+                        Conversion Funnel Chart
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /reports/charts/{type}?data_type=evolution
+                    </div>
+                </div>
+            </div>
+            <div id="chartsResults" class="test-results mt-3"></div>
+        </div>
+
+        <!-- API Connection Test -->
+        <div class="test-section">
+            <h3><i class="bi bi-wifi me-2"></i>Teste Conectividade API</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-outline-success btn-test" onclick="testApiConnection()">
+                        Testar Conexão API
+                    </button>
+                    <button class="btn btn-outline-info btn-test" onclick="testApiHealth()">
+                        Health Check
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="endpoint-url">
+                        GET /test (Health check endpoint)
+                    </div>
+                </div>
+            </div>
+            <div id="connectionResults" class="test-results mt-3"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Test Statistics
+        let testStats = {
+            total: 0,
+            success: 0,
+            error: 0
+        };
+
+        // Utility functions
+        function getApiBaseUrl() {
+            return document.getElementById('apiBaseUrl').value || '/duralux/backend/api';
+        }
+
+        function updateTestStats() {
+            document.getElementById('totalTests').textContent = testStats.total;
+            document.getElementById('successTests').textContent = testStats.success;
+            document.getElementById('errorTests').textContent = testStats.error;
+            
+            const rate = testStats.total > 0 ? Math.round((testStats.success / testStats.total) * 100) : 0;
+            document.getElementById('successRate').textContent = rate + '%';
+        }
+
+        function addTestResult(containerId, testName, success, data, endpoint = '') {
+            const container = document.getElementById(containerId);
+            const resultDiv = document.createElement('div');
+            
+            testStats.total++;
+            if (success) {
+                testStats.success++;
+                resultDiv.className = 'test-result test-success';
+                resultDiv.innerHTML = `
+                    <strong>✅ ${testName} - SUCESSO</strong><br>
+                    ${endpoint ? `<small>Endpoint: ${endpoint}</small><br>` : ''}
+                    <div class="json-response">${JSON.stringify(data, null, 2)}</div>
+                `;
+            } else {
+                testStats.error++;
+                resultDiv.className = 'test-result test-error';
+                resultDiv.innerHTML = `
+                    <strong>❌ ${testName} - ERRO</strong><br>
+                    ${endpoint ? `<small>Endpoint: ${endpoint}</small><br>` : ''}
+                    <div class="json-response">${JSON.stringify(data, null, 2)}</div>
+                `;
+            }
+            
+            container.appendChild(resultDiv);
+            updateTestStats();
+        }
+
+        async function apiRequest(method, endpoint, data = null) {
+            const url = getApiBaseUrl() + endpoint;
+            const options = {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            };
+
+            if (data && (method === 'POST' || method === 'PUT')) {
+                options.body = JSON.stringify(data);
+            }
+
+            try {
+                const response = await fetch(url, options);
+                const responseData = await response.json();
+                
+                return {
+                    success: response.ok,
+                    data: responseData,
+                    status: response.status
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    data: { error: error.message },
+                    status: 0
+                };
+            }
+        }
+
+        // Dashboard Tests
+        async function testDashboardReport() {
+            const endpoint = '/reports/dashboard?period=month&start_date=2024-01-01&end_date=2024-12-31';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('dashboardResults', 'Dashboard Report', result.success, result.data, endpoint);
+        }
+
+        async function testDashboardMetrics() {
+            const endpoint = '/reports/dashboard?metrics_only=true';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('dashboardResults', 'Dashboard Métricas', result.success, result.data, endpoint);
+        }
+
+        // Sales Tests
+        async function testSalesReport() {
+            const endpoint = '/reports/sales?period=month&format=json';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('salesResults', 'Sales Report', result.success, result.data, endpoint);
+        }
+
+        async function testSalesByPeriod() {
+            const endpoint = '/reports/sales?analysis_type=period&period=week';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('salesResults', 'Vendas por Período', result.success, result.data, endpoint);
+        }
+
+        async function testSalesByProduct() {
+            const endpoint = '/reports/sales?analysis_type=product&limit=10';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('salesResults', 'Vendas por Produto', result.success, result.data, endpoint);
+        }
+
+        // Leads Tests
+        async function testLeadsReport() {
+            const endpoint = '/reports/leads?conversion_analysis=true';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('leadsResults', 'Leads Report', result.success, result.data, endpoint);
+        }
+
+        async function testConversionPipeline() {
+            const endpoint = '/reports/leads?analysis_type=pipeline&period=quarter';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('leadsResults', 'Pipeline Conversão', result.success, result.data, endpoint);
+        }
+
+        async function testLeadsBySource() {
+            const endpoint = '/reports/leads?analysis_type=source&group_by=source';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('leadsResults', 'Leads por Fonte', result.success, result.data, endpoint);
+        }
+
+        // Projects Tests
+        async function testProjectsReport() {
+            const endpoint = '/reports/projects?status_analysis=true';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('projectsResults', 'Projects Report', result.success, result.data, endpoint);
+        }
+
+        async function testProjectsStatus() {
+            const endpoint = '/reports/projects?analysis_type=status&period=month';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('projectsResults', 'Status dos Projetos', result.success, result.data, endpoint);
+        }
+
+        // Customers Tests
+        async function testCustomersReport() {
+            const endpoint = '/reports/customers?segmentation=true';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('customersResults', 'Customers Report', result.success, result.data, endpoint);
+        }
+
+        async function testCustomerSegmentation() {
+            const endpoint = '/reports/customers?analysis_type=segmentation&segment_by=revenue';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('customersResults', 'Segmentação Clientes', result.success, result.data, endpoint);
+        }
+
+        // Financial Tests
+        async function testFinancialReport() {
+            const endpoint = '/reports/financial?cash_flow=true';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('financialResults', 'Financial Report', result.success, result.data, endpoint);
+        }
+
+        async function testCashFlow() {
+            const endpoint = '/reports/financial?analysis_type=cash_flow&period=month';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('financialResults', 'Fluxo de Caixa', result.success, result.data, endpoint);
+        }
+
+        // Export Tests
+        async function testExportPDF() {
+            const data = { report_type: 'dashboard', format: 'pdf', filters: { period: 'month' } };
+            const result = await apiRequest('POST', '/reports/export', data);
+            addTestResult('exportResults', 'Export PDF', result.success, result.data, 'POST /reports/export');
+        }
+
+        async function testExportExcel() {
+            const data = { report_type: 'sales', format: 'excel', filters: { period: 'month' } };
+            const result = await apiRequest('POST', '/reports/export', data);
+            addTestResult('exportResults', 'Export Excel', result.success, result.data, 'POST /reports/export');
+        }
+
+        async function testExportCSV() {
+            const data = { report_type: 'leads', format: 'csv', filters: { period: 'month' } };
+            const result = await apiRequest('POST', '/reports/export', data);
+            addTestResult('exportResults', 'Export CSV', result.success, result.data, 'POST /reports/export');
+        }
+
+        // Chart Tests
+        async function testTimeEvolutionChart() {
+            const endpoint = '/reports/charts/evolution?data_type=sales&period=month';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('chartsResults', 'Time Evolution Chart', result.success, result.data, endpoint);
+        }
+
+        async function testConversionFunnelChart() {
+            const endpoint = '/reports/charts/funnel?data_type=leads&analysis=conversion';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('chartsResults', 'Conversion Funnel Chart', result.success, result.data, endpoint);
+        }
+
+        // Connection Tests
+        async function testApiConnection() {
+            const endpoint = '/test';
+            const result = await apiRequest('GET', endpoint);
+            addTestResult('connectionResults', 'API Connection', result.success, result.data, endpoint);
+        }
+
+        async function testApiHealth() {
+            try {
+                const response = await fetch(getApiBaseUrl() + '/test');
+                const data = await response.json();
+                const success = response.ok && data.message;
+                addTestResult('connectionResults', 'API Health Check', success, data, 'GET /test');
+            } catch (error) {
+                addTestResult('connectionResults', 'API Health Check', false, { error: error.message }, 'GET /test');
+            }
+        }
+
+        // Run all tests
+        async function runAllTests() {
+            clearResults();
+            
+            console.log('Iniciando testes completos do sistema de relatórios...');
+            
+            // Dashboard Tests
+            await testDashboardReport();
+            await testDashboardMetrics();
+            
+            // Sales Tests  
+            await testSalesReport();
+            await testSalesByPeriod();
+            await testSalesByProduct();
+            
+            // Leads Tests
+            await testLeadsReport();
+            await testConversionPipeline();
+            await testLeadsBySource();
+            
+            // Projects Tests
+            await testProjectsReport();
+            await testProjectsStatus();
+            
+            // Customers Tests
+            await testCustomersReport();
+            await testCustomerSegmentation();
+            
+            // Financial Tests
+            await testFinancialReport();
+            await testCashFlow();
+            
+            // Export Tests
+            await testExportPDF();
+            await testExportExcel();
+            await testExportCSV();
+            
+            // Chart Tests
+            await testTimeEvolutionChart();
+            await testConversionFunnelChart();
+            
+            // Connection Tests
+            await testApiConnection();
+            await testApiHealth();
+            
+            console.log('Testes completos finalizados!');
+        }
+
+        function clearResults() {
+            const containers = [
+                'dashboardResults', 'salesResults', 'leadsResults', 'projectsResults',
+                'customersResults', 'financialResults', 'exportResults', 'chartsResults', 'connectionResults'
+            ];
+            
+            containers.forEach(id => {
+                document.getElementById(id).innerHTML = '';
+            });
+            
+            testStats = { total: 0, success: 0, error: 0 };
+            updateTestStats();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Sistema de testes carregado com sucesso');
+            updateTestStats();
+        });
+    </script>
+</body>
+</html>

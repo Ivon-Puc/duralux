@@ -292,7 +292,7 @@ class DuraluxLeads {
                     <div class="lead-value">
                         ${lead.value > 0 ? this.formatCurrency(lead.value) : '-'}
                     </div>
-                    ${lead.probability ? `<small class="text-muted">${lead.probability}% chance</small>` : ''}
+                    ${lead.probability ? `<small class="text-muted">${lead.probability}% probabilidade</small>` : ''}
                 </td>
                 <td>
                     <small class="text-muted">${this.formatDate(lead.created_at)}</small>

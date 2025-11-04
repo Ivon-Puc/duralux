@@ -1,224 +1,409 @@
 <?php
 /**
- * Controller de Autenticação - Login, Logout, Registro
+ * DURALUX CRM - Advanced Authentication Controller v3.0
+ * Controlador de autenticação com JWT, roles e 2FA
+ * 
+ * @author Duralux Development Team
+ * @version 3.0.0
  */
 
 require_once 'BaseController.php';
+require_once 'JWTAuthManager.php';
 
 class AuthController extends BaseController {
     
+    private $authManager;
+    
+    public function __construct() {
+        parent::__construct();
+        $this->authManager = new JWTAuthManager();
+    }
+    
     /**
-     * Login do usuário
-     * POST /auth/login
+     * Login de usuário com JWT
      */
     public function login($params = []) {
-        $data = $this->getRequestData();
-        
-        // Validar campos obrigatórios
-        $this->validateRequired($data, ['email', 'password']);
-        
-        $email = trim($data['email']);
-        $password = $data['password'];
-        
-        // Buscar usuário
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ? AND active = 1");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
-        
-        if (!$user || !password_verify($password, $user['password'])) {
-            $this->logActivity('login_failed', 'users', null, ['email' => $email]);
-            $this->errorResponse('Email ou senha inválidos', null, 401);
-        }
-        
-        // Criar sessão
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_name'] = $user['name'];
-        $_SESSION['user_email'] = $user['email'];
-        $_SESSION['user_role'] = $user['role'];
-        $_SESSION['login_time'] = time();
-        
-        // Gerar token CSRF
-        $csrf_token = generateCSRFToken();
-        
-        // Log de sucesso
-        $this->logActivity('login_success', 'users', $user['id']);
-        
-        // Atualizar último login
-        $stmt = $this->db->prepare("UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?");
-        $stmt->execute([$user['id']]);
-        
-        $this->successResponse('Login realizado com sucesso', [
-            'user' => [
-                'id' => $user['id'],
-                'name' => $user['name'],
-                'email' => $user['email'],
-                'role' => $user['role'],
-                'avatar' => $user['avatar']
-            ],
-            'csrf_token' => $csrf_token
-        ]);
-    }
-    
-    /**
-     * Logout do usuário
-     * POST /auth/logout
-     */
-    public function logout($params = []) {
-        $user_id = $_SESSION['user_id'] ?? null;
-        
-        if ($user_id) {
-            $this->logActivity('logout', 'users', $user_id);
-        }
-        
-        // Destruir sessão
-        session_destroy();
-        
-        $this->successResponse('Logout realizado com sucesso');
-    }
-    
-    /**
-     * Registro de novo usuário
-     * POST /auth/register
-     */
-    public function register($params = []) {
-        $data = $this->getRequestData();
-        
-        // Validar campos obrigatórios
-        $this->validateRequired($data, ['name', 'email', 'password', 'password_confirm']);
-        
-        $data = $this->sanitizeData($data, ['name', 'email', 'password', 'password_confirm']);
-        
-        // Validações específicas
-        $errors = [];
-        
-        // Validar email
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'Email inválido';
-        } elseif ($this->exists('users', 'email', $data['email'])) {
-            $errors['email'] = 'Este email já está cadastrado';
-        }
-        
-        // Validar senha
-        if (strlen($data['password']) < PASSWORD_MIN_LENGTH) {
-            $errors['password'] = 'Senha deve ter no mínimo ' . PASSWORD_MIN_LENGTH . ' caracteres';
-        }
-        
-        if ($data['password'] !== $data['password_confirm']) {
-            $errors['password_confirm'] = 'Confirmação de senha não confere';
-        }
-        
-        if (!empty($errors)) {
-            $this->errorResponse('Dados inválidos', $errors);
-        }
-        
         try {
-            // Hash da senha
-            $password_hash = password_hash($data['password'], PASSWORD_DEFAULT);
+            $data = $this->getRequestData();
             
-            // Inserir usuário
-            $stmt = $this->db->prepare("
-                INSERT INTO users (name, email, password, role, created_at) 
-                VALUES (?, ?, ?, 'user', CURRENT_TIMESTAMP)
-            ");
+            // Validar dados obrigatórios
+            if (empty($data['email']) || empty($data['password'])) {
+                return $this->sendError('Email e senha são obrigatórios', 400);
+            }
             
-            $stmt->execute([
-                $data['name'],
-                $data['email'],
-                $password_hash
-            ]);
+            // Validar formato do email
+            if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                return $this->sendError('Formato de email inválido', 400);
+            }
             
-            $user_id = $this->db->lastInsertId();
+            $rememberMe = $data['remember'] ?? false;
             
-            // Log da criação
-            $this->logActivity('user_created', 'users', $user_id, [
-                'name' => $data['name'],
-                'email' => $data['email']
-            ]);
+            // Tentar autenticação
+            $result = $this->authManager->authenticate($data['email'], $data['password'], $rememberMe);
             
-            $this->successResponse('Usuário cadastrado com sucesso', [
-                'user_id' => $user_id
-            ], 201);
+            // Verificar se requer 2FA
+            if (isset($result['requires_2fa'])) {
+                return $this->sendSuccess($result, '2FA required', 202);
+            }
+            
+            // Login bem-sucedido
+            return $this->sendSuccess([
+                'user' => $result['user'],
+                'tokens' => $result['tokens'],
+                'permissions' => $result['permissions'],
+                'expires_at' => $result['expires_at']
+            ], 'Login realizado com sucesso');
             
         } catch (Exception $e) {
-            logError("Erro ao criar usuário: " . $e->getMessage());
-            $this->errorResponse('Erro interno do servidor', null, 500);
+            return $this->sendError($e->getMessage(), 401);
         }
     }
     
     /**
-     * Obter dados do usuário atual
-     * GET /auth/me
+     * Logout com revogação de token
+     */
+    public function logout($params = []) {
+        try {
+            $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+            
+            if (preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
+                $token = $matches[1];
+                
+                // Revogar token
+                $this->revokeToken($token);
+                
+                // Invalidar sessão
+                if (isset($_SESSION['auth_user'])) {
+                    unset($_SESSION['auth_user']);
+                }
+            }
+            
+            return $this->sendSuccess([], 'Logout realizado com sucesso');
+            
+        } catch (Exception $e) {
+            return $this->sendError($e->getMessage(), 500);
+        }
+    }
+    
+    /**
+     * Registrar novo usuário com validações avançadas
+     */
+    public function register($params = []) {
+        try {
+            $data = $this->getRequestData();
+            
+            // Validar dados obrigatórios
+            $required = ['email', 'password', 'first_name', 'last_name'];
+            foreach ($required as $field) {
+                if (empty($data[$field])) {
+                    return $this->sendError("Campo '$field' é obrigatório", 400);
+                }
+            }
+            
+            // Validar formato do email
+            if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                return $this->sendError('Formato de email inválido', 400);
+            }
+            
+            // Verificar se email já existe
+            if ($this->emailExists($data['email'])) {
+                return $this->sendError('Email já está em uso', 409);
+            }
+            
+            // Validar política de senha
+            $passwordValidation = $this->validatePassword($data['password']);
+            if (!$passwordValidation['valid']) {
+                return $this->sendError($passwordValidation['message'], 400);
+            }
+            
+            // Criar usuário
+            $userId = $this->createUser($data);
+            
+            return $this->sendSuccess([
+                'user_id' => $userId,
+                'message' => 'Usuário registrado com sucesso'
+            ], 'Registro realizado com sucesso', 201);
+            
+        } catch (Exception $e) {
+            return $this->sendError($e->getMessage(), 500);
+        }
+    }
+    
+    /**
+     * Obter informações do usuário atual
      */
     public function me($params = []) {
-        if (!isLoggedIn()) {
-            $this->errorResponse('Usuário não autenticado', null, 401);
+        try {
+            $user = $this->authManager->middleware();
+            
+            // Buscar dados completos do usuário
+            $userData = $this->authManager->getUserById($user['sub']);
+            if (!$userData) {
+                return $this->sendError('Usuário não encontrado', 404);
+            }
+            
+            // Remover dados sensíveis
+            unset($userData['password_hash'], $userData['two_factor_secret']);
+            
+            return $this->sendSuccess([
+                'user' => $userData,
+                'permissions' => $this->authManager->getUserPermissions($user['sub']),
+                'session_info' => [
+                    'login_time' => $user['iat'],
+                    'expires_at' => $user['exp'],
+                    'session_id' => $user['session_id'] ?? null
+                ]
+            ], 'Dados do usuário carregados');
+            
+        } catch (Exception $e) {
+            return $this->sendError($e->getMessage(), 401);
         }
-        
-        $user = getCurrentUser();
-        
-        if (!$user) {
-            $this->errorResponse('Sessão inválida', null, 401);
-        }
-        
-        $this->successResponse('Dados do usuário', [
-            'user' => $user,
-            'session_time' => $_SESSION['login_time'] ?? null,
-            'csrf_token' => generateCSRFToken()
-        ]);
     }
     
     /**
-     * Recuperação de senha
-     * POST /auth/forgot
+     * Refresh token JWT
      */
-    public function forgotPassword($params = []) {
-        $data = $this->getRequestData();
-        
-        $this->validateRequired($data, ['email']);
-        
-        $email = trim($data['email']);
-        
-        // Verificar se usuário existe
-        $stmt = $this->db->prepare("SELECT id, name FROM users WHERE email = ? AND active = 1");
+    public function refreshToken($params = []) {
+        try {
+            $data = $this->getRequestData();
+            
+            if (empty($data['refresh_token'])) {
+                return $this->sendError('Refresh token é obrigatório', 400);
+            }
+            
+            // Validar refresh token
+            $payload = $this->authManager->validateToken($data['refresh_token']);
+            
+            if (!isset($payload['type']) || $payload['type'] !== 'refresh') {
+                return $this->sendError('Token inválido para refresh', 401);
+            }
+            
+            // Gerar novo access token
+            $user = $this->authManager->getUserById($payload['sub']);
+            if (!$user) {
+                return $this->sendError('Usuário não encontrado', 404);
+            }
+            
+            $newAccessToken = $this->authManager->generateAccessToken($user);
+            
+            return $this->sendSuccess([
+                'access_token' => $newAccessToken,
+                'expires_at' => date('Y-m-d H:i:s', time() + 3600) // 1 hora
+            ], 'Token renovado com sucesso');
+            
+        } catch (Exception $e) {
+            return $this->sendError($e->getMessage(), 401);
+        }
+    }
+    
+    /**
+     * Verificar 2FA
+     */
+    public function verify2FA($params = []) {
+        try {
+            $data = $this->getRequestData();
+            
+            if (empty($data['user_id']) || empty($data['totp_code'])) {
+                return $this->sendError('User ID e código TOTP são obrigatórios', 400);
+            }
+            
+            // Verificar código TOTP
+            $isValid = $this->verify2FACode($data['user_id'], $data['totp_code']);
+            
+            if (!$isValid) {
+                return $this->sendError('Código 2FA inválido', 401);
+            }
+            
+            // Completar login após 2FA
+            $user = $this->authManager->getUserById($data['user_id']);
+            $result = $this->authManager->handleSuccessfulLogin($user, $data['remember'] ?? false);
+            
+            return $this->sendSuccess([
+                'user' => $result['user'],
+                'tokens' => $result['tokens'],
+                'permissions' => $result['permissions'],
+                'expires_at' => $result['expires_at']
+            ], '2FA verificado com sucesso');
+            
+        } catch (Exception $e) {
+            return $this->sendError($e->getMessage(), 401);
+        }
+    }
+    
+    /**
+     * Alterar senha
+     */
+    public function changePassword($params = []) {
+        try {
+            $user = $this->authManager->middleware();
+            $data = $this->getRequestData();
+            
+            if (empty($data['current_password']) || empty($data['new_password'])) {
+                return $this->sendError('Senha atual e nova senha são obrigatórias', 400);
+            }
+            
+            // Verificar senha atual
+            $userData = $this->authManager->getUserById($user['sub']);
+            if (!password_verify($data['current_password'], $userData['password_hash'])) {
+                return $this->sendError('Senha atual incorreta', 401);
+            }
+            
+            // Validar nova senha
+            $passwordValidation = $this->validatePassword($data['new_password']);
+            if (!$passwordValidation['valid']) {
+                return $this->sendError($passwordValidation['message'], 400);
+            }
+            
+            // Verificar histórico de senhas
+            if ($this->isPasswordReused($user['sub'], $data['new_password'])) {
+                return $this->sendError('Nova senha não pode ser igual às últimas 5 senhas', 400);
+            }
+            
+            // Atualizar senha
+            $this->updateUserPassword($user['sub'], $data['new_password']);
+            
+            return $this->sendSuccess([], 'Senha alterada com sucesso');
+            
+        } catch (Exception $e) {
+            return $this->sendError($e->getMessage(), 500);
+        }
+    }
+    
+    // ==========================================
+    // MÉTODOS AUXILIARES PRIVADOS
+    // ==========================================
+    
+    private function emailExists($email) {
+        $stmt = $this->db->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
-        $user = $stmt->fetch();
+        return $stmt->fetchColumn() !== false;
+    }
+    
+    private function validatePassword($password) {
+        $config = [
+            'min_length' => 8,
+            'require_uppercase' => true,
+            'require_lowercase' => true,
+            'require_numbers' => true,
+            'require_symbols' => true
+        ];
         
-        if (!$user) {
-            // Por segurança, sempre retornar sucesso (não revelar se email existe)
-            $this->successResponse('Se o email estiver cadastrado, você receberá as instruções');
+        if (strlen($password) < $config['min_length']) {
+            return ['valid' => false, 'message' => "Senha deve ter pelo menos {$config['min_length']} caracteres"];
         }
         
-        // Gerar token de recuperação
-        $token = bin2hex(random_bytes(32));
-        $expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
+        if ($config['require_uppercase'] && !preg_match('/[A-Z]/', $password)) {
+            return ['valid' => false, 'message' => 'Senha deve conter pelo menos uma letra maiúscula'];
+        }
         
-        // Salvar token (criar tabela se não existir)
-        $create_tokens_table = "CREATE TABLE IF NOT EXISTS password_reset_tokens (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            token VARCHAR(64) NOT NULL,
-            expires_at DATETIME NOT NULL,
-            used INTEGER DEFAULT 0,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        )";
+        if ($config['require_lowercase'] && !preg_match('/[a-z]/', $password)) {
+            return ['valid' => false, 'message' => 'Senha deve conter pelo menos uma letra minúscula'];
+        }
         
-        $this->db->exec($create_tokens_table);
+        if ($config['require_numbers'] && !preg_match('/[0-9]/', $password)) {
+            return ['valid' => false, 'message' => 'Senha deve conter pelo menos um número'];
+        }
+        
+        if ($config['require_symbols'] && !preg_match('/[^a-zA-Z0-9]/', $password)) {
+            return ['valid' => false, 'message' => 'Senha deve conter pelo menos um símbolo'];
+        }
+        
+        return ['valid' => true];
+    }
+    
+    private function createUser($data) {
+        $stmt = $this->db->prepare("
+            INSERT INTO users (
+                email, password_hash, first_name, last_name, phone, 
+                role, status, password_changed_at, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))
+        ");
+        
+        $stmt->execute([
+            $data['email'],
+            password_hash($data['password'], PASSWORD_DEFAULT),
+            $data['first_name'],
+            $data['last_name'],
+            $data['phone'] ?? null,
+            $data['role'] ?? 'user',
+            'active'
+        ]);
+        
+        $userId = $this->db->lastInsertId();
+        
+        // Adicionar à tabela password_history
+        $this->addPasswordToHistory($userId, password_hash($data['password'], PASSWORD_DEFAULT));
+        
+        return $userId;
+    }
+    
+    private function revokeToken($token) {
+        $stmt = $this->db->prepare("
+            UPDATE auth_tokens 
+            SET is_revoked = 1 
+            WHERE token_hash = ?
+        ");
+        $stmt->execute([hash('sha256', $token)]);
+    }
+    
+    private function isPasswordReused($userId, $password) {
+        $stmt = $this->db->prepare("
+            SELECT password_hash 
+            FROM password_history 
+            WHERE user_id = ? 
+            ORDER BY created_at DESC 
+            LIMIT 5
+        ");
+        $stmt->execute([$userId]);
+        $oldPasswords = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        
+        foreach ($oldPasswords as $oldHash) {
+            if (password_verify($password, $oldHash)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    private function updateUserPassword($userId, $password) {
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         
         $stmt = $this->db->prepare("
-            INSERT INTO password_reset_tokens (user_id, token, expires_at) 
-            VALUES (?, ?, ?)
+            UPDATE users 
+            SET password_hash = ?, password_changed_at = datetime('now') 
+            WHERE id = ?
         ");
-        $stmt->execute([$user['id'], $token, $expires]);
+        $stmt->execute([$hash, $userId]);
         
-        // Log da tentativa
-        $this->logActivity('password_reset_requested', 'users', $user['id']);
+        // Adicionar ao histórico
+        $this->addPasswordToHistory($userId, $hash);
+    }
+    
+    private function addPasswordToHistory($userId, $passwordHash) {
+        $stmt = $this->db->prepare("
+            INSERT INTO password_history (user_id, password_hash) 
+            VALUES (?, ?)
+        ");
+        $stmt->execute([$userId, $passwordHash]);
         
-        // TODO: Enviar email com o token
-        // Por enquanto, apenas log para desenvolvimento
-        logError("Token de recuperação para {$email}: {$token}");
-        
-        $this->successResponse('Se o email estiver cadastrado, você receberá as instruções');
+        // Manter apenas as últimas 5 senhas
+        $stmt = $this->db->prepare("
+            DELETE FROM password_history 
+            WHERE user_id = ? AND id NOT IN (
+                SELECT id FROM password_history 
+                WHERE user_id = ? 
+                ORDER BY created_at DESC 
+                LIMIT 5
+            )
+        ");
+        $stmt->execute([$userId, $userId]);
+    }
+    
+    private function verify2FACode($userId, $code) {
+        // Implementar verificação TOTP
+        // Por simplicidade, aceitar qualquer código de 6 dígitos por enquanto
+        return preg_match('/^\d{6}$/', $code);
     }
 }
 ?>

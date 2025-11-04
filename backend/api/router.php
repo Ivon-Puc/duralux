@@ -1,13 +1,65 @@
 <?php
 /**
- * Roteador Principal da API - Duralux CRM
- * Gerencia todas as rotas da aplicação
+ * DURALUX CRM - Router da API REST v2.0
+ * Roteador principal para todas as requisições da API
+ * 
+ * Features:
+ * - Roteamento automático baseado em URL
+ * - Versionamento de API (/api/v1/, /api/v2/)
+ * - Middleware de autenticação
+ * - Rate limiting integrado
+ * - CORS automático
+ * - Logging de requisições
+ * - Documentação Swagger integrada
+ * 
+ * @author Duralux Development Team
+ * @version 2.0.0
  */
+
+// Headers de segurança e CORS
+header('Content-Type: application/json; charset=utf-8');
+header('X-Powered-By: Duralux API v2.0');
+
+// Configuração de erro reporting para produção
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
 
 require_once __DIR__ . '/../init.php';
 require_once __DIR__ . '/../classes/AuthMiddleware.php';
+require_once __DIR__ . '/../classes/APIController.php';
 
-// Verificar se é requisição para dashboard ou API direta
+try {
+    // Verificar se a requisição é para a API REST v2.0
+    $requestUri = $_SERVER['REQUEST_URI'];
+    $scriptName = $_SERVER['SCRIPT_NAME'];
+    
+    // Extrair o path da API
+    $basePath = dirname($scriptName);
+    $apiPath = str_replace($basePath, '', $requestUri);
+    
+    // Verificar se é uma requisição da API REST (/api/v1/, /api/v2/)
+    if (preg_match('/^\/api\/v[12]\//', $apiPath)) {
+        // Verificar se é requisição para documentação Swagger UI
+        if (preg_match('/^\/api\/v1\/docs\/?$/', $apiPath)) {
+            serveSwaggerUI();
+            exit;
+        }
+        
+        // Verificar se é requisição para JSON da documentação
+        if (preg_match('/^\/api\/v1\/docs\.json\/?$/', $apiPath)) {
+            $apiController = new APIController();
+            echo $apiController->generateSwaggerDocs();
+            exit;
+        }
+        
+        // Processar através do novo APIController
+        $apiController = new APIController();
+        $apiController->handleAPIRequest();
+        exit;
+    }
+
+// Verificar se é requisição para dashboard ou API direta (sistema legado)
 $data = json_decode(file_get_contents('php://input'), true) ?: [];
 $action = $data['action'] ?? $_GET['action'] ?? '';
 
@@ -89,7 +141,35 @@ if ($action) {
         case 'generate_invoice':
             $controller = new OrderController();
             $controller->handleRequest();
-            break;        // Auth actions
+            break;
+            
+        // Reports actions
+        case 'get_dashboard_report':
+        case 'get_sales_report':
+        case 'get_leads_report':
+        case 'get_projects_report':
+        case 'get_customers_report':
+        case 'get_financial_report':
+        case 'export_report':
+        case 'get_chart_data':
+            $controller = new ReportsController();
+            $controller->handleRequest();
+            break;
+            
+        // Performance Monitor actions (v4.0)
+        case 'get_performance_dashboard':
+        case 'get_performance_overview':
+        case 'get_performance_trends':
+        case 'get_active_alerts':
+        case 'execute_optimization':
+        case 'get_system_resources':
+        case 'get_optimization_recommendations':
+            require_once __DIR__ . '/../classes/PerformanceDashboardController.php';
+            $controller = new PerformanceDashboardController();
+            $controller->handleRequest();
+            break;
+            
+        // Auth actions
         case 'login':
         case 'logout':
         case 'register':
@@ -172,6 +252,16 @@ class Router {
         $this->routes['GET']['/dashboard/leads'] = 'DashboardController@getLeadsAnalytics';
         $this->routes['GET']['/dashboard/projects'] = 'DashboardController@getProjectsAnalytics';
         $this->routes['GET']['/dashboard/activities'] = 'DashboardController@getRecentActivities';
+        
+        // Rotas de relatórios
+        $this->routes['GET']['/reports/dashboard'] = 'ReportsController@getDashboard';
+        $this->routes['GET']['/reports/sales'] = 'ReportsController@getSales';
+        $this->routes['GET']['/reports/leads'] = 'ReportsController@getLeads';
+        $this->routes['GET']['/reports/projects'] = 'ReportsController@getProjects';
+        $this->routes['GET']['/reports/customers'] = 'ReportsController@getCustomers';
+        $this->routes['GET']['/reports/financial'] = 'ReportsController@getFinancial';
+        $this->routes['POST']['/reports/export'] = 'ReportsController@export';
+        $this->routes['GET']['/reports/charts/{type}'] = 'ReportsController@getChartData';
         
         // Rotas de upload
         $this->routes['POST']['/upload'] = 'UploadController@upload';
@@ -301,7 +391,136 @@ class Router {
     }
 }
 
-// Executar roteador
+// Executar roteador (sistema legado)
 $router = new Router();
 $router->handle();
+
+} catch (Exception $e) {
+    // Log do erro
+    error_log('API Error: ' . $e->getMessage());
+    
+    // Resposta de erro genérica
+    http_response_code(500);
+    echo json_encode([
+        'error' => true,
+        'message' => 'Internal server error',
+        'code' => 'INTERNAL_SERVER_ERROR',
+        'timestamp' => date('Y-m-d H:i:s')
+    ]);
+}
+
+/**
+ * Servir interface Swagger UI
+ */
+function serveSwaggerUI() {
+    $swaggerHTML = '<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Duralux CRM API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui.css" />
+    <link rel="icon" type="image/png" href="https://unpkg.com/swagger-ui-dist@4.15.5/favicon-32x32.png" sizes="32x32" />
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            margin:0;
+            background: #fafafa;
+        }
+        .swagger-ui .topbar {
+            background-color: #2c3e50;
+        }
+        .swagger-ui .topbar .download-url-wrapper .select-label {
+            color: white;
+        }
+        .duralux-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        .duralux-header h1 {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .duralux-header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="duralux-header">
+        <h1>🏢 Duralux CRM API Documentation</h1>
+        <p>API REST completa com funcionalidades avançadas de dashboard, analytics e automação</p>
+        <p><strong>Versão:</strong> 2.0 | <strong>OpenAPI:</strong> 3.0</p>
+    </div>
+    
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            const ui = SwaggerUIBundle({
+                url: "/duralux/backend/api/v1/docs.json",
+                dom_id: "#swagger-ui",
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                validatorUrl: null,
+                docExpansion: "list",
+                filter: true,
+                showRequestHeaders: true,
+                showCommonExtensions: true,
+                defaultModelsExpandDepth: 2,
+                defaultModelExpandDepth: 2,
+                requestInterceptor: function(request) {
+                    // Adicionar headers padrão
+                    request.headers["X-API-Client"] = "SwaggerUI";
+                    return request;
+                },
+                responseInterceptor: function(response) {
+                    // Log das respostas para debug
+                    console.log("API Response:", response);
+                    return response;
+                }
+            });
+            
+            // Personalização adicional
+            setTimeout(() => {
+                const logo = document.querySelector(".topbar-wrapper img");
+                if (logo) {
+                    logo.style.display = "none";
+                }
+                
+                const title = document.querySelector(".topbar-wrapper .link");
+                if (title) {
+                    title.innerHTML = "Duralux CRM API v2.0";
+                    title.style.color = "white";
+                    title.style.fontWeight = "bold";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>';
+
+    header('Content-Type: text/html; charset=utf-8');
+    echo $swaggerHTML;
+}
+
 ?>
