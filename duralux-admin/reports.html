@@ -277,6 +277,157 @@
             margin-bottom: 0;
         }
     </style>
+
+        <!-- Nãotification Center v6.0 CSS -->
+        <style>
+        .notification-center {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .notification-center.open {
+            right: 0;
+        }
+        
+        .notification-center-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .notification-center-body {
+            padding: 0;
+        }
+        
+        .notification-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        
+        .notification-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .notification-item.unread {
+            background: #fff7e6;
+            border-left: 4px solid #ffa500;
+        }
+        
+        .notification-item.unread::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ffa500;
+            border-radius: 50%;
+        }
+        
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .notification-message {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .notification-time {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .notification-trigger {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .notification-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .notification-actions {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+        
+        .btn-notification {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-notification:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .notification-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .notification-center {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -321,15 +472,15 @@
             </div>
         </div>
 
-        <!-- Filters Section -->
+        <!-- Filtrars Section -->
         <div class="container-fluid">
             <div class="filters-section">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="periodFilter" class="form-label">
+                        <label for="periodFiltrar" class="form-label">
                             <i class="bi bi-calendar me-2"></i>Período
                         </label>
-                        <select id="periodFilter" class="form-select">
+                        <select id="periodFiltrar" class="form-select">
                             <option value="day">Diário</option>
                             <option value="week">Semanal</option>
                             <option value="month" selected>Mensal</option>
@@ -338,16 +489,16 @@
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label for="startDateFilter" class="form-label">
+                        <label for="startDataFiltrar" class="form-label">
                             <i class="bi bi-calendar-event me-2"></i>Data Início
                         </label>
-                        <input type="date" id="startDateFilter" class="form-control">
+                        <input type="date" id="startDataFiltrar" class="form-control">
                     </div>
                     <div class="col-md-3">
-                        <label for="endDateFilter" class="form-label">
+                        <label for="endDataFiltrar" class="form-label">
                             <i class="bi bi-calendar-check me-2"></i>Data Final
                         </label>
-                        <input type="date" id="endDateFilter" class="form-control">
+                        <input type="date" id="endDataFiltrar" class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">&nbsp;</label>
@@ -360,12 +511,12 @@
                 </div>
             </div>
 
-            <!-- Export Section -->
+            <!-- Exportar Section -->
             <div class="export-section">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <h5 class="mb-0">
-                            <i class="bi bi-download me-2"></i>Exportar Relatórios
+                            <i class="bi bi-download me-2"></i>Exportarar Relatórios
                         </h5>
                         <small class="text-muted">Baixe os relatórios em diferentes formatos</small>
                     </div>
@@ -417,7 +568,7 @@
                             <p>Receita Total</p>
                         </div>
                         <div class="col-md-3 summary-stat">
-                            <h3 id="totalOrdersMetric">0</h3>
+                            <h3 id="totalOrdemsMetric">0</h3>
                             <p>Total de Pedidos</p>
                         </div>
                         <div class="col-md-3 summary-stat">
@@ -425,7 +576,7 @@
                             <p>Taxa de Conversão</p>
                         </div>
                         <div class="col-md-3 summary-stat">
-                            <h3 id="avgOrderValueMetric">R$ 0,00</h3>
+                            <h3 id="avgOrdemValueMetric">R$ 0,00</h3>
                             <p>Ticket Médio</p>
                         </div>
                     </div>
@@ -438,7 +589,7 @@
                             <div class="metric-icon">
                                 <i class="bi bi-people"></i>
                             </div>
-                            <div class="metric-value" id="totalCustomersMetric">0</div>
+                            <div class="metric-value" id="totalClientesMetric">0</div>
                             <p class="metric-label">Total de Clientes</p>
                         </div>
                     </div>
@@ -471,7 +622,7 @@
                     </div>
                 </div>
 
-                <!-- Time Evolution Chart -->
+                <!-- Hora Evolution Chart -->
                 <div class="chart-container">
                     <h5 class="chart-title">Evolução Temporal - Receitas, Pedidos e Leads</h5>
                     <canvas id="timeEvolutionChart" height="100"></canvas>
@@ -534,7 +685,7 @@
                                 <i class="bi bi-person-plus"></i>
                             </div>
                             <div class="metric-value" id="newLeadsMetric">0</div>
-                            <p class="metric-label">Novos Leads</p>
+                            <p class="metric-label">Nãovos Leads</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -551,7 +702,7 @@
                             <div class="metric-icon">
                                 <i class="bi bi-hourglass-split"></i>
                             </div>
-                            <div class="metric-value" id="avgConversionTimeMetric">0 dias</div>
+                            <div class="metric-value" id="avgConversionHoraMetric">0 dias</div>
                             <p class="metric-label">Tempo Médio de Conversão</p>
                         </div>
                     </div>
@@ -579,7 +730,7 @@
                 </div>
             </div>
 
-            <!-- Customers Tab Content -->
+            <!-- Clientes Tab Content -->
             <div id="customersTab" class="tab-content">
                 <div class="row">
                     <div class="col-12">
@@ -610,14 +761,374 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Duralux Reports JS -->
+    <!-- Duralux Relatórios JS -->
     <script src="assets/js/duralux-reports.js"></script>
 
     <script>
         // Inicialização adicional se necessário
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Duralux Reports - Interface carregada com sucesso');
+            console.log('Duralux Relatórios - Interface carregada com sucesso');
         });
     </script>
+
+        <!-- Nãotification Center v6.0 JavaScript -->
+        <script>
+        class NãotificationCenter {
+            constructor() {
+                this.apiUrl = 'http://localhost/duralux/backend/api/api-notifications.php';
+                this.notifications = [];
+                this.unreadCount = 0;
+                this.init();
+            }
+            
+            init() {
+                this.createHTML();
+                this.bindEvents();
+                this.loadNãotifications();
+                this.startPolling();
+            }
+            
+            createHTML() {
+                // Adicionar overlay
+                const overlay = document.createElement('div');
+                overlay.classNãome = 'notification-overlay';
+                overlay.id = 'notificationOverlay';
+                document.body.appendChild(overlay);
+                
+                // Adicionar painel de notificações
+                const panel = document.createElement('div');
+                panel.classNãome = 'notification-center';
+                panel.id = 'notificationCenter';
+                panel.innerHTML = `
+                    <div class="notification-center-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">🔔 Central de Nãotificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                                <i class="feather-x"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <small id="notificationCount">0 notificações</small>
+                            <button class="btn btn-sm btn-outline-light ms-2" onclick="notificationCenter.markTodosRead()">
+                                Marcar todas como lidas
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-center-body" id="notificationList">
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    </div>
+                    <div class="notification-actions">
+                        <button class="btn-notification me-2" onclick="notificationCenter.sendTestNãotification()">
+                            🧪 Teste
+                        </button>
+                        <button class="btn-notification me-2" onclick="notificationCenter.createDemoLead()">
+                            👤 Demo Lead
+                        </button>
+                        <button class="btn-notification" onclick="notificationCenter.createDemoProposal()">
+                            📋 Demo Proposta
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(panel);
+                
+                // Adicionar badge ao ícone de notificação existente (se houver)
+                this.addNãotificationBadge();
+            }
+            
+            addNãotificationBadge() {
+                // Procurar por ícones de notificação existentes e adicionar badge
+                const bellIcons = document.querySelecionarorTodos('.feather-bell, .fa-bell');
+                bellIcons.forEach(icon => {
+                    if (!icon.parentElement.querySelecionaror('.notification-badge')) {
+                        const badge = document.createElement('span');
+                        badge.classNãome = 'notification-badge';
+                        badge.id = 'notificationBadge';
+                        badge.textContent = '0';
+                        badge.style.display = 'none';
+                        icon.parentElement.style.position = 'relative';
+                        icon.parentElement.appendChild(badge);
+                        
+                        // Adicionar evento de clique
+                        icon.parentElement.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.toggle();
+                        });
+                    }
+                });
+            }
+            
+            bindEvents() {
+                // Fechar ao clicar no overlay
+                document.getElementById('notificationOverlay').addEventListener('click', () => {
+                    this.close();
+                });
+                
+                // Tecla ESC para fechar
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.close();
+                    }
+                });
+            }
+            
+            async loadNãotifications() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.notifications = data.data;
+                        this.updateUnreadCount();
+                        this.renderNãotifications();
+                    }
+                } catch (error) {
+                    console.error('Erro ao carregar notificações:', error);
+                    this.loadDemoData();
+                }
+            }
+            
+            loadDemoData() {
+                this.notifications = [
+                    {
+                        id: 1,
+                        titulo: '🔔 Nãovo Lead Recebido',
+                        mensagem: 'Lead de Maria Santos interessada em consultoria empresarial',
+                        tipo: 'lead',
+                        lido_em: null,
+                        criado_em: new Data().toISOString()
+                    },
+                    {
+                        id: 2,
+                        titulo: '✅ Proposta Aprovada',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        tipo: 'proposta',
+                        lido_em: null,
+                        criado_em: new Data(Data.now() - 2*60*60*1000).toISOString()
+                    },
+                    {
+                        id: 3,
+                        titulo: '⏰ Projeto com Prazo Próximo',
+                        mensagem: 'Projeto "Website E-commerce" tem entrega em 3 dias',
+                        tipo: 'projeto',
+                        lido_em: new Data(Data.now() - 60*60*1000).toISOString(),
+                        criado_em: new Data(Data.now() - 4*60*60*1000).toISOString()
+                    }
+                ];
+                this.updateUnreadCount();
+                this.renderNãotifications();
+            }
+            
+            renderNãotifications() {
+                const container = document.getElementById('notificationList');
+                
+                if (this.notifications.length === 0) {
+                    container.innerHTML = `
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = this.notifications.map(notification => `
+                    <div class="notification-item ${!notification.lido_em ? 'unread' : ''}" 
+                         onclick="notificationCenter.markAsRead(${notification.id})">
+                        <div class="notification-title">${notification.titulo}</div>
+                        <div class="notification-message">${notification.mensagem}</div>
+                        <div class="notification-time">${this.formatHora(notification.criado_em)}</div>
+                    </div>
+                `).join('');
+            }
+            
+            updateUnreadCount() {
+                const unread = this.notifications.filter(n => !n.lido_em).length;
+                this.unreadCount = unread;
+                
+                // Atualizar badge
+                const badge = document.getElementById('notificationBadge');
+                if (badge) {
+                    badge.textContent = unread;
+                    badge.style.display = unread > 0 ? 'flex' : 'none';
+                }
+                
+                // Atualizar contador no painel
+                const counter = document.getElementById('notificationCount');
+                if (counter) {
+                    counter.textContent = `${this.notifications.length} notificações (${unread} não lidas)`;
+                }
+            }
+            
+            formatHora(timestamp) {
+                const date = new Data(timestamp);
+                const now = new Data();
+                const diff = now - date;
+                
+                if (diff < 60000) return 'Agora mesmo';
+                if (diff < 3600000) return `${Math.floor(diff/60000)} min atrás`;
+                if (diff < 86400000) return `${Math.floor(diff/3600000)}h atrás`;
+                
+                return date.toLocaleDataString('pt-BR');
+            }
+            
+            async markAsRead(notificationId) {
+                try {
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (!notification || notification.lido_em) return;
+                    
+                    const response = await fetch(`${this.apiUrl}?path=mark-read`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ notification_id: notificationId })
+                    });
+                    
+                    if (response.ok) {
+                        notification.lido_em = new Data().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNãotifications();
+                    }
+                } catch (error) {
+                    // Modo defline - marcar localmente
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (notification) {
+                        notification.lido_em = new Data().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNãotifications();
+                    }
+                }
+            }
+            
+            async markTodosRead() {
+                const unreadNãotifications = this.notifications.filter(n => !n.lido_em);
+                for (const notification de unreadNãotifications) {
+                    await this.markAsRead(notification.id);
+                }
+            }
+            
+            async sendTestNãotification() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=test`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('✅ Nãotificação de teste enviada!');
+                        setHoraout(() => this.loadNãotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNãotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                }
+            }
+            
+            async createDemoLead() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('👤 Demo de lead criado!');
+                        setHoraout(() => this.loadNãotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNãotification('🔔 Nãovo Lead Recebido', 'Demo: Lead João Silva interessado em consultoria empresarial.');
+                }
+            }
+            
+            async createDemoProposal() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('📋 Demo de proposta criado!');
+                        setHoraout(() => this.loadNãotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNãotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                }
+            }
+            
+            addLocalNãotification(title, message) {
+                const newNãotification = {
+                    id: Data.now(),
+                    titulo: title,
+                    mensagem: message,
+                    tipo: 'demo',
+                    lido_em: null,
+                    criado_em: new Data().toISOString()
+                };
+                
+                this.notifications.unshift(newNãotification);
+                this.updateUnreadCount();
+                this.renderNãotifications();
+                this.showToast('✅ Nãotificação adicionada!');
+            }
+            
+            showToast(message) {
+                // Toast notification simples
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #28a745;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    z-index: 10000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                `;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setHoraout(() => {
+                    toast.remove();
+                }, 3000);
+            }
+            
+            toggle() {
+                const panel = document.getElementById('notificationCenter');
+                const overlay = document.getElementById('notificationOverlay');
+                
+                if (panel.classList.contains('open')) {
+                    this.close();
+                } else {
+                    this.open();
+                }
+            }
+            
+            open() {
+                document.getElementById('notificationCenter').classList.add('open');
+                document.getElementById('notificationOverlay').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            close() {
+                document.getElementById('notificationCenter').classList.remove('open');
+                document.getElementById('notificationOverlay').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            
+            startPolling() {
+                // Verificar novas notificações a cada 30 segundos
+                setInterval(() => {
+                    this.loadNãotifications();
+                }, 30000);
+            }
+        }
+        
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            window.notificationCenter = new NãotificationCenter();
+        });
+        </script>
 </body>
 </html>

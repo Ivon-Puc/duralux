@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Central de Notificações v6.0 - Sistema avançado de notificações multi-canal">
+    <meta name="keyword" content="notificações, push, email, sms, webhook, crm">
+    <meta name="author" content="duralux_team">
+    <!--! BEGIN: Apps Title-->
+    <title>Duralux || Central de Notificações v6.0</title>
+    <!--! END:  Apps Title-->
+    <!--! BEGIN: Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <!--! END: Favicon-->
+    <!--! BEGIN: Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <!--! END: Bootstrap CSS-->
+    <!--! BEGIN: Vendors CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/vendors/css/vendors.min.css">
+    <!--! END: Vendors CSS-->
+    <!--! BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../backend/assets/css/style.css">
+    <!--! END: Custom CSS-->
+    
+    <style>
+    .notification-demo-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+    
+    .demo-button {
+        background: rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .demo-button:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-2px);
+        color: white;
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        border-left: 4px solid;
+    }
+    
+    .stat-card.success { border-color: #28a745; }
+    .stat-card.info { border-color: #17a2b8; }
+    .stat-card.warning { border-color: #ffc107; }
+    .stat-card.danger { border-color: #dc3545; }
+    
+    .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .stat-label {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+    
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .feature-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .icon-push { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+    .icon-email { background: linear-gradient(135deg, #4834d4, #686de0); }
+    .icon-sms { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
+    .icon-webhook { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
+    .icon-template { background: linear-gradient(135deg, #feca57, #ff9ff3); }
+    .icon-analytics { background: linear-gradient(135deg, #48dbfb, #0abde3); }
+    
+    .channel-selector {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    
+    .channel-btn {
+        padding: 8px 16px;
+        border: 2px solid #e9ecef;
+        background: white;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+    }
+    
+    .channel-btn.active {
+        border-color: #667eea;
+        background: #667eea;
+        color: white;
+    }
+    
+    .notification-preview {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 15px;
+        border-left: 4px solid #667eea;
+    }
+    
+    .live-demo-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    <header class="nxl-header">
+        <div class="header-wrapper">
+            <!--! [Start] Header Left !-->
+            <div class="header-left d-flex align-items-center gap-4">
+                <div class="nxl-navigation-toggle">
+                    <a href="javascript:void(0);" onclick="history.back()">
+                        <i class="feather-arrow-left"></i>
+                    </a>
+                </div>
+                <h4 class="mb-0">🔔 Central de Notificações v6.0</h4>
+            </div>
+            <!--! [End] Header Left !-->
+            <!--! [Start] Header Right !-->
+            <div class="header-right ms-auto">
+                <div class="d-flex align-items-center">
+                    <div class="dropdown nxl-h-item">
+                        <a href="javascript:void(0);" class="nxl-head-link me-3" onclick="notificationCenter.toggle()">
+                            <i class="feather-bell"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--! [End] Header Right !-->
+        </div>
+    </header>
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main class="nxl-container">
+        <div class="nxl-content">
+            <!-- Cabeçalho da Página -->
+            <div class="page-header">
+                <div class="page-header-left d-flex align-items-center">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Central de Notificações v6.0</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                        <li class="breadcrumb-item">Sistema</li>
+                        <li class="breadcrumb-item active">Notificações</li>
+                    </ul>
+                </div>
+                <div class="page-header-right ms-auto">
+                    <div class="page-header-right-items">
+                        <button class="btn btn-primary" onclick="notificationCenter.toggle()">
+                            <i class="feather-bell me-2"></i>
+                            Abrir Central
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Interativo -->
+            <div class="live-demo-section">
+                <h2 class="mb-3">🚀 Demo Interativo</h2>
+                <p class="mb-4">Teste todas as funcionalidades do sistema de notificações em tempo real!</p>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="channel-selector justify-content-center">
+                            <div class="channel-btn active" data-channel="database">
+                                📊 Banco de Dados
+                            </div>
+                            <div class="channel-btn" data-channel="email">
+                                📧 Email
+                            </div>
+                            <div class="channel-btn" data-channel="push">
+                                📱 Push
+                            </div>
+                            <div class="channel-btn" data-channel="sms">
+                                💬 SMS
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center flex-wrap">
+                            <button class="demo-button" onclick="sendTestNotification()">
+                                🧪 Teste Básico
+                            </button>
+                            <button class="demo-button" onclick="sendLeadNotification()">
+                                👤 Novo Lead
+                            </button>
+                            <button class="demo-button" onclick="sendProposalNotification()">
+                                📋 Proposta Aprovada
+                            </button>
+                            <button class="demo-button" onclick="sendProjectNotification()">
+                                ⏰ Prazo de Projeto
+                            </button>
+                            <button class="demo-button" onclick="sendSystemNotification()">
+                                🔧 Manutenção
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas em Tempo Real -->
+            <div class="stats-grid" id="notificationStats">
+                <div class="stat-card success">
+                    <div class="stat-number" id="totalNotifications">0</div>
+                    <div class="stat-label">Total de Notificações</div>
+                </div>
+                <div class="stat-card info">
+                    <div class="stat-number" id="sentNotifications">0</div>
+                    <div class="stat-label">Enviadas com Sucesso</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number" id="unreadNotifications">0</div>
+                    <div class="stat-label">Não Lidas</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-number" id="deliveryRate">0%</div>
+                    <div class="stat-label">Taxa de Entrega</div>
+                </div>
+            </div>
+
+            <!-- Recursos do Sistema -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-push text-white">
+                        📱
+                    </div>
+                    <h5>Push Notifications</h5>
+                    <p>Notificações instantâneas para dispositivos móveis via Firebase/OneSignal. Suporte a rich media e ações personalizadas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-email text-white">
+                        📧
+                    </div>
+                    <h5>Notificações por Email</h5>
+                    <p>Emails HTML responsivos com templates personalizáveis. Integração com provedores como SendGrid e Mailgun.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-sms text-white">
+                        💬
+                    </div>
+                    <h5>SMS Notifications</h5>
+                    <p>Mensagens de texto via Twilio e outros provedores. Ideal para alertas críticos e verificações de segurança.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-webhook text-white">
+                        🔗
+                    </div>
+                    <h5>Webhooks</h5>
+                    <p>Integração com sistemas externos via HTTP. Permite notificações para Slack, Discord, Teams e APIs customizadas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-template text-white">
+                        📄
+                    </div>
+                    <h5>Templates Inteligentes</h5>
+                    <p>Sistema de templates com variáveis dinâmicas. Criação de mensagens personalizadas com dados em tempo real.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-analytics text-white">
+                        📊
+                    </div>
+                    <h5>Analytics Avançado</h5>
+                    <p>Métricas detalhadas de entrega, leitura e engajamento. Relatórios de performance e insights de comportamento.</p>
+                </div>
+            </div>
+
+            <!-- Painel de Configurações -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">⚙️ Configurações Rápidas</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Canais Ativos</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" checked id="channelDatabase">
+                                    <label class="form-check-label" for="channelDatabase">
+                                        📊 Banco de Dados (Interno)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" checked id="channelEmail">
+                                    <label class="form-check-label" for="channelEmail">
+                                        📧 Email Notifications
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="channelPush">
+                                    <label class="form-check-label" for="channelPush">
+                                        📱 Push Notifications
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="channelSMS">
+                                    <label class="form-check-label" for="channelSMS">
+                                        💬 SMS Notifications
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Horário Silencioso</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="time" class="form-control" value="22:00">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="time" class="form-control" value="07:00">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">Salvar Configurações</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">🎯 Templates Disponíveis</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>🔔 Novo Lead Recebido</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('lead_novo')">Usar</button>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>✅ Proposta Aprovada</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('proposta_aprovada')">Usar</button>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>⏰ Prazo de Projeto</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('projeto_prazo')">Usar</button>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>🔧 Manutenção do Sistema</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('sistema_manutencao')">Usar</button>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>💾 Backup Concluído</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('backup_sucesso')">Usar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentação Técnica -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="card-title">📚 Documentação Técnica</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>🔧 Recursos Implementados:</h6>
+                            <ul class="list-unstyled">
+                                <li>✅ Multi-canal (Database, Email, SMS, Push, Webhook)</li>
+                                <li>✅ Sistema de templates com variáveis</li>
+                                <li>✅ Agendamento de notificações</li>
+                                <li>✅ Filas de processamento</li>
+                                <li>✅ Analytics e métricas</li>
+                                <li>✅ Configurações por usuário</li>
+                                <li>✅ Interface responsiva</li>
+                                <li>✅ API REST completa</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>🚀 Próximas Funcionalidades:</h6>
+                            <ul class="list-unstyled">
+                                <li>🔄 Integração com Workflows v5.0</li>
+                                <li>🤖 IA para otimização de entrega</li>
+                                <li>📱 App mobile dedicado</li>
+                                <li>🌐 Notificações web push</li>
+                                <li>📊 Dashboard de analytics avançado</li>
+                                <li>🔒 Criptografia end-to-end</li>
+                                <li>🌍 Localização multi-idioma</li>
+                                <li>⚡ Performance em alta escala</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/vendors/js/vendors.min.js"></script>
+    <script src="assets/js/common-init.min.js"></script>
+    <script src="assets/js/theme-customizer-init.min.js"></script>
+    
+    <script>
+    // Variáveis globais para demo
+    let demoStats = {
+        total: 0,
+        sent: 0,
+        unread: 0,
+        errors: 0
+    };
+    
+    let selectedChannels = ['database'];
+    
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+        initChannelSelector();
+        updateStats();
+        loadInitialNotifications();
+    });
+    
+    // Seletor de canais
+    function initChannelSelector() {
+        const channelButtons = document.querySelectorAll('.channel-btn');
+        
+        channelButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const channel = this.getAttribute('data-channel');
+                
+                if (this.classList.contains('active')) {
+                    if (selectedChannels.length > 1) {
+                        this.classList.remove('active');
+                        selectedChannels = selectedChannels.filter(c => c !== channel);
+                    }
+                } else {
+                    this.classList.add('active');
+                    selectedChannels.push(channel);
+                }
+                
+                console.log('Canais selecionados:', selectedChannels);
+            });
+        });
+    }
+    
+    // Funções de demo
+    function sendTestNotification() {
+        createNotification(
+            '🧪 Teste do Sistema',
+            'Esta é uma notificação de teste do Notification Center v6.0!',
+            'teste',
+            'normal'
+        );
+    }
+    
+    function sendLeadNotification() {
+        const leads = [
+            'Maria Santos da Silva Tech Solutions',
+            'João Oliveira da InnovaCorp',
+            'Ana Costa da Digital Plus',
+            'Carlos Mendes da Future Systems',
+            'Lucia Ferreira da Smart Business'
+        ];
+        
+        const lead = leads[Math.floor(Math.random() * leads.length)];
+        
+        createNotification(
+            '🔔 Novo Lead Recebido',
+            `Lead de ${lead} interessado em consultoria empresarial. Valor estimado: R$ ${(Math.random() * 50000 + 10000).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`,
+            'lead',
+            'alta'
+        );
+    }
+    
+    function sendProposalNotification() {
+        const proposalId = `PROP-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 999) + 1).padStart(3, '0')}`;
+        const valor = (Math.random() * 100000 + 15000).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+        
+        createNotification(
+            '✅ Proposta Aprovada',
+            `Proposta ${proposalId} foi aprovada! Valor total: R$ ${valor}. Parabéns pela conquista!`,
+            'proposta',
+            'alta'
+        );
+    }
+    
+    function sendProjectNotification() {
+        const projetos = [
+            'Website E-commerce Premium',
+            'Sistema CRM Customizado',
+            'App Mobile Delivery',
+            'Dashboard Analytics',
+            'Plataforma EAD'
+        ];
+        
+        const projeto = projetos[Math.floor(Math.random() * projetos.length)];
+        const dias = Math.floor(Math.random() * 7) + 1;
+        
+        createNotification(
+            '⏰ Projeto com Prazo Próximo',
+            `Projeto "${projeto}" tem entrega em ${dias} dias. Status: ${dias <= 2 ? 'Urgente' : 'Em andamento'}`,
+            'projeto',
+            dias <= 2 ? 'critica' : 'normal'
+        );
+    }
+    
+    function sendSystemNotification() {
+        const manutencoes = [
+            'Backup automático do sistema',
+            'Atualização de segurança',
+            'Otimização da base de dados',
+            'Deploy da nova versão',
+            'Manutenção dos servidores'
+        ];
+        
+        const manutencao = manutencoes[Math.floor(Math.random() * manutencoes.length)];
+        
+        createNotification(
+            '🔧 Manutenção Programada',
+            `${manutencao} será realizada hoje às 23:00. Duração estimada: 30 minutos.`,
+            'sistema',
+            'normal'
+        );
+    }
+    
+    // Criar notificação via API
+    async function createNotification(titulo, mensagem, tipo, prioridade) {
+        const notification = {
+            titulo: titulo,
+            mensagem: mensagem,
+            tipo: tipo,
+            prioridade: prioridade,
+            canal: selectedChannels.join(',')
+        };
+        
+        try {
+            const response = await fetch("http://localhost/duralux/backend/api/api-notifications.php?path=create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(notification)
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Notificação criada:', result);
+                
+                // Adicionar à central de notificações
+                if (window.notificationCenter) {
+                    window.notificationCenter.addLocalNotification(titulo, mensagem);
+                }
+                
+                // Atualizar estatísticas
+                demoStats.total++;
+                demoStats.sent++;
+                demoStats.unread++;
+                updateStats();
+                
+                showToast(`✅ ${titulo}`);
+            }
+        } catch (error) {
+            console.error('Erro ao criar notificação:', error);
+            
+            // Modo offline - adicionar localmente
+            if (window.notificationCenter) {
+                window.notificationCenter.addLocalNotification(titulo, mensagem);
+            }
+            
+            demoStats.total++;
+            demoStats.sent++;
+            demoStats.unread++;
+            updateStats();
+            
+            showToast(`✅ ${titulo}`);
+        }
+    }
+    
+    // Usar template
+    function useTemplate(templateId) {
+        const templates = {
+            'lead_novo': () => sendLeadNotification(),
+            'proposta_aprovada': () => sendProposalNotification(),
+            'projeto_prazo': () => sendProjectNotification(),
+            'sistema_manutencao': () => sendSystemNotification(),
+            'backup_sucesso': () => createNotification(
+                '💾 Backup Concluído',
+                'Backup automático realizado com sucesso. Tamanho: 2.5GB. Local: /backups/daily/',
+                'sistema',
+                'baixa'
+            )
+        };
+        
+        if (templates[templateId]) {
+            templates[templateId]();
+        }
+    }
+    
+    // Atualizar estatísticas
+    function updateStats() {
+        document.getElementById('totalNotifications').textContent = demoStats.total;
+        document.getElementById('sentNotifications').textContent = demoStats.sent;
+        document.getElementById('unreadNotifications').textContent = demoStats.unread;
+        
+        const deliveryRate = demoStats.total > 0 ? Math.round((demoStats.sent / demoStats.total) * 100) : 100;
+        document.getElementById('deliveryRate').textContent = deliveryRate + '%';
+    }
+    
+    // Carregar notificações iniciais
+    function loadInitialNotifications() {
+        // Simular algumas notificações iniciais
+        setTimeout(() => {
+            demoStats.total = 3;
+            demoStats.sent = 3;
+            demoStats.unread = 2;
+            updateStats();
+        }, 1000);
+    }
+    
+    // Toast notification
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            max-width: 300px;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    </script>
+
+        <!-- Notification Center v6.0 CSS -->
+        <style>
+        .notification-center {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .notification-center.open {
+            right: 0;
+        }
+        
+        .notification-center-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .notification-center-body {
+            padding: 0;
+        }
+        
+        .notification-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        
+        .notification-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .notification-item.unread {
+            background: #fff7e6;
+            border-left: 4px solid #ffa500;
+        }
+        
+        .notification-item.unread::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ffa500;
+            border-radius: 50%;
+        }
+        
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .notification-message {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .notification-time {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .notification-trigger {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .notification-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .notification-actions {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+        
+        .btn-notification {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-notification:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .notification-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .notification-center {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        </style>
+        <!-- Notification Center v6.0 JavaScript -->
+        <script>
+        class NotificationCenter {
+            constructor() {
+                this.apiUrl = 'http://localhost/duralux/backend/api/api-notifications.php';
+                this.notifications = [];
+                this.unreadCount = 0;
+                this.init();
+            }
+            
+            init() {
+                this.createHTML();
+                this.bindEvents();
+                this.loadNotifications();
+                this.startPolling();
+            }
+            
+            createHTML() {
+                // Adicionar overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'notification-overlay';
+                overlay.id = 'notificationOverlay';
+                document.body.appendChild(overlay);
+                
+                // Adicionar painel de notificações
+                const panel = document.createElement('div');
+                panel.className = 'notification-center';
+                panel.id = 'notificationCenter';
+                panel.innerHTML = `
+                    <div class="notification-center-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                                <i class="feather-x"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <small id="notificationCount">0 notificações</small>
+                            <button class="btn btn-sm btn-outline-light ms-2" onclick="notificationCenter.markAllRead()">
+                                Marcar todas como lidas
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-center-body" id="notificationList">
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    </div>
+                    <div class="notification-actions">
+                        <button class="btn-notification me-2" onclick="notificationCenter.sendTestNotification()">
+                            🧪 Teste
+                        </button>
+                        <button class="btn-notification me-2" onclick="notificationCenter.createDemoLead()">
+                            👤 Demo Lead
+                        </button>
+                        <button class="btn-notification" onclick="notificationCenter.createDemoProposal()">
+                            📋 Demo Proposta
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(panel);
+                
+                // Adicionar badge ao ícone de notificação existente (se houver)
+                this.addNotificationBadge();
+            }
+            
+            addNotificationBadge() {
+                // Procurar por ícones de notificação existentes e adicionar badge
+                const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
+                bellIcons.forEach(icon => {
+                    if (!icon.parentElement.querySelector('.notification-badge')) {
+                        const badge = document.createElement('span');
+                        badge.className = 'notification-badge';
+                        badge.id = 'notificationBadge';
+                        badge.textContent = '0';
+                        badge.style.display = 'none';
+                        icon.parentElement.style.position = 'relative';
+                        icon.parentElement.appendChild(badge);
+                        
+                        // Adicionar evento de clique
+                        icon.parentElement.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.toggle();
+                        });
+                    }
+                });
+            }
+            
+            bindEvents() {
+                // Fechar ao clicar no overlay
+                document.getElementById('notificationOverlay').addEventListener('click', () => {
+                    this.close();
+                });
+                
+                // Tecla ESC para fechar
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.close();
+                    }
+                });
+            }
+            
+            async loadNotifications() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.notifications = data.data;
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                } catch (error) {
+                    console.error('Erro ao carregar notificações:', error);
+                    this.loadDemoData();
+                }
+            }
+            
+            loadDemoData() {
+                this.notifications = [
+                    {
+                        id: 1,
+                        titulo: '🔔 Novo Lead Recebido',
+                        mensagem: 'Lead de Maria Santos interessada em consultoria empresarial',
+                        tipo: 'lead',
+                        lido_em: null,
+                        criado_em: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        titulo: '✅ Proposta Aprovada',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        tipo: 'proposta',
+                        lido_em: null,
+                        criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
+                    },
+                    {
+                        id: 3,
+                        titulo: '⏰ Projeto com Prazo Próximo',
+                        mensagem: 'Projeto "Website E-commerce" tem entrega em 3 dias',
+                        tipo: 'projeto',
+                        lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
+                        criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
+                    }
+                ];
+                this.updateUnreadCount();
+                this.renderNotifications();
+            }
+            
+            renderNotifications() {
+                const container = document.getElementById('notificationList');
+                
+                if (this.notifications.length === 0) {
+                    container.innerHTML = `
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = this.notifications.map(notification => `
+                    <div class="notification-item ${!notification.lido_em ? 'unread' : ''}" 
+                         onclick="notificationCenter.markAsRead(${notification.id})">
+                        <div class="notification-title">${notification.titulo}</div>
+                        <div class="notification-message">${notification.mensagem}</div>
+                        <div class="notification-time">${this.formatTime(notification.criado_em)}</div>
+                    </div>
+                `).join('');
+            }
+            
+            updateUnreadCount() {
+                const unread = this.notifications.filter(n => !n.lido_em).length;
+                this.unreadCount = unread;
+                
+                // Atualizar badge
+                const badge = document.getElementById('notificationBadge');
+                if (badge) {
+                    badge.textContent = unread;
+                    badge.style.display = unread > 0 ? 'flex' : 'none';
+                }
+                
+                // Atualizar contador no painel
+                const counter = document.getElementById('notificationCount');
+                if (counter) {
+                    counter.textContent = `${this.notifications.length} notificações (${unread} não lidas)`;
+                }
+            }
+            
+            formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+                
+                if (diff < 60000) return 'Agora mesmo';
+                if (diff < 3600000) return `${Math.floor(diff/60000)} min atrás`;
+                if (diff < 86400000) return `${Math.floor(diff/3600000)}h atrás`;
+                
+                return date.toLocaleDateString('pt-BR');
+            }
+            
+            async markAsRead(notificationId) {
+                try {
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (!notification || notification.lido_em) return;
+                    
+                    const response = await fetch(`${this.apiUrl}?path=mark-read`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ notification_id: notificationId })
+                    });
+                    
+                    if (response.ok) {
+                        notification.lido_em = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                } catch (error) {
+                    // Modo offline - marcar localmente
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (notification) {
+                        notification.lido_em = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                }
+            }
+            
+            async markAllRead() {
+                const unreadNotifications = this.notifications.filter(n => !n.lido_em);
+                for (const notification of unreadNotifications) {
+                    await this.markAsRead(notification.id);
+                }
+            }
+            
+            async sendTestNotification() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=test`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('✅ Notificação de teste enviada!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                }
+            }
+            
+            async createDemoLead() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('👤 Demo de lead criado!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNotification('🔔 Novo Lead Recebido', 'Demo: Lead João Silva interessado em consultoria empresarial.');
+                }
+            }
+            
+            async createDemoProposal() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('📋 Demo de proposta criado!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                }
+            }
+            
+            addLocalNotification(title, message) {
+                const newNotification = {
+                    id: Date.now(),
+                    titulo: title,
+                    mensagem: message,
+                    tipo: 'demo',
+                    lido_em: null,
+                    criado_em: new Date().toISOString()
+                };
+                
+                this.notifications.unshift(newNotification);
+                this.updateUnreadCount();
+                this.renderNotifications();
+                this.showToast('✅ Notificação adicionada!');
+            }
+            
+            showToast(message) {
+                // Toast notification simples
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #28a745;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    z-index: 10000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                `;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            }
+            
+            toggle() {
+                const panel = document.getElementById('notificationCenter');
+                const overlay = document.getElementById('notificationOverlay');
+                
+                if (panel.classList.contains('open')) {
+                    this.close();
+                } else {
+                    this.open();
+                }
+            }
+            
+            open() {
+                document.getElementById('notificationCenter').classList.add('open');
+                document.getElementById('notificationOverlay').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            close() {
+                document.getElementById('notificationCenter').classList.remove('open');
+                document.getElementById('notificationOverlay').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            
+            startPolling() {
+                // Verificar novas notificações a cada 30 segundos
+                setInterval(() => {
+                    this.loadNotifications();
+                }, 30000);
+            }
+        }
+        
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            window.notificationCenter = new NotificationCenter();
+        });
+        </script>
+</body>
+
+</html>

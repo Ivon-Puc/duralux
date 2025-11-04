@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,6 +159,157 @@
         .health-warning { background: linear-gradient(135deg, #ffc107, #fd7e14); }
         .health-critical { background: linear-gradient(135deg, #dc3545, #e83e8c); }
     </style>
+
+        <!-- Notification Center v6.0 CSS -->
+        <style>
+        .notification-center {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .notification-center.open {
+            right: 0;
+        }
+        
+        .notification-center-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .notification-center-body {
+            padding: 0;
+        }
+        
+        .notification-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        
+        .notification-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .notification-item.unread {
+            background: #fff7e6;
+            border-left: 4px solid #ffa500;
+        }
+        
+        .notification-item.unread::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ffa500;
+            border-radius: 50%;
+        }
+        
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .notification-message {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .notification-time {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .notification-trigger {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .notification-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .notification-actions {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+        
+        .btn-notification {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-notification:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .notification-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .notification-center {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -522,5 +673,365 @@
             console.log(`📊 Página carregada em ${loadTime}ms`);
         });
     </script>
+
+        <!-- Notification Center v6.0 JavaScript -->
+        <script>
+        class NotificationCenter {
+            constructor() {
+                this.apiUrl = 'http://localhost/duralux/backend/api/api-notifications.php';
+                this.notifications = [];
+                this.unreadCount = 0;
+                this.init();
+            }
+            
+            init() {
+                this.createHTML();
+                this.bindEvents();
+                this.loadNotifications();
+                this.startPolling();
+            }
+            
+            createHTML() {
+                // Adicionar overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'notification-overlay';
+                overlay.id = 'notificationOverlay';
+                document.body.appendChild(overlay);
+                
+                // Adicionar painel de notificações
+                const panel = document.createElement('div');
+                panel.className = 'notification-center';
+                panel.id = 'notificationCenter';
+                panel.innerHTML = `
+                    <div class="notification-center-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                                <i class="feather-x"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <small id="notificationCount">0 notificações</small>
+                            <button class="btn btn-sm btn-outline-light ms-2" onclick="notificationCenter.markAllRead()">
+                                Marcar todas como lidas
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-center-body" id="notificationList">
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    </div>
+                    <div class="notification-actions">
+                        <button class="btn-notification me-2" onclick="notificationCenter.sendTestNotification()">
+                            🧪 Teste
+                        </button>
+                        <button class="btn-notification me-2" onclick="notificationCenter.createDemoLead()">
+                            👤 Demo Lead
+                        </button>
+                        <button class="btn-notification" onclick="notificationCenter.createDemoProposal()">
+                            📋 Demo Proposta
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(panel);
+                
+                // Adicionar badge ao ícone de notificação existente (se houver)
+                this.addNotificationBadge();
+            }
+            
+            addNotificationBadge() {
+                // Procurar por ícones de notificação existentes e adicionar badge
+                const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
+                bellIcons.forEach(icon => {
+                    if (!icon.parentElement.querySelector('.notification-badge')) {
+                        const badge = document.createElement('span');
+                        badge.className = 'notification-badge';
+                        badge.id = 'notificationBadge';
+                        badge.textContent = '0';
+                        badge.style.display = 'none';
+                        icon.parentElement.style.position = 'relative';
+                        icon.parentElement.appendChild(badge);
+                        
+                        // Adicionar evento de clique
+                        icon.parentElement.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.toggle();
+                        });
+                    }
+                });
+            }
+            
+            bindEvents() {
+                // Fechar ao clicar no overlay
+                document.getElementById('notificationOverlay').addEventListener('click', () => {
+                    this.close();
+                });
+                
+                // Tecla ESC para fechar
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.close();
+                    }
+                });
+            }
+            
+            async loadNotifications() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.notifications = data.data;
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                } catch (error) {
+                    console.error('Erro ao carregar notificações:', error);
+                    this.loadDemoData();
+                }
+            }
+            
+            loadDemoData() {
+                this.notifications = [
+                    {
+                        id: 1,
+                        titulo: '🔔 Novo Lead Recebido',
+                        mensagem: 'Lead de Maria Santos interessada em consultoria empresarial',
+                        tipo: 'lead',
+                        lido_em: null,
+                        criado_em: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        titulo: '✅ Proposta Aprovada',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        tipo: 'proposta',
+                        lido_em: null,
+                        criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
+                    },
+                    {
+                        id: 3,
+                        titulo: '⏰ Projeto com Prazo Próximo',
+                        mensagem: 'Projeto "Website E-commerce" tem entrega em 3 dias',
+                        tipo: 'projeto',
+                        lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
+                        criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
+                    }
+                ];
+                this.updateUnreadCount();
+                this.renderNotifications();
+            }
+            
+            renderNotifications() {
+                const container = document.getElementById('notificationList');
+                
+                if (this.notifications.length === 0) {
+                    container.innerHTML = `
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = this.notifications.map(notification => `
+                    <div class="notification-item ${!notification.lido_em ? 'unread' : ''}" 
+                         onclick="notificationCenter.markAsRead(${notification.id})">
+                        <div class="notification-title">${notification.titulo}</div>
+                        <div class="notification-message">${notification.mensagem}</div>
+                        <div class="notification-time">${this.formatTime(notification.criado_em)}</div>
+                    </div>
+                `).join('');
+            }
+            
+            updateUnreadCount() {
+                const unread = this.notifications.filter(n => !n.lido_em).length;
+                this.unreadCount = unread;
+                
+                // Atualizar badge
+                const badge = document.getElementById('notificationBadge');
+                if (badge) {
+                    badge.textContent = unread;
+                    badge.style.display = unread > 0 ? 'flex' : 'none';
+                }
+                
+                // Atualizar contador no painel
+                const counter = document.getElementById('notificationCount');
+                if (counter) {
+                    counter.textContent = `${this.notifications.length} notificações (${unread} não lidas)`;
+                }
+            }
+            
+            formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+                
+                if (diff < 60000) return 'Agora mesmo';
+                if (diff < 3600000) return `${Math.floor(diff/60000)} min atrás`;
+                if (diff < 86400000) return `${Math.floor(diff/3600000)}h atrás`;
+                
+                return date.toLocaleDateString('pt-BR');
+            }
+            
+            async markAsRead(notificationId) {
+                try {
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (!notification || notification.lido_em) return;
+                    
+                    const response = await fetch(`${this.apiUrl}?path=mark-read`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ notification_id: notificationId })
+                    });
+                    
+                    if (response.ok) {
+                        notification.lido_em = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                } catch (error) {
+                    // Modo offline - marcar localmente
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (notification) {
+                        notification.lido_em = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                }
+            }
+            
+            async markAllRead() {
+                const unreadNotifications = this.notifications.filter(n => !n.lido_em);
+                for (const notification of unreadNotifications) {
+                    await this.markAsRead(notification.id);
+                }
+            }
+            
+            async sendTestNotification() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=test`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('✅ Notificação de teste enviada!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                }
+            }
+            
+            async createDemoLead() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('👤 Demo de lead criado!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNotification('🔔 Novo Lead Recebido', 'Demo: Lead João Silva interessado em consultoria empresarial.');
+                }
+            }
+            
+            async createDemoProposal() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('📋 Demo de proposta criado!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (error) {
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                }
+            }
+            
+            addLocalNotification(title, message) {
+                const newNotification = {
+                    id: Date.now(),
+                    titulo: title,
+                    mensagem: message,
+                    tipo: 'demo',
+                    lido_em: null,
+                    criado_em: new Date().toISOString()
+                };
+                
+                this.notifications.unshift(newNotification);
+                this.updateUnreadCount();
+                this.renderNotifications();
+                this.showToast('✅ Notificação adicionada!');
+            }
+            
+            showToast(message) {
+                // Toast notification simples
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #28a745;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    z-index: 10000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                `;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            }
+            
+            toggle() {
+                const panel = document.getElementById('notificationCenter');
+                const overlay = document.getElementById('notificationOverlay');
+                
+                if (panel.classList.contains('open')) {
+                    this.close();
+                } else {
+                    this.open();
+                }
+            }
+            
+            open() {
+                document.getElementById('notificationCenter').classList.add('open');
+                document.getElementById('notificationOverlay').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            close() {
+                document.getElementById('notificationCenter').classList.remove('open');
+                document.getElementById('notificationOverlay').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            
+            startPolling() {
+                // Verificar novas notificações a cada 30 segundos
+                setInterval(() => {
+                    this.loadNotifications();
+                }, 30000);
+            }
+        }
+        
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            window.notificationCenter = new NotificationCenter();
+        });
+        </script>
 </body>
 </html>

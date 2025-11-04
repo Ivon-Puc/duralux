@@ -1,13 +1,183 @@
 <?php
 /**
  * LeadsController - Gerenciamento de Leads e Pipeline de Vendas
- * Duralux CRM v1.1 - Sistema de Leads
+ * Duralux CRM v5.0 - Sistema de Leads Completo
  */
 
 require_once 'BaseController.php';
 
 class LeadsController extends BaseController {
     private $table = 'leads';
+    
+    public function __construct($database = null) {
+        parent::__construct();
+        if ($database) {
+            $this->db = $database;
+        }
+        $this->ensureTables();
+    }
+    
+    /**
+     * Garantir que as tabelas existem
+     */
+    private function ensureTables() {
+        try {
+            // Verificar se a tabela existe e tem estrutura adequada
+            $sql = "CREATE TABLE IF NOT EXISTS leads (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL UNIQUE,
+                phone TEXT,
+                company TEXT,
+                position TEXT,
+                source TEXT DEFAULT 'website',
+                status TEXT DEFAULT 'new',
+                priority TEXT DEFAULT 'medium',
+                description TEXT,
+                value DECIMAL(10,2) DEFAULT 0.00,
+                assigned_to INTEGER,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                converted_at DATETIME,
+                tags TEXT,
+                notes TEXT,
+                address TEXT,
+                city TEXT,
+                country TEXT DEFAULT 'Brasil',
+                lead_score INTEGER DEFAULT 0,
+                last_contact DATETIME,
+                next_followup DATETIME
+            )";
+            
+            $this->db->exec($sql);
+            
+            // Inserir dados de exemplo se não existirem
+            $count = $this->db->query("SELECT COUNT(*) FROM leads")->fetchColumn();
+            if ($count == 0) {
+                $this->insertDemoData();
+            }
+        } catch (Exception $e) {
+            error_log("Erro ao criar tabelas de leads: " . $e->getMessage());
+        }
+    }
+    
+    /**
+     * Inserir dados de demonstração
+     */
+    private function insertDemoData() {
+        $demoLeads = [
+            [
+                'name' => 'João Silva',
+                'email' => 'joao.silva@techcorp.com',
+                'phone' => '(11) 99999-1111',
+                'company' => 'TechCorp Solutions',
+                'position' => 'Gerente de TI',
+                'source' => 'website',
+                'status' => 'new',
+                'priority' => 'high',
+                'description' => 'Interessado em soluções de CRM para empresa de médio porte com 150+ colaboradores.',
+                'value' => 25000.00,
+                'city' => 'São Paulo',
+                'lead_score' => 85
+            ],
+            [
+                'name' => 'Maria Santos',
+                'email' => 'maria.santos@innovate.com',
+                'phone' => '(11) 88888-2222',
+                'company' => 'Innovate Startup',
+                'position' => 'CEO',
+                'source' => 'referral',
+                'status' => 'contacted',
+                'priority' => 'high',
+                'description' => 'Startup em crescimento buscando sistema integrado para gestão de vendas e marketing.',
+                'value' => 15000.00,
+                'city' => 'São Paulo',
+                'lead_score' => 92
+            ],
+            [
+                'name' => 'Pedro Oliveira',
+                'email' => 'pedro@comercialmax.com',
+                'phone' => '(21) 77777-3333',
+                'company' => 'Comercial Max',
+                'position' => 'Diretor Comercial',
+                'source' => 'social_media',
+                'status' => 'qualified',
+                'priority' => 'medium',
+                'description' => 'Rede de lojas precisando de automação para processos de vendas em múltiplas filiais.',
+                'value' => 35000.00,
+                'city' => 'Rio de Janeiro',
+                'lead_score' => 78
+            ],
+            [
+                'name' => 'Ana Costa',
+                'email' => 'ana.costa@metalurgica.com',
+                'phone' => '(11) 66666-4444',
+                'company' => 'Metalúrgica Industrial',
+                'position' => 'Gerente de Projetos',
+                'source' => 'trade_show',
+                'status' => 'proposal',
+                'priority' => 'high',
+                'description' => 'Implementação de CRM industrial para gestão de contratos e projetos complexos.',
+                'value' => 75000.00,
+                'city' => 'Guarulhos',
+                'lead_score' => 88
+            ],
+            [
+                'name' => 'Carlos Ferreira',
+                'email' => 'carlos@consultoria.com',
+                'phone' => '(85) 55555-5555',
+                'company' => 'CF Consultoria',
+                'position' => 'Sócio-proprietário',
+                'source' => 'cold_call',
+                'status' => 'converted',
+                'priority' => 'medium',
+                'description' => 'Consultoria especializada convertida - implementação de CRM para gestão de clientes.',
+                'value' => 18000.00,
+                'city' => 'Fortaleza',
+                'lead_score' => 95
+            ],
+            [
+                'name' => 'Luciana Mendes',
+                'email' => 'luciana@ecommerce.com',
+                'phone' => '(31) 44444-6666',
+                'company' => 'E-commerce Plus',
+                'position' => 'Gerente de Marketing',
+                'source' => 'email_campaign',
+                'status' => 'nurturing',
+                'priority' => 'medium',
+                'description' => 'E-commerce em expansão interessado em integração com plataformas de venda online.',
+                'value' => 22000.00,
+                'city' => 'Belo Horizonte',
+                'lead_score' => 65
+            ]
+        ];
+        
+        $sql = "INSERT INTO leads (name, email, phone, company, position, source, status, priority, description, value, city, lead_score) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        $stmt = $this->db->prepare($sql);
+        
+        foreach ($demoLeads as $lead) {
+            try {
+                $stmt->execute([
+                    $lead['name'],
+                    $lead['email'],
+                    $lead['phone'],
+                    $lead['company'],
+                    $lead['position'],
+                    $lead['source'],
+                    $lead['status'],
+                    $lead['priority'],
+                    $lead['description'],
+                    $lead['value'],
+                    $lead['city'],
+                    $lead['lead_score']
+                ]);
+            } catch (Exception $e) {
+                error_log("Erro ao inserir lead demo: " . $e->getMessage());
+            }
+        }
+    }
     
     public function __construct() {
         parent::__construct();
