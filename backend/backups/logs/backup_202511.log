@@ -19,3 +19,9 @@
 2025-11-04 08:31:20,045 - INFO - ✅ Backup criado: duralux_backup_files_only_20251104_083116.zip
 2025-11-04 08:31:20,045 - INFO - 📊 Arquivos: 1252 | Original: 50.4 MB | Comprimido: 15.7 MB | Compressão: 68.9%
 2025-11-04 08:31:20,054 - INFO - ✅ Backup dos arquivos finalizado em 3.3s
+2025-11-04 08:39:10,903 - INFO - 🚀 Duralux Backup System v7.0 inicializado
+2025-11-04 08:51:28,910 - INFO - 🚀 Duralux Backup System v7.0 inicializado
+2025-11-04 08:51:28,910 - INFO - 🗄️ Iniciando backup do banco de dados...
+2025-11-04 08:51:28,925 - ERROR - ❌ Erro no backup BD: [WinError 2] O sistema não pode encontrar o arquivo especificado
+2025-11-04 08:51:28,927 - ERROR - Erro ao registrar histórico: NOT NULL constraint failed: backup_history.filename
+2025-11-04 08:51:28,927 - ERROR - ❌ Falha no backup do BD: Erro no backup BD: [WinError 2] O sistema não pode encontrar o arquivo especificado

@@ -640,7 +640,7 @@ class LeadsController extends BaseController {
     }
     
     /**
-     * Dashboard do pipeline
+     * Painel de Controle do pipeline
      */
     public function pipeline() {
         try {

@@ -70,14 +70,14 @@ if ($action) {
     
     // Roteamento baseado em action
     switch ($action) {
-        // Dashboard actions
+        // Painel de Controle actions
         case 'get_dashboard_stats':
         case 'get_revenue_data':
         case 'get_leads_analytics':
         case 'get_projects_analytics':
         case 'get_recent_activities':
         case 'check_auth':
-            $controller = new DashboardController();
+            $controller = new Painel de ControleController();
             $controller->handleRequest();
             break;
             
@@ -164,8 +164,8 @@ if ($action) {
         case 'execute_optimization':
         case 'get_system_resources':
         case 'get_optimization_recommendations':
-            require_once __DIR__ . '/../classes/PerformanceDashboardController.php';
-            $controller = new PerformanceDashboardController();
+            require_once __DIR__ . '/../classes/PerformancePainel de ControleController.php';
+            $controller = new PerformancePainel de ControleController();
             $controller->handleRequest();
             break;
             
@@ -288,15 +288,15 @@ class Router {
         $this->routes['POST']['/orders/{id}/invoice'] = 'OrderController@generateInvoice';
         
         // Rotas de dashboard
-        $this->routes['GET']['/dashboard/stats'] = 'DashboardController@getDashboardStats';
-        $this->routes['GET']['/dashboard/revenue'] = 'DashboardController@getRevenueData';
-        $this->routes['GET']['/dashboard/leads'] = 'DashboardController@getLeadsAnalytics';
-        $this->routes['GET']['/dashboard/projects'] = 'DashboardController@getProjectsAnalytics';
-        $this->routes['GET']['/dashboard/activities'] = 'DashboardController@getRecentActivities';
+        $this->routes['GET']['/dashboard/stats'] = 'Painel de ControleController@getPainel de ControleStats';
+        $this->routes['GET']['/dashboard/revenue'] = 'Painel de ControleController@getReceitaData';
+        $this->routes['GET']['/dashboard/leads'] = 'Painel de ControleController@getLeadsAnalytics';
+        $this->routes['GET']['/dashboard/projects'] = 'Painel de ControleController@getProjectsAnalytics';
+        $this->routes['GET']['/dashboard/activities'] = 'Painel de ControleController@getRecentActivities';
         
         // Rotas de relatórios
-        $this->routes['GET']['/reports/dashboard'] = 'ReportsController@getDashboard';
-        $this->routes['GET']['/reports/sales'] = 'ReportsController@getSales';
+        $this->routes['GET']['/reports/dashboard'] = 'ReportsController@getPainel de Controle';
+        $this->routes['GET']['/reports/sales'] = 'ReportsController@getVendas';
         $this->routes['GET']['/reports/leads'] = 'ReportsController@getLeads';
         $this->routes['GET']['/reports/projects'] = 'ReportsController@getProjects';
         $this->routes['GET']['/reports/customers'] = 'ReportsController@getCustomers';

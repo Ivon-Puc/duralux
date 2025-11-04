@@ -35,7 +35,7 @@ class DuraluxProjects {
         // Estado da aplicação
         this.currentPage = 1;
         this.itemsPerPage = 10;
-        this.currentFilters = {};
+        this.currentFiltrars = {};
         this.currentSort = { field: 'name', direction: 'asc' };
         this.projects = [];
         this.customers = [];
@@ -89,7 +89,7 @@ class DuraluxProjects {
             this.setupAutoRefresh();
             
             // Inicializa componentes da interface
-            this.setupFilters();
+            this.setupFiltrars();
             this.setupPagination();
             
             console.log('✅ Sistema de Projetos inicializado com sucesso!');
@@ -106,7 +106,7 @@ class DuraluxProjects {
      */
     setupEventListeners() {
         // Botões principais
-        document.getElementById('btnNewProject')?.addEventListener('click', () => this.showProjectModal());
+        document.getElementById('btnNovoProject')?.addEventListener('click', () => this.showProjectModal());
         document.getElementById('btnRefreshProjects')?.addEventListener('click', () => this.refreshProjects());
         
         // Formulário de projeto
@@ -114,10 +114,10 @@ class DuraluxProjects {
         document.getElementById('taskForm')?.addEventListener('submit', (e) => this.handleTaskSubmit(e));
         
         // Filtros e pesquisa
-        document.getElementById('searchProjects')?.addEventListener('input', (e) => this.handleSearch(e));
-        document.getElementById('filterStatus')?.addEventListener('change', () => this.applyFilters());
-        document.getElementById('filterPriority')?.addEventListener('change', () => this.applyFilters());
-        document.getElementById('filterCustomer')?.addEventListener('change', () => this.applyFilters());
+        document.getElementById('searchProjects')?.addEventListener('input', (e) => this.handleBuscar(e));
+        document.getElementById('filterStatus')?.addEventListener('change', () => this.applyFiltrars());
+        document.getElementById('filterPriority')?.addEventListener('change', () => this.applyFiltrars());
+        document.getElementById('filterCustomer')?.addEventListener('change', () => this.applyFiltrars());
         
         // Ordenação
         document.querySelectorAll('.sort-header').forEach(header => {
@@ -125,7 +125,7 @@ class DuraluxProjects {
         });
 
         // Modal de tarefas
-        document.getElementById('btnNewTask')?.addEventListener('click', () => this.showTaskModal());
+        document.getElementById('btnNovoTask')?.addEventListener('click', () => this.showTaskModal());
         
         // Botões de ação em massa
         document.getElementById('btnBulkDelete')?.addEventListener('click', () => this.handleBulkDelete());
@@ -195,12 +195,12 @@ class DuraluxProjects {
     async loadProjects() {
         try {
             // Monta URL com parâmetros
-            const params = new URLSearchParams({
+            const params = new URLBuscarParams({
                 page: this.currentPage,
                 limit: this.itemsPerPage,
                 sort_field: this.currentSort.field,
                 sort_direction: this.currentSort.direction,
-                ...this.currentFilters
+                ...this.currentFiltrars
             });
 
             const url = `${this.endpoints.projects.list}&${params.toString()}`;
@@ -390,26 +390,26 @@ class DuraluxProjects {
     /**
      * Configura filtros
      */
-    setupFilters() {
+    setupFiltrars() {
         // Popula filtro de status
-        const statusFilter = document.getElementById('filterStatus');
-        if (statusFilter) {
+        const statusFiltrar = document.getElementById('filterStatus');
+        if (statusFiltrar) {
             Object.keys(this.projectStatus).forEach(key => {
                 const option = document.createElement('option');
                 option.value = key;
                 option.textContent = this.projectStatus[key].label;
-                statusFilter.appendChild(option);
+                statusFiltrar.appendChild(option);
             });
         }
 
         // Popula filtro de prioridade
-        const priorityFilter = document.getElementById('filterPriority');
-        if (priorityFilter) {
+        const priorityFiltrar = document.getElementById('filterPriority');
+        if (priorityFiltrar) {
             Object.keys(this.priorities).forEach(key => {
                 const option = document.createElement('option');
                 option.value = key;
                 option.textContent = this.priorities[key].label;
-                priorityFilter.appendChild(option);
+                priorityFiltrar.appendChild(option);
             });
         }
     }
@@ -417,31 +417,31 @@ class DuraluxProjects {
     /**
      * Aplica filtros
      */
-    applyFilters() {
-        this.currentFilters = {};
+    applyFiltrars() {
+        this.currentFiltrars = {};
 
         // Filtro de busca
         const search = document.getElementById('searchProjects')?.value?.trim();
         if (search) {
-            this.currentFilters.search = search;
+            this.currentFiltrars.search = search;
         }
 
         // Filtro de status
         const status = document.getElementById('filterStatus')?.value;
         if (status) {
-            this.currentFilters.status = status;
+            this.currentFiltrars.status = status;
         }
 
         // Filtro de prioridade  
         const priority = document.getElementById('filterPriority')?.value;
         if (priority) {
-            this.currentFilters.priority = priority;
+            this.currentFiltrars.priority = priority;
         }
 
         // Filtro de cliente
         const customer = document.getElementById('filterCustomer')?.value;
         if (customer) {
-            this.currentFilters.customer_id = customer;
+            this.currentFiltrars.customer_id = customer;
         }
 
         this.currentPage = 1;
@@ -451,11 +451,11 @@ class DuraluxProjects {
     /**
      * Handle search input
      */
-    handleSearch(event) {
+    handleBuscar(event) {
         // Debounce search
         clearTimeout(this.searchTimeout);
         this.searchTimeout = setTimeout(() => {
-            this.applyFilters();
+            this.applyFiltrars();
         }, 500);
     }
 

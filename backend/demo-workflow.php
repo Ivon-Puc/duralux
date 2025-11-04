@@ -34,7 +34,7 @@ header('Content-Type: text/html; charset=utf-8');
         .status-success { color: #28a745; font-weight: bold; }
         .status-error { color: #dc3545; font-weight: bold; }
         .log-entry { padding: 8px; margin: 4px 0; border-left: 3px solid #007bff; background: #f8f9fa; font-family: monospace; }
-        .code-demo { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; font-family: 'Courier New', monospace; }
+        .code-demo { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; font-family: 'Courier Novo', monospace; }
     </style>
 </head>
 <body>
@@ -73,8 +73,8 @@ try {
     $components = [
         'WorkflowEngine.php' => __DIR__ . '/classes/WorkflowEngine.php',
         'WorkflowController.php' => __DIR__ . '/classes/WorkflowController.php',
-        'Dashboard JS' => __DIR__ . '/../duralux-admin/assets/js/duralux-workflow-dashboard-v5.js',
-        'Dashboard HTML' => __DIR__ . '/../duralux-admin/workflow-dashboard.html'
+        'Painel de Controle JS' => __DIR__ . '/../duralux-admin/assets/js/duralux-workflow-dashboard-v5.js',
+        'Painel de Controle HTML' => __DIR__ . '/../duralux-admin/workflow-dashboard.html'
     ];
     
     foreach ($components as $name => $path) {
@@ -278,16 +278,16 @@ try {
         </div>
     </div>
 
-    <!-- Demo do Dashboard -->
+    <!-- Demo do Painel de Controle -->
     <div class="demo-card card">
         <div class="card-header">
-            <i class="fas fa-chart-line"></i> Interface do Dashboard
+            <i class="fas fa-chart-line"></i> Interface do Painel de Controle
         </div>
         <div class="card-body">
             <div class="text-center">
                 <p>O dashboard interativo está disponível em:</p>
                 <a href="../duralux-admin/workflow-dashboard.html" class="btn btn-primary btn-lg" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> Abrir Dashboard Workflow v5.0
+                    <i class="fas fa-external-link-alt"></i> Abrir Painel de Controle Workflow v5.0
                 </a>
                 <p class="mt-3 text-muted">
                     Interface completa com drag & drop, monitoramento em tempo real e criação visual de workflows
@@ -344,7 +344,7 @@ try {
                     <h6 class="mt-3">Componentes Testados:</h6>
                     <div class="log-entry">✅ Backend Classes: 100%</div>
                     <div class="log-entry">✅ API Endpoints: 90%</div>
-                    <div class="log-entry">✅ Frontend Dashboard: 100%</div>
+                    <div class="log-entry">✅ Frontend Painel de Controle: 100%</div>
                     <div class="log-entry">✅ Interface HTML: 100%</div>
                 </div>
                 

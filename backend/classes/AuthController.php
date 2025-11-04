@@ -20,7 +20,7 @@ class AuthController extends BaseController {
     }
     
     /**
-     * Login de usuário com JWT
+     * Entrar de usuário com JWT
      */
     public function login($params = []) {
         try {
@@ -46,13 +46,13 @@ class AuthController extends BaseController {
                 return $this->sendSuccess($result, '2FA required', 202);
             }
             
-            // Login bem-sucedido
+            // Entrar bem-sucedido
             return $this->sendSuccess([
                 'user' => $result['user'],
                 'tokens' => $result['tokens'],
                 'permissions' => $result['permissions'],
                 'expires_at' => $result['expires_at']
-            ], 'Login realizado com sucesso');
+            ], 'Entrar realizado com sucesso');
             
         } catch (Exception $e) {
             return $this->sendError($e->getMessage(), 401);
@@ -60,7 +60,7 @@ class AuthController extends BaseController {
     }
     
     /**
-     * Logout com revogação de token
+     * Sair com revogação de token
      */
     public function logout($params = []) {
         try {
@@ -78,7 +78,7 @@ class AuthController extends BaseController {
                 }
             }
             
-            return $this->sendSuccess([], 'Logout realizado com sucesso');
+            return $this->sendSuccess([], 'Sair realizado com sucesso');
             
         } catch (Exception $e) {
             return $this->sendError($e->getMessage(), 500);
@@ -216,7 +216,7 @@ class AuthController extends BaseController {
             
             // Completar login após 2FA
             $user = $this->authManager->getUserById($data['user_id']);
-            $result = $this->authManager->handleSuccessfulLogin($user, $data['remember'] ?? false);
+            $result = $this->authManager->handleSuccessfulEntrar($user, $data['remember'] ?? false);
             
             return $this->sendSuccess([
                 'user' => $result['user'],

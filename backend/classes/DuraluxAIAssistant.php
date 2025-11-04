@@ -177,7 +177,7 @@ class DuraluxAIAssistant {
                 'preferences' => $preferences,
                 'recent_activities' => $this->getRecentActivities($user_id),
                 'current_projects' => $this->getCurrentProjects($user_id),
-                'pending_tasks' => $this->getPendingTasks($user_id),
+                'pending_tasks' => $this->getPendenteTasks($user_id),
                 'performance_metrics' => $this->getPerformanceMetrics($user_id)
             ];
             
@@ -355,7 +355,7 @@ class DuraluxAIAssistant {
         // Respostas base por intenção
         $responses = [
             'consulta_leads' => $this->generateLeadsResponse(),
-            'consulta_vendas' => $this->generateSalesResponse(),
+            'consulta_vendas' => $this->generateVendasResponse(),
             'consulta_projetos' => $this->generateProjectsResponse(),
             'relatorio' => $this->generateReportResponse(),
             'agenda' => $this->generateScheduleResponse(),
@@ -414,7 +414,7 @@ class DuraluxAIAssistant {
     /**
      * Gera resposta para consultas de vendas
      */
-    private function generateSalesResponse() {
+    private function generateVendasResponse() {
         try {
             $stmt = $this->db->prepare("
                 SELECT 
@@ -715,7 +715,7 @@ class DuraluxAIAssistant {
                 break;
                 
             case 'revenue_forecast':
-                $predictions = $this->predictRevenueForecast();
+                $predictions = $this->predictReceitaForecast();
                 break;
         }
         
@@ -816,7 +816,7 @@ class DuraluxAIAssistant {
         }
     }
     
-    private function getPendingTasks($user_id) {
+    private function getPendenteTasks($user_id) {
         return 0; // Implementação futura
     }
     

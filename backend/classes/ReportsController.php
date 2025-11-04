@@ -29,9 +29,9 @@ class ReportsController extends BaseController
         
         switch ($action) {
             case 'get_dashboard_report':
-                return $this->getDashboardReport();
+                return $this->getPainel de ControleReport();
             case 'get_sales_report':
-                return $this->getSalesReport();
+                return $this->getVendasReport();
             case 'get_leads_report':
                 return $this->getLeadsReport();
             case 'get_projects_report':
@@ -52,7 +52,7 @@ class ReportsController extends BaseController
     /**
      * Relatório executivo do dashboard
      */
-    public function getDashboardReport()
+    public function getPainel de ControleReport()
     {
         try {
             $period = $_GET['period'] ?? 'month';
@@ -95,7 +95,7 @@ class ReportsController extends BaseController
     /**
      * Relatório detalhado de vendas
      */
-    public function getSalesReport()
+    public function getVendasReport()
     {
         try {
             $startDate = $_GET['start_date'] ?? date('Y-m-01');
@@ -103,19 +103,19 @@ class ReportsController extends BaseController
             $groupBy = $_GET['group_by'] ?? 'day';
 
             // Vendas por período
-            $salesByPeriod = $this->getSalesByPeriod($startDate, $endDate, $groupBy);
+            $salesByPeriod = $this->getVendasByPeriod($startDate, $endDate, $groupBy);
             
             // Vendas por produto
-            $salesByProduct = $this->getSalesByProduct($startDate, $endDate);
+            $salesByProduct = $this->getVendasByProduct($startDate, $endDate);
             
             // Vendas por cliente
-            $salesByCustomer = $this->getSalesByCustomer($startDate, $endDate);
+            $salesByCustomer = $this->getVendasByCustomer($startDate, $endDate);
             
             // Métricas de performance
-            $performanceMetrics = $this->getSalesPerformanceMetrics($startDate, $endDate);
+            $performanceMetrics = $this->getVendasPerformanceMetrics($startDate, $endDate);
             
             // Análise de tendências
-            $trends = $this->getSalesTrends($startDate, $endDate);
+            $trends = $this->getVendasTrends($startDate, $endDate);
 
             $this->jsonResponse([
                 'success' => true,
@@ -338,7 +338,7 @@ class ReportsController extends BaseController
 
             switch ($chartType) {
                 case 'revenue_trend':
-                    $data = $this->getRevenueTrendData($startDate, $endDate, $period);
+                    $data = $this->getReceitaTrendData($startDate, $endDate, $period);
                     break;
                 case 'leads_funnel':
                     $data = $this->getLeadsFunnelData($startDate, $endDate);
@@ -350,7 +350,7 @@ class ReportsController extends BaseController
                     $data = $this->getCustomerGrowthData($startDate, $endDate, $period);
                     break;
                 case 'sales_by_product':
-                    $data = $this->getSalesByProductChartData($startDate, $endDate);
+                    $data = $this->getVendasByProductChartData($startDate, $endDate);
                     break;
                 default:
                     throw new Exception('Tipo de gráfico não suportado');
@@ -370,7 +370,7 @@ class ReportsController extends BaseController
     }
 
     /**
-     * Exportação de relatórios
+     * Exportararação de relatórios
      */
     public function exportReport()
     {
@@ -387,7 +387,7 @@ class ReportsController extends BaseController
             // Gerar dados do relatório
             $reportData = $this->generateReportData($reportType, $filters);
             
-            // Exportar no formato solicitado
+            // Exportararar no formato solicitado
             if ($format === 'pdf') {
                 $this->exportToPDF($reportType, $reportData, $filters);
             } elseif ($format === 'excel') {
@@ -485,7 +485,7 @@ class ReportsController extends BaseController
     /**
      * Obter vendas por período
      */
-    private function getSalesByPeriod($startDate, $endDate, $groupBy)
+    private function getVendasByPeriod($startDate, $endDate, $groupBy)
     {
         $groupFormat = $this->getGroupFormat($groupBy);
         
@@ -511,7 +511,7 @@ class ReportsController extends BaseController
     /**
      * Obter vendas por produto
      */
-    private function getSalesByProduct($startDate, $endDate)
+    private function getVendasByProduct($startDate, $endDate)
     {
         $sql = "
             SELECT 
@@ -576,7 +576,7 @@ class ReportsController extends BaseController
     }
 
     /**
-     * Exportar para PDF
+     * Exportararar para PDF
      */
     private function exportToPDF($reportType, $data, $filters)
     {
@@ -591,7 +591,7 @@ class ReportsController extends BaseController
     }
 
     /**
-     * Exportar para Excel
+     * Exportararar para Excel
      */
     private function exportToExcel($reportType, $data, $filters)
     {
@@ -606,7 +606,7 @@ class ReportsController extends BaseController
     }
 
     /**
-     * Exportar para CSV
+     * Exportararar para CSV
      */
     private function exportToCSV($reportType, $data, $filters)
     {
@@ -640,7 +640,7 @@ class ReportsController extends BaseController
     {
         switch ($reportType) {
             case 'sales':
-                return $this->getSalesReport();
+                return $this->getVendasReport();
             case 'leads':
                 return $this->getLeadsReport();
             case 'projects':
@@ -657,9 +657,9 @@ class ReportsController extends BaseController
     // Métodos auxiliares adicionais para completar as funcionalidades...
     // (Implementações específicas dos demais métodos seriam similares)
     
-    private function getSalesByCustomer($startDate, $endDate) { return []; }
-    private function getSalesPerformanceMetrics($startDate, $endDate) { return []; }
-    private function getSalesTrends($startDate, $endDate) { return []; }
+    private function getVendasByCustomer($startDate, $endDate) { return []; }
+    private function getVendasPerformanceMetrics($startDate, $endDate) { return []; }
+    private function getVendasTrends($startDate, $endDate) { return []; }
     private function getLeadsConversionPipeline($startDate, $endDate, $source) { return []; }
     private function getLeadsBySource($startDate, $endDate) { return []; }
     private function getConversionRates($startDate, $endDate) { return []; }
@@ -682,9 +682,9 @@ class ReportsController extends BaseController
     private function getFinancialForecasts($startDate, $endDate) { return []; }
     private function getTopPerformers($startDate, $endDate) { return []; }
     private function getDistributions($startDate, $endDate) { return []; }
-    private function getRevenueTrendData($startDate, $endDate, $period) { return []; }
+    private function getReceitaTrendData($startDate, $endDate, $period) { return []; }
     private function getLeadsFunnelData($startDate, $endDate) { return []; }
     private function getProjectsTimelineData($startDate, $endDate) { return []; }
     private function getCustomerGrowthData($startDate, $endDate, $period) { return []; }
-    private function getSalesByProductChartData($startDate, $endDate) { return []; }
+    private function getVendasByProductChartData($startDate, $endDate) { return []; }
 }

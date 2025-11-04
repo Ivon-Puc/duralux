@@ -4,6 +4,7 @@
  * Endpoints REST para sistema de análises
  */
 
+require_once '../config/db_config.php';
 require_once '../classes/AdvancedAnalytics.php';
 
 header('Content-Type: application/json');
@@ -45,7 +46,7 @@ try {
                 ];
             }
             
-            $result = $analytics->getDashboardMetrics($dateRange);
+            $result = $analytics->getPainel de ControleMetrics($dateRange);
             
             echo json_encode([
                 'success' => true,
@@ -62,7 +63,7 @@ try {
             $months = isset($params['months']) ? (int)$params['months'] : 6;
             $months = max(1, min(24, $months)); // Entre 1 e 24 meses
             
-            $result = $analytics->generateRevenueForecast($months);
+            $result = $analytics->generateReceitaForecast($months);
             
             echo json_encode([
                 'success' => true,
@@ -138,7 +139,7 @@ try {
             // Estatísticas em tempo real (últimas 24h)
             $result = [
                 'leads_today' => $analytics->getLeadsToday(),
-                'revenue_today' => $analytics->getRevenueToday(),
+                'revenue_today' => $analytics->getReceitaToday(),
                 'active_users' => $analytics->getActiveUsers(),
                 'system_health' => $analytics->getSystemHealth(),
                 'latest_activities' => $analytics->getLatestActivities(10)

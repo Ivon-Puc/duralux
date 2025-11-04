@@ -306,19 +306,19 @@ class EnhancedAuthMiddleware {
                 LIMIT 1
             ");
             $stmt->execute([$userId]);
-            $lastLogin = $stmt->fetch(PDO::FETCH_ASSOC);
+            $lastEntrar = $stmt->fetch(PDO::FETCH_ASSOC);
             
             $riskScore = 0;
             $riskFactors = [];
             
             // Mudança de IP
-            if ($lastLogin && $lastLogin['ip_address'] !== $currentIP) {
+            if ($lastEntrar && $lastEntrar['ip_address'] !== $currentIP) {
                 $riskScore += 30;
                 $riskFactors[] = 'IP change detected';
             }
             
             // Mudança de User Agent
-            if ($lastLogin && $lastLogin['user_agent'] !== $userAgent) {
+            if ($lastEntrar && $lastEntrar['user_agent'] !== $userAgent) {
                 $riskScore += 20;
                 $riskFactors[] = 'Device/browser change detected';
             }

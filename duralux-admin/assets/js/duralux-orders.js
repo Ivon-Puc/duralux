@@ -53,36 +53,36 @@ class DuraluxOrders {
             this.loadOrders();
         }, 300));
 
-        document.getElementById('statusFilter')?.addEventListener('change', (e) => {
+        document.getElementById('statusFiltrar')?.addEventListener('change', (e) => {
             this.filters.status = e.target.value;
             this.currentPage = 1;
             this.loadOrders();
         });
 
-        document.getElementById('paymentStatusFilter')?.addEventListener('change', (e) => {
+        document.getElementById('paymentStatusFiltrar')?.addEventListener('change', (e) => {
             this.filters.payment_status = e.target.value;
             this.currentPage = 1;
             this.loadOrders();
         });
 
-        document.getElementById('customerFilter')?.addEventListener('change', (e) => {
+        document.getElementById('customerFiltrar')?.addEventListener('change', (e) => {
             this.filters.customer_id = e.target.value;
             this.currentPage = 1;
             this.loadOrders();
         });
 
-        document.getElementById('startDateFilter')?.addEventListener('change', (e) => {
+        document.getElementById('startDateFiltrar')?.addEventListener('change', (e) => {
             this.filters.start_date = e.target.value;
             this.loadOrders();
         });
 
-        document.getElementById('endDateFilter')?.addEventListener('change', (e) => {
+        document.getElementById('endDateFiltrar')?.addEventListener('change', (e) => {
             this.filters.end_date = e.target.value;
             this.loadOrders();
         });
 
         // Botão de limpar filtros
-        document.getElementById('clearFiltersBtn')?.addEventListener('click', () => this.clearFilters());
+        document.getElementById('clearFiltrarsBtn')?.addEventListener('click', () => this.clearFiltrars());
 
         // Modal de pedido
         document.getElementById('saveOrderBtn')?.addEventListener('click', () => this.saveOrder());
@@ -107,7 +107,7 @@ class DuraluxOrders {
             this.products = productsResponse.success ? productsResponse.data : [];
 
             // Popula filtros
-            this.populateCustomerFilter();
+            this.populateCustomerFiltrar();
             this.populateProductSelects();
 
             // Carrega estatísticas
@@ -122,7 +122,7 @@ class DuraluxOrders {
         try {
             this.showLoading(true);
 
-            const queryParams = new URLSearchParams({
+            const queryParams = new URLBuscarParams({
                 page: this.currentPage,
                 limit: this.itemsPerPage,
                 ...this.filters
@@ -169,7 +169,7 @@ class DuraluxOrders {
 
         // Atualizar cards de estatísticas
         this.updateStatCard('totalOrders', stats.general?.total_orders || 0);
-        this.updateStatCard('totalRevenue', this.formatCurrency(stats.general?.total_revenue || 0));
+        this.updateStatCard('totalReceita', this.formatCurrency(stats.general?.total_revenue || 0));
         this.updateStatCard('averageOrder', this.formatCurrency(stats.general?.average_order_value || 0));
         this.updateStatCard('paidOrders', stats.general?.paid_orders || 0);
 
@@ -281,8 +281,8 @@ class DuraluxOrders {
         }
     }
 
-    populateCustomerFilter() {
-        const select = document.getElementById('customerFilter');
+    populateCustomerFiltrar() {
+        const select = document.getElementById('customerFiltrar');
         if (!select) return;
 
         select.innerHTML = '<option value="">Todos os clientes</option>' +
@@ -735,7 +735,7 @@ class DuraluxOrders {
         }
     }
 
-    clearFilters() {
+    clearFiltrars() {
         this.filters = {
             search: '',
             status: '',
@@ -747,11 +747,11 @@ class DuraluxOrders {
 
         // Limpar campos
         document.getElementById('searchInput').value = '';
-        document.getElementById('statusFilter').value = '';
-        document.getElementById('paymentStatusFilter').value = '';
-        document.getElementById('customerFilter').value = '';
-        document.getElementById('startDateFilter').value = '';
-        document.getElementById('endDateFilter').value = '';
+        document.getElementById('statusFiltrar').value = '';
+        document.getElementById('paymentStatusFiltrar').value = '';
+        document.getElementById('customerFiltrar').value = '';
+        document.getElementById('startDateFiltrar').value = '';
+        document.getElementById('endDateFiltrar').value = '';
 
         this.currentPage = 1;
         this.loadOrders();

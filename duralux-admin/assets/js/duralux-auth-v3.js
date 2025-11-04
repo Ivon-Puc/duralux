@@ -48,7 +48,7 @@ class DuraluxAuthSystem {
     }
     
     /**
-     * Login do usuário
+     * Entrar do usuário
      */
     async login(credentials) {
         try {
@@ -64,7 +64,7 @@ class DuraluxAuthSystem {
                 this.emit('loginSuccess', response.data);
                 return response.data;
             } else {
-                throw new Error(response.message || 'Login failed');
+                throw new Error(response.message || 'Entrar failed');
             }
             
         } catch (error) {
@@ -133,7 +133,7 @@ class DuraluxAuthSystem {
     }
     
     /**
-     * Logout do usuário
+     * Sair do usuário
      */
     async logout() {
         try {
@@ -615,7 +615,7 @@ DuraluxAuth.on('authExpired', () => {
 });
 
 DuraluxAuth.on('loginSuccess', (data) => {
-    console.log('✅ Login realizado com sucesso!', data.user);
+    console.log('✅ Entrar realizado com sucesso!', data.user);
     
     // Redirecionar para dashboard se não estiver lá
     if (window.location.pathname.includes('auth-') || window.location.pathname.includes('login')) {
@@ -624,7 +624,7 @@ DuraluxAuth.on('loginSuccess', (data) => {
 });
 
 DuraluxAuth.on('logoutSuccess', () => {
-    console.log('👋 Logout realizado com sucesso!');
+    console.log('👋 Sair realizado com sucesso!');
     
     // Redirecionar para login
     if (!window.location.pathname.includes('auth-')) {

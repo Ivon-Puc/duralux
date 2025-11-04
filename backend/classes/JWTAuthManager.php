@@ -296,7 +296,7 @@ class JWTAuthManager {
             
             // Verificar senha
             if (!password_verify($password, $user['password_hash'])) {
-                $this->handleFailedLogin($user['id'], $email);
+                $this->handleFailedEntrar($user['id'], $email);
                 throw new Exception('Invalid credentials');
             }
             
@@ -305,8 +305,8 @@ class JWTAuthManager {
                 return $this->handle2FARequired($user);
             }
             
-            // Login bem-sucedido
-            return $this->handleSuccessfulLogin($user, $rememberMe);
+            // Entrar bem-sucedido
+            return $this->handleSuccessfulEntrar($user, $rememberMe);
             
         } catch (Exception $e) {
             throw $e;
@@ -316,12 +316,12 @@ class JWTAuthManager {
     /**
      * Processar login bem-sucedido
      */
-    private function handleSuccessfulLogin($user, $rememberMe = false) {
+    private function handleSuccessfulEntrar($user, $rememberMe = false) {
         // Resetar tentativas de login
-        $this->resetLoginAttempts($user['id']);
+        $this->resetEntrarAttempts($user['id']);
         
         // Atualizar último login
-        $this->updateLastLogin($user['id']);
+        $this->updateLastEntrar($user['id']);
         
         // Gerar tokens
         $accessToken = $this->generateAccessToken($user);
@@ -334,7 +334,7 @@ class JWTAuthManager {
         $rememberToken = $rememberMe ? $this->generateRememberToken($user) : null;
         
         // Log da autenticação bem-sucedida
-        $this->logAuthAttempt($user['email'], 'login_success', 'Login successful');
+        $this->logAuthAttempt($user['email'], 'login_success', 'Entrar successful');
         
         return [
             'user' => $this->sanitizeUser($user),
@@ -586,7 +586,7 @@ class JWTAuthManager {
         return true; // Simplificado por enquanto
     }
     
-    private function handleFailedLogin($userId, $email) {
+    private function handleFailedEntrar($userId, $email) {
         // Incrementar tentativas
         $stmt = $this->db->prepare("UPDATE users SET login_attempts = login_attempts + 1 WHERE id = ?");
         $stmt->execute([$userId]);
@@ -602,12 +602,12 @@ class JWTAuthManager {
         $this->logAuthAttempt($email, 'login_failed', 'Invalid password');
     }
     
-    private function resetLoginAttempts($userId) {
+    private function resetEntrarAttempts($userId) {
         $stmt = $this->db->prepare("UPDATE users SET login_attempts = 0, locked_until = NULL WHERE id = ?");
         $stmt->execute([$userId]);
     }
     
-    private function updateLastLogin($userId) {
+    private function updateLastEntrar($userId) {
         $stmt = $this->db->prepare("UPDATE users SET last_login = datetime('now') WHERE id = ?");
         $stmt->execute([$userId]);
     }

@@ -96,7 +96,7 @@ class PerformanceTestSuite {
         $this->testCacheManager();
         $this->testPerformanceMonitor();
         $this->testAssetOptimizer();
-        $this->testDashboardController();
+        $this->testPainel de ControleController();
         $this->generateReport();
     }
     
@@ -220,13 +220,13 @@ class PerformanceTestSuite {
     }
     
     /**
-     * Testar Dashboard Controller
+     * Testar Painel de Controle Controller
      */
-    public function testDashboardController() {
-        echo "📈 Testando Performance Dashboard Controller...\n";
+    public function testPainel de ControleController() {
+        echo "📈 Testando Performance Painel de Controle Controller...\n";
         
         try {
-            $dashboardFile = __DIR__ . '/PerformanceDashboardController.php';
+            $dashboardFile = __DIR__ . '/PerformancePainel de ControleController.php';
             $jsFile = __DIR__ . '/../../duralux-admin/assets/js/duralux-performance-dashboard-v4.js';
             $htmlFile = __DIR__ . '/../../duralux-admin/performance-dashboard.html';
             
@@ -246,10 +246,10 @@ class PerformanceTestSuite {
                 'details' => $tests
             ];
             
-            echo sprintf("   ✅ Dashboard Controller: %d/%d testes passaram\n", count($passed), count($tests));
+            echo sprintf("   ✅ Painel de Controle Controller: %d/%d testes passaram\n", count($passed), count($tests));
             
         } catch (Exception $e) {
-            echo "   ❌ Erro no Dashboard Controller: " . $e->getMessage() . "\n";
+            echo "   ❌ Erro no Painel de Controle Controller: " . $e->getMessage() . "\n";
             $this->testResults['dashboard_controller'] = ['error' => $e->getMessage()];
         }
     }

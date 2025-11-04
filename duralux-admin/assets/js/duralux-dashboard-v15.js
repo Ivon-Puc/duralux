@@ -1,12 +1,12 @@
 /**
- * DURALUX CRM - Dashboard Analytics JavaScript v1.5
- * Sistema Avançado de Dashboard Executivo
+ * DURALUX CRM - Painel de Controle Analytics JavaScript v1.5
+ * Sistema Avançado de Painel de Controle Executivo
  * 
  * Features Avançadas:
  * - KPIs dinâmicos com comparação temporal em tempo real
  * - Gráficos interativos com Chart.js e ApexCharts
  * - Alertas inteligentes e notificações push
- * - Dashboard personalizável e responsivo
+ * - Painel de Controle personalizável e responsivo
  * - Previsões e análise de tendências
  * - Interface executiva moderna
  * 
@@ -17,9 +17,9 @@
 
 'use strict';
 
-class DuraluxDashboard {
+class DuraluxPainel de Controle {
     constructor() {
-        console.log('🚀 Inicializando Duralux Dashboard Analytics v1.5...');
+        console.log('🚀 Inicializando Duralux Painel de Controle Analytics v1.5...');
         
         // Configurações da API
         this.apiBase = '../backend/api/router.php';
@@ -57,7 +57,7 @@ class DuraluxDashboard {
             await this.checkAuthentication();
             
             // Carregar configurações do usuário
-            await this.loadUserSettings();
+            await this.loadUserConfigurações();
             
             // Configurar elementos DOM
             this.setupDOMElements();
@@ -66,7 +66,7 @@ class DuraluxDashboard {
             this.setupEventListeners();
             
             // Carregar dados iniciais
-            await this.loadDashboardData();
+            await this.loadPainel de ControleData();
             
             // Iniciar modo tempo real se habilitado
             if (this.settings.realTimeMode) {
@@ -76,8 +76,8 @@ class DuraluxDashboard {
             // Configurar auto-refresh
             this.setupAutoRefresh();
             
-            console.log('✅ Dashboard Analytics v1.5 inicializado com sucesso!');
-            this.showNotification('Dashboard Executivo carregado com sucesso!', 'success');
+            console.log('✅ Painel de Controle Analytics v1.5 inicializado com sucesso!');
+            this.showNotification('Painel de Controle Executivo carregado com sucesso!', 'success');
             
         } catch (error) {
             console.error('❌ Erro ao inicializar dashboard:', error);
@@ -133,7 +133,7 @@ class DuraluxDashboard {
         if (this.elements.periodSelector) {
             this.elements.periodSelector.addEventListener('change', (e) => {
                 this.currentPeriod = e.target.value;
-                this.loadDashboardData();
+                this.loadPainel de ControleData();
             });
         }
 
@@ -141,7 +141,7 @@ class DuraluxDashboard {
         if (this.elements.comparisonSelector) {
             this.elements.comparisonSelector.addEventListener('change', (e) => {
                 this.comparisonMode = e.target.value;
-                this.loadDashboardData();
+                this.loadPainel de ControleData();
             });
         }
 
@@ -149,7 +149,7 @@ class DuraluxDashboard {
         if (this.elements.refreshButton) {
             this.elements.refreshButton.addEventListener('click', () => {
                 this.clearCache();
-                this.loadDashboardData();
+                this.loadPainel de ControleData();
             });
         }
 
@@ -178,27 +178,27 @@ class DuraluxDashboard {
     /**
      * Carregar todos os dados do dashboard
      */
-    async loadDashboardData() {
+    async loadPainel de ControleData() {
         try {
             this.showLoading(true);
             
             // Carregar dados em paralelo
             const [
-                executiveDashboard,
+                executivePainel de Controle,
                 smartAlerts,
                 realTimeMetrics
             ] = await Promise.all([
-                this.loadExecutiveDashboard(),
+                this.loadExecutivePainel de Controle(),
                 this.loadSmartAlerts(),
                 this.loadRealTimeMetrics()
             ]);
 
             // Renderizar componentes
-            await this.renderKPIs(executiveDashboard.kpis);
-            await this.renderCharts(executiveDashboard.charts_data);
+            await this.renderKPIs(executivePainel de Controle.kpis);
+            await this.renderCharts(executivePainel de Controle.charts_data);
             await this.renderAlerts(smartAlerts);
             await this.renderRealTimeMetrics(realTimeMetrics);
-            await this.renderTrends(executiveDashboard.trends);
+            await this.renderTrends(executivePainel de Controle.trends);
             
             // Atualizar timestamp
             this.updateLastUpdateTime();
@@ -214,7 +214,7 @@ class DuraluxDashboard {
     /**
      * Carregar dashboard executivo via API
      */
-    async loadExecutiveDashboard() {
+    async loadExecutivePainel de Controle() {
         const cacheKey = `executive_dashboard_${this.currentPeriod}_${this.comparisonMode}`;
         
         if (this.cache.has(cacheKey)) {
@@ -370,7 +370,7 @@ class DuraluxDashboard {
         try {
             // Gráfico principal de receita
             if (chartsData.revenue_timeline && this.elements.revenueChart) {
-                this.renderRevenueChart(chartsData.revenue_timeline);
+                this.renderReceitaChart(chartsData.revenue_timeline);
             }
 
             // Gráfico de funil de conversão
@@ -396,7 +396,7 @@ class DuraluxDashboard {
     /**
      * Gráfico principal de receita com previsões
      */
-    renderRevenueChart(data) {
+    renderReceitaChart(data) {
         const ctx = this.elements.revenueChart.getContext('2d');
         
         if (this.charts.revenue) {
@@ -963,7 +963,7 @@ class DuraluxDashboard {
     /**
      * Carregar configurações do usuário
      */
-    async loadUserSettings() {
+    async loadUserConfigurações() {
         try {
             this.settings = await this.apiRequest('get_dashboard_settings');
             
@@ -995,8 +995,8 @@ class DuraluxDashboard {
 
 // Inicialização automática quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    window.duraluxDashboard = new DuraluxDashboard();
+    window.duraluxPainel de Controle = new DuraluxPainel de Controle();
 });
 
-// Exportar para uso global
-window.DuraluxDashboard = DuraluxDashboard;
+// Exportararar para uso global
+window.DuraluxPainel de Controle = DuraluxPainel de Controle;

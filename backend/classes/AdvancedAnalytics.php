@@ -154,7 +154,7 @@ class AdvancedAnalytics {
     /**
      * Coleta métricas em tempo real do dashboard
      */
-    public function getDashboardMetrics($dateRange = null) {
+    public function getPainel de ControleMetrics($dateRange = null) {
         $cacheKey = "dashboard_metrics_" . md5(serialize($dateRange));
         
         // Tenta buscar do cache primeiro
@@ -162,15 +162,15 @@ class AdvancedAnalytics {
             return json_decode($cached, true);
         }
         
-        $dateFilter = $this->buildDateFilter($dateRange);
+        $dateFiltrar = $this->buildDateFiltrar($dateRange);
         
         $metrics = [
-            'leads' => $this->getLeadsMetrics($dateFilter),
-            'customers' => $this->getCustomersMetrics($dateFilter),
-            'projects' => $this->getProjectsMetrics($dateFilter),
-            'revenue' => $this->getRevenueMetrics($dateFilter),
-            'performance' => $this->getPerformanceMetrics($dateFilter),
-            'trends' => $this->getTrendAnalysis($dateFilter)
+            'leads' => $this->getLeadsMetrics($dateFiltrar),
+            'customers' => $this->getCustomersMetrics($dateFiltrar),
+            'projects' => $this->getProjectsMetrics($dateFiltrar),
+            'revenue' => $this->getReceitaMetrics($dateFiltrar),
+            'performance' => $this->getPerformanceMetrics($dateFiltrar),
+            'trends' => $this->getTrendAnalysis($dateFiltrar)
         ];
         
         // Salva no cache
@@ -184,7 +184,7 @@ class AdvancedAnalytics {
     /**
      * Métricas de leads
      */
-    private function getLeadsMetrics($dateFilter) {
+    private function getLeadsMetrics($dateFiltrar) {
         $sql = "
             SELECT 
                 COUNT(*) as total_leads,
@@ -198,16 +198,16 @@ class AdvancedAnalytics {
                 ) as conversion_rate,
                 AVG(CASE WHEN score IS NOT NULL THEN score END) as avg_score
             FROM leads 
-            WHERE 1=1 {$dateFilter}
+            WHERE 1=1 {$dateFiltrar}
         ";
         
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
         
         // Adiciona métricas calculadas
-        $result['hot_leads'] = $this->getHotLeads($dateFilter);
-        $result['lead_sources'] = $this->getLeadSources($dateFilter);
-        $result['daily_leads'] = $this->getDailyLeadsChart($dateFilter);
+        $result['hot_leads'] = $this->getHotLeads($dateFiltrar);
+        $result['lead_sources'] = $this->getLeadSources($dateFiltrar);
+        $result['daily_leads'] = $this->getDiárioLeadsChart($dateFiltrar);
         
         return $result;
     }
@@ -215,7 +215,7 @@ class AdvancedAnalytics {
     /**
      * Métricas de clientes
      */
-    private function getCustomersMetrics($dateFilter) {
+    private function getCustomersMetrics($dateFiltrar) {
         $sql = "
             SELECT 
                 COUNT(*) as total_customers,
@@ -226,14 +226,14 @@ class AdvancedAnalytics {
                     THEN annual_revenue END
                 ) as avg_customer_value
             FROM customers 
-            WHERE 1=1 {$dateFilter}
+            WHERE 1=1 {$dateFiltrar}
         ";
         
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
         
-        $result['customer_segments'] = $this->getCustomerSegments($dateFilter);
-        $result['retention_rate'] = $this->calculateRetentionRate($dateFilter);
+        $result['customer_segments'] = $this->getCustomerSegments($dateFiltrar);
+        $result['retention_rate'] = $this->calculateRetentionRate($dateFiltrar);
         
         return $result;
     }
@@ -241,7 +241,7 @@ class AdvancedAnalytics {
     /**
      * Métricas de projetos
      */
-    private function getProjectsMetrics($dateFilter) {
+    private function getProjectsMetrics($dateFiltrar) {
         $sql = "
             SELECT 
                 COUNT(*) as total_projects,
@@ -252,14 +252,14 @@ class AdvancedAnalytics {
                 AVG(CASE WHEN budget IS NOT NULL AND budget > 0 THEN budget END) as avg_project_budget,
                 SUM(CASE WHEN status = 'completed' AND budget IS NOT NULL THEN budget END) as completed_revenue
             FROM projects 
-            WHERE 1=1 {$dateFilter}
+            WHERE 1=1 {$dateFiltrar}
         ";
         
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
         
-        $result['project_timeline'] = $this->getProjectTimeline($dateFilter);
-        $result['priority_distribution'] = $this->getProjectPriorityDistribution($dateFilter);
+        $result['project_timeline'] = $this->getProjectTimeline($dateFiltrar);
+        $result['priority_distribution'] = $this->getProjectPriorityDistribution($dateFiltrar);
         
         return $result;
     }
@@ -267,8 +267,8 @@ class AdvancedAnalytics {
     /**
      * Métricas de receita
      */
-    private function getRevenueMetrics($dateFilter) {
-        $baseRevenue = [
+    private function getReceitaMetrics($dateFiltrar) {
+        $baseReceita = [
             'total_revenue' => 0,
             'monthly_recurring_revenue' => 0,
             'average_deal_size' => 0,
@@ -282,27 +282,27 @@ class AdvancedAnalytics {
                 COUNT(CASE WHEN status = 'completed' THEN 1 END) as closed_deals,
                 AVG(CASE WHEN status = 'completed' AND budget IS NOT NULL THEN budget END) as avg_deal_size
             FROM projects 
-            WHERE 1=1 {$dateFilter}
+            WHERE 1=1 {$dateFiltrar}
         ";
         
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
         
-        $result['revenue_by_month'] = $this->getRevenueByMonth($dateFilter);
-        $result['revenue_forecast'] = $this->generateRevenueForecast();
+        $result['revenue_by_month'] = $this->getReceitaByMonth($dateFiltrar);
+        $result['revenue_forecast'] = $this->generateReceitaForecast();
         
-        return array_merge($baseRevenue, $result ?: []);
+        return array_merge($baseReceita, $result ?: []);
     }
     
     /**
      * Métricas de performance
      */
-    private function getPerformanceMetrics($dateFilter) {
+    private function getPerformanceMetrics($dateFiltrar) {
         return [
             'response_time' => $this->getAverageResponseTime(),
             'system_uptime' => $this->getSystemUptime(),
-            'active_users' => $this->getActiveUsers($dateFilter),
-            'page_views' => $this->getPageViews($dateFilter),
+            'active_users' => $this->getActiveUsers($dateFiltrar),
+            'page_views' => $this->getPageViews($dateFiltrar),
             'cache_hit_rate' => $this->getCacheHitRate()
         ];
     }
@@ -310,12 +310,12 @@ class AdvancedAnalytics {
     /**
      * Análise de tendências
      */
-    private function getTrendAnalysis($dateFilter) {
+    private function getTrendAnalysis($dateFiltrar) {
         return [
-            'leads_trend' => $this->calculateTrend('leads', $dateFilter),
-            'revenue_trend' => $this->calculateTrend('revenue', $dateFilter),
-            'conversion_trend' => $this->calculateTrend('conversion', $dateFilter),
-            'customer_satisfaction' => $this->getCustomerSatisfactionTrend($dateFilter)
+            'leads_trend' => $this->calculateTrend('leads', $dateFiltrar),
+            'revenue_trend' => $this->calculateTrend('revenue', $dateFiltrar),
+            'conversion_trend' => $this->calculateTrend('conversion', $dateFiltrar),
+            'customer_satisfaction' => $this->getCustomerSatisfactionTrend($dateFiltrar)
         ];
     }
     
@@ -336,7 +336,7 @@ class AdvancedAnalytics {
         foreach ($config['sections'] as $section) {
             switch ($section['type']) {
                 case 'metrics':
-                    $data['data'][$section['name']] = $this->getDashboardMetrics($section['date_range'] ?? null);
+                    $data['data'][$section['name']] = $this->getPainel de ControleMetrics($section['date_range'] ?? null);
                     break;
                 case 'chart':
                     $data['data'][$section['name']] = $this->generateChartData($section);
@@ -356,7 +356,7 @@ class AdvancedAnalytics {
     /**
      * Gera forecasting usando análise de tendência
      */
-    public function generateRevenueForecast($months = 6) {
+    public function generateReceitaForecast($months = 6) {
         // Busca dados históricos dos últimos 12 meses
         $sql = "
             SELECT 
@@ -380,10 +380,10 @@ class AdvancedAnalytics {
         $revenues = array_column($historical, 'revenue');
         $trend = $this->calculateLinearTrend($revenues);
         
-        $lastRevenue = end($revenues);
+        $lastReceita = end($revenues);
         
         for ($i = 1; $i <= $months; $i++) {
-            $forecastValue = $lastRevenue + ($trend * $i);
+            $forecastValue = $lastReceita + ($trend * $i);
             $forecastValue = max(0, $forecastValue); // Não permite valores negativos
             
             $forecast[] = [
@@ -402,7 +402,7 @@ class AdvancedAnalytics {
     }
     
     /**
-     * Exporta relatório para PDF
+     * Exportarara relatório para PDF
      */
     public function exportReportToPDF($reportId, $template = 'default') {
         // Implementação básica - expandir conforme necessário
@@ -427,7 +427,7 @@ class AdvancedAnalytics {
     /**
      * Métodos auxiliares
      */
-    private function buildDateFilter($dateRange) {
+    private function buildDateFiltrar($dateRange) {
         if (!$dateRange) return '';
         
         $filter = '';
@@ -457,19 +457,19 @@ class AdvancedAnalytics {
         return ($n * $xy - $x_sum * $y_sum) / ($n * $x_sq_sum - $x_sum * $x_sum);
     }
     
-    private function getHotLeads($dateFilter) {
-        $sql = "SELECT COUNT(*) as count FROM leads WHERE score >= 80 {$dateFilter}";
+    private function getHotLeads($dateFiltrar) {
+        $sql = "SELECT COUNT(*) as count FROM leads WHERE score >= 80 {$dateFiltrar}";
         $stmt = $this->db->query($sql);
         return $stmt->fetchColumn();
     }
     
-    private function getLeadSources($dateFilter) {
+    private function getLeadSources($dateFiltrar) {
         $sql = "
             SELECT 
                 COALESCE(source, 'Não informado') as source, 
                 COUNT(*) as count 
             FROM leads 
-            WHERE 1=1 {$dateFilter} 
+            WHERE 1=1 {$dateFiltrar} 
             GROUP BY source 
             ORDER BY count DESC 
             LIMIT 10
@@ -478,13 +478,13 @@ class AdvancedAnalytics {
         return $stmt->fetchAll();
     }
     
-    private function getDailyLeadsChart($dateFilter) {
+    private function getDiárioLeadsChart($dateFiltrar) {
         $sql = "
             SELECT 
                 DATE(created_at) as date, 
                 COUNT(*) as count 
             FROM leads 
-            WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) {$dateFilter}
+            WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) {$dateFiltrar}
             GROUP BY DATE(created_at) 
             ORDER BY date
         ";
@@ -515,10 +515,10 @@ class AdvancedAnalytics {
     public function handleAPIRequest($endpoint, $params = []) {
         switch ($endpoint) {
             case 'dashboard':
-                return $this->getDashboardMetrics($params['date_range'] ?? null);
+                return $this->getPainel de ControleMetrics($params['date_range'] ?? null);
             
             case 'forecast':
-                return $this->generateRevenueForecast($params['months'] ?? 6);
+                return $this->generateReceitaForecast($params['months'] ?? 6);
             
             case 'custom_report':
                 return $this->generateCustomReport($params['config']);

@@ -28,9 +28,9 @@
         <div>
             <label>Email: <input type="email" id="login-email" value="admin@duralux.com"></label><br><br>
             <label>Senha: <input type="password" id="login-password" value="admin123"></label><br><br>
-            <button onclick="testLogin()">Fazer Login</button>
+            <button onclick="testEntrar()">Fazer Entrar</button>
             <button onclick="testMe()">Verificar Usuário Logado</button>
-            <button onclick="testLogout()">Fazer Logout</button>
+            <button onclick="testSair()">Fazer Sair</button>
         </div>
         <div id="auth-result" class="result" style="display: none;"></div>
     </div>
@@ -42,7 +42,7 @@
             <label>Email: <input type="email" id="reg-email" value="joao@teste.com"></label><br><br>
             <label>Senha: <input type="password" id="reg-password" value="123456"></label><br><br>
             <label>Confirmar: <input type="password" id="reg-confirm" value="123456"></label><br><br>
-            <button onclick="testRegister()">Registrar Usuário</button>
+            <button onclick="testRegistrar()">Registrar Usuário</button>
         </div>
         <div id="register-result" class="result" style="display: none;"></div>
     </div>
@@ -98,7 +98,7 @@
             showResult('connection-result', result, !result.success);
         }
         
-        async function testLogin() {
+        async function testEntrar() {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             
@@ -115,13 +115,13 @@
             showResult('auth-result', result, !result.success);
         }
         
-        async function testLogout() {
+        async function testSair() {
             const result = await apiCall('auth/logout', 'POST');
             showResult('auth-result', result, !result.success);
             authToken = null;
         }
         
-        async function testRegister() {
+        async function testRegistrar() {
             const name = document.getElementById('reg-name').value;
             const email = document.getElementById('reg-email').value;
             const password = document.getElementById('reg-password').value;

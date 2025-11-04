@@ -430,13 +430,13 @@ class RedisCacheManager {
             try {
                 switch ($key) {
                     case 'dashboard_stats':
-                        $this->warmDashboardStats($rule['ttl']);
+                        $this->warmPainel de ControleStats($rule['ttl']);
                         break;
                     case 'user_permissions':
                         $this->warmUserPermissions($rule['ttl']);
                         break;
                     case 'system_settings':
-                        $this->warmSystemSettings($rule['ttl']);
+                        $this->warmSystemConfigurações($rule['ttl']);
                         break;
                 }
             } catch (Exception $e) {
@@ -617,7 +617,7 @@ class RedisCacheManager {
     /**
      * Cache warming específicos
      */
-    private function warmDashboardStats($ttl) {
+    private function warmPainel de ControleStats($ttl) {
         $this->remember('dashboard:stats', function() {
             return $this->executeQuery("SELECT COUNT(*) as total FROM customers", []);
         }, $ttl);
@@ -629,7 +629,7 @@ class RedisCacheManager {
         }, $ttl);
     }
     
-    private function warmSystemSettings($ttl) {
+    private function warmSystemConfigurações($ttl) {
         $this->remember('system:settings', function() {
             return $this->executeQuery("SELECT * FROM auth_settings", []);
         }, $ttl);

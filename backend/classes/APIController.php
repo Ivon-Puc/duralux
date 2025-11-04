@@ -178,7 +178,7 @@ class APIController extends BaseController {
             case 'reports':
                 return $this->handleReportsAPI($method, $id, $action);
             case 'dashboard':
-                return $this->handleDashboardAPI($method, $id, $action);
+                return $this->handlePainel de ControleAPI($method, $id, $action);
             case 'auth':
                 return $this->handleAuthAPI($method, $id, $action);
             case 'docs':
@@ -282,16 +282,16 @@ class APIController extends BaseController {
     }
     
     /**
-     * API de Dashboard (integração com v1.5)
+     * API de Painel de Controle (integração com v1.5)
      */
-    private function handleDashboardAPI($method, $id, $action) {
+    private function handlePainel de ControleAPI($method, $id, $action) {
         if ($method !== 'GET') {
             return $this->sendAPIError('Only GET method allowed for dashboard', 405);
         }
         
         switch ($action) {
             case 'executive':
-                return $this->getExecutiveDashboard();
+                return $this->getExecutivePainel de Controle();
             case 'kpis':
                 return $this->getAdvancedKPIs();
             case 'alerts':
@@ -299,7 +299,7 @@ class APIController extends BaseController {
             case 'realtime':
                 return $this->getRealTimeMetrics();
             default:
-                return $this->getDashboardSummary();
+                return $this->getPainel de ControleSummary();
         }
     }
     
@@ -410,7 +410,7 @@ class APIController extends BaseController {
                     'created_at' => ['type' => 'string', 'format' => 'date-time']
                 ]
             ],
-            'DashboardKPI' => [
+            'Painel de ControleKPI' => [
                 'type' => 'object',
                 'properties' => [
                     'name' => ['type' => 'string'],
@@ -520,7 +520,7 @@ class APIController extends BaseController {
             ],
             '/v1/dashboard/executive' => [
                 'get' => [
-                    'summary' => 'Dashboard Executivo Avançado',
+                    'summary' => 'Painel de Controle Executivo Avançado',
                     'description' => 'Retorna KPIs, métricas em tempo real, alertas inteligentes e análises de performance',
                     'parameters' => [
                         [
@@ -536,7 +536,7 @@ class APIController extends BaseController {
                     ],
                     'responses' => [
                         '200' => [
-                            'description' => 'Dashboard executivo carregado',
+                            'description' => 'Painel de Controle executivo carregado',
                             'content' => [
                                 'application/json' => [
                                     'schema' => [
@@ -544,7 +544,7 @@ class APIController extends BaseController {
                                         'properties' => [
                                             'kpis' => [
                                                 'type' => 'object',
-                                                'additionalProperties' => ['$ref' => '#/components/schemas/DashboardKPI']
+                                                'additionalProperties' => ['$ref' => '#/components/schemas/Painel de ControleKPI']
                                             ],
                                             'alerts' => ['type' => 'array'],
                                             'trends' => ['type' => 'object'],
@@ -903,14 +903,14 @@ class APIController extends BaseController {
     private function updateLead($id) { return $this->sendAPISuccess(['id' => $id], 'Lead updated'); }
     private function deleteLead($id) { return $this->sendAPISuccess(['id' => $id], 'Lead deleted'); }
     
-    private function getExecutiveDashboard() { return $this->sendAPISuccess(['kpis' => [], 'alerts' => []], 'Executive dashboard loaded'); }
+    private function getExecutivePainel de Controle() { return $this->sendAPISuccess(['kpis' => [], 'alerts' => []], 'Executive dashboard loaded'); }
     private function getAdvancedKPIs() { return $this->sendAPISuccess(['revenue' => [], 'leads' => []], 'KPIs loaded'); }
     private function getSmartAlerts() { return $this->sendAPISuccess([], 'Smart alerts loaded'); }
     private function getRealTimeMetrics() { return $this->sendAPISuccess(['active_users' => 1], 'Real-time metrics loaded'); }
     
     private function authenticateUser() { return $this->sendAPISuccess(['token' => 'jwt_token_here'], 'Authentication successful'); }
     private function refreshToken() { return $this->sendAPISuccess(['token' => 'new_jwt_token'], 'Token refreshed'); }
-    private function logoutUser() { return $this->sendAPISuccess([], 'Logout successful'); }
+    private function logoutUser() { return $this->sendAPISuccess([], 'Sair successful'); }
     private function getCurrentUser() { return $this->sendAPISuccess(['user' => []], 'Current user loaded'); }
 }
 

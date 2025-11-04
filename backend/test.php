@@ -37,7 +37,7 @@ try {
     
     if ($admin) {
         echo "<p>✅ Admin encontrado: <strong>{$admin['name']}</strong> ({$admin['email']})</p>";
-        echo "<p>🔑 <strong>Login:</strong> admin@duralux.com</p>";
+        echo "<p>🔑 <strong>Entrar:</strong> admin@duralux.com</p>";
         echo "<p>🔐 <strong>Senha:</strong> admin123</p>";
     } else {
         echo "<p>❌ Usuário admin não encontrado</p>";
@@ -173,5 +173,5 @@ echo "<li>🔄 Implementar CRUD de clientes</li>";
 echo "<li>🔄 Implementar CRUD de produtos</li>";
 echo "</ol>";
 
-echo "<p><strong>🌐 Acesso ao sistema:</strong> <a href='../duralux-admin/index.html'>Ir para Dashboard</a></p>";
+echo "<p><strong>🌐 Acesso ao sistema:</strong> <a href='../duralux-admin/index.html'>Ir para Painel de Controle</a></p>";
 ?>

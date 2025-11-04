@@ -35,8 +35,8 @@
     <!-- Status de Autenticação -->
     <div class="section">
         <h2>🔐 Status de Autenticação</h2>
-        <button onclick="checkAuth()">Verificar Login</button>
-        <button onclick="doLogin()">Fazer Login (Admin)</button>
+        <button onclick="checkAuth()">Verificar Entrar</button>
+        <button onclick="doEntrar()">Fazer Entrar (Admin)</button>
         <div id="auth-status" class="result" style="display: none;"></div>
     </div>
     
@@ -251,7 +251,7 @@
             }
         }
         
-        async function doLogin() {
+        async function doEntrar() {
             const result = await apiCall('auth/login', 'POST', {
                 email: 'admin@duralux.com',
                 password: 'admin123'
@@ -265,7 +265,7 @@
         }
         
         async function listCustomers() {
-            const params = new URLSearchParams({
+            const params = new URLBuscarParams({
                 search: document.getElementById('search-customers').value,
                 city: document.getElementById('filter-city').value,
                 active: document.getElementById('filter-active').value,

@@ -13,7 +13,7 @@ class AuthMiddleware {
             http_response_code(401);
             echo json_encode([
                 'success' => false,
-                'message' => 'Acesso não autorizado - Login necessário',
+                'message' => 'Acesso não autorizado - Entrar necessário',
                 'redirect' => '/auth/login'
             ]);
             exit;

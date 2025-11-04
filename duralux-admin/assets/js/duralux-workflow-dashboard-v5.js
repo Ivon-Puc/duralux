@@ -1,11 +1,11 @@
 /**
- * DURALUX CRM - Workflow Automation Dashboard v5.0
+ * DURALUX CRM - Workflow Automation Painel de Controle v5.0
  * Sistema avançado de automação de processos
  * 
  * Features:
  * - Interface visual para criação de workflows
  * - Drag & Drop para actions e conditions
- * - Dashboard de monitoramento em tempo real
+ * - Painel de Controle de monitoramento em tempo real
  * - Templates pré-configurados
  * - Histórico de execuções
  * 
@@ -13,7 +13,7 @@
  * @version 5.0.0
  */
 
-class DuraluxWorkflowDashboard {
+class DuraluxWorkflowPainel de Controle {
     constructor(options = {}) {
         this.options = {
             apiBase: '/duralux/backend/api/router.php',
@@ -116,16 +116,16 @@ class DuraluxWorkflowDashboard {
      * Inicializar dashboard
      */
     async init() {
-        console.log('🚀 Inicializando Duralux Workflow Dashboard v5.0...');
+        console.log('🚀 Inicializando Duralux Workflow Painel de Controle v5.0...');
         
         try {
             this.setupEventListeners();
             this.initializeWorkflowBuilder();
-            await this.loadDashboardData();
+            await this.loadPainel de ControleData();
             this.initializeCharts();
             this.startAutoUpdate();
             
-            console.log('✅ Workflow Dashboard inicializado com sucesso!');
+            console.log('✅ Workflow Painel de Controle inicializado com sucesso!');
         } catch (error) {
             console.error('❌ Erro ao inicializar dashboard:', error);
             this.showNotification('Erro ao carregar dashboard de workflows', 'error');
@@ -142,7 +142,7 @@ class DuraluxWorkflowDashboard {
         });
         
         document.getElementById('refreshDataBtn')?.addEventListener('click', () => {
-            this.loadDashboardData();
+            this.loadPainel de ControleData();
         });
         
         document.getElementById('saveWorkflowBtn')?.addEventListener('click', () => {
@@ -162,11 +162,11 @@ class DuraluxWorkflowDashboard {
         });
         
         // Filtros
-        document.getElementById('workflowFilter')?.addEventListener('change', (e) => {
+        document.getElementById('workflowFiltrar')?.addEventListener('change', (e) => {
             this.filterWorkflows(e.target.value);
         });
         
-        document.getElementById('executionFilter')?.addEventListener('change', (e) => {
+        document.getElementById('executionFiltrar')?.addEventListener('change', (e) => {
             this.filterExecutions(e.target.value);
         });
     }
@@ -174,7 +174,7 @@ class DuraluxWorkflowDashboard {
     /**
      * Carregar dados do dashboard
      */
-    async loadDashboardData() {
+    async loadPainel de ControleData() {
         try {
             this.showLoading(true);
             
@@ -197,7 +197,7 @@ class DuraluxWorkflowDashboard {
             this.executions = executions.data || [];
             
             // Renderizar componentes
-            this.renderDashboardStats(dashboardData.data);
+            this.renderPainel de ControleStats(dashboardData.data);
             this.renderWorkflowsList();
             this.renderExecutionsList();
             this.renderTemplatesList();
@@ -214,7 +214,7 @@ class DuraluxWorkflowDashboard {
     /**
      * Renderizar estatísticas do dashboard
      */
-    renderDashboardStats(data) {
+    renderPainel de ControleStats(data) {
         if (!data || !data.stats) return;
         
         const stats = data.stats;
@@ -466,7 +466,7 @@ class DuraluxWorkflowDashboard {
             if (result.success) {
                 this.showNotification('Workflow salvo com sucesso!', 'success');
                 bootstrap.Modal.getInstance(document.getElementById('workflowModal')).hide();
-                await this.loadDashboardData();
+                await this.loadPainel de ControleData();
             } else {
                 throw new Error(result.error || 'Erro ao salvar workflow');
             }
@@ -490,7 +490,7 @@ class DuraluxWorkflowDashboard {
             
             if (result.success) {
                 this.showNotification('Workflow executado com sucesso!', 'success');
-                await this.loadDashboardData();
+                await this.loadPainel de ControleData();
             } else {
                 throw new Error(result.error || 'Erro ao executar workflow');
             }
@@ -517,7 +517,7 @@ class DuraluxWorkflowDashboard {
             if (result.success) {
                 const statusText = newStatus ? 'ativado' : 'desativado';
                 this.showNotification(`Workflow ${statusText} com sucesso!`, 'success');
-                await this.loadDashboardData();
+                await this.loadPainel de ControleData();
             } else {
                 throw new Error(result.error || 'Erro ao alterar status');
             }
@@ -541,7 +541,7 @@ class DuraluxWorkflowDashboard {
             
             if (result.success) {
                 this.showNotification('Workflow deletado com sucesso!', 'success');
-                await this.loadDashboardData();
+                await this.loadPainel de ControleData();
             } else {
                 throw new Error(result.error || 'Erro ao deletar workflow');
             }
@@ -710,7 +710,7 @@ class DuraluxWorkflowDashboard {
     startAutoUpdate() {
         if (this.options.enableRealTime) {
             this.updateTimer = setInterval(() => {
-                this.loadDashboardData();
+                this.loadPainel de ControleData();
             }, this.options.updateInterval);
         }
     }
@@ -815,9 +815,9 @@ class DuraluxWorkflowDashboard {
 // Inicialização automática
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('workflow-dashboard')) {
-        window.dashboard = new DuraluxWorkflowDashboard();
+        window.dashboard = new DuraluxWorkflowPainel de Controle();
     }
 });
 
-// Exportar para uso global
-window.DuraluxWorkflowDashboard = DuraluxWorkflowDashboard;
+// Exportararar para uso global
+window.DuraluxWorkflowPainel de Controle = DuraluxWorkflowPainel de Controle;

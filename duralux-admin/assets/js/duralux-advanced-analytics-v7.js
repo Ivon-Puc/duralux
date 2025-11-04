@@ -1,5 +1,5 @@
 /**
- * DURALUX CRM - Advanced Analytics Dashboard v7.0
+ * DURALUX CRM - Advanced Analytics Painel de Controle v7.0
  * Sistema de análises avançadas com gráficos interativos
  * 
  * @author Duralux Development Team
@@ -30,11 +30,11 @@ class DuraluxAdvancedAnalytics {
             console.log('🚀 Inicializando Duralux Advanced Analytics v7.0');
             
             this.setupEventListeners();
-            await this.loadDashboard();
+            await this.loadPainel de Controle();
             this.startRealTimeUpdates();
             this.setupChartResizing();
             
-            console.log('✅ Analytics Dashboard inicializado com sucesso');
+            console.log('✅ Analytics Painel de Controle inicializado com sucesso');
         } catch (error) {
             console.error('❌ Erro na inicialização:', error);
             this.showError('Erro ao inicializar dashboard de análises');
@@ -48,17 +48,17 @@ class DuraluxAdvancedAnalytics {
         // Filtros de data
         const dateRangePicker = document.getElementById('analyticsDateRange');
         if (dateRangePicker) {
-            dateRangePicker.addEventListener('change', () => this.updateDashboard());
+            dateRangePicker.addEventListener('change', () => this.updatePainel de Controle());
         }
         
         // Botão de atualização manual
         const refreshBtn = document.getElementById('btnRefreshAnalytics');
         if (refreshBtn) {
-            refreshBtn.addEventListener('click', () => this.loadDashboard(true));
+            refreshBtn.addEventListener('click', () => this.loadPainel de Controle(true));
         }
         
-        // Exportar relatórios
-        const exportBtn = document.getElementById('btnExportReport');
+        // Exportararar relatórios
+        const exportBtn = document.getElementById('btnExportararReport');
         if (exportBtn) {
             exportBtn.addEventListener('click', () => this.exportReport());
         }
@@ -79,7 +79,7 @@ class DuraluxAdvancedAnalytics {
     /**
      * Carrega dashboard principal
      */
-    async loadDashboard(forceRefresh = false) {
+    async loadPainel de Controle(forceRefresh = false) {
         try {
             this.showLoading(true);
             
@@ -138,7 +138,7 @@ class DuraluxAdvancedAnalytics {
                 target: 15
             },
             {
-                id: 'monthlyRevenue',
+                id: 'monthlyReceita',
                 value: data.revenue?.total_revenue || 0,
                 format: 'currency',
                 trend: data.trends?.revenue_trend || 0,
@@ -206,7 +206,7 @@ class DuraluxAdvancedAnalytics {
     async updateCharts(data) {
         await Promise.all([
             this.updateLeadsChart(data.leads),
-            this.updateRevenueChart(data.revenue),
+            this.updateReceitaChart(data.revenue),
             this.updateProjectsChart(data.projects),
             this.updateConversionFunnelChart(data.leads),
             this.updatePerformanceChart(data.performance)
@@ -282,7 +282,7 @@ class DuraluxAdvancedAnalytics {
     /**
      * Gráfico de receita por mês
      */
-    async updateRevenueChart(revenueData) {
+    async updateReceitaChart(revenueData) {
         const ctx = document.getElementById('revenueChart');
         if (!ctx) return;
         
@@ -555,7 +555,7 @@ class DuraluxAdvancedAnalytics {
     }
     
     /**
-     * Exporta relatório para PDF
+     * Exportarara relatório para PDF
      */
     async exportReport(reportId = null) {
         try {
@@ -725,7 +725,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Export para uso em módulos
+// Exportarar para uso em módulos
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = DuraluxAdvancedAnalytics;
 }

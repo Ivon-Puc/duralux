@@ -44,8 +44,8 @@
     <!-- Status de Autenticação -->
     <div class="section">
         <h2>🔐 Status de Autenticação</h2>
-        <button onclick="checkAuth()">Verificar Login</button>
-        <button onclick="doLogin()">Fazer Login (Admin)</button>
+        <button onclick="checkAuth()">Verificar Entrar</button>
+        <button onclick="doEntrar()">Fazer Entrar (Admin)</button>
         <div id="auth-status" class="result" style="display: none;"></div>
     </div>
     
@@ -287,7 +287,7 @@
             }
         }
         
-        async function doLogin() {
+        async function doEntrar() {
             const result = await apiCall('auth/login', 'POST', {
                 email: 'admin@duralux.com',
                 password: 'admin123'
@@ -301,7 +301,7 @@
         }
         
         async function listProducts() {
-            const params = new URLSearchParams({
+            const params = new URLBuscarParams({
                 search: document.getElementById('search-products').value,
                 category: document.getElementById('filter-category').value,
                 active: document.getElementById('filter-active').value,
@@ -322,14 +322,14 @@
                     displayProductStats(result.data.data.statistics);
                 }
                 if (result.data.data.categories) {
-                    updateCategoriesFilter(result.data.data.categories);
+                    updateCategoriesFiltrar(result.data.data.categories);
                 }
             } else {
                 showResult('products-list', result, true);
             }
         }
         
-        function updateCategoriesFilter(categories) {
+        function updateCategoriesFiltrar(categories) {
             const select = document.getElementById('filter-category');
             const currentValue = select.value;
             

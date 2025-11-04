@@ -1,10 +1,10 @@
 <?php
 /**
- * DURALUX CRM - Performance Dashboard Controller v4.0
+ * DURALUX CRM - Performance Painel de Controle Controller v4.0
  * Controller especializado para dashboard de performance e monitoramento
  * 
  * Features:
- * - Dashboard em tempo real
+ * - Painel de Controle em tempo real
  * - Métricas detalhadas de performance
  * - Alertas e notificações
  * - Análise de tendências
@@ -19,7 +19,7 @@ require_once 'PerformanceMonitor.php';
 require_once 'RedisCacheManager.php';
 require_once 'AssetOptimizer.php';
 
-class PerformanceDashboardController {
+class PerformancePainel de ControleController {
     
     private $monitor;
     private $cache;
@@ -39,7 +39,7 @@ class PerformanceDashboardController {
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
         } catch (Exception $e) {
-            error_log("Performance Dashboard DB connection failed: " . $e->getMessage());
+            error_log("Performance Painel de Controle DB connection failed: " . $e->getMessage());
         }
     }
     
@@ -53,7 +53,7 @@ class PerformanceDashboardController {
         try {
             switch ($action) {
                 case 'get_performance_dashboard':
-                    $this->jsonResponse($this->getDashboardData());
+                    $this->jsonResponse($this->getPainel de ControleData());
                     break;
                     
                 case 'get_performance_overview':
@@ -113,7 +113,7 @@ class PerformanceDashboardController {
     /**
      * Obter dados completos do dashboard de performance
      */
-    public function getDashboardData() {
+    public function getPainel de ControleData() {
         $data = [
             'overview' => $this->getPerformanceOverview(),
             'realtime' => $this->monitor->getRealTimeStats(),

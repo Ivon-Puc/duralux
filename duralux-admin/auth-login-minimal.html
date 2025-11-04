@@ -10,7 +10,7 @@
     <meta name="author" content="theme_ocean">
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Duralux || Login Minimalista</title>
+    <title>Duralux || Entrar Minimalista</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -198,12 +198,12 @@
                         <h2 class="fs-20 fw-bolder mb-4">Entrar</h2>
                         <h4 class="fs-13 fw-bold mb-2">Entre na sua conta</h4>
                         <p class="fs-12 fw-medium text-muted">Obrigado por voltar às aplicações web <strong>Duralux</strong>, vamos acessar nossas melhores recomendações para você.</p>
-                        <form action="index.html" class="w-100 mt-4 pt-2">
+                        <form id="loginForm" class="w-100 mt-4 pt-2">
                             <div class="mb-4">
-                                <input type="email" class="form-control" placeholder="E-mail ou Nome de Usuário" value="wrapcode.info@gmail.com" required>
+                                <input type="email" id="email" class="form-control" placeholder="E-mail ou Nome de Usuário" value="wrapcode.info@gmail.com" required>
                             </div>
                             <div class="mb-3">
-                                <input type="password" class="form-control" placeholder="Senha" value="123456" required>
+                                <input type="password" id="password" class="form-control" placeholder="Senha" value="123456" required>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
@@ -217,7 +217,7 @@
                                 </div>
                             </div>
                             <div class="mt-5">
-                                <button type="submit" class="btn btn-lg btn-primary w-100">Entrar</button>
+                                <button type="submit" class="btn btn-lg btn-primary w-100">ENTRAR</button>
                             </div>
                         </form>
                         <div class="w-100 mt-5 text-center mx-auto">
@@ -257,7 +257,7 @@
         </div>
         <div class="customizer-sidebar-wrapper">
             <div class="customizer-sidebar-header px-4 ht-80 border-bottom d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Theme Settings</h5>
+                <h5 class="mb-0">Theme Configurações</h5>
                 <a href="javascript:void(0);" class="cutomizer-close-trigger d-flex">
                     <i class="feather-x"></i>
                 </a>
@@ -758,6 +758,40 @@
         // Inicializar quando o DOM estiver pronto
         document.addEventListener('DOMContentLoaded', function() {
             window.notificationCenter = new NotificationCenter();
+            
+            // Configurar formulário de login
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                console.log('✅ Formulário de login encontrado!');
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Evita o comportamento padrão do formulário
+                    console.log('🔄 Formulário submetido!');
+                    
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    
+                    console.log('📧 Email:', email);
+                    console.log('🔑 Password:', password ? 'Preenchido' : 'Vazio');
+                    
+                    // Validação simples (pode ser expandida)
+                    if (email && password) {
+                        // Simular login bem-sucedido
+                        console.log('✅ Entrar realizado:', email);
+                        alert('Entrar realizado! Redirecionando...');
+                        
+                        // Aguardar um pouco e redirecionar
+                        setTimeout(() => {
+                            console.log('🚀 Redirecionando para página intermediária');
+                            window.location.href = 'redirect-success.html';
+                        }, 500);
+                    } else {
+                        console.log('❌ Campos não preenchidos');
+                        alert('Por favor, preencha todos os campos');
+                    }
+                });
+            } else {
+                console.log('❌ Formulário de login NÃO encontrado!');
+            }
         });
         </script>
 </body>

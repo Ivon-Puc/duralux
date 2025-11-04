@@ -1,14 +1,14 @@
 /**
- * DURALUX CRM - Performance Dashboard JavaScript v4.0
+ * DURALUX CRM - Performance Painel de Controle JavaScript v4.0
  * Sistema avançado de monitoramento de performance em tempo real
  * 
  * Features:
- * - Dashboard em tempo real com WebSockets
+ * - Painel de Controle em tempo real com WebSockets
  * - Gráficos interativos de performance
  * - Alertas visuais e notificações
  * - Análise de tendências
  * - Controles de otimização
- * - Exportação de relatórios
+ * - Exportararação de relatórios
  * 
  * Dependencies: Chart.js, Socket.IO (opcional)
  * 
@@ -16,7 +16,7 @@
  * @version 4.0.0
  */
 
-class DuraluxPerformanceDashboard {
+class DuraluxPerformancePainel de Controle {
     constructor(options = {}) {
         this.options = {
             container: '#performance-dashboard',
@@ -24,7 +24,7 @@ class DuraluxPerformanceDashboard {
             enableWebSocket: false,
             apiEndpoint: '/backend/api/router.php',
             enableAlerts: true,
-            enableExport: true,
+            enableExportarar: true,
             theme: 'light',
             ...options
         };
@@ -43,9 +43,9 @@ class DuraluxPerformanceDashboard {
      * Inicializar dashboard
      */
     init() {
-        console.log('🚀 Inicializando Duralux Performance Dashboard v4.0');
+        console.log('🚀 Inicializando Duralux Performance Painel de Controle v4.0');
         
-        this.createDashboardStructure();
+        this.createPainel de ControleStructure();
         this.initializeCharts();
         this.setupEventListeners();
         this.loadInitialData();
@@ -60,7 +60,7 @@ class DuraluxPerformanceDashboard {
     /**
      * Criar estrutura HTML do dashboard
      */
-    createDashboardStructure() {
+    createPainel de ControleStructure() {
         const container = document.querySelector(this.options.container);
         if (!container) {
             console.error('Container do dashboard não encontrado');
@@ -85,7 +85,7 @@ class DuraluxPerformanceDashboard {
                                     <i class="fas fa-rocket"></i> Otimizar
                                 </button>
                                 <button class="btn btn-info" id="exportBtn">
-                                    <i class="fas fa-download"></i> Exportar
+                                    <i class="fas fa-download"></i> Exportararar
                                 </button>
                             </div>
                         </div>
@@ -465,8 +465,8 @@ class DuraluxPerformanceDashboard {
     async loadInitialData() {
         try {
             this.showLoading();
-            const data = await this.fetchDashboardData();
-            this.updateDashboard(data);
+            const data = await this.fetchPainel de ControleData();
+            this.updatePainel de Controle(data);
             console.log('✅ Dados iniciais carregados');
         } catch (error) {
             console.error('❌ Erro ao carregar dados iniciais:', error);
@@ -479,7 +479,7 @@ class DuraluxPerformanceDashboard {
     /**
      * Buscar dados do dashboard
      */
-    async fetchDashboardData() {
+    async fetchPainel de ControleData() {
         const response = await fetch(`${this.options.apiEndpoint}?action=get_performance_dashboard`, {
             method: 'GET',
             headers: {
@@ -497,7 +497,7 @@ class DuraluxPerformanceDashboard {
     /**
      * Atualizar dashboard com novos dados
      */
-    updateDashboard(data) {
+    updatePainel de Controle(data) {
         if (!data || data.error) {
             console.error('Dados inválidos recebidos:', data);
             return;
@@ -521,7 +521,7 @@ class DuraluxPerformanceDashboard {
         // Atualizar recursos do sistema
         this.updateSystemResources(data.resources || {});
         
-        console.log('📈 Dashboard atualizado:', this.lastUpdateTime);
+        console.log('📈 Painel de Controle atualizado:', this.lastUpdateTime);
     }
     
     /**
@@ -728,8 +728,8 @@ class DuraluxPerformanceDashboard {
         this.isUpdating = true;
         
         try {
-            const data = await this.fetchDashboardData();
-            this.updateDashboard(data);
+            const data = await this.fetchPainel de ControleData();
+            this.updatePainel de Controle(data);
         } catch (error) {
             console.error('❌ Erro ao atualizar dados:', error);
         } finally {
@@ -856,7 +856,7 @@ class DuraluxPerformanceDashboard {
     }
     
     /**
-     * Exportar relatório
+     * Exportararar relatório
      */
     exportReport() {
         if (!this.currentData) {
@@ -867,7 +867,7 @@ class DuraluxPerformanceDashboard {
         const report = {
             timestamp: new Date().toISOString(),
             performance_data: this.currentData,
-            generated_by: 'Duralux Performance Dashboard v4.0'
+            generated_by: 'Duralux Performance Painel de Controle v4.0'
         };
         
         const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
@@ -954,7 +954,7 @@ class DuraluxPerformanceDashboard {
 // Inicializar dashboard quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart !== 'undefined') {
-        window.dashboard = new DuraluxPerformanceDashboard({
+        window.dashboard = new DuraluxPerformancePainel de Controle({
             container: '#performance-dashboard-container',
             updateInterval: 30000,
             enableAlerts: true

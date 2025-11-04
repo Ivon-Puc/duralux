@@ -483,7 +483,7 @@
                 <div class="chart-container">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5><i class="fas fa-lightbulb text-warning"></i> Recomendações de Otimização</h5>
-                        <button class="btn btn-sm btn-outline-primary" onclick="dashboard.refreshRecommendations()">
+                        <button class="btn btn-sm btn-outline-primary" onclick="painel de controle.refreshRecommendations()">
                             <i class="fas fa-refresh"></i> Atualizar
                         </button>
                     </div>
@@ -584,8 +584,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Performance Dashboard Script -->
-    <script src="assets/js/duralux-performance-dashboard-v4.js"></script>
+    <!-- Performance Painel de Controle Script -->
+    <script src="assets/js/duralux-performance-painel de controle-v4.js"></script>
 
     <!-- Initialization Script -->
     <script>
@@ -602,20 +602,20 @@
                 return;
             }
             
-            // Inicializar dashboard
-            window.performanceDashboard = new DuraluxPerformanceDashboard({
+            // Inicializar painel de controle
+            window.performancePainel de Controle = new DuraluxPerformancePainel de Controle({
                 container: '.container-fluid',
                 updateInterval: 30000, // 30 segundos
                 enableWebSocket: false,
                 enableAlerts: true,
-                enableExport: true,
+                enableExportar: true,
                 apiEndpoint: '../backend/api/router.php'
             });
             
             // Event listeners adicionais
             document.getElementById('clearCacheBtn').addEventListener('click', function() {
                 if (confirm('Deseja limpar o cache do sistema?')) {
-                    performanceDashboard.executeRecommendation('clear_cache');
+                    performancePainel de Controle.executeRecommendation('clear_cache');
                 }
             });
             
@@ -626,11 +626,11 @@
                     this.classList.add('active');
                     
                     const period = this.dataset.period + ' days';
-                    performanceDashboard.updateTrendsPeriod(period);
+                    performancePainel de Controle.updateTrendsPeriod(period);
                 });
             });
             
-            console.log('✅ Performance Dashboard iniciado com sucesso');
+            console.log('✅ Performance Painel de Controle iniciado com sucesso');
         });
         
         // Função para mostrar toast

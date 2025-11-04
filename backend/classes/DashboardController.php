@@ -1,21 +1,21 @@
 <?php
 /**
- * DURALUX CRM - Dashboard Analytics Controller v1.5
- * Sistema Avançado de Dashboard Executivo com KPIs Dinâmicos
+ * DURALUX CRM - Painel de Controle Analytics Controller v1.5
+ * Sistema Avançado de Painel de Controle Executivo com KPIs Dinâmicos
  * 
  * Features Avançadas v1.5:
  * - KPIs em tempo real com comparação temporal
  * - Métricas de performance automatizadas
  * - Alertas inteligentes baseados em thresholds
  * - Análise de tendências e previsões
- * - Dashboard personalizável por usuário
+ * - Painel de Controle personalizável por usuário
  * 
  * @author Duralux Development Team
  * @version 1.5.0
  * @updated 2025-11-04
  */
 
-class DashboardController extends BaseController {
+class Painel de ControleController extends BaseController {
     
     private $userId;
     
@@ -26,6 +26,34 @@ class DashboardController extends BaseController {
         'conversion' => ['target' => 0.15, 'warning' => 0.7, 'critical' => 0.5],
         'customers' => ['target' => 50, 'warning' => 0.8, 'critical' => 0.6]
     ];
+    
+    /**
+     * Formata valor numérico como moeda brasileira (Real)
+     */
+    private function formatCurrencyBRL($value) {
+        if (!is_numeric($value)) {
+            return 'R$ 0,00';
+        }
+        
+        return 'R$ ' . number_format($value, 2, ',', '.');
+    }
+    
+    /**
+     * Formata array de dados monetários aplicando formatação BRL
+     */
+    private function formatMoneyData($data, $fields = []) {
+        if (empty($fields)) {
+            return $data;
+        }
+        
+        foreach ($fields as $field) {
+            if (isset($data[$field])) {
+                $data[$field . '_formatted'] = $this->formatCurrencyBRL($data[$field]);
+            }
+        }
+        
+        return $data;
+    }
     
     /**
      * Processa requisições do dashboard
@@ -46,7 +74,7 @@ class DashboardController extends BaseController {
         switch ($action) {
             // ===== NOVAS FUNCIONALIDADES v1.5 =====
             case 'get_executive_dashboard':
-                $this->getExecutiveDashboard();
+                $this->getExecutivePainel de Controle();
                 break;
 
             case 'get_advanced_kpis':
@@ -74,21 +102,21 @@ class DashboardController extends BaseController {
                 break;
 
             case 'get_dashboard_settings':
-                $this->getDashboardSettings();
+                $this->getPainel de ControleConfigurações();
                 break;
 
             case 'save_dashboard_settings':
-                $this->saveDashboardSettings();
+                $this->savePainel de ControleConfigurações();
                 break;
 
             // ===== FUNCIONALIDADES EXISTENTES =====
             case 'get_dashboard_stats':
-                $this->getDashboardStats();
+                $this->getPainel de ControleStats();
                 break;
 
             case 'get_revenue_data':
                 $period = $data['period'] ?? 'month';
-                $this->getRevenueData($period);
+                $this->getReceitaData($period);
                 break;
 
             case 'get_leads_analytics':
@@ -138,7 +166,7 @@ class DashboardController extends BaseController {
     /**
      * Obtém estatísticas específicas para cards do dashboard
      */
-    public function getDashboardStats() {
+    public function getPainel de ControleStats() {
         try {
             // Estatísticas de clientes
             $customersStmt = $this->db->query("SELECT COUNT(*) as total FROM customers");
@@ -191,6 +219,9 @@ class DashboardController extends BaseController {
                 'revenue_month' => rand(50000, 150000),
                 'revenue_growth' => rand(-10, 25) // Crescimento percentual
             ];
+            
+            // Aplicar formatação em Real brasileiro para valores monetários
+            $stats = $this->formatMoneyData($stats, ['pending_amount', 'conversion_value', 'revenue_month']);
 
             $this->logActivity('dashboard_viewed', ['stats_loaded' => true]);
             
@@ -205,7 +236,7 @@ class DashboardController extends BaseController {
     /**
      * Obtém dados detalhados de receita
      */
-    public function getRevenueData($period = 'month') {
+    public function getReceitaData($period = 'month') {
         try {
             // Obtém dados reais de clientes para basear a receita
             $customersStmt = $this->db->query("
@@ -218,19 +249,22 @@ class DashboardController extends BaseController {
             $customerData = $customersStmt->fetch(PDO::FETCH_ASSOC);
             
             // Calcula receita baseada em clientes reais
-            $baseRevenue = $customerData['total_customers'] * rand(800, 1500);
+            $baseReceita = $customerData['total_customers'] * rand(800, 1500);
             $monthlyGrowth = $customerData['new_customers_month'] * rand(1000, 2000);
             
             $revenueData = [
-                'awaiting' => round($baseRevenue * 0.25),
-                'completed' => round($baseRevenue * 0.65),
-                'rejected' => round($baseRevenue * 0.1),
-                'revenue' => $baseRevenue + $monthlyGrowth,
+                'awaiting' => round($baseReceita * 0.25),
+                'completed' => round($baseReceita * 0.65),
+                'rejected' => round($baseReceita * 0.1),
+                'revenue' => $baseReceita + $monthlyGrowth,
                 'chart_data' => []
             ];
+            
+            // Aplicar formatação em Real brasileiro
+            $revenueData = $this->formatMoneyData($revenueData, ['awaiting', 'completed', 'rejected', 'revenue']);
 
             // Gera dados para o gráfico baseados em crescimento real
-            $monthlyBase = round($baseRevenue / 12);
+            $monthlyBase = round($baseReceita / 12);
             for ($i = 11; $i >= 0; $i--) {
                 $date = date('Y-m', strtotime("-$i months"));
                 $variance = rand(-20, 30) / 100; // Variação de -20% a +30%
@@ -382,9 +416,9 @@ class DashboardController extends BaseController {
             'product_created' => 'Novo produto adicionado',
             'product_updated' => 'Produto atualizado',
             'product_deleted' => 'Produto removido',
-            'dashboard_viewed' => 'Dashboard acessado',
-            'user_login' => 'Login realizado',
-            'user_logout' => 'Logout realizado'
+            'dashboard_viewed' => 'Painel de Controle acessado',
+            'user_login' => 'Entrar realizado',
+            'user_logout' => 'Sair realizado'
         ];
 
         return $titles[$action] ?? 'Atividade do sistema';
@@ -423,9 +457,9 @@ class DashboardController extends BaseController {
     // ==========================================
 
     /**
-     * Dashboard executivo completo com KPIs avançados
+     * Painel de Controle executivo completo com KPIs avançados
      */
-    public function getExecutiveDashboard() {
+    public function getExecutivePainel de Controle() {
         try {
             $period = $_GET['period'] ?? '30';
             $comparison = $_GET['comparison'] ?? 'previous';
@@ -441,7 +475,7 @@ class DashboardController extends BaseController {
                 'generated_at' => date('Y-m-d H:i:s')
             ];
             
-            $this->successResponse($dashboard, "Dashboard executivo carregado com sucesso");
+            $this->successResponse($dashboard, "Painel de Controle executivo carregado com sucesso");
             
         } catch (Exception $e) {
             $this->errorResponse('Erro ao carregar dashboard executivo: ' . $e->getMessage());
@@ -511,7 +545,7 @@ class DashboardController extends BaseController {
     /**
      * Configurações personalizadas do dashboard
      */
-    public function getDashboardSettings() {
+    public function getPainel de ControleConfigurações() {
         try {
             $db = $this->getConnection();
             $stmt = $db->prepare("
@@ -525,7 +559,7 @@ class DashboardController extends BaseController {
             if ($settings) {
                 $this->successResponse(json_decode($settings, true), "Configurações carregadas");
             } else {
-                $defaultSettings = [
+                $defaultConfigurações = [
                     'layout' => 'executive',
                     'refresh_interval' => 30000,
                     'visible_kpis' => ['revenue', 'leads', 'conversion', 'customers'],
@@ -540,7 +574,7 @@ class DashboardController extends BaseController {
                     ],
                     'theme' => 'light'
                 ];
-                $this->successResponse($defaultSettings, "Configurações padrão");
+                $this->successResponse($defaultConfigurações, "Configurações padrão");
             }
         } catch (Exception $e) {
             $this->errorResponse('Erro ao carregar configurações: ' . $e->getMessage());
@@ -550,7 +584,7 @@ class DashboardController extends BaseController {
     /**
      * Salvar configurações personalizadas
      */
-    public function saveDashboardSettings() {
+    public function savePainel de ControleConfigurações() {
         try {
             $settings = json_decode(file_get_contents('php://input'), true);
             
@@ -591,7 +625,7 @@ class DashboardController extends BaseController {
         $kpis = [];
 
         // KPI: Receita Total com análise
-        $revenueData = $this->calculateAdvancedRevenue($startDate, $currentDate, $comparisonStart, $comparisonEnd, $db);
+        $revenueData = $this->calculateAdvancedReceita($startDate, $currentDate, $comparisonStart, $comparisonEnd, $db);
         $kpis['revenue'] = [
             'name' => 'Receita Total',
             'current' => $revenueData['current'],
@@ -656,7 +690,7 @@ class DashboardController extends BaseController {
     /**
      * Calcular receita com análises avançadas
      */
-    private function calculateAdvancedRevenue($startDate, $endDate, $comparisonStart, $comparisonEnd, $db) {
+    private function calculateAdvancedReceita($startDate, $endDate, $comparisonStart, $comparisonEnd, $db) {
         // Receita atual
         $stmt = $db->prepare("
             SELECT COALESCE(SUM(total_amount), 0) as revenue
@@ -783,7 +817,7 @@ class DashboardController extends BaseController {
             
             switch ($kpiKey) {
                 case 'revenue':
-                    $value = $this->calculateRevenuePeriod($start, $end, $db);
+                    $value = $this->calculateReceitaPeriod($start, $end, $db);
                     break;
                 case 'leads':
                     $value = $this->calculateLeadsPeriod($start, $end, $db);
@@ -888,7 +922,7 @@ class DashboardController extends BaseController {
         $db = $this->getConnection();
         
         return [
-            'revenue_trend' => $this->getRevenueTrendAnalysis($period, $db),
+            'revenue_trend' => $this->getReceitaTrendAnalysis($period, $db),
             'conversion_trend' => $this->getConversionTrendAnalysis($period, $db),
             'seasonal_patterns' => $this->getSeasonalPatterns($db),
             'growth_velocity' => $this->getGrowthVelocity($period, $db)
@@ -902,9 +936,9 @@ class DashboardController extends BaseController {
         $db = $this->getConnection();
         
         return [
-            'revenue_forecast' => $this->forecastRevenue($period, $db),
+            'revenue_forecast' => $this->forecastReceita($period, $db),
             'leads_forecast' => $this->forecastLeads($period, $db),
-            'monthly_targets' => $this->getMonthlyTargets(),
+            'monthly_targets' => $this->getMensalTargets(),
             'scenario_analysis' => $this->getScenarioAnalysis($db)
         ];
     }
@@ -916,7 +950,7 @@ class DashboardController extends BaseController {
         $db = $this->getConnection();
         
         return [
-            'revenue_timeline' => $this->getRevenueTimeline($period, $db),
+            'revenue_timeline' => $this->getReceitaTimeline($period, $db),
             'conversion_funnel' => $this->getConversionFunnelData($period, $db),
             'performance_radar' => $this->getPerformanceRadar($db),
             'trend_comparison' => $this->getTrendComparison($period, $db)
@@ -931,15 +965,15 @@ class DashboardController extends BaseController {
         
         return [
             'active_users' => $this->getActiveUsersCount($db),
-            'today_revenue' => $this->getTodayRevenue($db),
-            'pending_tasks' => $this->getPendingTasksCount($db),
+            'today_revenue' => $this->getTodayReceita($db),
+            'pending_tasks' => $this->getPendenteTasksCount($db),
             'system_health' => $this->getSystemHealth($db),
             'last_updated' => date('Y-m-d H:i:s')
         ];
     }
 
     // Métodos auxiliares simplificados (implementação básica)
-    private function calculateRevenuePeriod($start, $end, $db) {
+    private function calculateReceitaPeriod($start, $end, $db) {
         $stmt = $db->prepare("SELECT COALESCE(SUM(total_amount), 0) FROM orders WHERE status = 'completed' AND created_at BETWEEN ? AND ?");
         $stmt->execute([$start, $end]);
         return (float) $stmt->fetchColumn();
@@ -965,21 +999,21 @@ class DashboardController extends BaseController {
     }
 
     // Implementações básicas para métodos auxiliares
-    private function getRevenueTrendAnalysis($period, $db) { return []; }
+    private function getReceitaTrendAnalysis($period, $db) { return []; }
     private function getConversionTrendAnalysis($period, $db) { return []; }
     private function getSeasonalPatterns($db) { return []; }
     private function getGrowthVelocity($period, $db) { return []; }
-    private function forecastRevenue($period, $db) { return []; }
+    private function forecastReceita($period, $db) { return []; }
     private function forecastLeads($period, $db) { return []; }
-    private function getMonthlyTargets() { return []; }
+    private function getMensalTargets() { return []; }
     private function getScenarioAnalysis($db) { return []; }
-    private function getRevenueTimeline($period, $db) { return []; }
+    private function getReceitaTimeline($period, $db) { return []; }
     private function getConversionFunnelData($period, $db) { return []; }
     private function getPerformanceRadar($db) { return []; }
     private function getTrendComparison($period, $db) { return []; }
     private function getActiveUsersCount($db) { return 1; }
-    private function getTodayRevenue($db) { return 0; }
-    private function getPendingTasksCount($db) { return 0; }
+    private function getTodayReceita($db) { return 0; }
+    private function getPendenteTasksCount($db) { return 0; }
     private function getSystemHealth($db) { return ['status' => 'healthy']; }
     private function getPerformanceMetricsData($period) { return []; }
 }

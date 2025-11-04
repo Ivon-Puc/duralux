@@ -463,7 +463,7 @@ class AIAssistantAPI {
             // Estatísticas do sistema
             $stats = [
                 'conversations_today' => $this->getConversationsToday(),
-                'insights_pending' => $this->getPendingInsights(),
+                'insights_pending' => $this->getPendenteInsights(),
                 'predictions_accuracy' => $this->getPredictionsAccuracy(),
                 'system_health' => 'operational'
             ];
@@ -472,7 +472,7 @@ class AIAssistantAPI {
             $models = [
                 ['name' => 'Lead Scoring', 'status' => 'active', 'accuracy' => 85],
                 ['name' => 'Churn Prediction', 'status' => 'active', 'accuracy' => 78],
-                ['name' => 'Revenue Forecast', 'status' => 'active', 'accuracy' => 82],
+                ['name' => 'Receita Forecast', 'status' => 'active', 'accuracy' => 82],
                 ['name' => 'Sentiment Analysis', 'status' => 'active', 'accuracy' => 91]
             ];
             
@@ -501,7 +501,7 @@ class AIAssistantAPI {
         }
     }
     
-    private function getPendingInsights() {
+    private function getPendenteInsights() {
         try {
             $stmt = $this->db->prepare("SELECT COUNT(*) FROM ai_insights WHERE status = 'new'");
             $stmt->execute();

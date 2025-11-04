@@ -171,16 +171,16 @@
             </div>
         </div>
 
-        <!-- Dashboard Reports Tests -->
+        <!-- Painel de Controle Reports Tests -->
         <div class="test-section">
-            <h3><i class="bi bi-speedometer2 me-2"></i>Testes Dashboard Reports</h3>
+            <h3><i class="bi bi-speedometer2 me-2"></i>Testes Painel de Controle Reports</h3>
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-success btn-test" onclick="testDashboardReport()">
-                        Dashboard Report
+                    <button class="btn btn-success btn-test" onclick="testPainel de ControleReport()">
+                        Painel de Controle Report
                     </button>
-                    <button class="btn btn-success btn-test" onclick="testDashboardMetrics()">
-                        Dashboard Métricas
+                    <button class="btn btn-success btn-test" onclick="testPainel de ControleMetrics()">
+                        Painel de Controle Métricas
                     </button>
                 </div>
                 <div class="col-md-6">
@@ -192,18 +192,18 @@
             <div id="dashboardResults" class="test-results mt-3"></div>
         </div>
 
-        <!-- Sales Reports Tests -->
+        <!-- Vendas Reports Tests -->
         <div class="test-section">
-            <h3><i class="bi bi-graph-up-arrow me-2"></i>Testes Sales Reports</h3>
+            <h3><i class="bi bi-graph-up-arrow me-2"></i>Testes Vendas Reports</h3>
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-info btn-test" onclick="testSalesReport()">
-                        Sales Report
+                    <button class="btn btn-info btn-test" onclick="testVendasReport()">
+                        Vendas Report
                     </button>
-                    <button class="btn btn-info btn-test" onclick="testSalesByPeriod()">
+                    <button class="btn btn-info btn-test" onclick="testVendasByPeriod()">
                         Vendas por Período
                     </button>
-                    <button class="btn btn-info btn-test" onclick="testSalesByProduct()">
+                    <button class="btn btn-info btn-test" onclick="testVendasByProduct()">
                         Vendas por Produto
                     </button>
                 </div>
@@ -303,19 +303,19 @@
             <div id="financialResults" class="test-results mt-3"></div>
         </div>
 
-        <!-- Export Tests -->
+        <!-- Exportarar Tests -->
         <div class="test-section">
-            <h3><i class="bi bi-download me-2"></i>Testes Export Functions</h3>
+            <h3><i class="bi bi-download me-2"></i>Testes Exportarar Functions</h3>
             <div class="row">
                 <div class="col-md-6">
-                    <button class="btn btn-danger btn-test" onclick="testExportPDF()">
-                        Export PDF
+                    <button class="btn btn-danger btn-test" onclick="testExportararPDF()">
+                        Exportarar PDF
                     </button>
-                    <button class="btn btn-success btn-test" onclick="testExportExcel()">
-                        Export Excel
+                    <button class="btn btn-success btn-test" onclick="testExportararExcel()">
+                        Exportarar Excel
                     </button>
-                    <button class="btn btn-info btn-test" onclick="testExportCSV()">
-                        Export CSV
+                    <button class="btn btn-info btn-test" onclick="testExportararCSV()">
+                        Exportarar CSV
                     </button>
                 </div>
                 <div class="col-md-6">
@@ -454,33 +454,33 @@
             }
         }
 
-        // Dashboard Tests
-        async function testDashboardReport() {
+        // Painel de Controle Tests
+        async function testPainel de ControleReport() {
             const endpoint = '/reports/dashboard?period=month&start_date=2024-01-01&end_date=2024-12-31';
             const result = await apiRequest('GET', endpoint);
-            addTestResult('dashboardResults', 'Dashboard Report', result.success, result.data, endpoint);
+            addTestResult('dashboardResults', 'Painel de Controle Report', result.success, result.data, endpoint);
         }
 
-        async function testDashboardMetrics() {
+        async function testPainel de ControleMetrics() {
             const endpoint = '/reports/dashboard?metrics_only=true';
             const result = await apiRequest('GET', endpoint);
-            addTestResult('dashboardResults', 'Dashboard Métricas', result.success, result.data, endpoint);
+            addTestResult('dashboardResults', 'Painel de Controle Métricas', result.success, result.data, endpoint);
         }
 
-        // Sales Tests
-        async function testSalesReport() {
+        // Vendas Tests
+        async function testVendasReport() {
             const endpoint = '/reports/sales?period=month&format=json';
             const result = await apiRequest('GET', endpoint);
-            addTestResult('salesResults', 'Sales Report', result.success, result.data, endpoint);
+            addTestResult('salesResults', 'Vendas Report', result.success, result.data, endpoint);
         }
 
-        async function testSalesByPeriod() {
+        async function testVendasByPeriod() {
             const endpoint = '/reports/sales?analysis_type=period&period=week';
             const result = await apiRequest('GET', endpoint);
             addTestResult('salesResults', 'Vendas por Período', result.success, result.data, endpoint);
         }
 
-        async function testSalesByProduct() {
+        async function testVendasByProduct() {
             const endpoint = '/reports/sales?analysis_type=product&limit=10';
             const result = await apiRequest('GET', endpoint);
             addTestResult('salesResults', 'Vendas por Produto', result.success, result.data, endpoint);
@@ -544,23 +544,23 @@
             addTestResult('financialResults', 'Fluxo de Caixa', result.success, result.data, endpoint);
         }
 
-        // Export Tests
-        async function testExportPDF() {
+        // Exportarar Tests
+        async function testExportararPDF() {
             const data = { report_type: 'dashboard', format: 'pdf', filters: { period: 'month' } };
             const result = await apiRequest('POST', '/reports/export', data);
-            addTestResult('exportResults', 'Export PDF', result.success, result.data, 'POST /reports/export');
+            addTestResult('exportResults', 'Exportarar PDF', result.success, result.data, 'POST /reports/export');
         }
 
-        async function testExportExcel() {
+        async function testExportararExcel() {
             const data = { report_type: 'sales', format: 'excel', filters: { period: 'month' } };
             const result = await apiRequest('POST', '/reports/export', data);
-            addTestResult('exportResults', 'Export Excel', result.success, result.data, 'POST /reports/export');
+            addTestResult('exportResults', 'Exportarar Excel', result.success, result.data, 'POST /reports/export');
         }
 
-        async function testExportCSV() {
+        async function testExportararCSV() {
             const data = { report_type: 'leads', format: 'csv', filters: { period: 'month' } };
             const result = await apiRequest('POST', '/reports/export', data);
-            addTestResult('exportResults', 'Export CSV', result.success, result.data, 'POST /reports/export');
+            addTestResult('exportResults', 'Exportarar CSV', result.success, result.data, 'POST /reports/export');
         }
 
         // Chart Tests
@@ -600,14 +600,14 @@
             
             console.log('Iniciando testes completos do sistema de relatórios...');
             
-            // Dashboard Tests
-            await testDashboardReport();
-            await testDashboardMetrics();
+            // Painel de Controle Tests
+            await testPainel de ControleReport();
+            await testPainel de ControleMetrics();
             
-            // Sales Tests  
-            await testSalesReport();
-            await testSalesByPeriod();
-            await testSalesByProduct();
+            // Vendas Tests  
+            await testVendasReport();
+            await testVendasByPeriod();
+            await testVendasByProduct();
             
             // Leads Tests
             await testLeadsReport();
@@ -626,10 +626,10 @@
             await testFinancialReport();
             await testCashFlow();
             
-            // Export Tests
-            await testExportPDF();
-            await testExportExcel();
-            await testExportCSV();
+            // Exportarar Tests
+            await testExportararPDF();
+            await testExportararExcel();
+            await testExportararCSV();
             
             // Chart Tests
             await testTimeEvolutionChart();

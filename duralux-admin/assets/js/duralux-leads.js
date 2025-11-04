@@ -32,9 +32,9 @@ class DuraluxLeads {
             leadsTableBody: document.getElementById('leadsTableBody'),
             loadingOverlay: document.getElementById('loadingOverlay'),
             searchInput: document.getElementById('searchInput'),
-            statusFilter: document.getElementById('statusFilter'),
-            pipelineFilter: document.getElementById('pipelineFilter'),
-            sourceFilter: document.getElementById('sourceFilter'),
+            statusFiltrar: document.getElementById('statusFiltrar'),
+            pipelineFiltrar: document.getElementById('pipelineFiltrar'),
+            sourceFiltrar: document.getElementById('sourceFiltrar'),
             createLeadBtn: document.getElementById('createLeadBtn'),
             pagination: document.getElementById('pagination'),
             leadModal: document.getElementById('leadModal'),
@@ -83,22 +83,22 @@ class DuraluxLeads {
         }
 
         // Filtros
-        if (this.elements.statusFilter) {
-            this.elements.statusFilter.addEventListener('change', (e) => {
+        if (this.elements.statusFiltrar) {
+            this.elements.statusFiltrar.addEventListener('change', (e) => {
                 this.filters.status = e.target.value;
                 this.loadLeads();
             });
         }
 
-        if (this.elements.pipelineFilter) {
-            this.elements.pipelineFilter.addEventListener('change', (e) => {
+        if (this.elements.pipelineFiltrar) {
+            this.elements.pipelineFiltrar.addEventListener('change', (e) => {
                 this.filters.pipeline = e.target.value;
                 this.loadLeads();
             });
         }
 
-        if (this.elements.sourceFilter) {
-            this.elements.sourceFilter.addEventListener('change', (e) => {
+        if (this.elements.sourceFiltrar) {
+            this.elements.sourceFiltrar.addEventListener('change', (e) => {
                 this.filters.source = e.target.value;
                 this.loadLeads();
             });
@@ -149,7 +149,7 @@ class DuraluxLeads {
             const response = await this.makeRequest('get_leads_options');
             if (response && !response.error) {
                 this.options = response;
-                this.populateFilterOptions();
+                this.populateFiltrarOptions();
             }
         } catch (error) {
             console.error('Erro ao carregar opções:', error);
@@ -159,28 +159,28 @@ class DuraluxLeads {
     /**
      * Popular opções dos filtros
      */
-    populateFilterOptions() {
+    populateFiltrarOptions() {
         // Status
-        if (this.elements.statusFilter && this.options.status) {
-            this.elements.statusFilter.innerHTML = '<option value="">Todos os Status</option>';
+        if (this.elements.statusFiltrar && this.options.status) {
+            this.elements.statusFiltrar.innerHTML = '<option value="">Todos os Status</option>';
             Object.entries(this.options.status).forEach(([key, value]) => {
-                this.elements.statusFilter.innerHTML += `<option value="${key}">${value}</option>`;
+                this.elements.statusFiltrar.innerHTML += `<option value="${key}">${value}</option>`;
             });
         }
 
         // Pipeline
-        if (this.elements.pipelineFilter && this.options.pipeline_stages) {
-            this.elements.pipelineFilter.innerHTML = '<option value="">Todas as Etapas</option>';
+        if (this.elements.pipelineFiltrar && this.options.pipeline_stages) {
+            this.elements.pipelineFiltrar.innerHTML = '<option value="">Todas as Etapas</option>';
             Object.entries(this.options.pipeline_stages).forEach(([key, value]) => {
-                this.elements.pipelineFilter.innerHTML += `<option value="${key}">${value}</option>`;
+                this.elements.pipelineFiltrar.innerHTML += `<option value="${key}">${value}</option>`;
             });
         }
 
         // Source
-        if (this.elements.sourceFilter && this.options.sources) {
-            this.elements.sourceFilter.innerHTML = '<option value="">Todas as Fontes</option>';
+        if (this.elements.sourceFiltrar && this.options.sources) {
+            this.elements.sourceFiltrar.innerHTML = '<option value="">Todas as Fontes</option>';
             Object.entries(this.options.sources).forEach(([key, value]) => {
-                this.elements.sourceFilter.innerHTML += `<option value="${key}">${value}</option>`;
+                this.elements.sourceFiltrar.innerHTML += `<option value="${key}">${value}</option>`;
             });
         }
     }
@@ -876,5 +876,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.duraluxLeads = new DuraluxLeads();
 });
 
-// Exportar para uso global
+// Exportararar para uso global
 window.DuraluxLeads = DuraluxLeads;

@@ -235,7 +235,7 @@ abstract class BaseController {
     /**
      * Obtém estatísticas gerais do dashboard
      */
-    public function getDashboardStats() {
+    public function getPainel de ControleStats() {
         try {
             // Estatísticas de clientes
             $customersStmt = $this->db->query("SELECT COUNT(*) as total FROM customers");
@@ -288,7 +288,7 @@ abstract class BaseController {
     /**
      * Obtém dados de receita para gráficos
      */
-    public function getRevenueData($period = 'month') {
+    public function getReceitaData($period = 'month') {
         try {
             // Para demonstração, geramos dados simulados
             // Em um sistema real, estes viriam da tabela de pedidos/vendas
@@ -411,8 +411,8 @@ abstract class BaseController {
             'product_created' => 'Novo produto criado',
             'product_updated' => 'Produto atualizado',
             'product_deleted' => 'Produto removido',
-            'user_login' => 'Login realizado',
-            'user_logout' => 'Logout realizado'
+            'user_login' => 'Entrar realizado',
+            'user_logout' => 'Sair realizado'
         ];
 
         return $titles[$action] ?? ucfirst(str_replace('_', ' ', $action));

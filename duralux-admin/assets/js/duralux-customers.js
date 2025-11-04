@@ -10,7 +10,7 @@ class DuraluxCustomers {
         this.authToken = null;
         this.currentPage = 1;
         this.itemsPerPage = 10;
-        this.currentFilters = {};
+        this.currentFiltrars = {};
         
         this.init();
     }
@@ -53,16 +53,16 @@ class DuraluxCustomers {
         const searchInput = document.getElementById('customer-search');
         if (searchInput) {
             searchInput.addEventListener('input', this.debounce((e) => {
-                this.currentFilters.search = e.target.value;
+                this.currentFiltrars.search = e.target.value;
                 this.loadCustomers();
             }, 500));
         }
         
         // Filtros
-        const statusFilter = document.getElementById('status-filter');
-        if (statusFilter) {
-            statusFilter.addEventListener('change', (e) => {
-                this.currentFilters.active = e.target.value;
+        const statusFiltrar = document.getElementById('status-filter');
+        if (statusFiltrar) {
+            statusFiltrar.addEventListener('change', (e) => {
+                this.currentFiltrars.active = e.target.value;
                 this.loadCustomers();
             });
         }
@@ -82,7 +82,7 @@ class DuraluxCustomers {
         // Modal de novo cliente
         const newCustomerBtn = document.getElementById('new-customer-btn');
         if (newCustomerBtn) {
-            newCustomerBtn.addEventListener('click', () => this.showNewCustomerModal());
+            newCustomerBtn.addEventListener('click', () => this.showNovoCustomerModal());
         }
         
         // Formulário de novo cliente
@@ -111,7 +111,7 @@ class DuraluxCustomers {
             selectAll.addEventListener('change', this.handleSelectAll.bind(this));
         }
         
-        // Exportação
+        // Exportararação
         document.addEventListener('click', (e) => {
             if (e.target.matches('.btn-export')) {
                 const format = e.target.dataset.format;
@@ -127,10 +127,10 @@ class DuraluxCustomers {
         this.showLoading();
         
         try {
-            const params = new URLSearchParams({
+            const params = new URLBuscarParams({
                 page: this.currentPage,
                 limit: this.itemsPerPage,
-                ...this.currentFilters
+                ...this.currentFiltrars
             });
             
             const response = await this.apiCall(`customers?${params.toString()}`);
@@ -343,7 +343,7 @@ class DuraluxCustomers {
     /**
      * Mostra modal de novo cliente
      */
-    showNewCustomerModal() {
+    showNovoCustomerModal() {
         const modal = new bootstrap.Modal(document.getElementById('customerModal'));
         
         // Limpar formulário
@@ -450,7 +450,7 @@ class DuraluxCustomers {
             if (response.success) {
                 const customer = response.data.data;
                 this.populateCustomerForm(customer);
-                this.showNewCustomerModal();
+                this.showNovoCustomerModal();
             } else {
                 throw new Error(response.data.message || 'Erro ao carregar cliente');
             }
@@ -618,9 +618,9 @@ class DuraluxCustomers {
         try {
             this.showLoading();
             
-            const params = new URLSearchParams({
+            const params = new URLBuscarParams({
                 format: format,
-                ...this.currentFilters
+                ...this.currentFiltrars
             });
             
             if (selectedIds.length > 0) {
@@ -629,7 +629,7 @@ class DuraluxCustomers {
             
             window.open(`${this.API_BASE}customers/export?${params.toString()}`, '_blank');
             
-            this.showNotification('Exportação iniciada!', 'success');
+            this.showNotification('Exportararação iniciada!', 'success');
         } catch (error) {
             console.error('Erro ao exportar clientes:', error);
             this.showNotification('Erro ao exportar clientes', 'error');

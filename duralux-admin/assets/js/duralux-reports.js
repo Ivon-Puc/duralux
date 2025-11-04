@@ -27,7 +27,7 @@ class DuraluxReports {
     async init() {
         try {
             this.setupEventListeners();
-            await this.loadDashboardReport();
+            await this.loadPainel de ControleReport();
             this.initializeDatePickers();
         } catch (error) {
             console.error('Erro ao inicializar sistema de relatórios:', error);
@@ -37,31 +37,31 @@ class DuraluxReports {
 
     setupEventListeners() {
         // Filtros de período
-        document.getElementById('periodFilter')?.addEventListener('change', (e) => {
+        document.getElementById('periodFiltrar')?.addEventListener('change', (e) => {
             this.filters.period = e.target.value;
             this.loadCurrentReport();
         });
 
         // Filtros de data
-        document.getElementById('startDateFilter')?.addEventListener('change', (e) => {
+        document.getElementById('startDateFiltrar')?.addEventListener('change', (e) => {
             this.filters.start_date = e.target.value;
             this.loadCurrentReport();
         });
 
-        document.getElementById('endDateFilter')?.addEventListener('change', (e) => {
+        document.getElementById('endDateFiltrar')?.addEventListener('change', (e) => {
             this.filters.end_date = e.target.value;
             this.loadCurrentReport();
         });
 
         // Botões de relatórios
-        document.getElementById('dashboardReportBtn')?.addEventListener('click', () => this.loadDashboardReport());
-        document.getElementById('salesReportBtn')?.addEventListener('click', () => this.loadSalesReport());
+        document.getElementById('dashboardReportBtn')?.addEventListener('click', () => this.loadPainel de ControleReport());
+        document.getElementById('salesReportBtn')?.addEventListener('click', () => this.loadVendasReport());
         document.getElementById('leadsReportBtn')?.addEventListener('click', () => this.loadLeadsReport());
         document.getElementById('projectsReportBtn')?.addEventListener('click', () => this.loadProjectsReport());
         document.getElementById('customersReportBtn')?.addEventListener('click', () => this.loadCustomersReport());
         document.getElementById('financialReportBtn')?.addEventListener('click', () => this.loadFinancialReport());
 
-        // Exportação
+        // Exportararação
         document.getElementById('exportPdfBtn')?.addEventListener('click', () => this.exportReport('pdf'));
         document.getElementById('exportExcelBtn')?.addEventListener('click', () => this.exportReport('excel'));
         document.getElementById('exportCsvBtn')?.addEventListener('click', () => this.exportReport('csv'));
@@ -80,8 +80,8 @@ class DuraluxReports {
         const today = new Date();
         const thirtyDaysAgo = new Date(today.getTime() - (30 * 24 * 60 * 60 * 1000));
         
-        const startInput = document.getElementById('startDateFilter');
-        const endInput = document.getElementById('endDateFilter');
+        const startInput = document.getElementById('startDateFiltrar');
+        const endInput = document.getElementById('endDateFiltrar');
         
         if (startInput && !startInput.value) {
             startInput.value = thirtyDaysAgo.toISOString().split('T')[0];
@@ -94,18 +94,18 @@ class DuraluxReports {
         }
     }
 
-    async loadDashboardReport() {
+    async loadPainel de ControleReport() {
         try {
             this.showLoading(true);
             this.setActiveTab('dashboard');
             this.filters.report_type = 'dashboard';
 
-            const queryParams = new URLSearchParams(this.filters);
+            const queryParams = new URLBuscarParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/dashboard?${queryParams}`);
 
             if (response.success) {
                 this.currentReport = response.data;
-                this.renderDashboardReport(response.data);
+                this.renderPainel de ControleReport(response.data);
             } else {
                 throw new Error(response.message || 'Erro ao carregar relatório dashboard');
             }
@@ -118,18 +118,18 @@ class DuraluxReports {
         }
     }
 
-    async loadSalesReport() {
+    async loadVendasReport() {
         try {
             this.showLoading(true);
             this.setActiveTab('sales');
             this.filters.report_type = 'sales';
 
-            const queryParams = new URLSearchParams(this.filters);
+            const queryParams = new URLBuscarParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/sales?${queryParams}`);
 
             if (response.success) {
                 this.currentReport = response.data;
-                this.renderSalesReport(response.data);
+                this.renderVendasReport(response.data);
             } else {
                 throw new Error(response.message || 'Erro ao carregar relatório de vendas');
             }
@@ -148,7 +148,7 @@ class DuraluxReports {
             this.setActiveTab('leads');
             this.filters.report_type = 'leads';
 
-            const queryParams = new URLSearchParams(this.filters);
+            const queryParams = new URLBuscarParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/leads?${queryParams}`);
 
             if (response.success) {
@@ -172,7 +172,7 @@ class DuraluxReports {
             this.setActiveTab('projects');
             this.filters.report_type = 'projects';
 
-            const queryParams = new URLSearchParams(this.filters);
+            const queryParams = new URLBuscarParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/projects?${queryParams}`);
 
             if (response.success) {
@@ -196,7 +196,7 @@ class DuraluxReports {
             this.setActiveTab('customers');
             this.filters.report_type = 'customers';
 
-            const queryParams = new URLSearchParams(this.filters);
+            const queryParams = new URLBuscarParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/customers?${queryParams}`);
 
             if (response.success) {
@@ -220,7 +220,7 @@ class DuraluxReports {
             this.setActiveTab('financial');
             this.filters.report_type = 'financial';
 
-            const queryParams = new URLSearchParams(this.filters);
+            const queryParams = new URLBuscarParams(this.filters);
             const response = await this.apiRequest('GET', `/reports/financial?${queryParams}`);
 
             if (response.success) {
@@ -238,7 +238,7 @@ class DuraluxReports {
         }
     }
 
-    renderDashboardReport(data) {
+    renderPainel de ControleReport(data) {
         // Renderizar métricas principais
         this.renderGeneralMetrics(data.general_metrics);
         
@@ -260,7 +260,7 @@ class DuraluxReports {
         this.updateMetricCard('totalLeadsMetric', metrics.total_leads);
         this.updateMetricCard('totalProjectsMetric', metrics.total_projects);
         this.updateMetricCard('totalOrdersMetric', metrics.total_orders);
-        this.updateMetricCard('totalRevenueMetric', this.formatCurrency(metrics.total_revenue));
+        this.updateMetricCard('totalReceitaMetric', this.formatCurrency(metrics.total_revenue));
         this.updateMetricCard('conversionRateMetric', `${metrics.conversion_rate}%`);
         this.updateMetricCard('avgOrderValueMetric', this.formatCurrency(metrics.avg_order_value));
         this.updateMetricCard('convertedLeadsMetric', metrics.converted_leads);
@@ -362,21 +362,21 @@ class DuraluxReports {
         });
     }
 
-    renderSalesReport(data) {
+    renderVendasReport(data) {
         // Renderizar gráfico de vendas por período
-        this.renderSalesByPeriodChart(data.sales_by_period);
+        this.renderVendasByPeriodChart(data.sales_by_period);
         
         // Renderizar vendas por produto
-        this.renderSalesByProductChart(data.sales_by_product);
+        this.renderVendasByProductChart(data.sales_by_product);
         
         // Renderizar métricas de performance
-        this.renderSalesPerformanceMetrics(data.performance_metrics);
+        this.renderVendasPerformanceMetrics(data.performance_metrics);
         
         // Renderizar tabela de vendas por cliente
-        this.renderSalesByCustomerTable(data.sales_by_customer);
+        this.renderVendasByCustomerTable(data.sales_by_customer);
     }
 
-    renderSalesByPeriodChart(data) {
+    renderVendasByPeriodChart(data) {
         if (!data || data.length === 0) return;
 
         const ctx = document.getElementById('salesByPeriodChart')?.getContext('2d');
@@ -445,7 +445,7 @@ class DuraluxReports {
         });
     }
 
-    renderSalesByProductChart(data) {
+    renderVendasByProductChart(data) {
         if (!data || data.length === 0) return;
 
         const ctx = document.getElementById('salesByProductChart')?.getContext('2d');
@@ -594,10 +594,10 @@ class DuraluxReports {
     loadCurrentReport() {
         switch (this.filters.report_type) {
             case 'dashboard':
-                this.loadDashboardReport();
+                this.loadPainel de ControleReport();
                 break;
             case 'sales':
-                this.loadSalesReport();
+                this.loadVendasReport();
                 break;
             case 'leads':
                 this.loadLeadsReport();
@@ -612,7 +612,7 @@ class DuraluxReports {
                 this.loadFinancialReport();
                 break;
             default:
-                this.loadDashboardReport();
+                this.loadPainel de ControleReport();
         }
     }
 
@@ -765,8 +765,8 @@ class DuraluxReports {
     // Métodos de renderização adicionais
     renderTopPerformers(data) { /* Implementar top performers */ }
     renderDistributions(data) { /* Implementar distribuições */ }
-    renderSalesPerformanceMetrics(data) { /* Implementar métricas de performance */ }
-    renderSalesByCustomerTable(data) { /* Implementar tabela de clientes */ }
+    renderVendasPerformanceMetrics(data) { /* Implementar métricas de performance */ }
+    renderVendasByCustomerTable(data) { /* Implementar tabela de clientes */ }
     renderLeadsBySourceChart(data) { /* Implementar leads por fonte */ }
     renderConversionMetrics(data) { /* Implementar métricas de conversão */ }
     renderProjectsReport(data) { /* Implementar relatório de projetos */ }

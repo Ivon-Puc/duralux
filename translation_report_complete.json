@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-11-04T10:00:00Z",
+  "project_root": "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux",
+  "summary": {
+    "total_files_scanned": 203,
+    "files_modified": 26,
+    "success_rate": "12.8%"
+  },
+  "translations_applied": 37,
+  "modified_files": [
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\analytics-advanced.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\apps-email.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\apps-notes.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\apps-storage.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\auth-login-minimal.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\customers.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\performance-dashboard.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\projects-view.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\proposal-view.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\redirect-success.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\reports.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\settings-tags.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\system-integration.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\test-login-debug.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-advanced-analytics-v7.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-customers.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-dashboard-v15.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-dashboard.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-leads.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-performance-dashboard-v4.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-reports.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\duralux-admin\\assets\\js\\duralux-workflow-dashboard-v5.js",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\backend\\api\\test-reports.html",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\backend\\classes\\AdvancedAnalytics.php",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\backend\\classes\\DashboardController.php",
+    "C:\\Users\\ivonm\\OneDrive - sga.pucminas.br\\Github\\duralux\\duralux\\backend\\classes\\ReportsController.php"
+  ]
+}

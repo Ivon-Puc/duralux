@@ -1,9 +1,9 @@
 /**
- * Duralux Dashboard - Sistema de Dashboard Dinâmico
+ * Duralux Painel de Controle - Sistema de Painel de Controle Dinâmico
  * Carrega dados reais das APIs e atualiza o dashboard em tempo real
  */
 
-class DuraluxDashboard {
+class DuraluxPainel de Controle {
     constructor() {
         this.apiBase = '../backend/api/router.php';
         this.isAuthenticated = false;
@@ -18,12 +18,12 @@ class DuraluxDashboard {
         this.showLoading();
         
         if (await this.checkAuthentication()) {
-            await this.loadDashboardData();
+            await this.loadPainel de ControleData();
             this.setupAutoRefresh();
             this.setupEventListeners();
             this.hideLoading();
         } else {
-            this.redirectToLogin();
+            this.redirectToEntrar();
         }
     }
 
@@ -76,12 +76,12 @@ class DuraluxDashboard {
         }
     }
 
-    async loadDashboardData() {
+    async loadPainel de ControleData() {
         try {
             // Carrega todos os dados do dashboard em paralelo
             const [statsData, revenueData, leadsData, projectsData] = await Promise.all([
                 this.loadStats(),
-                this.loadRevenueData(),
+                this.loadReceitaData(),
                 this.loadLeadsData(),
                 this.loadProjectsData()
             ]);
@@ -121,7 +121,7 @@ class DuraluxDashboard {
         return await response.json();
     }
 
-    async loadRevenueData() {
+    async loadReceitaData() {
         const response = await fetch(`${this.apiBase}`, {
             method: 'POST',
             headers: {
@@ -403,7 +403,7 @@ class DuraluxDashboard {
 
     setupAutoRefresh() {
         this.intervalId = setInterval(() => {
-            this.loadDashboardData();
+            this.loadPainel de ControleData();
         }, this.refreshInterval);
     }
 
@@ -412,14 +412,14 @@ class DuraluxDashboard {
         document.addEventListener('click', (e) => {
             if (e.target.matches('[data-bs-toggle="refresh"]')) {
                 e.preventDefault();
-                this.loadDashboardData();
+                this.loadPainel de ControleData();
             }
         });
 
         // Listener para mudança de período
         document.addEventListener('change', (e) => {
             if (e.target.matches('.period-selector')) {
-                this.loadDashboardData();
+                this.loadPainel de ControleData();
             }
         });
 
@@ -461,7 +461,7 @@ class DuraluxDashboard {
         });
     }
 
-    redirectToLogin() {
+    redirectToEntrar() {
         window.location.href = 'auth-login-minimal.html';
     }
 
@@ -525,8 +525,8 @@ document.head.insertAdjacentHTML('beforeend', loadingStyles);
 
 // Inicializa o dashboard quando a página carregar
 document.addEventListener('DOMContentLoaded', () => {
-    window.duraluxDashboard = new DuraluxDashboard();
+    window.duraluxPainel de Controle = new DuraluxPainel de Controle();
 });
 
-// Exporta para uso global
-window.DuraluxDashboard = DuraluxDashboard;
+// Exportarara para uso global
+window.DuraluxPainel de Controle = DuraluxPainel de Controle;

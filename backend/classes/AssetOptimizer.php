@@ -404,13 +404,13 @@ class AssetOptimizer {
         $css = preg_replace('/\s+/', ' ', $css);
         
         // Remover espaços ao redor de caracteres especiais
-        $css = preg_replace('/\s*([{}();:,>+~])\s*/', '$1', $css);
+        $css = preg_replace('/\s*([{}();:,>+~])\s*/', 'R$ 1', $css);
         
         // Remover última vírgula/ponto e vírgula
         $css = preg_replace('/;}/', '}', $css);
         
         // Converter cores hex longas para curtas
-        $css = preg_replace('/#([a-f0-9])\1([a-f0-9])\2([a-f0-9])\3/i', '#$1$2$3', $css);
+        $css = preg_replace('/#([a-f0-9])\1([a-f0-9])\2([a-f0-9])\3/i', '#R$ 1R$ 2R$ 3', $css);
         
         return trim($css);
     }
@@ -428,7 +428,7 @@ class AssetOptimizer {
         $js = preg_replace('/\s+/', ' ', $js);
         
         // Remover espaços ao redor de operadores
-        $js = preg_replace('/\s*([=+\-*\/{}();,])\s*/', '$1', $js);
+        $js = preg_replace('/\s*([=+\-*\/{}();,])\s*/', 'R$ 1', $js);
         
         return trim($js);
     }
@@ -468,7 +468,7 @@ class AssetOptimizer {
         // Otimizações básicas de JavaScript
         
         // Converter function declarations para arrow functions onde possível
-        // $js = preg_replace('/function\s*\(\s*([^)]*)\s*\)\s*{/', '($1) => {', $js);
+        // $js = preg_replace('/function\s*\(\s*([^)]*)\s*\)\s*{/', '(R$ 1) => {', $js);
         
         // Simplificar console.log em produção
         if (strpos($js, 'console.log') !== false) {

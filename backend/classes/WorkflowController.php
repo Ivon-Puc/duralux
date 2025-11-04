@@ -65,9 +65,9 @@ class WorkflowController {
                 case 'use_template':
                     return $this->useTemplate();
                 
-                // Dashboard e estatísticas
+                // Painel de Controle e estatísticas
                 case 'get_dashboard':
-                    return $this->getDashboard();
+                    return $this->getPainel de Controle();
                 case 'get_workflow_stats':
                     return $this->getWorkflowStats();
                 
@@ -560,9 +560,9 @@ class WorkflowController {
     }
     
     /**
-     * Dashboard de workflows
+     * Painel de Controle de workflows
      */
-    private function getDashboard() {
+    private function getPainel de Controle() {
         try {
             // Estatísticas gerais
             $sql = "SELECT 
