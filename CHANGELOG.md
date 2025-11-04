@@ -8,10 +8,66 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Não Lançado]
 
 ### 🔄 Em Desenvolvimento
-- Sistema de Pedidos e Faturas
 - Relatórios Avançados com exportação PDF/Excel
 - Sistema de Notificações em tempo real
 - Configurações avançadas do sistema
+- Dashboard executivo com KPIs
+
+## [1.3.0] - 2025-01-03
+
+### 🛒 Sistema de Pedidos v1.3 - COMPLETO ✅
+
+#### 🎯 Backend Implementado
+- **OrderController.php**: CRUD completo de pedidos (700+ linhas)
+- **Sistema de Itens**: Gestão dinâmica de produtos por pedido
+- **Tabelas do Banco**: `orders` e `order_items` com integridade referencial
+- **Status Duplo**: Status do pedido (pending → completed) + Status de pagamento (unpaid → paid)
+- **Numeração Automática**: Geração única de números de pedidos (ORD + data + sequencial)
+- **Gestão de Faturas**: Sistema de geração automática de invoices
+- **Estatísticas Completas**: Métricas por status, pagamento e performance
+- **API RESTful**: 7+ endpoints para pedidos e faturas
+
+#### 💻 Frontend Implementado
+- **duralux-orders.js**: Sistema JavaScript completo (1400+ linhas)
+  - Classe DuraluxOrders com 35+ métodos profissionais
+  - CRUD completo com validações robustas
+  - Sistema de filtros avançados (busca, status, pagamento, cliente, datas)
+  - Gestão dinâmica de itens com cálculos automáticos
+  - Modais Bootstrap 5 para todas operações
+  - Formatação automática de moeda brasileira
+  - Paginação inteligente e ordenação
+
+- **orders.html**: Interface moderna e funcional
+  - Dashboard com 4 cards de estatísticas em tempo real
+  - Sistema de filtros intuitivo e responsivo
+  - Modal de criação/edição com gestão de itens dinâmica
+  - Modal de visualização com detalhes completos
+  - Tabela responsiva com ações completas
+  - Integração perfeita com JavaScript
+
+- **test-orders.html**: Suite de testes automatizada
+  - 7 testes automatizados cobrindo todas funcionalidades
+  - Validação de integração completa
+  - Interface visual com métricas de performance
+  - Criação automática de dados de teste
+
+#### 🎯 Funcionalidades Implementadas
+- ✅ Criação/edição/visualização de pedidos
+- ✅ Gestão dinâmica de itens com produtos
+- ✅ Sistema duplo de status (pedido + pagamento)
+- ✅ Filtros avançados e busca em tempo real
+- ✅ Estatísticas automáticas e dashboards
+- ✅ Geração automática de faturas
+- ✅ Validações robustas frontend/backend
+- ✅ Interface responsiva e profissional
+- ✅ Testes automatizados completos
+- ✅ Integração total com clientes e produtos
+
+#### 🔧 Melhorias de Infraestrutura
+- Router expandido com rotas completas de pedidos
+- Database atualizado com tabelas relacionais avançadas
+- Logs de atividade para auditoria total
+- Sistema de numeração único e sequencial
 
 ## [1.2.0] - 2025-01-03
 
