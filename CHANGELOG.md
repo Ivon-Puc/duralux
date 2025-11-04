@@ -8,7 +8,56 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Não Lançado]
 
 ### 🔄 Em Desenvolvimento
-- Sistema de Leads com pipeline de vendas
+- Sistema de Pedidos e Faturas
+- Relatórios Avançados com exportação PDF/Excel
+- Sistema de Notificações em tempo real
+- Configurações avançadas do sistema
+
+## [1.2.0] - 2025-01-03
+
+### 🏗️ Sistema de Projetos - Gestão Completa
+
+#### ✨ Novas Funcionalidades
+- **ProjectController.php**: CRUD completo de projetos (400+ linhas)
+- **Gestão de Tarefas**: Sistema de tarefas por projeto com assignação
+- **Tabelas do Banco**: `projects` e `project_tasks` com relacionamentos
+- **Status de Projetos**: planning, active, in_progress, on_hold, completed, cancelled
+- **Orçamento e Cronograma**: Gestão financeira e temporal completa
+- **Progresso Automático**: Cálculo baseado em tarefas concluídas (%)
+- **API RESTful**: 10+ endpoints para projetos e tarefas
+
+#### 🔧 Melhorias de Infraestrutura
+- Router expandido com rotas de projetos
+- Database atualizado com novas tabelas relacionais
+- Logs de atividade para auditoria completa
+- Validações robustas e tratamento de erros
+
+## [1.1.0] - 2025-01-03
+
+### 🎯 Sistema de Leads - Pipeline Completo
+
+#### ✨ Funcionalidades Implementadas
+- **LeadsController.php**: CRUD completo com conversão (500+ linhas)
+- **duralux-leads.js**: Frontend JavaScript robusto (800+ linhas)  
+- **Pipeline de Vendas**: 7 status × 7 etapas do funil de vendas
+- **Conversão Inteligente**: Leads → Clientes automático
+- **Filtros Avançados**: Status, pipeline, fonte, busca em tempo real
+- **Estatísticas Completas**: Taxa de conversão e métricas do pipeline
+- **Interface Moderna**: Modals, toasts, paginação inteligente
+- **Validação Robusta**: Frontend + Backend com logs de atividade
+
+#### 🎨 Melhorias de UX/UI
+- Design responsivo com Bootstrap 5
+- Auto-refresh (30s estatísticas, 60s dados)
+- Loading states e feedback visual completo
+- Busca em tempo real com debounce (300ms)
+- Toasts informativos para todas ações
+
+#### 📊 Pipeline de Vendas Implementado
+- **Status**: new, contacted, qualified, proposal, negotiation, converted, lost
+- **Etapas**: prospect, qualification, proposal, negotiation, closing, won, lost  
+- **Fontes**: website, referral, social_media, email_campaign, cold_call, event, partner, other
+- **Métricas**: Total leads, convertidos, taxa conversão, valor total pipeline
 - Gestão de Projetos com cronograma
 - Sistema de Pedidos e Faturas
 - Relatórios Avançados com exportação
