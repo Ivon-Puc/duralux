@@ -82,9 +82,11 @@ class Database {
         
         $sql_orders = "CREATE TABLE IF NOT EXISTS orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            order_number VARCHAR(50) UNIQUE NOT NULL,
             customer_id INTEGER NOT NULL,
-            total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
             status VARCHAR(20) DEFAULT 'pending',
+            payment_status VARCHAR(20) DEFAULT 'unpaid',
+            total_amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
             notes TEXT,
             user_id INTEGER,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -98,8 +100,9 @@ class Database {
             order_id INTEGER NOT NULL,
             product_id INTEGER NOT NULL,
             quantity INTEGER NOT NULL DEFAULT 1,
-            unit_price DECIMAL(10,2) NOT NULL,
+            price DECIMAL(10,2) NOT NULL,
             total DECIMAL(10,2) NOT NULL,
+            description TEXT,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
             FOREIGN KEY (product_id) REFERENCES products(id)

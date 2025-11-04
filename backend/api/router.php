@@ -65,7 +65,7 @@ if ($action) {
             $controller->handleRequest();
             break;
             
-        // Projects actions
+            // Projects actions
         case 'get_projects':
         case 'get_project':
         case 'create_project':
@@ -79,7 +79,17 @@ if ($action) {
             $controller->handleRequest();
             break;
             
-        // Auth actions
+        // Orders actions
+        case 'get_orders':
+        case 'get_order':
+        case 'create_order':
+        case 'update_order':
+        case 'delete_order':
+        case 'get_order_stats':
+        case 'generate_invoice':
+            $controller = new OrderController();
+            $controller->handleRequest();
+            break;        // Auth actions
         case 'login':
         case 'logout':
         case 'register':
@@ -146,6 +156,15 @@ class Router {
         $this->routes['GET']['/projects/customers'] = 'ProjectController@getCustomers';
         $this->routes['POST']['/projects/{id}/tasks'] = 'ProjectController@manageTasks';
         $this->routes['GET']['/projects/{id}/tasks'] = 'ProjectController@manageTasks';
+        
+        // Rotas de pedidos
+        $this->routes['GET']['/orders'] = 'OrderController@index';
+        $this->routes['GET']['/orders/{id}'] = 'OrderController@view';
+        $this->routes['POST']['/orders'] = 'OrderController@create';
+        $this->routes['PUT']['/orders/{id}'] = 'OrderController@update';
+        $this->routes['DELETE']['/orders/{id}'] = 'OrderController@delete';
+        $this->routes['GET']['/orders/statistics'] = 'OrderController@statistics';
+        $this->routes['POST']['/orders/{id}/invoice'] = 'OrderController@generateInvoice';
         
         // Rotas de dashboard
         $this->routes['GET']['/dashboard/stats'] = 'DashboardController@getDashboardStats';

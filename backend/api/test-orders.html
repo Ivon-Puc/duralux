@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Sistema de Pedidos | Duralux CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .test-result {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .test-success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .test-error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .test-warning { background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; }
+        .test-info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        .performance { font-size: 0.8em; color: #6c757d; }
+        .response-data {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-1">
+                            <i class="bi bi-clipboard-check text-primary"></i>
+                            Testes do Sistema de Pedidos
+                        </h1>
+                        <p class="text-muted mb-0">Validação completa da API de pedidos - Duralux CRM v1.3</p>
+                    </div>
+                    <div>
+                        <button onclick="runAllTests()" class="btn btn-primary">
+                            <i class="bi bi-play-fill"></i>
+                            Executar Todos os Testes
+                        </button>
+                        <a href="../orders.html" class="btn btn-success">
+                            <i class="bi bi-arrow-right"></i>
+                            Ir para Pedidos
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Status Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body text-center">
+                                <i class="bi bi-list-check fs-1"></i>
+                                <h4 id="totalTests" class="mt-2">0</h4>
+                                <p class="mb-0">Total de Testes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-success text-white">
+                            <div class="card-body text-center">
+                                <i class="bi bi-check-circle fs-1"></i>
+                                <h4 id="successTests" class="mt-2">0</h4>
+                                <p class="mb-0">Sucessos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-danger text-white">
+                            <div class="card-body text-center">
+                                <i class="bi bi-x-circle fs-1"></i>
+                                <h4 id="errorTests" class="mt-2">0</h4>
+                                <p class="mb-0">Erros</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body text-center">
+                                <i class="bi bi-speedometer2 fs-1"></i>
+                                <h4 id="avgTime" class="mt-2">0ms</h4>
+                                <p class="mb-0">Tempo Médio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Results -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-terminal"></i>
+                                    Resultados dos Testes
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="testResults">
+                                    <div class="text-center py-4">
+                                        <i class="bi bi-play-circle fs-1 text-muted"></i>
+                                        <p class="text-muted mt-2">Clique em "Executar Todos os Testes" para iniciar</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        class OrdersTestSuite {
+            constructor() {
+                this.apiUrl = '/duralux/backend/api';
+                this.tests = [];
+                this.results = [];
+                this.totalTests = 0;
+                this.successCount = 0;
+                this.errorCount = 0;
+            }
+
+            async runAllTests() {
+                this.clearResults();
+                this.addLog('🚀 Iniciando testes do Sistema de Pedidos...', 'info');
+                
+                const startTime = Date.now();
+                
+                try {
+                    // Testes de API
+                    await this.testOrderStatistics();
+                    await this.testOrdersList();
+                    await this.testOrderCreation();
+                    await this.testOrderUpdate();
+                    await this.testOrderView();
+                    await this.testInvoiceGeneration();
+                    
+                    // Teste de integração
+                    await this.testIntegration();
+                    
+                } catch (error) {
+                    this.addLog(`❌ Erro geral nos testes: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+                
+                const endTime = Date.now();
+                const totalTime = endTime - startTime;
+                const avgTime = this.totalTests > 0 ? Math.round(totalTime / this.totalTests) : 0;
+                
+                this.updateSummary(avgTime);
+                this.addLog(`\n📊 Resumo dos Testes:`, 'info');
+                this.addLog(`   Total: ${this.totalTests} | Sucessos: ${this.successCount} | Erros: ${this.errorCount}`, 'info');
+                this.addLog(`   Tempo total: ${totalTime}ms | Média: ${avgTime}ms por teste`, 'info');
+                
+                if (this.errorCount === 0) {
+                    this.addLog('🎉 Todos os testes passaram! Sistema de Pedidos funcionando perfeitamente.', 'success');
+                } else {
+                    this.addLog(`⚠️  ${this.errorCount} teste(s) falharam. Verifique os erros acima.`, 'warning');
+                }
+            }
+
+            async testOrderStatistics() {
+                const test = 'Estatísticas de Pedidos';
+                this.addLog(`🧪 Testando: ${test}...`, 'info');
+                
+                try {
+                    const startTime = Date.now();
+                    const response = await this.apiRequest('GET', '/orders/statistics');
+                    const endTime = Date.now();
+                    
+                    this.totalTests++;
+                    
+                    if (response) {
+                        this.addLog(`✅ ${test} - OK (${endTime - startTime}ms)`, 'success');
+                        this.addLog(JSON.stringify(response, null, 2), 'data');
+                        this.successCount++;
+                    } else {
+                        throw new Error('Resposta vazia ou inválida');
+                    }
+                } catch (error) {
+                    this.addLog(`❌ ${test} - ERRO: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+            }
+
+            async testOrdersList() {
+                const test = 'Listagem de Pedidos';
+                this.addLog(`🧪 Testando: ${test}...`, 'info');
+                
+                try {
+                    const startTime = Date.now();
+                    const response = await this.apiRequest('GET', '/orders?page=1&limit=10');
+                    const endTime = Date.now();
+                    
+                    this.totalTests++;
+                    
+                    if (response && response.success !== false) {
+                        this.addLog(`✅ ${test} - OK (${endTime - startTime}ms)`, 'success');
+                        this.addLog(`Encontrados: ${response.data?.length || 0} pedidos`, 'data');
+                        this.successCount++;
+                    } else {
+                        throw new Error(response?.message || 'Erro na listagem');
+                    }
+                } catch (error) {
+                    this.addLog(`❌ ${test} - ERRO: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+            }
+
+            async testOrderCreation() {
+                const test = 'Criação de Pedido';
+                this.addLog(`🧪 Testando: ${test}...`, 'info');
+                
+                try {
+                    // Primeiro, verificar se temos clientes
+                    const customersResponse = await this.apiRequest('GET', '/customers?limit=1');
+                    if (!customersResponse?.data?.length) {
+                        // Criar um cliente de teste
+                        const customerData = {
+                            name: 'Cliente Teste Pedido',
+                            email: 'teste.pedido@duralux.com',
+                            phone: '(11) 99999-9999'
+                        };
+                        await this.apiRequest('POST', '/customers', customerData);
+                        this.addLog('Cliente de teste criado', 'info');
+                    }
+
+                    // Verificar produtos
+                    const productsResponse = await this.apiRequest('GET', '/products?limit=1');
+                    if (!productsResponse?.data?.length) {
+                        // Criar um produto de teste
+                        const productData = {
+                            name: 'Produto Teste',
+                            price: 100.00,
+                            sku: 'TEST-001'
+                        };
+                        await this.apiRequest('POST', '/products', productData);
+                        this.addLog('Produto de teste criado', 'info');
+                    }
+
+                    // Recarregar dados
+                    const customers = await this.apiRequest('GET', '/customers?limit=1');
+                    const products = await this.apiRequest('GET', '/products?limit=1');
+
+                    if (!customers?.data?.length || !products?.data?.length) {
+                        throw new Error('Não foi possível criar dados de teste');
+                    }
+
+                    const orderData = {
+                        customer_id: customers.data[0].id,
+                        status: 'pending',
+                        payment_status: 'unpaid',
+                        notes: 'Pedido de teste automático',
+                        items: [
+                            {
+                                product_id: products.data[0].id,
+                                quantity: 2,
+                                price: products.data[0].price,
+                                description: 'Item de teste'
+                            }
+                        ]
+                    };
+                    
+                    const startTime = Date.now();
+                    const response = await this.apiRequest('POST', '/orders', orderData);
+                    const endTime = Date.now();
+                    
+                    this.totalTests++;
+                    
+                    if (response && response.success) {
+                        this.addLog(`✅ ${test} - OK (${endTime - startTime}ms)`, 'success');
+                        this.addLog(`Pedido criado: ${response.data?.order_number || 'N/A'}`, 'data');
+                        this.testOrderId = response.data?.id; // Salvar para próximos testes
+                        this.successCount++;
+                    } else {
+                        throw new Error(response?.message || 'Erro na criação');
+                    }
+                } catch (error) {
+                    this.addLog(`❌ ${test} - ERRO: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+            }
+
+            async testOrderUpdate() {
+                const test = 'Atualização de Pedido';
+                this.addLog(`🧪 Testando: ${test}...`, 'info');
+                
+                try {
+                    if (!this.testOrderId) {
+                        // Tentar buscar um pedido existente
+                        const ordersResponse = await this.apiRequest('GET', '/orders?limit=1');
+                        if (ordersResponse?.data?.length) {
+                            this.testOrderId = ordersResponse.data[0].id;
+                        } else {
+                            throw new Error('Nenhum pedido disponível para teste');
+                        }
+                    }
+
+                    const updateData = {
+                        status: 'confirmed',
+                        notes: 'Pedido atualizado via teste automático'
+                    };
+                    
+                    const startTime = Date.now();
+                    const response = await this.apiRequest('PUT', `/orders/${this.testOrderId}`, updateData);
+                    const endTime = Date.now();
+                    
+                    this.totalTests++;
+                    
+                    if (response && response.success) {
+                        this.addLog(`✅ ${test} - OK (${endTime - startTime}ms)`, 'success');
+                        this.addLog(`Status atualizado para: ${response.data?.status || 'N/A'}`, 'data');
+                        this.successCount++;
+                    } else {
+                        throw new Error(response?.message || 'Erro na atualização');
+                    }
+                } catch (error) {
+                    this.addLog(`❌ ${test} - ERRO: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+            }
+
+            async testOrderView() {
+                const test = 'Visualização de Pedido';
+                this.addLog(`🧪 Testando: ${test}...`, 'info');
+                
+                try {
+                    if (!this.testOrderId) {
+                        const ordersResponse = await this.apiRequest('GET', '/orders?limit=1');
+                        if (ordersResponse?.data?.length) {
+                            this.testOrderId = ordersResponse.data[0].id;
+                        } else {
+                            throw new Error('Nenhum pedido disponível para teste');
+                        }
+                    }
+                    
+                    const startTime = Date.now();
+                    const response = await this.apiRequest('GET', `/orders/${this.testOrderId}`);
+                    const endTime = Date.now();
+                    
+                    this.totalTests++;
+                    
+                    if (response && response.success && response.data) {
+                        this.addLog(`✅ ${test} - OK (${endTime - startTime}ms)`, 'success');
+                        this.addLog(`Pedido: ${response.data.order_number || 'N/A'} | Itens: ${response.data.items?.length || 0}`, 'data');
+                        this.successCount++;
+                    } else {
+                        throw new Error(response?.message || 'Erro na visualização');
+                    }
+                } catch (error) {
+                    this.addLog(`❌ ${test} - ERRO: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+            }
+
+            async testInvoiceGeneration() {
+                const test = 'Geração de Fatura';
+                this.addLog(`🧪 Testando: ${test}...`, 'info');
+                
+                try {
+                    if (!this.testOrderId) {
+                        const ordersResponse = await this.apiRequest('GET', '/orders?limit=1');
+                        if (ordersResponse?.data?.length) {
+                            this.testOrderId = ordersResponse.data[0].id;
+                        } else {
+                            throw new Error('Nenhum pedido disponível para teste');
+                        }
+                    }
+                    
+                    const startTime = Date.now();
+                    const response = await this.apiRequest('POST', `/orders/${this.testOrderId}/invoice`);
+                    const endTime = Date.now();
+                    
+                    this.totalTests++;
+                    
+                    if (response && response.success) {
+                        this.addLog(`✅ ${test} - OK (${endTime - startTime}ms)`, 'success');
+                        this.addLog(`Fatura: ${response.data?.invoice_number || 'N/A'}`, 'data');
+                        this.successCount++;
+                    } else {
+                        throw new Error(response?.message || 'Erro na geração da fatura');
+                    }
+                } catch (error) {
+                    this.addLog(`❌ ${test} - ERRO: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+            }
+
+            async testIntegration() {
+                const test = 'Teste de Integração';
+                this.addLog(`🧪 Testando: ${test}...`, 'info');
+                
+                try {
+                    const startTime = Date.now();
+                    
+                    // Testar fluxo completo: listar -> visualizar -> estatísticas
+                    const ordersResponse = await this.apiRequest('GET', '/orders?limit=5');
+                    const statsResponse = await this.apiRequest('GET', '/orders/statistics');
+                    
+                    let integrationOk = true;
+                    let details = [];
+
+                    // Validar estrutura dos dados
+                    if (ordersResponse && ordersResponse.data) {
+                        details.push(`✓ Listagem retornou ${ordersResponse.data.length} pedidos`);
+                    } else {
+                        integrationOk = false;
+                        details.push('✗ Erro na listagem de pedidos');
+                    }
+
+                    if (statsResponse && statsResponse.data) {
+                        details.push('✓ Estatísticas carregadas com sucesso');
+                    } else {
+                        integrationOk = false;
+                        details.push('✗ Erro nas estatísticas');
+                    }
+                    
+                    const endTime = Date.now();
+                    this.totalTests++;
+                    
+                    if (integrationOk) {
+                        this.addLog(`✅ ${test} - OK (${endTime - startTime}ms)`, 'success');
+                        this.addLog(details.join('\n'), 'data');
+                        this.successCount++;
+                    } else {
+                        throw new Error(details.filter(d => d.includes('✗')).join(', '));
+                    }
+                } catch (error) {
+                    this.addLog(`❌ ${test} - ERRO: ${error.message}`, 'error');
+                    this.errorCount++;
+                }
+            }
+
+            async apiRequest(method, endpoint, data = null) {
+                const url = this.apiUrl + endpoint;
+                const options = {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                };
+
+                if (data && (method === 'POST' || method === 'PUT')) {
+                    options.body = JSON.stringify(data);
+                }
+
+                const response = await fetch(url, options);
+                return await response.json();
+            }
+
+            addLog(message, type = 'info') {
+                const resultDiv = document.getElementById('testResults');
+                const logDiv = document.createElement('div');
+                
+                let className = 'test-info';
+                if (type === 'success') className = 'test-success';
+                else if (type === 'error') className = 'test-error';
+                else if (type === 'warning') className = 'test-warning';
+                else if (type === 'data') className = 'response-data';
+                
+                logDiv.className = className;
+                logDiv.innerHTML = message;
+                
+                resultDiv.appendChild(logDiv);
+                resultDiv.scrollTop = resultDiv.scrollHeight;
+            }
+
+            clearResults() {
+                document.getElementById('testResults').innerHTML = '';
+                this.results = [];
+                this.totalTests = 0;
+                this.successCount = 0;
+                this.errorCount = 0;
+                this.testOrderId = null;
+            }
+
+            updateSummary(avgTime) {
+                document.getElementById('totalTests').textContent = this.totalTests;
+                document.getElementById('successTests').textContent = this.successCount;
+                document.getElementById('errorTests').textContent = this.errorCount;
+                document.getElementById('avgTime').textContent = avgTime + 'ms';
+            }
+        }
+
+        const testSuite = new OrdersTestSuite();
+
+        function runAllTests() {
+            testSuite.runAllTests();
+        }
+
+        // Auto-run tests on page load if requested
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('autorun') === 'true') {
+                setTimeout(runAllTests, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
