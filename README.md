@@ -741,7 +741,7 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 ### 🌟 **Se este projeto foi útil, considere dar uma estrela!** ⭐
 
-**Desenvolvido com ❤️ por [Ivon Martins](https://github.com/Ivon-Puc)**
+**Desenvolvido com ❤️ por [Ivon Matos](https://github.com/Ivon-Puc)**
 
 **© 2025 Duralux CRM - Todos os direitos reservados**
 
