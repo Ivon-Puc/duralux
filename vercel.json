@@ -2,38 +2,41 @@
   "version": 2,
   "buildCommand": "echo 'No build step needed'",
   "outputDirectory": "./",
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/duralux-admin/(.*)",
-      "dest": "/duralux-admin/$1"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
-      "dest": "/$1"
-    }
-  ],
   "functions": {
     "api/*.php": {
       "runtime": "vercel-php@0.6.0"
     }
   },
+  "rewrites": [
+    {
+      "source": "/dashboard",
+      "destination": "/duralux-admin/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/duralux-admin/index.html"
+    }
+  ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400"
         }
       ]
+    },
+    {
+      "source": "/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
