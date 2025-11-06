@@ -133,7 +133,7 @@
             margin-bottom: 25px;
         }
 
-        .chart-Título {
+        .chart-title {
             font-size: 1.25rem;
             font-weight: 700;
             color: #2c3e50;
@@ -145,7 +145,7 @@
             gap: 10px;
         }
 
-        .real-Hora-indicator {
+        .real-time-indicator {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -153,7 +153,7 @@
             color: #28a745;
         }
 
-        .real-Hora-dot {
+        .real-time-dot {
             width: 8px;
             height: 8px;
             background: #28a745;
@@ -274,7 +274,7 @@
                 font-size: 2rem;
             }
             
-            .chart-Título {
+            .chart-title {
                 font-size: 1.1rem;
             }
         }
@@ -604,7 +604,7 @@
                 daily: [45, 52, 48, 61, 55, 67, 74, 69, 83, 78, 85, 92, 88, 95, 102, 97, 104, 112, 108, 118, 125, 122, 135, 142, 138, 145, 152, 148, 156, 163],
                 labels: Array.from({length: 30}, (_, i) => {
                     const date = new Date();
-                    Date.setDate(Date.getDate() - (29 - i));
+                    date.setDate(date.getDate() - (29 - i));
                     return date.toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit'});
                 })
             },
@@ -638,10 +638,10 @@
             new Chart(leadsCtx, {
                 type: 'line',
                 data: {
-                    labels: analyticsDate.Leads.labels,
+                    labels: analyticsData.Leads.labels,
                     datasets: [{
                         label: 'Leads Diários',
-                        data: analyticsDate.Leads.daily,
+                        data: analyticsData.Leads.daily,
                         borderColor: '#667eea',
                         backgroundColor: 'rgba(102, 126, 234, 0.1)',
                         borderWidth: 3,
@@ -670,10 +670,10 @@
             new Chart(projectsCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: analyticsDate.Projetos.labels,
+                    labels: analyticsData.Projetos.labels,
                     datasets: [{
-                        data: analyticsDate.Projetos.data,
-                        backgroundColor: analyticsDate.Projetos.colors,
+                        data: analyticsData.Projetos.data,
+                        backgroundColor: analyticsData.Projetos.colors,
                         borderWidth: 3,
                         borderColor: '#ffffff'
                     }]
@@ -692,17 +692,17 @@
             new Chart(revenueCtx, {
                 type: 'bar',
                 data: {
-                    labels: analyticsDate.Receita.labels,
+                    labels: analyticsData.Receita.labels,
                     datasets: [
                         {
                             label: 'Receita Atual',
-                            data: analyticsDate.Receita.atual,
+                            data: analyticsData.Receita.atual,
                             backgroundColor: '#28a745',
                             borderRadius: 8
                         },
                         {
                             label: 'Meta',
-                            data: analyticsDate.Receita.meta,
+                            data: analyticsData.Receita.meta,
                             backgroundColor: '#ffc107',
                             borderRadius: 8
                         }
@@ -732,10 +732,10 @@
             new Chart(funnelCtx, {
                 type: 'bar',
                 data: {
-                    labels: analyticsDate.funnel.labels,
+                    labels: analyticsData.funnel.labels,
                     datasets: [{
-                        data: analyticsDate.funnel.data,
-                        backgroundColor: analyticsDate.funnel.colors,
+                        data: analyticsData.funnel.data,
+                        backgroundColor: analyticsData.funnel.colors,
                         borderRadius: 6
                     }]
                 },
@@ -757,25 +757,25 @@
             new Chart(perfCtx, {
                 type: 'line',
                 data: {
-                    labels: analyticsDate.performance.labels,
+                    labels: analyticsData.performance.labels,
                     datasets: [
                         {
                             label: 'CPU (%)',
-                            data: analyticsDate.performance.cpu,
+                            data: analyticsData.performance.cpu,
                             borderColor: '#dc3545',
                             backgroundColor: 'rgba(220, 53, 69, 0.1)',
                             yAxisID: 'y'
                         },
                         {
                             label: 'Memória (%)',
-                            data: analyticsDate.performance.memory,
+                            data: analyticsData.performance.memory,
                             borderColor: '#ffc107',
                             backgroundColor: 'rgba(255, 193, 7, 0.1)',
                             yAxisID: 'y'
                         },
                         {
                             label: 'Requisições/min',
-                            data: analyticsDate.performance.requests,
+                            data: analyticsData.performance.requests,
                             borderColor: '#28a745',
                             backgroundColor: 'rgba(40, 167, 69, 0.1)',
                             yAxisID: 'y1'

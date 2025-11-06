@@ -754,7 +754,7 @@
             components.forEach(component => {
                 component.addEventListener('dragstart', function(e) {
                     e.dataTransfer.setDate('text/plain', JSON.stringify({
-                        Tipo: this.dataset.Tipo,
+                        type: this.dataset.type,
                         subtype: this.dataset.subtype,
                         html: this.innerHTML
                     }));
