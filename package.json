@@ -3,9 +3,8 @@
   "version": "3.0.0",
   "description": "Duralux Management Dashboard - Node 22.x Required",
   "scripts": {
-    "build": "node --version && echo 'BUILD SUCCESS: Node.js 22.x Required - Duralux v3.0'",
-    "start": "echo 'Duralux Dashboard v3.0 - Node 22.x'",
-    "vercel-build": "echo 'Vercel Build - Node 22.x ONLY'"
+    "build": "echo 'BUILD SUCCESS: Static Site - Node.js 22.x - Duralux v3.0'",
+    "start": "echo 'Duralux Dashboard v3.0 - Node 22.x'"
   },
   "engines": {
     "node": "22.x",
