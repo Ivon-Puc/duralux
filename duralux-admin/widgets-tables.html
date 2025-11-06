@@ -18,6 +18,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
     
     <style>
+        
+        :root {
+            --primary-color: #5550F2;
+            --secondary-color: #027368;
+            --success-color: #04BF9D;
+            --warning-color: #F2B33D;
+            --light-color: #F2F2F2;
+            --dark-color: #2C3E50;
+            --info-color: #3498DB;
+            --danger-color: #E74C3C;
+            
+            /* Gradientes modernos */
+            --primary-gradient: linear-gradient(135deg, #5550F2 0%, #027368 100%);
+            --success-gradient: linear-gradient(135deg, #04BF9D 0%, #027368 100%);
+            --warning-gradient: linear-gradient(135deg, #F2B33D 0%, #F39C12 100%);
+        }
+        
         /* Reset e melhorias base */
         * {
             box-sizing: border-box;
@@ -27,7 +44,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 0.9rem;
             line-height: 1.5;
-            background-color: #f8f9fa;
+            background-color: #F2F2F2;
         }
         
         /* Layout responsivo */
@@ -37,7 +54,7 @@
         
         /* Sidebar responsiva */
         .sidebar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
             min-height: 100vh;
             padding: 1rem;
             color: white;
@@ -59,7 +76,7 @@
         }
         
         .card-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
             color: white;
             border-radius: 0.5rem 0.5rem 0 0 !important;
             padding: 1rem;
@@ -73,7 +90,7 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
             border: none;
         }
         
@@ -84,10 +101,10 @@
         }
         
         .table th {
-            background-color: #f8f9fa;
+            background-color: #F2F2F2;
             border-top: none;
             font-weight: 600;
-            color: #495057;
+            color: #2C3E50;
         }
         
         /* Formulários modernos */
@@ -98,19 +115,19 @@
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: #667eea;
+            border-color: #5550F2;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
         
         /* Navegação */
         .nav-pills .nav-link {
             border-radius: 0.375rem;
-            color: #6c757d;
+            color: #2C3E50;
             margin-bottom: 0.25rem;
         }
         
         .nav-pills .nav-link.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
         }
         
         /* Estatísticas cards */
@@ -126,11 +143,11 @@
         .stats-number {
             font-size: 2rem;
             font-weight: 700;
-            color: #667eea;
+            color: #5550F2;
         }
         
         .stats-label {
-            color: #6c757d;
+            color: #2C3E50;
             font-size: 0.875rem;
             margin-top: 0.5rem;
         }
@@ -159,29 +176,224 @@
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #1a1d29;
-                color: #e9ecef;
+                color: #F2F2F2;
             }
             
             .card {
                 background-color: #2d3748;
-                color: #e9ecef;
+                color: #F2F2F2;
             }
             
             .form-control, .form-select {
                 background-color: #4a5568;
-                border-color: #6c757d;
-                color: #e9ecef;
+                border-color: #2C3E50;
+                color: #F2F2F2;
             }
             
             .table {
-                color: #e9ecef;
+                color: #F2F2F2;
             }
             
             .table th {
                 background-color: #374151;
             }
         }
-    </style>
+    
+        /* === DURALUX IDENTITY 2025 === */
+        
+        /* Animações suaves */
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Botões com nova identidade */
+        .btn-primary {
+            background: var(--primary-gradient) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            padding: 0.75rem 1.5rem !important;
+            box-shadow: 0 2px 4px rgba(85, 80, 242, 0.2) !important;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(85, 80, 242, 0.3) !important;
+        }
+        
+        /* Sidebar nova identidade */
+        .sidebar {
+            background: var(--primary-gradient) !important;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 8px !important;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+            overflow: hidden !important;
+        }
+        
+        .card-header {
+            background: var(--primary-gradient) !important;
+            color: white !important;
+            border: none !important;
+            padding: 1.25rem !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Tabelas aprimoradas */
+        .table th {
+            background: var(--light-color) !important;
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            border: none !important;
+            padding: 1rem !important;
+        }
+        
+        .table td {
+            padding: 1rem !important;
+            vertical-align: middle !important;
+            border-color: #E9ECEF !important;
+        }
+        
+        .table-responsive {
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+        }
+        
+        /* Estatísticas coloridas */
+        .stats-card {
+            background: white !important;
+            border-radius: 12px !important;
+            padding: 1.5rem !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+            border-left: 4px solid var(--primary-color) !important;
+        }
+        
+        .stats-number {
+            color: var(--primary-color) !important;
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+        }
+        
+        .stats-label {
+            color: var(--dark-color) !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        /* Badges com nova identidade */
+        .badge-primary {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color) !important;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        /* Formulários aprimorados */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 0.2rem rgba(85, 80, 242, 0.25) !important;
+        }
+        
+        .form-label {
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumb {
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color) !important;
+            text-decoration: none !important;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Alertas personalizados */
+        .alert {
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }
+        
+        .alert-success {
+            background-color: var(--success-color) !important;
+            color: white !important;
+        }
+        
+        .alert-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        .alert-info {
+            background-color: var(--info-color) !important;
+            color: white !important;
+        }
+        
+        /* Responsividade aprimorada */
+        @media (max-width: 768px) {
+            .sidebar {
+                border-radius: 0 0 12px 12px !important;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        /* Animações de carregamento */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Efeitos hover para cards */
+        .card:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -225,10 +437,10 @@
                     <div>
                         <h1 class="h3 mb-0">Dashboard</h1>
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
+                            <nav aria-label="breadcrumb"><ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Início</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
+                            </ol></nav>
                         </nav>
                     </div>
                     
@@ -358,7 +570,7 @@
                     <!-- [Leads] start -->
                     <div class="col-xxl-8">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Leads</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -519,7 +731,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -545,7 +757,7 @@
                     <!-- [Top Selling] start -->
                     <div class="col-xxl-4">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Top Selling</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -579,7 +791,7 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
-                                    <div class="table-responsive"><table class="table table-hover">
+                                    <div class="table-responsive"><div class="table-responsive"><table class="table table-hover">
                                         <tbody>
                                             <tr>
                                                 <td>
@@ -657,7 +869,7 @@
                                                 <td class="text-end">5 sold</td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <a href="javascript:void(0);" class="card-footer fs-11 fw-bold text-uppercase text-center">More Products</a>
@@ -667,7 +879,7 @@
                     <!-- [Remainders] start -->
                     <div class="col-xxl-8">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Remainders</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -883,7 +1095,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                                 <div class="card-footer">
                                     <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style">
@@ -909,7 +1121,7 @@
                     <!-- [Tickets] start -->
                     <div class="col-xxl-4">
                         <div class="card widget-tickets-content">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Tickets</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -1042,7 +1254,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                                 <div class="card-footer">
                                     <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style">
@@ -1068,7 +1280,7 @@
                     <!-- [Leads Status] start -->
                     <div class="col-xxl-8">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Leads Status</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -1255,7 +1467,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -1281,7 +1493,7 @@
                     <!-- [Countries] start -->
                     <div class="col-xxl-4">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Countries</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -1416,7 +1628,7 @@
                                                 <td class="fw-bold">322k</td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -1442,7 +1654,7 @@
                     <!-- [Contact Leads ] start -->
                     <div class="col-xxl-8">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Contact Leads</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -1608,7 +1820,7 @@
                                                 <td><a href="javascript:void(0);">R$ 13,85K</a></td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -1634,7 +1846,7 @@
                     <!-- [Support Inbox] start -->
                     <div class="col-xxl-4">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Support Inbox</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -1668,7 +1880,7 @@
                             </div>
                             <div class="card-body custom-card-action p-0">
                                 <div class="table-responsive">
-                                    <div class="table-responsive"><table class="table table-hover">
+                                    <div class="table-responsive"><div class="table-responsive"><table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Clients</th>
@@ -1747,7 +1959,7 @@
                                                 <td><a href="javascript:void(0);" class="btn btn-sm bg-soft-primary text-primary">6 hours ago</a></td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -1773,7 +1985,7 @@
                     <!-- [Campaign] start -->
                     <div class="col-xxl-8">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Campaign</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -1983,7 +2195,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -2009,7 +2221,7 @@
                     <!-- [Visited Pages] start -->
                     <div class="col-xxl-4">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Visited Pages</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -2109,7 +2321,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -2135,7 +2347,7 @@
                     <!-- [Projects Stats] start -->
                     <div class="col-xxl-6">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Projects Stats</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -2331,7 +2543,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer mt-1">
@@ -2357,7 +2569,7 @@
                     <!-- [Project Progress] start -->
                     <div class="col-xxl-6">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Project Progress</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -2562,7 +2774,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -2588,7 +2800,7 @@
                     <!-- [Project Tracker] start -->
                     <div class="col-lg-12">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Project Tracker</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -2849,7 +3061,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -2875,7 +3087,7 @@
                     <!-- [Latest Tasks] start -->
                     <div class="col-xxl-12">
                         <div class="card widget-tasks-content">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Latest Tasks</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -3173,7 +3385,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -3199,7 +3411,7 @@
                     <!-- [Invoice Summary] start -->
                     <div class="col-xxl-12">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Invoice Summary</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -3632,7 +3844,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -3658,7 +3870,7 @@
                     <!-- [Traffic Reports] start -->
                     <div class="col-lg-12">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Traffic Reports</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -3814,7 +4026,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                         </div>
@@ -3823,7 +4035,7 @@
                     <!-- [Store Overview] start -->
                     <div class="col-lg-12">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Store Overview</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -4054,7 +4266,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -4080,7 +4292,7 @@
                     <!-- [new Customers] start -->
                     <div class="col-lg-12">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">new Customers</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -4297,7 +4509,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -4323,7 +4535,7 @@
                     <!-- [Recent Orders] start -->
                     <div class="col-lg-12">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
+                            <div class="card-header" style="background: var(--primary-gradient); color: white;">
                                 <h5 class="card-title">Recent Orders</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
@@ -4581,7 +4793,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table></div>
+                                    </table></div></div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -5130,7 +5342,7 @@
                     <a href="javascript:void(0);" class="btn btn-danger" data-style="reset-all-common-style">Reset</a>
                 </div>
                 <div class="flex-fill w-50">
-                    <a href="javascript:void(0);" class="btn btn-primary">Download</a>
+                    <a href="javascript:void(0);" class="btn btn-primary" style="background: var(--primary-gradient); border: none;">Download</a>
                 </div>
             </div>
         </div>

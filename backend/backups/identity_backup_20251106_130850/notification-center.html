@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema de CRM Duralux - Gestão completa de leads, clientes e projetos" />
+    <title>Duralux CRM - Duralux CRM</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <style>
+        /* Reset e melhorias base */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background-color: #f8f9fa;
+        }
+        
+        /* Layout responsivo */
+        .container-fluid {
+            padding: 1rem;
+        }
+        
+        /* Sidebar responsiva */
+        .sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 1rem;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                min-height: auto;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0 !important;
+            padding: 1rem;
+        }
+        
+        /* Botões modernos */
+        .btn {
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        
+        /* Tabelas responsivas */
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+            border-top: none;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        /* Formulários modernos */
+        .form-control, .form-select {
+            border-radius: 0.375rem;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Navegação */
+        .nav-pills .nav-link {
+            border-radius: 0.375rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* Estatísticas cards */
+        .stats-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1rem;
+        }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stats-label {
+            color: #6c757d;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Modo escuro opcional */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1d29;
+                color: #e9ecef;
+            }
+            
+            .card {
+                background-color: #2d3748;
+                color: #e9ecef;
+            }
+            
+            .form-control, .form-select {
+                background-color: #4a5568;
+                border-color: #6c757d;
+                color: #e9ecef;
+            }
+            
+            .table {
+                color: #e9ecef;
+            }
+            
+            .table th {
+                background-color: #374151;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar responsiva -->
+            <div class="col-12 col-lg-2 sidebar">
+                <div class="d-flex flex-column">
+                    <h4 class="mb-4">
+                        <i class="bi bi-building"></i> DURALUX
+                    </h4>
+                    
+                    <nav class="nav flex-column nav-pills">
+                        <a class="nav-link " href="index.html">
+                            <i class="bi bi-speedometer2"></i> Painel de Controle
+                        </a>
+                        <a class="nav-link " href="leads.html">
+                            <i class="bi bi-person-plus"></i> Leads
+                        </a>
+                        <a class="nav-link " href="customers.html">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                        <a class="nav-link " href="projects.html">
+                            <i class="bi bi-folder"></i> Projetos
+                        </a>
+                        <a class="nav-link " href="proposal.html">
+                            <i class="bi bi-file-text"></i> Propostas
+                        </a>
+                        <a class="nav-link " href="analytics.html">
+                            <i class="bi bi-graph-up"></i> Analytics
+                        </a>
+                        <a class="nav-link " href="reports.html">
+                            <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="col-12 col-lg-10">
+                <header class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-0">Dashboard</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                            <i class="bi bi-bell"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> Usuário
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configurações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                
+                <main>
+                    
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main class="nxl-container">
+        <div class="nxl-content">
+            <!-- Cabeçalho da Página -->
+            <div class="page-header">
+                <div class="page-header-left d-flex align-items-center">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Central de Notificações v6.0</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                        <li class="breadcrumb-item">Sistema</li>
+                        <li class="breadcrumb-itin active">Notificações</li>
+                    </ul>
+                </div>
+                <div class="page-header-right ms-auto">
+                    <div class="page-header-right-items">
+                        <button class="btn btn-primary" onclick="notificationCenter.toggle()">
+                            <i class="feather-bell me-2"></i>
+                            Abrir Central
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Interativo -->
+            <div class="live-demo-section">
+                <h2 class="mb-3">🚀 Demo Interativo</h2>
+                <p class="mb-4">Teste todas as funcionalidades do sistema de notificações in tempo real!</p>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="channel-selector justify-content-center">
+                            <div class="channel-btn active" data-channel="database">
+                                📊 Banco de Dados
+                            </div>
+                            <div class="channel-btn" data-channel="email">
+                                📧 E-mail
+                            </div>
+                            <div class="channel-btn" data-channel="push">
+                                📱 Push
+                            </div>
+                            <div class="channel-btn" data-channel="sms">
+                                💬 SMS
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center flex-wrap">
+                            <button class="demo-button" onclick="sendTestNotification()">
+                                🧪 Teste Básico
+                            </button>
+                            <button class="demo-button" onclick="sendLeadNotification()">
+                                👤 new Lead
+                            </button>
+                            <button class="demo-button" onclick="sendProposalNotification()">
+                                📋 Proposta Aprovada
+                            </button>
+                            <button class="demo-button" onclick="sendProjectNotification()">
+                                ⏰ Prazo de Projeto
+                            </button>
+                            <button class="demo-button" onclick="sendSystemNotification()">
+                                🔧 Manutenção
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas in Tempo Real -->
+            <div class="stats-grid" id="notificationStats">
+                <div class="stat-card success">
+                    <div class="stat-number" id="totalNotifications">0</div>
+                    <div class="stat-label">Total de Notificações</div>
+                </div>
+                <div class="stat-card info">
+                    <div class="stat-number" id="sentNotifications">0</div>
+                    <div class="stat-label">Enviadas com Sucesso</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number" id="unreadNotifications">0</div>
+                    <div class="stat-label">Não Lidas</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-number" id="deliveryRate">0%</div>
+                    <div class="stat-label">Taxa de Entrega</div>
+                </div>
+            </div>
+
+            <!-- Recursos do Sistema -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-push text-white">
+                        📱
+                    </div>
+                    <h5>Push Notifications</h5>
+                    <p>Notificações instantâneas para dispositivos móveis via Firebase/OneSignal. Suporte a rich media e ações personalizadas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-email text-white">
+                        📧
+                    </div>
+                    <h5>Notificações por E-mail</h5>
+                    <p>Emails HTML responsivos com templates personalizáveis. Integração com provedores como SendGrid e Mailgun.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-sms text-white">
+                        💬
+                    </div>
+                    <h5>SMS Notifications</h5>
+                    <p>Mensagens de texto via Twilio e outros provedores. Ideal para alertas críticos e verificações de segurança.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-webhook text-white">
+                        🔗
+                    </div>
+                    <h5>Webhooks</h5>
+                    <p>Integração com sistemas externos via HTTP. Permite notificações para Slack, Discord, Teams e APIs customizadas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-template text-white">
+                        📄
+                    </div>
+                    <h5>Templates Inteligentes</h5>
+                    <p>Sistema de templates com variáveis dinâmicas. Criação de mensagens personalizadas com dados in tempo real.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-analytics text-white">
+                        📊
+                    </div>
+                    <h5>Analytics Avançados</h5>
+                    <p>Métricas detalhadas de entrega, leitura e engajamento. Relatórios de performance e insights de comportamento.</p>
+                </div>
+            </div>
+
+            <!-- Painel de Configurações -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">⚙️ Configurações Rápidas</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Canais Ativos</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" checked id="channelDatabase">
+                                    <label class="form-check-label" for="channelDatabase">
+                                        📊 Banco de Dados (Interno)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" checked id="channelEmail">
+                                    <label class="form-check-label" for="channelEmail">
+                                        📧 E-mail Notifications
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="channelPush">
+                                    <label class="form-check-label" for="channelPush">
+                                        📱 Push Notifications
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="channelSMS">
+                                    <label class="form-check-label" for="channelSMS">
+                                        💬 SMS Notifications
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Horário Silencioso</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="time" class="form-control" value="22:00">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="time" class="form-control" value="07:00">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">Salvar Configurações</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">🎯 Templates Disponíveis</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
+                                    <span>🔔 new Lead Recebido</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('lead_novo')">Usar</button>
+                                </div>
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
+                                    <span>✅ Proposta Aprovada</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('proposta_aprovada')">Usar</button>
+                                </div>
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
+                                    <span>⏰ Prazo de Projeto</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('projeto_prazo')">Usar</button>
+                                </div>
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
+                                    <span>🔧 Manutenção do Sistema</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('sistema_manutencao')">Usar</button>
+                                </div>
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
+                                    <span>💾 Backup Concluído</span>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('backup_sucesso')">Usar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentação Técnica -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="card-title">📚 Documentação Técnica</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>🔧 Recursos Implementados:</h6>
+                            <ul class="list-unstyled">
+                                <li>✅ Multi-canal (Database, E-mail, SMS, Push, Webhook)</li>
+                                <li>✅ Sistema de templates com variáveis</li>
+                                <li>✅ Agendamento de notificações</li>
+                                <li>✅ Filas de processamento</li>
+                                <li>✅ Analíticos e métricas</li>
+                                <li>✅ Configurações por usuário</li>
+                                <li>✅ Interface responsiva</li>
+                                <li>✅ API REST completa</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>🚀 Próximas Funcionalidades:</h6>
+                            <ul class="list-unstyled">
+                                <li>🔄 Integração com Workflows v5.0</li>
+                                <li>🤖 IA para otimização de entrega</li>
+                                <li>📱 App mobile dedicado</li>
+                                <li>🌐 Notificações web push</li>
+                                <li>📊 Painel de Controle de Analíticos avançado</li>
+                                <li>🔒 Criptografia end-to-end</li>
+                                <li>🌍 Localização multi-idioma</li>
+                                <li>⚡ Performance in alta escala</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    
+    
+    
+    
+    
+
+        <!-- Notification Center v6.0 CSS -->
+        
+        <!-- Notification Center v6.0 JavaScript -->
+        
+
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Painel de notificações -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Notificações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Novo lead cadastrado</h6>
+                        <small>5 min atrás</small>
+                    </div>
+                    <p class="mb-1">João Silva enviou uma solicitação de orçamento.</p>
+                </div>
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Projeto aprovado</h6>
+                        <small>1 hora atrás</small>
+                    </div>
+                    <p class="mb-1">Projeto "Reforma Comercial" foi aprovado pelo cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts customizados -->
+    <script>
+        // Funcionalidades modernas do sistema
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Auto-salvar formulários
+            const forms = document.querySelectorAll('form[data-auto-save]');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        const formData = new FormData(form);
+                        console.log('Auto-salvando...', Object.fromEntries(formData));
+                        // Implementar auto-save aqui
+                    });
+                });
+            });
+            
+            // Confirmar ações críticas
+            const deleteButtons = document.querySelectorAll('[data-action="delete"]');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Tem certeza que deseja excluir este item?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Responsividade da sidebar
+            function handleSidebarToggle() {
+                const sidebar = document.querySelector('.sidebar');
+                if (window.innerWidth < 992) {
+                    sidebar.classList.add('d-none', 'd-lg-block');
+                } else {
+                    sidebar.classList.remove('d-none');
+                }
+            }
+            
+            window.addEventListener('resize', handleSidebarToggle);
+            handleSidebarToggle();
+        });
+        
+        // Função para atualizar gráficos responsivos
+        function updateChartsOnResize() {
+            if (typeof Chart !== 'undefined') {
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    instance.resize();
+                });
+            }
+        }
+        
+        window.addEventListener('resize', updateChartsOnResize);
+        
+        // Performance: Lazy loading de imagens
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+    
+    
+</body>
+</html>
