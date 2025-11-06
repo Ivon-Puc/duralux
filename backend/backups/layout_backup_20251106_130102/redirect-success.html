@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionamento - Duralux</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+        .redirect-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        .Carregando {
+            margin: 20px 0;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn {
+            padding: 12px 30px;
+            margin: 10px;
+            border: Nenhum;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: Nenhum;
+            display: inline-block;
+        }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-Sucesso { background: #28a745; color: white; }
+        .btn-Aviso { background: #ffc107; color: black; }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            font-family: 'Courier Novo', monospace;
+            font-size: 14px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-card">
+        <h2>🔄 Entrar Realizado com Sucesso!</h2>
+        <p class="lead">Preparando redirecionamento para o painel de Controle...</p>
+        
+        <div class="loading">
+            <div class="spinner"></div>
+        </div>
+        
+        <div id="countdown">Redirecionando in <span id="timer">5</span> segundos...</div>
+        
+        <div class="log" id="log">
+            <strong>📋 Log de Redirecionamento:</strong><br>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <button class="btn btn-primary" onclick="redirectNow()">Ir Agora para Painel de Controle</button>
+            <a href="reports-sales.html" class="btn btn-success">Testar Relatórios</a>
+            <a href="customers.html" class="btn btn-warning">Testar Clientes</a>
+        </div>
+        
+        <div style="margin-top: 20px; font-size: 14px; color: #666;">
+            <strong>URLs de Teste:</strong><br>
+            <a href="index.html" target="_blank">Painel de Controle Principal</a> | 
+            <a href="test-painel de Controle.html" target="_blank">Painel de Controle de Teste</a> |
+            <a href="auth-login-minimal.html" target="_blank">Voltar ao Entrar</a>
+        </div>
+    </div>
+
+    <script>
+        let countdown = 5;
+        
+        function addLog(message) {
+            const log = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            log.innerHTML += `<br>${Hora}: ${message}`;
+            console.log(message);
+        }
+        
+        function updateTimer() {
+            document.getElementById('timer').textContent = countdown;
+            if (countdown <= 0) {
+                redirectNow();
+            } else {
+                countdown--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+        
+        function redirectNow() {
+            addLog('🚀 Iniciando redirecionamento...');
+            
+            // Testar se index.html está acessível
+            fetch('index.html', { method: 'HEAD' })
+                .then(response => {
+                    addLog(`📊 Status index.html: ${response.status}`);
+                    if (response.ok) {
+                        addLog('✅ index.html acessível, redirecionando...');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 500);
+                    } else {
+                        addLog('❌ Erro ao acessar index.html');
+                        addLog('🔄 Tentando painel de Controle de tthis...');
+                        window.location.href = 'test-painel de Controle.html';
+                    }
+                })
+                .catch(Erro => {
+                    addLog('❌ Erro na requisição: ' + Error.message);
+                    addLog('🔄 Redirecionamento forçado...');
+                    window.location.href = 'index.html';
+                });
+        }
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            addLog('✅ Página de redirecionamento carregada');
+            addLog('🔍 Verificando sistema...');
+            addLog('📧 Usuário logado: wrapcode.Informação@gmail.com');
+            addLog('⏰ Iniciando countdown...');
+            
+            updateTimer();
+        });
+    </script>
+</body>
+</html>
+
+
+

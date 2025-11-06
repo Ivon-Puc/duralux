@@ -1,0 +1,6245 @@
+{
+  "timestamp": "2025-11-06T12:52:31.337219",
+  "total_pages": 76,
+  "pages_needing_modernization": 76,
+  "analysis": [
+    {
+      "file": "analytics-advanced.html",
+      "path": "../duralux-admin\\analytics-advanced.html",
+      "size": 32849,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 32833,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 3,
+          "examples": [
+            "width: 1400px",
+            "width: 8px",
+            "width: 768px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 80px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 32824,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "bootstrap5",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "css_grid",
+          "count": 2
+        },
+        {
+          "pattern": "flexbox",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 26
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        },
+        {
+          "pattern": "rem_units",
+          "count": 9
+        },
+        {
+          "pattern": "css_variables",
+          "count": 5
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [],
+      "performance_issues": []
+    },
+    {
+      "file": "analytics.html",
+      "path": "../duralux-admin\\analytics.html",
+      "size": 31807,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 31791,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 5,
+          "examples": [
+            "width: 260px",
+            "width: 80px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 4,
+          "examples": [
+            "style=\"height: 4px",
+            "style=\"height: 4px",
+            "style=\"height: 4px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 31769,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "bootstrap5",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 3
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 39
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        },
+        {
+          "pattern": "rem_units",
+          "count": 8
+        },
+        {
+          "pattern": "css_variables",
+          "count": 13
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "apps-calendar.html",
+      "path": "../duralux-admin\\apps-calendar.html",
+      "size": 285795,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 285779,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 285783,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 337
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "10 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Muitos estilos inline com imagens (8)",
+        "Arquivo muito grande (285795 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "apps-chat.html",
+      "path": "../duralux-admin\\apps-chat.html",
+      "size": 434326,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 434310,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 11,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 5,
+          "examples": [
+            "style=\"height: 59px",
+            "style=\"height: 59px",
+            "style=\"height: 59px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 434224,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 11
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 523
+        },
+        {
+          "pattern": "media_queries",
+          "count": 2
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Muitas larguras fixas encontradas (11)"
+      ],
+      "accessibility_issues": [
+        "7 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (434326 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "apps-email.html",
+      "path": "../duralux-admin\\apps-email.html",
+      "size": 392814,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 392798,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 392802,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 420
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "11 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (392814 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "apps-notes.html",
+      "path": "../duralux-admin\\apps-notes.html",
+      "size": 357192,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 357176,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 25,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 357180,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 375
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "4 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (357192 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "apps-storage.html",
+      "path": "../duralux-admin\\apps-storage.html",
+      "size": 456906,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 456890,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 456894,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 437
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "3 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (456906 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "apps-tasks.html",
+      "path": "../duralux-admin\\apps-tasks.html",
+      "size": 374543,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 374527,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 374531,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 432
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "8 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (374543 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "auth-404-cover.html",
+      "path": "../duralux-admin\\auth-404-cover.html",
+      "size": 38237,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 38221,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 38225,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-404-creative.html",
+      "path": "../duralux-admin\\auth-404-creative.html",
+      "size": 38748,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 38732,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 38736,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 34
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-404-minimal.html",
+      "path": "../duralux-admin\\auth-404-minimal.html",
+      "size": 38193,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 38177,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 38181,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-login-cover.html",
+      "path": "../duralux-admin\\auth-login-cover.html",
+      "size": 40901,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 40885,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 40889,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 32
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-login-creative.html",
+      "path": "../duralux-admin\\auth-login-creative.html",
+      "size": 41916,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 41900,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 41904,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 36
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-login-minimal.html",
+      "path": "../duralux-admin\\auth-login-minimal.html",
+      "size": 42707,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 42691,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 42695,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 32
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-maintenance-cover.html",
+      "path": "../duralux-admin\\auth-maintenance-cover.html",
+      "size": 39724,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 39708,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 39712,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 31
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-maintenance-creative.html",
+      "path": "../duralux-admin\\auth-maintenance-creative.html",
+      "size": 40491,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 40475,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 40479,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 35
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-maintenance-minimal.html",
+      "path": "../duralux-admin\\auth-maintenance-minimal.html",
+      "size": 39719,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 39703,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 39707,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 31
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-register-cover.html",
+      "path": "../duralux-admin\\auth-register-cover.html",
+      "size": 41208,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 41192,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 41196,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "5 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-register-creative.html",
+      "path": "../duralux-admin\\auth-register-creative.html",
+      "size": 42209,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 42193,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 42197,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 34
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "5 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-register-minimal.html",
+      "path": "../duralux-admin\\auth-register-minimal.html",
+      "size": 41303,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 41287,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 41291,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "5 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-reset-cover.html",
+      "path": "../duralux-admin\\auth-reset-cover.html",
+      "size": 38742,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 38726,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 38730,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-reset-creative.html",
+      "path": "../duralux-admin\\auth-reset-creative.html",
+      "size": 39365,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 39349,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 39353,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 34
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-reset-minimal.html",
+      "path": "../duralux-admin\\auth-reset-minimal.html",
+      "size": 38747,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 38731,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 38735,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-resetting-cover.html",
+      "path": "../duralux-admin\\auth-resetting-cover.html",
+      "size": 38921,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 38905,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 38909,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-resetting-creative.html",
+      "path": "../duralux-admin\\auth-resetting-creative.html",
+      "size": 39573,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 39557,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 39561,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 34
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-resetting-minimal.html",
+      "path": "../duralux-admin\\auth-resetting-minimal.html",
+      "size": 38874,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 38858,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 38862,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 30
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-verify-cover.html",
+      "path": "../duralux-admin\\auth-verify-cover.html",
+      "size": 40947,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 40931,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 40935,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 31
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-verify-creative.html",
+      "path": "../duralux-admin\\auth-verify-creative.html",
+      "size": 41623,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 41607,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 41611,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 35
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "auth-verify-minimal.html",
+      "path": "../duralux-admin\\auth-verify-minimal.html",
+      "size": 40932,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 40916,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 40920,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 31
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "customers-create.html",
+      "path": "../duralux-admin\\customers-create.html",
+      "size": 516758,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 516742,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 5,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 516713,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 369
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (516758 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "customers-view.html",
+      "path": "../duralux-admin\\customers-view.html",
+      "size": 412164,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 412148,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 36,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 412152,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 441
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "3 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (412164 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "customers.html",
+      "path": "../duralux-admin\\customers.html",
+      "size": 369938,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 369922,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 7,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 3,
+          "examples": [
+            "style=\"width: 300px",
+            "style=\"min-width: 250px",
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 369926,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 359
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Muitas larguras fixas encontradas (7)",
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (369938 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "help-knowledgebase.html",
+      "path": "../duralux-admin\\help-knowledgebase.html",
+      "size": 299457,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 299423,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 299445,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 369
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (299457 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "index.html",
+      "path": "../duralux-admin\\index.html",
+      "size": 320144,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 320128,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 5,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 320123,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 334
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Muitos estilos inline com imagens (9)",
+        "Arquivo muito grande (320144 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "invoice-create.html",
+      "path": "../duralux-admin\\invoice-create.html",
+      "size": 283207,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 283191,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 20,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 283195,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 290
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "14 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (283207 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "invoice-view.html",
+      "path": "../duralux-admin\\invoice-view.html",
+      "size": 263446,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 263430,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 263434,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 267
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (263446 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "leads-create.html",
+      "path": "../duralux-admin\\leads-create.html",
+      "size": 327666,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 327650,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 327654,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 303
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (327666 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "leads-view.html",
+      "path": "../duralux-admin\\leads-view.html",
+      "size": 253885,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 253869,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 253873,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 317
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (253885 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "leads.html",
+      "path": "../duralux-admin\\leads.html",
+      "size": 330650,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 330634,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 330638,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 263
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        },
+        {
+          "pattern": "rem_units",
+          "count": 3
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (330650 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "notification-center.html",
+      "path": "../duralux-admin\\notification-center.html",
+      "size": 48458,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 48442,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 6,
+          "examples": [
+            "width: 50px",
+            "width: 300px",
+            "width: 400px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 48428,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "css_grid",
+          "count": 4
+        },
+        {
+          "pattern": "flexbox",
+          "count": 3
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 22
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        },
+        {
+          "pattern": "rem_units",
+          "count": 3
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Muitas larguras fixas encontradas (6)",
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "orders.html",
+      "path": "../duralux-admin\\orders.html",
+      "size": 47032,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 47016,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 47020,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 41
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "1 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "payment.html",
+      "path": "../duralux-admin\\payment.html",
+      "size": 319282,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 319266,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 319270,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 261
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "5 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (319282 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "performance-dashboard.html",
+      "path": "../duralux-admin\\performance-dashboard.html",
+      "size": 42186,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 42170,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 6,
+          "examples": [
+            "width: 12px",
+            "width: 120px",
+            "width: 400px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"max-height: 300px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 42161,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "bootstrap5",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 26
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        },
+        {
+          "pattern": "rem_units",
+          "count": 7
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Muitas larguras fixas encontradas (6)",
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "projects-create.html",
+      "path": "../duralux-admin\\projects-create.html",
+      "size": 363332,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 363316,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 363320,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 378
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (363332 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "projects-view.html",
+      "path": "../duralux-admin\\projects-view.html",
+      "size": 294445,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 294429,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 294433,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 366
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (294445 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "projects.html",
+      "path": "../duralux-admin\\projects.html",
+      "size": 383312,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 383296,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 383300,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 353
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (383312 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "proposal-create.html",
+      "path": "../duralux-admin\\proposal-create.html",
+      "size": 342227,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 342211,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 342215,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 358
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "21 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (342227 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "proposal-edit.html",
+      "path": "../duralux-admin\\proposal-edit.html",
+      "size": 343651,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 343635,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 343639,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 358
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "25 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (343651 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "proposal-view.html",
+      "path": "../duralux-admin\\proposal-view.html",
+      "size": 386468,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 386452,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 386456,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 484
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "8 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (386468 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "proposal.html",
+      "path": "../duralux-admin\\proposal.html",
+      "size": 346819,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 346803,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 346807,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 342
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (346819 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "redirect-success.html",
+      "path": "../duralux-admin\\redirect-success.html",
+      "size": 5550,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 5534,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 2,
+          "examples": [
+            "width: 500px",
+            "width: 40px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 5538,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "reports-leads.html",
+      "path": "../duralux-admin\\reports-leads.html",
+      "size": 331337,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 331321,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 331325,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 374
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (331337 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "reports-project.html",
+      "path": "../duralux-admin\\reports-project.html",
+      "size": 326148,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 326132,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 326136,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 378
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (326148 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "reports-sales.html",
+      "path": "../duralux-admin\\reports-sales.html",
+      "size": 308530,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 308514,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 308518,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 362
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (308530 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "reports-timesheets.html",
+      "path": "../duralux-admin\\reports-timesheets.html",
+      "size": 308505,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 308489,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 308493,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 348
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (308505 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "reports.html",
+      "path": "../duralux-admin\\reports.html",
+      "size": 42998,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 42982,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 5,
+          "examples": [
+            "width: 768px",
+            "width: 400px",
+            "width: 8px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 42986,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "bootstrap5",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "css_grid",
+          "count": 3
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 37
+        },
+        {
+          "pattern": "media_queries",
+          "count": 2
+        },
+        {
+          "pattern": "rem_units",
+          "count": 17
+        },
+        {
+          "pattern": "css_variables",
+          "count": 12
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "settings-customers.html",
+      "path": "../duralux-admin\\settings-customers.html",
+      "size": 286106,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 286090,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 286094,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (286106 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-email.html",
+      "path": "../duralux-admin\\settings-email.html",
+      "size": 283556,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 283540,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 283544,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "9 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (283556 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-finance.html",
+      "path": "../duralux-admin\\settings-finance.html",
+      "size": 294315,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 294299,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 294303,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "8 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (294315 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-gateways.html",
+      "path": "../duralux-admin\\settings-gateways.html",
+      "size": 288009,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 287993,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 287997,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "13 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (288009 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-general.html",
+      "path": "../duralux-admin\\settings-general.html",
+      "size": 282256,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 282240,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 282244,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "16 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (282256 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-leads.html",
+      "path": "../duralux-admin\\settings-leads.html",
+      "size": 281718,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 281702,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 281706,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (281718 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-localization.html",
+      "path": "../duralux-admin\\settings-localization.html",
+      "size": 321289,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 321273,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 321277,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (321289 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-miscellaneous.html",
+      "path": "../duralux-admin\\settings-miscellaneous.html",
+      "size": 289114,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 289098,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 289102,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "10 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (289114 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-recaptcha.html",
+      "path": "../duralux-admin\\settings-recaptcha.html",
+      "size": 280173,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 280157,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 280161,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "11 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (280173 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-seo.html",
+      "path": "../duralux-admin\\settings-seo.html",
+      "size": 280942,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 280926,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 280930,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "9 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (280942 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-support.html",
+      "path": "../duralux-admin\\settings-support.html",
+      "size": 290497,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 290481,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 290485,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (290497 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-tags.html",
+      "path": "../duralux-admin\\settings-tags.html",
+      "size": 299275,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 299259,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 299263,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "19 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (299275 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "settings-tasks.html",
+      "path": "../duralux-admin\\settings-tasks.html",
+      "size": 284736,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 284720,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 284724,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 335
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "6 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (284736 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "system-integration.html",
+      "path": "../duralux-admin\\system-integration.html",
+      "size": 28380,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 28364,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 5,
+          "examples": [
+            "width: 1200px",
+            "width: 400px",
+            "width: 8px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 28329,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "css_grid",
+          "count": 4
+        },
+        {
+          "pattern": "flexbox",
+          "count": 4
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 1
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        },
+        {
+          "pattern": "rem_units",
+          "count": 2
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas",
+        "Poucas classes responsivas do Bootstrap encontradas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    },
+    {
+      "file": "widgets-charts.html",
+      "path": "../duralux-admin\\widgets-charts.html",
+      "size": 365337,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 365321,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 365325,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 412
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Muitos estilos inline com imagens (9)",
+        "Arquivo muito grande (365337 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "widgets-lists.html",
+      "path": "../duralux-admin\\widgets-lists.html",
+      "size": 520810,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 520794,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 520798,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 561
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (520810 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "widgets-miscellaneous.html",
+      "path": "../duralux-admin\\widgets-miscellaneous.html",
+      "size": 353587,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 353571,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 353575,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 418
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (353587 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "widgets-statistics.html",
+      "path": "../duralux-admin\\widgets-statistics.html",
+      "size": 345394,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 345378,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 16,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 345382,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 462
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (345394 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "widgets-tables.html",
+      "path": "../duralux-admin\\widgets-tables.html",
+      "size": 604873,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 604857,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 4,
+          "examples": [
+            "width: 400px",
+            "width: 8px",
+            "width: 20px"
+          ]
+        },
+        {
+          "pattern": "inline_styles",
+          "count": 1,
+          "examples": [
+            "style=\"height: 5px"
+          ]
+        },
+        {
+          "pattern": "old_css_classes",
+          "count": 12,
+          "examples": [
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 ",
+            "class=\"col-sm-4 "
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 604861,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 472
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)",
+        "Otimizar performance (reduzir inline styles/scripts)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "2 inputs podem estar sem labels",
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": [
+        "Arquivo muito grande (604873 bytes) - considere dividir"
+      ]
+    },
+    {
+      "file": "workflow-dashboard.html",
+      "path": "../duralux-admin\\workflow-dashboard.html",
+      "size": 45700,
+      "needs_modernization": true,
+      "modernization_score": 0,
+      "old_patterns_found": [
+        {
+          "pattern": "no_responsive_meta",
+          "count": 45684,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "pattern": "fixed_width_layout",
+          "count": 5,
+          "examples": [
+            "width: 900px",
+            "width: 400px",
+            "width: 8px"
+          ]
+        },
+        {
+          "pattern": "no_flexbox",
+          "count": 45688,
+          "examples": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ],
+      "modern_patterns_found": [
+        {
+          "pattern": "bootstrap5",
+          "count": 2
+        },
+        {
+          "pattern": "responsive_meta",
+          "count": 1
+        },
+        {
+          "pattern": "flexbox",
+          "count": 1
+        },
+        {
+          "pattern": "responsive_classes",
+          "count": 34
+        },
+        {
+          "pattern": "media_queries",
+          "count": 1
+        },
+        {
+          "pattern": "rem_units",
+          "count": 12
+        }
+      ],
+      "issues": [],
+      "recommendations": [
+        "🔴 CRÍTICO: Requer modernização completa do layout",
+        "Adicionar meta viewport tag",
+        "Substituir larguras fixas por responsivas",
+        "Implementar design responsivo completo",
+        "Melhorar acessibilidade (alt, labels, headings)"
+      ],
+      "responsiveness_issues": [
+        "Poucos ou nenhum media query para diferentes telas"
+      ],
+      "accessibility_issues": [
+        "Hierarquia de headings pode estar incorreta (não começa com h1)"
+      ],
+      "performance_issues": []
+    }
+  ]
+}

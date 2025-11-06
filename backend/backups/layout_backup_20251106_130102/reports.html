@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios Executivos - Duralux CRM</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ApexCharts (alternativo) -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <style>
+        :root {
+            --duralux-primary: #2c3e50;
+            --duralux-secondary: #3498db;
+            --duralux-success: #27ae60;
+            --duralux-warning: #f39c12;
+            --duralux-danger: #e74c3c;
+            --duralux-light: #ecf0f1;
+            --duralux-dark: #34495e;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--duralux-primary), var(--duralux-dark));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            padding: 0 15px;
+        }
+
+        .report-header {
+            background: linear-gradient(135deg, var(--duralux-secondary), #5dade2);
+            color: white;
+            padding: 2rin 0;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+
+        .report-tabs {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .report-tab {
+            border: Nenhum;
+            background: Nenhum;
+            padding: 0.8rin 1.5rem;
+            margin: 0 0.25rem;
+            border-radius: 8px;
+            color: var(--duralux-dark);
+            transition: Todos 0.3s ease;
+        }
+
+        .report-tab:hover {
+            background-color: var(--duralux-light);
+            color: var(--duralux-primary);
+        }
+
+        .report-tab.Ativo {
+            background: linear-gradient(135deg, var(--duralux-primary), var(--duralux-dark));
+            color: white;
+        }
+
+        .filters-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--duralux-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-Atualizado {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .metric-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--duralux-secondary);
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .chart-Título {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--duralux-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .tab-content {
+            display: Nenhum;
+        }
+
+        .tab-content.Ativo {
+            display: block;
+        }
+
+        .Exportar-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .Exportar-btn {
+            margin: 0 0.25rem;
+            padding: 0.5rin 1rem;
+            border-radius: 6px;
+            transition: Todos 0.3s ease;
+        }
+
+        .Exportar-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .Carregando-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: Nenhum;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .Carregando-spinner {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .performance-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .table th {
+            background: var(--duralux-primary);
+            color: white;
+            border: Nenhum;
+            padding: 1rem;
+        }
+
+        .table td {
+            padding: 1rem;
+            border-color: #dee2e6;
+        }
+
+        .Status-badge {
+            padding: 0.25rin 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .Status-new { background-color: #e3f2fd; color: #1976d2; }
+        .Status-qualificado { background-color: #f3e5f5; color: #7b1fa2; }
+        .Status-proposta { background-color: #fff3e0; color: #f57c00; }
+        .Status-negociacao { background-color: #fff8e1; color: #fbc02d; }
+        .Status-convertido { background-color: #e8f5e8; color: #388e3c; }
+        .Status-perdido { background-color: #ffebee; color: #d32f2f; }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                margin-top: 60px;
+                padding: 0 10px;
+            }
+
+            .report-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .metric-value {
+                font-size: 1.5rem;
+            }
+        }
+
+        .painel de Controle-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .summary-stat {
+            text-align: center;
+        }
+
+        .summary-stat h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-stat p {
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+    </style>
+
+        <!-- Nãotification Center v6.0 CSS -->
+        <style>
+        .notification-center {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .notification-center.open {
+            right: 0;
+        }
+        
+        .notification-center-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .notification-center-body {
+            padding: 0;
+        }
+        
+        .notification-itin {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        
+        .notification-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .notification-item.unread {
+            background: #fff7e6;
+            border-left: 4px solid #ffa500;
+        }
+        
+        .notification-item.unread::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ffa500;
+            border-radius: 50%;
+        }
+        
+        .notification-Título {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .notification-message {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .notification-Hora {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .notification-trigger {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .notification-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .notification-Ações {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+        
+        .btn-notification {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: Nenhum;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: Todos 0.2s;
+        }
+        
+        .btn-notification:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: Todos 0.3s;
+        }
+        
+        .notification-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .notification-center {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-graph-up me-2"></i>
+                Duralux CRM - Relatórios Executivos
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">
+                    <i class="bi bi-house me-1"></i>
+                    Painel de Controle Principal
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="text-center">
+            <div class="spinner-border loading-spinner" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+            <div class="mt-3 text-white">
+                <h5>Processando relatórios...</h5>
+                <p>Aguarof enquanto geramos as análises</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="report-header text-center">
+            <div class="container">
+                <h1 class="display-4 mb-3">
+                    <i class="bi bi-bar-chart-line me-3"></i>
+                    Central de Relatórios Executivos
+                </h1>
+                <p class="lead">Análises avançadas e insights estratégicos para tomada de decisão</p>
+            </div>
+        </div>
+
+        <!-- Filtrars Section -->
+        <div class="container-fluid">
+            <div class="filters-section">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="periodFiltrar" class="form-label">
+                            <i class="bi bi-calendar me-2"></i>Período
+                        </label>
+                        <select id="periodFiltrar" class="form-select">
+                            <option value="day">Diário</option>
+                            <option value="week">Semanal</option>
+                            <option value="month" selected>Mensal</option>
+                            <option value="quarter">Trimestral</option>
+                            <option value="year">Anual</option>
+                        </Selecionar>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="startDataFiltrar" class="form-label">
+                            <i class="bi bi-calendar-event me-2"></i>Data Início
+                        </label>
+                        <input type="date" id="startDataFiltrar" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="endDataFiltrar" class="form-label">
+                            <i class="bi bi-calendar-check me-2"></i>Data Final
+                        </label>
+                        <input type="date" id="endDataFiltrar" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">&nbsp;</label>
+                        <div class="d-flex gap-2">
+                            <button id="refreshReportBtn" class="btn btn-primary flex-fill">
+                                <i class="bi bi-arrow-clockwise me-2"></i>Atualizar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exportar Section -->
+            <div class="export-section">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="mb-0">
+                            <i class="bi bi-download me-2"></i>Exportar Relatórios
+                        </h5>
+                        <small class="text-muted">Baixe os relatórios in diferentes formatos</small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button id="exportPdfBtn" class="btn btn-danger export-btn">
+                            <i class="bi bi-file-pdf me-2"></i>PDF
+                        </button>
+                        <button id="exportExcelBtn" class="btn btn-success export-btn">
+                            <i class="bi bi-file-excel me-2"></i>Excel
+                        </button>
+                        <button id="exportCsvBtn" class="btn btn-info export-btn">
+                            <i class="bi bi-file-csv me-2"></i>CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Tabs -->
+            <div class="report-tabs">
+                <div class="d-flex justify-content-center flex-wrap">
+                    <button class="report-tab active" data-tab="painel de Controle">
+                        <i class="bi bi-speedometer2 me-2"></i>Painel de Controle Executivo
+                    </button>
+                    <button class="report-tab" data-tab="sales">
+                        <i class="bi bi-graph-up-arrow me-2"></i>Relatório de Vendas
+                    </button>
+                    <button class="report-tab" data-tab="leads">
+                        <i class="bi bi-funnel me-2"></i>Relatório de Leads
+                    </button>
+                    <button class="report-tab" data-tab="projects">
+                        <i class="bi bi-kanban me-2"></i>Relatório de Projetos
+                    </button>
+                    <button class="report-tab" data-tab="customers">
+                        <i class="bi bi-people me-2"></i>Relatório de Clientes
+                    </button>
+                    <button class="report-tab" data-tab="financial">
+                        <i class="bi bi-cash-coin me-2"></i>Relatório Financeiro
+                    </button>
+                </div>
+            </div>
+
+            <!-- Painel de Controle Tab Content -->
+            <div id="painel de ControleTab" class="tab-content active">
+                <!-- Executive Summary -->
+                <div class="painel de Controle-summary">
+                    <div class="row">
+                        <div class="col-md-3 summary-stat">
+                            <h3 id="totalReceitaMetric">R$ 0,00</h3>
+                            <p>Receita Total</p>
+                        </div>
+                        <div class="col-md-3 summary-stat">
+                            <h3 id="totalOrdemsMetric">0</h3>
+                            <p>Total de Pedidos</p>
+                        </div>
+                        <div class="col-md-3 summary-stat">
+                            <h3 id="conversionRateMetric">0%</h3>
+                            <p>Taxa de Conversão</p>
+                        </div>
+                        <div class="col-md-3 summary-stat">
+                            <h3 id="avgOrdemValueMetric">R$ 0,00</h3>
+                            <p>Ticket Médio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Metrics Cards -->
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="metric-value" id="totalClientesMetric">0</div>
+                            <p class="metric-label">Total de Clientes</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-funnel"></i>
+                            </div>
+                            <div class="metric-value" id="totalLeadsMetric">0</div>
+                            <p class="metric-label">Leads Ativos</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-kanban"></i>
+                            </div>
+                            <div class="metric-value" id="totalProjectsMetric">0</div>
+                            <p class="metric-label">Projetos in Andamento</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="metric-value" id="convertedLeadsMetric">0</div>
+                            <p class="metric-label">Leads Convertidos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hora Evolution Chart -->
+                <div class="chart-container">
+                    <h5 class="chart-title">Evolução Temporal - Receitas, Pedidos e Leads</h5>
+                    <canvas id="timeEvolutionChart" height="100"></canvas>
+                </div>
+            </div>
+
+            <!-- Vendas Tab Content -->
+            <div id="salesTab" class="tab-content">
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h5 class="chart-title">Vendas por Período</h5>
+                        <canvas id="salesByPeriodChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h5 class="chart-title">Top 10 Produtos</h5>
+                        <canvas id="salesByProductChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Vendas Performance Table -->
+                <div class="performance-table">
+                    <h5 class="chart-title p-3 mb-0">Performance de Vendas por Cliente</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="salesByCustomerTable">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Total Pedidos</th>
+                                    <th>Receita Total</th>
+                                    <th>Ticket Médio</th>
+                                    <th>Último Pedido</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dados serão carregados dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leads Tab Content -->
+            <div id="leadsTab" class="tab-content">
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h5 class="chart-title">Funil de Conversão</h5>
+                        <canvas id="conversionFunnelChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h5 class="chart-title">Leads por Fonte</h5>
+                        <canvas id="leadsBySourceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Conversion Metrics -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-person-plus"></i>
+                            </div>
+                            <div class="metric-value" id="newLeadsMetric">0</div>
+                            <p class="metric-label">Novos Leads</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-arrow-right-circle"></i>
+                            </div>
+                            <div class="metric-value" id="qualifiedLeadsMetric">0</div>
+                            <p class="metric-label">Leads Qualificados</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                            <div class="metric-value" id="avgConversionHoraMetric">0 dias</div>
+                            <p class="metric-label">Tempo Médio de Conversão</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="bi bi-percent"></i>
+                            </div>
+                            <div class="metric-value" id="leadConversionRateMetric">0%</div>
+                            <p class="metric-label">Taxa de Conversão</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Tab Content -->
+            <div id="projectsTab" class="tab-content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="chart-container">
+                            <h5 class="chart-title">Status dos Projetos</h5>
+                            <canvas id="projectsStatusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clientes Tab Content -->
+            <div id="customersTab" class="tab-content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="chart-container">
+                            <h5 class="chart-title">Segmentação de Clientes</h5>
+                            <canvas id="customersSegmentationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Tab Content -->
+            <div id="financialTab" class="tab-content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="chart-container">
+                            <h5 class="chart-title">Fluxo de Caixa</h5>
+                            <canvas id="cashFlowChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;"></div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Duralux Relatórios JS -->
+    <script src="assets/js/duralux-reports.js"></script>
+
+    <script>
+        // Inicialização adicional se necessário
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Duralux Relatórios - Interface carregada com sucesso');
+        });
+    </script>
+
+        <!-- Nãotification Center v6.0 JavaScript -->
+        <script>
+        class NãotificationCenter {
+            constructor() {
+                this.apiUrl = 'http://localhost/duralux/backend/api/api-notifications.php';
+                this.notifications = [];
+                this.unreadCount = 0;
+                this.init();
+            }
+            
+            init() {
+                this.createHTML();
+                this.bindEvents();
+                this.loadNãotifications();
+                this.startPolling();
+            }
+            
+            createHTML() {
+                // Adicionar overlay
+                const overlay = document.createElement('div');
+                overlay.classNãome = 'notification-overlay';
+                overlay.id = 'notificationOverlay';
+                document.body.appendChild(overlay);
+                
+                // Adicionar Painel de notificações
+                const panel = document.createElement('div');
+                panel.classNãome = 'notification-center';
+                panel.id = 'notificationCenter';
+                panel.innerHTML = `
+                    <div class="notification-center-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                                <i class="feather-x"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <small id="notificationCount">0 notificações</small>
+                            <button class="btn btn-sm btn-outline-light ms-2" onclick="notificationCenter.markTodosRead()">
+                                Marcar todas como lidas
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-center-body" id="notificationList">
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    </div>
+                    <div class="notification-actions">
+                        <button class="btn-notification me-2" onclick="notificationCenter.sendTestNãotification()">
+                            🧪 Teste
+                        </button>
+                        <button class="btn-notification me-2" onclick="notificationCenter.createDemoLead()">
+                            👤 Demo Lead
+                        </button>
+                        <button class="btn-notification" onclick="notificationCenter.createDemoProposal()">
+                            📋 Demo Proposta
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(panel);
+                
+                // Adicionar badge ao ícone de notificação existente (se houver)
+                this.addNãotificationBadge();
+            }
+            
+            addNãotificationBadge() {
+                // Procurar por ícones de notificação existentes e adicionar badge
+                const bellIcons = document.querySelecionarorTodos('.feather-bell, .fa-bell');
+                bellIcons.forEach(icon => {
+                    if (!icon.parentElement.querySelecionaror('.notification-badge')) {
+                        const badge = document.createElement('span');
+                        badge.classNãome = 'notification-badge';
+                        badge.id = 'notificationBadge';
+                        badge.textContent = '0';
+                        badge.style.display = 'Nenhum';
+                        icon.parentElement.style.position = 'relative';
+                        icon.parentElement.appendChild(badge);
+                        
+                        // Adicionar evento de clique
+                        icon.parentElement.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.toggle();
+                        });
+                    }
+                });
+            }
+            
+            bindEvents() {
+                // Fechar ao clicar no overlay
+                document.getElementById('notificationOverlay').addEventListener('click', () => {
+                    this.close();
+                });
+                
+                // Tecla ESC para fechar
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.close();
+                    }
+                });
+            }
+            
+            async loadNãotifications() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
+                    const data = await response.json();
+                    
+                    if (data.Sucesso) {
+                        this.notifications = data.data;
+                        this.updateUnreadCount();
+                        this.renderNãotifications();
+                    }
+                } catch (Erro) {
+                    console.error('Erro ao carregar notificações:', error);
+                    this.loadDemoDate();
+                }
+            }
+            
+            loadDemoDate() {
+                this.notifications = [
+                    {
+                        id: 1,
+                        titulo: '🔔 new Lead Recebido',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
+                        tipo: 'lead',
+                        lido_em: null,
+                        criado_em: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        titulo: '✅ Proposta Aprovada',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        tipo: 'proposta',
+                        lido_em: null,
+                        criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
+                    },
+                    {
+                        id: 3,
+                        titulo: '⏰ Projeto com Prazo Próximo',
+                        mensagem: 'Projeto "Website E-commerce" tin entrega in 3 dias',
+                        tipo: 'projeto',
+                        lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
+                        criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
+                    }
+                ];
+                this.updateUnreadCount();
+                this.renderNãotifications();
+            }
+            
+            renderNãotifications() {
+                const container = document.getElementById('notificationList');
+                
+                if (this.notifications.length === 0) {
+                    container.innerHTML = `
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = this.notifications.map(notification => `
+                    <div class="notification-itin ${!notification.lido_in ? 'unread' : ''}" 
+                         onclick="notificationCenter.markAsRead(${notification.id})">
+                        <div class="notification-title">${notification.titulo}</div>
+                        <div class="notification-message">${notification.mensagem}</div>
+                        <div class="notification-time">${this.formatHora(notification.criado_em)}</div>
+                    </div>
+                `).join('');
+            }
+            
+            updateUnreadCount() {
+                const unread = this.notifications.filter(n => !n.lido_em).length;
+                this.unreadCount = unread;
+                
+                // Atualizar badge
+                const badge = document.getElementById('notificationBadge');
+                if (badge) {
+                    badge.textContent = unread;
+                    badge.style.display = unread > 0 ? 'flex' : 'Nenhum';
+                }
+                
+                // Atualizar contador no painel
+                const counter = document.getElementById('notificationCount');
+                if (counter) {
+                    counter.textContent = `${this.notifications.length} notificações (${unread} não lidas)`;
+                }
+            }
+            
+            formatHora(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+                
+                if (diff < 60000) return 'Agora mesmo';
+                if (diff < 3600000) return `${Math.floor(diff/60000)} min atrás`;
+                if (diff < 86400000) return `${Math.floor(diff/3600000)}h atrás`;
+                
+                return date.toLocaleDataString('pt-BR');
+            }
+            
+            async markAsRead(notificationId) {
+                try {
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (!notification || notification.lido_em) return;
+                    
+                    const response = await fetch(`${this.apiUrl}?path=mark-read`, {
+                        method: 'PUT',
+                        headers: { 'Content-Tipo': 'application/json' },
+                        body: JSON.stringify({ notification_id: notificationId })
+                    });
+                    
+                    if (response.ok) {
+                        notification.lido_in = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNãotifications();
+                    }
+                } catch (Erro) {
+                    // Modo defline - marcar localmente
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (notification) {
+                        notification.lido_in = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNãotifications();
+                    }
+                }
+            }
+            
+            async markTodosRead() {
+                const unreadNãotifications = this.notifications.filter(n => !n.lido_em);
+                for (const notification of unreadNãotifications) {
+                    await this.markAsRead(notification.id);
+                }
+            }
+            
+            async sendTestNãotification() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=test`, {
+                        method: 'POST',
+                        headers: { 'Content-Tipo': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('✅ Nãotificação de teste enviada!');
+                        setHoraout(() => this.loadNãotifications(), 1000);
+                    }
+                } catch (Erro) {
+                    this.addLocalNãotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                }
+            }
+            
+            async createDemoLead() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
+                        method: 'POST',
+                        headers: { 'Content-Tipo': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('👤 Demo de lead criado!');
+                        setHoraout(() => this.loadNãotifications(), 1000);
+                    }
+                } catch (Erro) {
+                    this.addLocalNãotification('🔔 new Lead Recebido', 'Demo: Lead João Silva interessado in consultoria empresarial.');
+                }
+            }
+            
+            async createDemoProposal() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
+                        method: 'POST',
+                        headers: { 'Content-Tipo': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('📋 Demo de proposta criado!');
+                        setHoraout(() => this.loadNãotifications(), 1000);
+                    }
+                } catch (Erro) {
+                    this.addLocalNãotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                }
+            }
+            
+            addLocalNãotification(title, message) {
+                const newNãotification = {
+                    id: Date.now(),
+                    titulo: Título,
+                    mensagem: message,
+                    tipo: 'demo',
+                    lido_em: null,
+                    criado_em: new Date().toISOString()
+                };
+                
+                this.notifications.unshift(newNãotification);
+                this.updateUnreadCount();
+                this.renderNãotifications();
+                this.showToast('✅ Nãotificação adicionada!');
+            }
+            
+            showToast(message) {
+                // Toast notification simples
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #28a745;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    z-index: 10000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                `;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setHoraout(() => {
+                    toast.Remover();
+                }, 3000);
+            }
+            
+            toggle() {
+                const panel = document.getElementById('notificationCenter');
+                const overlay = document.getElementById('notificationOverlay');
+                
+                if (panel.classList.contains('open')) {
+                    this.close();
+                } else {
+                    this.open();
+                }
+            }
+            
+            open() {
+                document.getElementById('notificationCenter').classList.Adicionar('open');
+                document.getElementById('notificationOverlay').classList.Adicionar('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            close() {
+                document.getElementById('notificationCenter').classList.Remover('open');
+                document.getElementById('notificationOverlay').classList.Remover('open');
+                document.body.style.overflow = '';
+            }
+            
+            startPolling() {
+                // Verificar novas notificações a cada 30 segundos
+                setInterval(() => {
+                    this.loadNãotifications();
+                }, 30000);
+            }
+        }
+        
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            window.notificationCenter = new NãotificationCenter();
+        });
+        </script>
+</body>
+</html>
+
+
+

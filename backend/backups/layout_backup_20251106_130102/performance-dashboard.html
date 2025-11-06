@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Monitor - Duralux CRM v4.0</title>
+    
+    <!-- CSS Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+        }
+        
+        .performance-stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-Filtrar: blur(10px);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .alert-itin {
+            border-left: 4px solid;
+            margin-bottom: 1rem;
+            transition: Todos 0.3s ease;
+        }
+        
+        .alert-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .recommendation-card {
+            transition: Todos 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .recommendation-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .Carregando-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+        
+        .Status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .Status-good { background-color: #28a745; }
+        .Status-Aviso { background-color: #ffc107; }
+        .Status-Erro { background-color: #dc3545; }
+        
+        .metric-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.25rin 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .optimization-progress {
+            display: Nenhum;
+        }
+        
+        .optimization-result {
+            margin-top: 1rem;
+        }
+        
+        .realtime-indicator {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .sidebar-stats {
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .performance-gauge {
+            position: relative;
+            margin: 1rin 0;
+        }
+        
+        .gauge-fill {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .system-health {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .health-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .health-excellent { background: linear-gradient(135deg, #28a745, #20c997); }
+        .health-good { background: linear-gradient(135deg, #28a745, #ffc107); }
+        .health-Aviso { background: linear-gradient(135deg, #ffc107, #fd7e14); }
+        .health-critical { background: linear-gradient(135deg, #dc3545, #e83e8c); }
+    </style>
+
+        <!-- Notification Center v6.0 CSS -->
+        <style>
+        .notification-center {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .notification-center.open {
+            right: 0;
+        }
+        
+        .notification-center-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .notification-center-body {
+            padding: 0;
+        }
+        
+        .notification-itin {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        
+        .notification-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .notification-item.unread {
+            background: #fff7e6;
+            border-left: 4px solid #ffa500;
+        }
+        
+        .notification-item.unread::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ffa500;
+            border-radius: 50%;
+        }
+        
+        .notification-Título {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .notification-message {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .notification-Hora {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .notification-trigger {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .notification-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .notification-Ações {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+        
+        .btn-notification {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: Nenhum;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: Todos 0.2s;
+        }
+        
+        .btn-notification:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: Todos 0.3s;
+        }
+        
+        .notification-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .notification-center {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-tachometer-alt"></i>
+                Duralux Performance Monitor v4.0
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item">
+                    <span class="navbar-text">
+                        <span class="realtime-indicator">
+                            <i class="fas fa-circle text-success"></i>
+                        </span>
+                        Em tempo real
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <!-- Performance Overview -->
+        <div class="performance-stats">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="healthScore">--</div>
+                        <div class="stat-label">Health Score</div>
+                        <small class="opacity-75">Sistema geral</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="avgResponseTime">--</div>
+                        <div class="stat-label">Resp. Time (ms)</div>
+                        <small class="opacity-75">Média 24h</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="cacheHitRate">--</div>
+                        <div class="stat-label">Cache Hit Rate</div>
+                        <small class="opacity-75">Performance</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="activeAlerts">--</div>
+                        <div class="stat-label">Active Alerts</div>
+                        <small class="opacity-75">Requer atenção</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Main Charts -->
+            <div class="col-lg-8">
+                <!-- Response Time Trend -->
+                <div class="chart-container">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5><i class="fas fa-chart-line text-primary"></i> Tempo de Resposta in Tempo Real</h5>
+                        <span class="metric-badge">Últimos 20 min</span>
+                    </div>
+                    <canvas id="responseTimeChart" height="100"></canvas>
+                </div>
+
+                <!-- Performance Trends -->
+                <div class="chart-container">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5><i class="fas fa-chart-area text-info"></i> Tendências de Performance (7 dias)</h5>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-secondary active" data-period="7">7d</button>
+                            <button type="button" class="btn btn-outline-secondary" data-period="30">30d</button>
+                            <button type="button" class="btn btn-outline-secondary" data-period="90">90d</button>
+                        </div>
+                    </div>
+                    <canvas id="trendsChart" height="80"></canvas>
+                </div>
+
+                <!-- Systin Resources -->
+                <div class="chart-container">
+                    <h5><i class="fas fa-server text-warning"></i> Recursos do Sistema</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="performance-gauge">
+                                <label>CPU Usage</label>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info gauge-fill" id="cpuGauge" style="width: 0%"></div>
+                                </div>
+                                <small class="text-muted">Load: <span id="cpuLoad">--</span></small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="performance-gauge">
+                                <label>Memory Usage</label>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning gauge-fill" id="memoryGauge" style="width: 0%"></div>
+                                </div>
+                                <small class="text-muted">Used: <span id="memoryUsed">--</span></small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="performance-gauge">
+                                <label>Disk Usage</label>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success gauge-fill" id="diskGauge" style="width: 0%"></div>
+                                </div>
+                                <small class="text-muted">Free: <span id="diskFree">--</span></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Systin Health -->
+                <div class="chart-container system-health sidebar-stats">
+                    <div class="health-circle health-excellent" id="healthCircle">
+                        <span id="healthPercentage">--</span>
+                    </div>
+                    <h6>Systin Health</h6>
+                    <p class="text-muted mb-0">Overall systin performance</p>
+                </div>
+
+                <!-- Memory Distribution -->
+                <div class="chart-container sidebar-stats">
+                    <h6><i class="fas fa-memory text-success"></i> Distribuição de Memória</h6>
+                    <canvas id="memoryChart" height="200"></canvas>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="chart-container sidebar-stats">
+                    <h6><i class="fas fa-tools text-primary"></i> Ações Rápidas</h6>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" id="refreshBtn">
+                            <i class="fas fa-sync-alt"></i> Atualizar Dados
+                        </button>
+                        <button class="btn btn-success" id="optimizeBtn">
+                            <i class="fas fa-rocket"></i> Otimizar Sistema
+                        </button>
+                        <button class="btn btn-info" id="exportBtn">
+                            <i class="fas fa-download"></i> Exportar Relatório
+                        </button>
+                        <button class="btn btn-warning" id="clearCacheBtn">
+                            <i class="fas fa-trash"></i> Limpar Cache
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Alerts -->
+                <div class="chart-container sidebar-stats">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6><i class="fas fa-bell text-danger"></i> Alertas Recentes</h6>
+                        <span class="badge bg-danger" id="alertCount">0</span>
+                    </div>
+                    <div id="alertsList" style="max-height: 300px; overflow-y: auto;">
+                        <p class="text-muted">Carregando alertas...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="chart-container">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5><i class="fas fa-lightbulb text-warning"></i> Recomendações de Otimização</h5>
+                        <button class="btn btn-sm btn-outline-primary" onclick="dashboard.refreshRecommendations()">
+                            <i class="fas fa-refresh"></i> Atualizar
+                        </button>
+                    </div>
+                    <div class="row" id="recommendationsList">
+                        <div class="col-12">
+                            <p class="text-muted">Carregando recomendações...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optimization Modal -->
+    <div class="modal fade" id="optimizationModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-rocket"></i> Otimização do Sistema
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="optimization-options">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="optimizeQueries" checked>
+                                    <label class="form-check-label" for="optimizeQueries">
+                                        <strong><i class="fas fa-database"></i> Otimizar Queries</strong><br>
+                                        <small class="text-muted">Analisar e otimizar queries lentas do banco</small>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="optimizeAssets" checked>
+                                    <label class="form-check-label" for="optimizeAssets">
+                                        <strong><i class="fas fa-file-code"></i> Otimizar Assets</strong><br>
+                                        <small class="text-muted">Comprimir CSS, JS e imagens</small>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="clearCache">
+                                    <label class="form-check-label" for="clearCache">
+                                        <strong><i class="fas fa-trash"></i> Limpar Cache</strong><br>
+                                        <small class="text-muted">Remover entradas de cache expiradas</small>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="cleanupLogs">
+                                    <label class="form-check-label" for="cleanupLogs">
+                                        <strong><i class="fas fa-file-alt"></i> Limpar Logs</strong><br>
+                                        <small class="text-muted">Remover logs antigos e desnecessários</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="optimization-progress" id="optimizationProgress">
+                        <div class="progress mb-3">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%" id="optimizationProgressBar"></div>
+                        </div>
+                        <p class="text-muted mb-0" id="optimizationStatus">Preparando otimização...</p>
+                    </div>
+                    
+                    <div class="optimization-result" id="optimizationResults" style="display: none;">
+                        <div class="alert alert-success">
+                            <h6><i class="fas fa-check-circle"></i> Otimização Concluída</h6>
+                            <div id="optimizationResultsContent"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="startOptimization">
+                        <i class="fas fa-rocket"></i> Iniciar Otimização
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
+    </div>
+
+    <!-- JavaScript Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Performance Painel de Controle Script -->
+    <script src="assets/js/duralux-performance-painel de Controle-v4.js"></script>
+
+    <!-- Initialization Script -->
+    <script>
+        // Configurações específicas da página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar dependências
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js não carregado');
+                return;
+            }
+            
+            if (typeof bootstrap === 'undefined') {
+                console.error('Bootstrap JS não carregado');
+                return;
+            }
+            
+            // Inicializar Painel
+            window.performanceDashboard = new DuraluxPerformanceDashboard({
+                container: '.container-fluid',
+                updateInterval: 30000, // 30 segundos
+                enableWebSocket: false,
+                enableAlerts: true,
+                enableExportar: true,
+                apiEndpoint: '../backend/api/router.php'
+            });
+            
+            // Event listeners adicionais
+            document.getElementById('clearCacheBtn').addEventListener('click', function() {
+                if (confirm('Deseja limpar o cache do sistema?')) {
+                    performanceDashboard.executeRecommendation('clear_cache');
+                }
+            });
+            
+            // Controles de período
+            document.querySelectorAll('[data-period]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('[data-period]').forEach(b => b.classList.remove('active'));
+                    this.classList.Adicionar('Ativo');
+                    
+                    const period = this.dataset.period + ' days';
+                    performanceDashboard.updateTrendsPeriod(period);
+                });
+            });
+            
+            console.log('✅ Performance Painel de Controle iniciado com sucesso');
+        });
+        
+        // Função para mostrar toast
+        function showToast(message, type = 'success') {
+            const toastHtml = `
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-${type} text-white">
+                        <i class="fas fa-${type === 'success' ? 'check' : 'exclamation'}-circle me-2"></i>
+                        <strong class="me-auto">Performance Monitor</strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>
+            `;
+            
+            const toastContainer = document.getElementById('toastContainer');
+            toastContainer.insertAdjacentHTML('beforeend', toastHtml);
+            
+            const toastElement = toastContainer.lastElementChild;
+            const toast = new bootstrap.Toast(toastElement);
+            toast.Mostrar();
+            
+            // Remover após exibição
+            toastElement.addEventListener('hidden.bs.toast', () => {
+                toastElement.Remover();
+            });
+        }
+        
+        // Detectar problemas de performance da página
+        window.addEventListener('load', function() {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            const loadTime = perfDate.loadEventEnd - perfDate.loadEventStart;
+            
+            if (loadTime > 3000) {
+                showToast('Página carregou lentamente. Considere otimizações.', 'Aviso');
+            }
+            
+            console.log(`📊 Página carregada in ${loadTime}ms`);
+        });
+    </script>
+
+        <!-- Notification Center v6.0 JavaScript -->
+        <script>
+        class NotificationCenter {
+            constructor() {
+                this.apiUrl = 'http://localhost/duralux/backend/api/api-notifications.php';
+                this.notifications = [];
+                this.unreadCount = 0;
+                this.init();
+            }
+            
+            init() {
+                this.createHTML();
+                this.bindEvents();
+                this.loadNotifications();
+                this.startPolling();
+            }
+            
+            createHTML() {
+                // Adicionar overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'notification-overlay';
+                overlay.id = 'notificationOverlay';
+                document.body.appendChild(overlay);
+                
+                // Adicionar Painel de notificações
+                const panel = document.createElement('div');
+                panel.className = 'notification-center';
+                panel.id = 'notificationCenter';
+                panel.innerHTML = `
+                    <div class="notification-center-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                                <i class="feather-x"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <small id="notificationCount">0 notificações</small>
+                            <button class="btn btn-sm btn-outline-light ms-2" onclick="notificationCenter.markAllRead()">
+                                Marcar todas como lidas
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-center-body" id="notificationList">
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    </div>
+                    <div class="notification-actions">
+                        <button class="btn-notification me-2" onclick="notificationCenter.sendTestNotification()">
+                            🧪 Teste
+                        </button>
+                        <button class="btn-notification me-2" onclick="notificationCenter.createDemoLead()">
+                            👤 Demo Lead
+                        </button>
+                        <button class="btn-notification" onclick="notificationCenter.createDemoProposal()">
+                            📋 Demo Proposta
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(panel);
+                
+                // Adicionar badge ao ícone de notificação existente (se houver)
+                this.addNotificationBadge();
+            }
+            
+            addNotificationBadge() {
+                // Procurar por ícones de notificação existentes e adicionar badge
+                const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
+                bellIcons.forEach(icon => {
+                    if (!icon.parentElement.querySelector('.notification-badge')) {
+                        const badge = document.createElement('span');
+                        badge.className = 'notification-badge';
+                        badge.id = 'notificationBadge';
+                        badge.textContent = '0';
+                        badge.style.display = 'Nenhum';
+                        icon.parentElement.style.position = 'relative';
+                        icon.parentElement.appendChild(badge);
+                        
+                        // Adicionar evento de clique
+                        icon.parentElement.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.toggle();
+                        });
+                    }
+                });
+            }
+            
+            bindEvents() {
+                // Fechar ao clicar no overlay
+                document.getElementById('notificationOverlay').addEventListener('click', () => {
+                    this.close();
+                });
+                
+                // Tecla ESC para fechar
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.close();
+                    }
+                });
+            }
+            
+            async loadNotifications() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
+                    const data = await response.json();
+                    
+                    if (data.Sucesso) {
+                        this.notifications = data.data;
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                } catch (Erro) {
+                    console.error('Erro ao carregar notificações:', error);
+                    this.loadDemoDate();
+                }
+            }
+            
+            loadDemoDate() {
+                this.notifications = [
+                    {
+                        id: 1,
+                        titulo: '🔔 new Lead Recebido',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
+                        tipo: 'lead',
+                        lido_em: null,
+                        criado_em: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        titulo: '✅ Proposta Aprovada',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        tipo: 'proposta',
+                        lido_em: null,
+                        criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
+                    },
+                    {
+                        id: 3,
+                        titulo: '⏰ Projeto com Prazo Próximo',
+                        mensagem: 'Projeto "Website E-commerce" tin entrega in 3 dias',
+                        tipo: 'projeto',
+                        lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
+                        criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
+                    }
+                ];
+                this.updateUnreadCount();
+                this.renderNotifications();
+            }
+            
+            renderNotifications() {
+                const container = document.getElementById('notificationList');
+                
+                if (this.notifications.length === 0) {
+                    container.innerHTML = `
+                        <div class="notification-empty">
+                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
+                            <p class="mt-3">Nenhuma notificação</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = this.notifications.map(notification => `
+                    <div class="notification-itin ${!notification.lido_in ? 'unread' : ''}" 
+                         onclick="notificationCenter.markAsRead(${notification.id})">
+                        <div class="notification-title">${notification.titulo}</div>
+                        <div class="notification-message">${notification.mensagem}</div>
+                        <div class="notification-time">${this.formatTime(notification.criado_em)}</div>
+                    </div>
+                `).join('');
+            }
+            
+            updateUnreadCount() {
+                const unread = this.notifications.filter(n => !n.lido_em).length;
+                this.unreadCount = unread;
+                
+                // Atualizar badge
+                const badge = document.getElementById('notificationBadge');
+                if (badge) {
+                    badge.textContent = unread;
+                    badge.style.display = unread > 0 ? 'flex' : 'Nenhum';
+                }
+                
+                // Atualizar contador no painel
+                const counter = document.getElementById('notificationCount');
+                if (counter) {
+                    counter.textContent = `${this.notifications.length} notificações (${unread} não lidas)`;
+                }
+            }
+            
+            formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+                
+                if (diff < 60000) return 'Agora mesmo';
+                if (diff < 3600000) return `${Math.floor(diff/60000)} min atrás`;
+                if (diff < 86400000) return `${Math.floor(diff/3600000)}h atrás`;
+                
+                return date.toLocaleDateString('pt-BR');
+            }
+            
+            async markAsRead(notificationId) {
+                try {
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (!notification || notification.lido_em) return;
+                    
+                    const response = await fetch(`${this.apiUrl}?path=mark-read`, {
+                        method: 'PUT',
+                        headers: { 'Content-Tipo': 'application/json' },
+                        body: JSON.stringify({ notification_id: notificationId })
+                    });
+                    
+                    if (response.ok) {
+                        notification.lido_in = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                } catch (Erro) {
+                    // Modo offline - marcar localmente
+                    const notification = this.notifications.find(n => n.id === notificationId);
+                    if (notification) {
+                        notification.lido_in = new Date().toISOString();
+                        this.updateUnreadCount();
+                        this.renderNotifications();
+                    }
+                }
+            }
+            
+            async markAllRead() {
+                const unreadNotifications = this.notifications.filter(n => !n.lido_em);
+                for (const notification of unreadNotifications) {
+                    await this.markAsRead(notification.id);
+                }
+            }
+            
+            async sendTestNotification() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=test`, {
+                        method: 'POST',
+                        headers: { 'Content-Tipo': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('✅ Notificação de teste enviada!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (Erro) {
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                }
+            }
+            
+            async createDemoLead() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
+                        method: 'POST',
+                        headers: { 'Content-Tipo': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('👤 Demo de lead criado!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (Erro) {
+                    this.addLocalNotification('🔔 new Lead Recebido', 'Demo: Lead João Silva interessado in consultoria empresarial.');
+                }
+            }
+            
+            async createDemoProposal() {
+                try {
+                    const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
+                        method: 'POST',
+                        headers: { 'Content-Tipo': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        this.showToast('📋 Demo de proposta criado!');
+                        setTimeout(() => this.loadNotifications(), 1000);
+                    }
+                } catch (Erro) {
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                }
+            }
+            
+            addLocalNotification(title, message) {
+                const newNotification = {
+                    id: Date.now(),
+                    titulo: Título,
+                    mensagem: message,
+                    tipo: 'demo',
+                    lido_em: null,
+                    criado_em: new Date().toISOString()
+                };
+                
+                this.notifications.unshift(newNotification);
+                this.updateUnreadCount();
+                this.renderNotifications();
+                this.showToast('✅ Notificação adicionada!');
+            }
+            
+            showToast(message) {
+                // Toast notification simples
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #28a745;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    z-index: 10000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                `;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.Remover();
+                }, 3000);
+            }
+            
+            toggle() {
+                const panel = document.getElementById('notificationCenter');
+                const overlay = document.getElementById('notificationOverlay');
+                
+                if (panel.classList.contains('open')) {
+                    this.close();
+                } else {
+                    this.open();
+                }
+            }
+            
+            open() {
+                document.getElementById('notificationCenter').classList.Adicionar('open');
+                document.getElementById('notificationOverlay').classList.Adicionar('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            close() {
+                document.getElementById('notificationCenter').classList.Remover('open');
+                document.getElementById('notificationOverlay').classList.Remover('open');
+                document.body.style.overflow = '';
+            }
+            
+            startPolling() {
+                // Verificar novas notificações a cada 30 segundos
+                setInterval(() => {
+                    this.loadNotifications();
+                }, 30000);
+            }
+        }
+        
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            window.notificationCenter = new NotificationCenter();
+        });
+        </script>
+</body>
+</html>
+
+
+

@@ -1,398 +1,259 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow Automation - Duralux CRM v5.0</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema de CRM Duralux - Gestão completa de leads, clientes e projetos" />
+    <title>Duralux CRM - Duralux CRM</title>
     
-    <!-- CSS Dependencies -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
     
-    <!-- Custom Styles -->
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
     <style>
+        /* Reset e melhorias base */
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .navbar-brand {
-            font-weight: bold;
-        }
-        
-        .workflow-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            margin-bottom: 1.5rem;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-Atualizado {
-            animation: pulse 0.5s ease-in-out;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .workflow-card {
-            transition: Todos 0.3s ease;
-            border: Nenhum;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .workflow-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .template-card {
-            transition: Todos 0.3s ease;
-            border: 2px dashed #dee2e6;
-        }
-        
-        .template-card:hover {
-            border-color: #007bff;
-            transform: translateY(-2px);
-        }
-        
-        .execution-row {
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        
-        .execution-row:hover {
-            background-color: rgba(0,0,0,0.05);
-        }
-        
-        .tab-content {
-            display: Nenhum;
-        }
-        
-        .tab-content.Ativo {
-            display: block;
-        }
-        
-        .nav-tabs .nav-link.Ativo {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: transparent;
-        }
-        
-        .workflow-stats {
-            background: rgba(0,0,0,0.05);
-            border-radius: 10px;
-            padding: 1rem;
-        }
-        
-        .stat-itin .stat-number {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #495057;
-        }
-        
-        .stat-itin .stat-label {
-            font-size: 0.8rem;
-            color: #6c757d;
-        }
-        
-        .workflow-Informação small {
-            margin-bottom: 0.25rem;
-        }
-        
-        .Carregando-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            display: Nenhum;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        
-        .chart-container {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .workflow-modal .modal-dialog {
-            max-width: 900px;
-        }
-        
-        .trigger-section,
-        .Ações-section,
-        .conditions-section {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .action-itin {
-            background: white;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .drag-drop-area {
-            min-height: 200px;
-            border: 2px dashed #dee2e6;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            color: #6c757d;
-        }
-        
-        .drag-drop-area.drag-over {
-            border-color: #007bff;
-            background-color: rgba(0, 123, 255, 0.1);
-        }
-        
-        .toast-container {
-            z-index: 1060;
-        }
-        
-        .btn-group .btn {
-            flex: 1;
-        }
-        
-        .workflow-builder {
-            border: 1px solid #dee2e6;
-            border-radius: 10px;
-            min-height: 400px;
-            background: #fafbfc;
-            position: relative;
-        }
-        
-        .workflow-canvas {
-            padding: 2rem;
-            height: 100%;
-        }
-        
-        .sidebar-panel {
-            background: white;
-            border-right: 1px solid #dee2e6;
-            height: 400px;
-            overflow-y: auto;
-        }
-        
-        .component-itin {
-            padding: 0.75rem;
-            border-bottom: 1px solid #f1f3f4;
-            cursor: grab;
-            transition: background-color 0.2s ease;
-        }
-        
-        .component-item:hover {
+            font-size: 0.9rem;
+            line-height: 1.5;
             background-color: #f8f9fa;
         }
         
-        .component-item:Ativo {
-            cursor: grabbing;
-        }
-    </style>
-
-        <!-- Notification Center v6.0 CSS -->
-        <style>
-        .notification-center {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 400px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
-            z-index: 9999;
-            transition: right 0.3s ease;
-            overflow-y: auto;
+        /* Layout responsivo */
+        .container-fluid {
+            padding: 1rem;
         }
         
-        .notification-center.open {
-            right: 0;
-        }
-        
-        .notification-center-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
+        /* Sidebar responsiva */
+        .sidebar {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 1rem;
             color: white;
-        }
-        
-        .notification-center-body {
-            padding: 0;
-        }
-        
-        .notification-itin {
-            padding: 15px 20px;
-            border-bottom: 1px solid #f5f5f5;
-            cursor: pointer;
-            transition: background 0.2s;
-            position: relative;
-        }
-        
-        .notification-item:hover {
-            background: #f8f9fa;
-        }
-        
-        .notification-item.unread {
-            background: #fff7e6;
-            border-left: 4px solid #ffa500;
-        }
-        
-        .notification-item.unread::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 8px;
-            background: #ffa500;
-            border-radius: 50%;
-        }
-        
-        .notification-Título {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .notification-message {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        
-        .notification-Hora {
-            font-size: 12px;
-            color: #999;
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff4757;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .notification-trigger {
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .notification-empty {
-            text-align: center;
-            padding: 40px 20px;
-            color: #999;
-        }
-        
-        .notification-Ações {
-            padding: 15px 20px;
-            border-top: 1px solid #eee;
-            background: #f8f9fa;
-        }
-        
-        .btn-notification {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: Nenhum;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: Todos 0.2s;
-        }
-        
-        .btn-notification:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-        
-        .notification-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-            z-index: 9998;
-            opacity: 0;
-            visibility: hidden;
-            transition: Todos 0.3s;
-        }
-        
-        .notification-overlay.open {
-            opacity: 1;
-            visibility: visible;
         }
         
         @media (max-width: 768px) {
-            .notification-center {
-                width: 100%;
-                right: -100%;
+            .sidebar {
+                min-height: auto;
+                margin-bottom: 1rem;
             }
         }
-        </style>
+        
+        /* Cards modernos */
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0 !important;
+            padding: 1rem;
+        }
+        
+        /* Botões modernos */
+        .btn {
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        
+        /* Tabelas responsivas */
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+            border-top: none;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        /* Formulários modernos */
+        .form-control, .form-select {
+            border-radius: 0.375rem;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Navegação */
+        .nav-pills .nav-link {
+            border-radius: 0.375rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* Estatísticas cards */
+        .stats-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1rem;
+        }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stats-label {
+            color: #6c757d;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Modo escuro opcional */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1d29;
+                color: #e9ecef;
+            }
+            
+            .card {
+                background-color: #2d3748;
+                color: #e9ecef;
+            }
+            
+            .form-control, .form-select {
+                background-color: #4a5568;
+                border-color: #6c757d;
+                color: #e9ecef;
+            }
+            
+            .table {
+                color: #e9ecef;
+            }
+            
+            .table th {
+                background-color: #374151;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-robot"></i>
-                Duralux Workflow Automation v5.0
-            </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-tachometer-alt"></i> Painel de Controle
-                </a>
-                <a class="nav-link" href="performance-dashboard.html">
-                    <i class="fas fa-chart-line"></i> Performance
-                </a>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar responsiva -->
+            <div class="col-12 col-lg-2 sidebar">
+                <div class="d-flex flex-column">
+                    <h4 class="mb-4">
+                        <i class="bi bi-building"></i> DURALUX
+                    </h4>
+                    
+                    <nav class="nav flex-column nav-pills">
+                        <a class="nav-link " href="index.html">
+                            <i class="bi bi-speedometer2"></i> Painel de Controle
+                        </a>
+                        <a class="nav-link " href="leads.html">
+                            <i class="bi bi-person-plus"></i> Leads
+                        </a>
+                        <a class="nav-link " href="customers.html">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                        <a class="nav-link " href="projects.html">
+                            <i class="bi bi-folder"></i> Projetos
+                        </a>
+                        <a class="nav-link " href="proposal.html">
+                            <i class="bi bi-file-text"></i> Propostas
+                        </a>
+                        <a class="nav-link " href="analytics.html">
+                            <i class="bi bi-graph-up"></i> Analytics
+                        </a>
+                        <a class="nav-link " href="reports.html">
+                            <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
+                        </a>
+                    </nav>
+                </div>
             </div>
-        </div>
-    </nav>
+            
+            <!-- Conteúdo principal -->
+            <div class="col-12 col-lg-10">
+                <header class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-0">Dashboard</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                            <i class="bi bi-bell"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> Usuário
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configurações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                
+                <main>
+                    
+    <!-- Navigation -->
+    
 
     <!-- Main Content -->
     <div class="container-fluid mt-4" id="workflow-painel de Controle">
@@ -534,7 +395,7 @@
                         <tbody id="executionsList">
                             <!-- Execuções serão carregadas dinamicamente -->
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             </div>
         </div>
@@ -621,7 +482,7 @@
                         <div id="workflow-builder" class="workflow-builder">
                             <div class="row h-100">
                                 <!-- Sidebar com componentes -->
-                                <div class="col-md-3 sidebar-panel workflow-sidebar">
+                                <div class="col-md-3 sidebar-card workflow-sidebar">
                                     <h6 class="p-3 mb-0 bg-light">Componentes</h6>
                                     
                                     <div class="p-2">
@@ -713,451 +574,129 @@
     <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
 
     <!-- JavaScript Dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    
     
     <!-- Workflow Painel de Controle Script -->
-    <script src="assets/js/duralux-workflow-dashboard-v5.js"></script>
+    
 
     <!-- Initialization Script -->
+    
+
+        <!-- Notification Center v6.0 JavaScript -->
+        
+
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Painel de notificações -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Notificações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Novo lead cadastrado</h6>
+                        <small>5 min atrás</small>
+                    </div>
+                    <p class="mb-1">João Silva enviou uma solicitação de orçamento.</p>
+                </div>
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Projeto aprovado</h6>
+                        <small>1 hora atrás</small>
+                    </div>
+                    <p class="mb-1">Projeto "Reforma Comercial" foi aprovado pelo cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts customizados -->
     <script>
+        // Funcionalidades modernas do sistema
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('✅ Workflow Painel de Controle carregado com sucesso');
+            // Inicializar tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
             
-            // Configurar navegação de abas
-            document.querySelectorAll('[data-tab]').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remover class Ativo de todas as abas
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.Remover('Ativo');
+            // Auto-salvar formulários
+            const forms = document.querySelectorAll('form[data-auto-save]');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        const formData = new FormData(form);
+                        console.log('Auto-salvando...', Object.fromEntries(formData));
+                        // Implementar auto-save aqui
                     });
-                    
-                    document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.Remover('Ativo');
-                    });
-                    
-                    // Ativar aba clicada
-                    this.classList.Adicionar('Ativo');
-                    document.getElementById(this.dataset.tab + 'Tab').classList.Adicionar('Ativo');
                 });
             });
             
-            // Configurar drag and drop do workflow builder
-            setupWorkflowBuilder();
+            // Confirmar ações críticas
+            const deleteButtons = document.querySelectorAll('[data-action="delete"]');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Tem certeza que deseja excluir este item?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Responsividade da sidebar
+            function handleSidebarToggle() {
+                const sidebar = document.querySelector('.sidebar');
+                if (window.innerWidth < 992) {
+                    sidebar.classList.add('d-none', 'd-lg-block');
+                } else {
+                    sidebar.classList.remove('d-none');
+                }
+            }
+            
+            window.addEventListener('resize', handleSidebarToggle);
+            handleSidebarToggle();
         });
         
-        function setupWorkflowBuilder() {
-            const canvas = document.getElementById('workflowCanvas');
-            const components = document.querySelectorAll('.component-item');
-            
-            // Configurar arrastar componentes
-            components.forEach(component => {
-                component.addEventListener('dragstart', function(e) {
-                    e.dataTransfer.setDate('text/plain', JSON.stringify({
-                        type: this.dataset.type,
-                        subtype: this.dataset.subtype,
-                        html: this.innerHTML
-                    }));
+        // Função para atualizar gráficos responsivos
+        function updateChartsOnResize() {
+            if (typeof Chart !== 'undefined') {
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    instance.resize();
+                });
+            }
+        }
+        
+        window.addEventListener('resize', updateChartsOnResize);
+        
+        // Performance: Lazy loading de imagens
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
                 });
             });
             
-            // Configurar área de drop
-            canvas.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                this.classList.Adicionar('drag-over');
-            });
-            
-            canvas.addEventListener('dragleave', function(e) {
-                this.classList.Remover('drag-over');
-            });
-            
-            canvas.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.classList.Remover('drag-over');
-                
-                const data = JSON.parif(e.dataTransfer.getDate('text/plain'));
-                
-                // Criar elemento do componente no canvas
-                const element = document.createElement('div');
-                element.className = 'action-item';
-                element.innerHTML = `
-                    ${data.html}
-                    <button class="btn btn-sm btn-outline-danger float-end" onclick="this.parentElement.remove()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                
-                // Se é o primeiro componente, limpar mensagin de placeholder
-                if (this.querySelector('.fa-mouse-pointer')) {
-                    this.innerHTML = '';
-                }
-                
-                this.appendChild(element);
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
             });
         }
     </script>
-
-        <!-- Notification Center v6.0 JavaScript -->
-        <script>
-        class NotificationCenter {
-            constructor() {
-                this.apiUrl = 'http://localhost/duralux/backend/api/api-notifications.php';
-                this.notifications = [];
-                this.unreadCount = 0;
-                this.init();
-            }
-            
-            init() {
-                this.createHTML();
-                this.bindEvents();
-                this.loadNotifications();
-                this.startPolling();
-            }
-            
-            createHTML() {
-                // Adicionar overlay
-                const overlay = document.createElement('div');
-                overlay.className = 'notification-overlay';
-                overlay.id = 'notificationOverlay';
-                document.body.appendChild(overlay);
-                
-                // Adicionar Painel de notificações
-                const panel = document.createElement('div');
-                panel.className = 'notification-center';
-                panel.id = 'notificationCenter';
-                panel.innerHTML = `
-                    <div class="notification-center-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central de Notificações</h5>
-                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
-                                <i class="feather-x"></i>
-                            </button>
-                        </div>
-                        <div class="mt-2">
-                            <small id="notificationCount">0 notificações</small>
-                            <button class="btn btn-sm btn-outline-light ms-2" onclick="notificationCenter.markAllRead()">
-                                Marcar todas como lidas
-                            </button>
-                        </div>
-                    </div>
-                    <div class="notification-center-body" id="notificationList">
-                        <div class="notification-empty">
-                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
-                            <p class="mt-3">Nenhuma notificação</p>
-                        </div>
-                    </div>
-                    <div class="notification-actions">
-                        <button class="btn-notification me-2" onclick="notificationCenter.sendTestNotification()">
-                            🧪 Teste
-                        </button>
-                        <button class="btn-notification me-2" onclick="notificationCenter.createDemoLead()">
-                            👤 Demo Lead
-                        </button>
-                        <button class="btn-notification" onclick="notificationCenter.createDemoProposal()">
-                            📋 Demo Proposta
-                        </button>
-                    </div>
-                `;
-                document.body.appendChild(panel);
-                
-                // Adicionar badge ao ícone de notificação existente (se houver)
-                this.addNotificationBadge();
-            }
-            
-            addNotificationBadge() {
-                // Procurar por ícones de notificação existentes e adicionar badge
-                const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
-                bellIcons.forEach(icon => {
-                    if (!icon.parentElement.querySelector('.notification-badge')) {
-                        const badge = document.createElement('span');
-                        badge.className = 'notification-badge';
-                        badge.id = 'notificationBadge';
-                        badge.textContent = '0';
-                        badge.style.display = 'Nenhum';
-                        icon.parentElement.style.position = 'relative';
-                        icon.parentElement.appendChild(badge);
-                        
-                        // Adicionar evento de clique
-                        icon.parentElement.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            this.toggle();
-                        });
-                    }
-                });
-            }
-            
-            bindEvents() {
-                // Fechar ao clicar no overlay
-                document.getElementById('notificationOverlay').addEventListener('click', () => {
-                    this.close();
-                });
-                
-                // Tecla ESC para fechar
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        this.close();
-                    }
-                });
-            }
-            
-            async loadNotifications() {
-                try {
-                    const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
-                    const data = await response.json();
-                    
-                    if (data.Sucesso) {
-                        this.notifications = data.data;
-                        this.updateUnreadCount();
-                        this.renderNotifications();
-                    }
-                } catch (Erro) {
-                    console.error('Erro ao carregar notificações:', error);
-                    this.loadDemoDate();
-                }
-            }
-            
-            loadDemoDate() {
-                this.notifications = [
-                    {
-                        id: 1,
-                        titulo: '🔔 new Lead Recebido',
-                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
-                        tipo: 'lead',
-                        lido_em: null,
-                        criado_em: new Date().toISOString()
-                    },
-                    {
-                        id: 2,
-                        titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
-                        tipo: 'proposta',
-                        lido_em: null,
-                        criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
-                    },
-                    {
-                        id: 3,
-                        titulo: '⏰ Projeto com Prazo Próximo',
-                        mensagem: 'Projeto "Website E-commerce" tin entrega in 3 dias',
-                        tipo: 'projeto',
-                        lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
-                        criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
-                    }
-                ];
-                this.updateUnreadCount();
-                this.renderNotifications();
-            }
-            
-            renderNotifications() {
-                const container = document.getElementById('notificationList');
-                
-                if (this.notifications.length === 0) {
-                    container.innerHTML = `
-                        <div class="notification-empty">
-                            <i class="feather-bell" style="font-size: 48px; opacity: 0.3;"></i>
-                            <p class="mt-3">Nenhuma notificação</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                container.innerHTML = this.notifications.map(notification => `
-                    <div class="notification-itin ${!notification.lido_in ? 'unread' : ''}" 
-                         onclick="notificationCenter.markAsRead(${notification.id})">
-                        <div class="notification-title">${notification.titulo}</div>
-                        <div class="notification-message">${notification.mensagem}</div>
-                        <div class="notification-time">${this.formatTime(notification.criado_em)}</div>
-                    </div>
-                `).join('');
-            }
-            
-            updateUnreadCount() {
-                const unread = this.notifications.filter(n => !n.lido_em).length;
-                this.unreadCount = unread;
-                
-                // Atualizar badge
-                const badge = document.getElementById('notificationBadge');
-                if (badge) {
-                    badge.textContent = unread;
-                    badge.style.display = unread > 0 ? 'flex' : 'Nenhum';
-                }
-                
-                // Atualizar contador no painel
-                const counter = document.getElementById('notificationCount');
-                if (counter) {
-                    counter.textContent = `${this.notifications.length} notificações (${unread} não lidas)`;
-                }
-            }
-            
-            formatTime(timestamp) {
-                const date = new Date(timestamp);
-                const now = new Date();
-                const diff = now - date;
-                
-                if (diff < 60000) return 'Agora mesmo';
-                if (diff < 3600000) return `${Math.floor(diff/60000)} min atrás`;
-                if (diff < 86400000) return `${Math.floor(diff/3600000)}h atrás`;
-                
-                return date.toLocaleDateString('pt-BR');
-            }
-            
-            async markAsRead(notificationId) {
-                try {
-                    const notification = this.notifications.find(n => n.id === notificationId);
-                    if (!notification || notification.lido_em) return;
-                    
-                    const response = await fetch(`${this.apiUrl}?path=mark-read`, {
-                        method: 'PUT',
-                        headers: { 'Content-Tipo': 'application/json' },
-                        body: JSON.stringify({ notification_id: notificationId })
-                    });
-                    
-                    if (response.ok) {
-                        notification.lido_in = new Date().toISOString();
-                        this.updateUnreadCount();
-                        this.renderNotifications();
-                    }
-                } catch (Erro) {
-                    // Modo offline - marcar localmente
-                    const notification = this.notifications.find(n => n.id === notificationId);
-                    if (notification) {
-                        notification.lido_in = new Date().toISOString();
-                        this.updateUnreadCount();
-                        this.renderNotifications();
-                    }
-                }
-            }
-            
-            async markAllRead() {
-                const unreadNotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification of unreadNotifications) {
-                    await this.markAsRead(notification.id);
-                }
-            }
-            
-            async sendTestNotification() {
-                try {
-                    const response = await fetch(`${this.apiUrl}?path=test`, {
-                        method: 'POST',
-                        headers: { 'Content-Tipo': 'application/json' }
-                    });
-                    
-                    if (response.ok) {
-                        this.showToast('✅ Notificação de teste enviada!');
-                        setTimeout(() => this.loadNotifications(), 1000);
-                    }
-                } catch (Erro) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
-                }
-            }
-            
-            async createDemoLead() {
-                try {
-                    const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
-                        method: 'POST',
-                        headers: { 'Content-Tipo': 'application/json' }
-                    });
-                    
-                    if (response.ok) {
-                        this.showToast('👤 Demo de lead criado!');
-                        setTimeout(() => this.loadNotifications(), 1000);
-                    }
-                } catch (Erro) {
-                    this.addLocalNotification('🔔 new Lead Recebido', 'Demo: Lead João Silva interessado in consultoria empresarial.');
-                }
-            }
-            
-            async createDemoProposal() {
-                try {
-                    const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
-                        method: 'POST',
-                        headers: { 'Content-Tipo': 'application/json' }
-                    });
-                    
-                    if (response.ok) {
-                        this.showToast('📋 Demo de proposta criado!');
-                        setTimeout(() => this.loadNotifications(), 1000);
-                    }
-                } catch (Erro) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
-                }
-            }
-            
-            addLocalNotification(title, message) {
-                const newNotification = {
-                    id: Date.now(),
-                    titulo: Título,
-                    mensagem: message,
-                    tipo: 'demo',
-                    lido_em: null,
-                    criado_em: new Date().toISOString()
-                };
-                
-                this.notifications.unshift(newNotification);
-                this.updateUnreadCount();
-                this.renderNotifications();
-                this.showToast('✅ Notificação adicionada!');
-            }
-            
-            showToast(message) {
-                // Toast notification simples
-                const toast = document.createElement('div');
-                toast.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: #28a745;
-                    color: white;
-                    padding: 12px 20px;
-                    border-radius: 6px;
-                    z-index: 10000;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-                `;
-                toast.textContent = message;
-                document.body.appendChild(toast);
-                
-                setTimeout(() => {
-                    toast.Remover();
-                }, 3000);
-            }
-            
-            toggle() {
-                const panel = document.getElementById('notificationCenter');
-                const overlay = document.getElementById('notificationOverlay');
-                
-                if (panel.classList.contains('open')) {
-                    this.close();
-                } else {
-                    this.open();
-                }
-            }
-            
-            open() {
-                document.getElementById('notificationCenter').classList.Adicionar('open');
-                document.getElementById('notificationOverlay').classList.Adicionar('open');
-                document.body.style.overflow = 'hidden';
-            }
-            
-            close() {
-                document.getElementById('notificationCenter').classList.Remover('open');
-                document.getElementById('notificationOverlay').classList.Remover('open');
-                document.body.style.overflow = '';
-            }
-            
-            startPolling() {
-                // Verificar novas notificações a cada 30 segundos
-                setInterval(() => {
-                    this.loadNotifications();
-                }, 30000);
-            }
-        }
-        
-        // Inicializar quando o DOM estiver pronto
-        document.addEventListener('DOMContentLoaded', function() {
-            window.notificationCenter = new NotificationCenter();
-        });
-        </script>
+    
+    
 </body>
 </html>
-
-
-
