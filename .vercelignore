@@ -1,0 +1,39 @@
+# Arquivos de desenvolvimento Python
+*.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+requirements.txt
+
+# Arquivos de backup
+*.backup
+*.original
+backend/backups/
+
+# Documentação não essencial
+docs/
+CHANGELOG.md
+CONTRIBUTING.md
+PROGRESSO.md
+SISTEMA-IMPLEMENTADO.md
+TRADUCAO-COMPLETA-PT-BR.md
+TRANSLATION_STATUS.md
+*.md
+
+# Arquivos de configuração de desenvolvimento
+backend/config/
+backend/classes/
+backend/database/
+data/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Arquivos JSON de relatórios
+translation_report*.json
+validation_report.json
