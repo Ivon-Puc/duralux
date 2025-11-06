@@ -41,6 +41,7 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 ### ✅ **Implementadas**
 
 #### 🎛️ **Dashboard Inteligente**
+
 - Estatísticas em tempo real
 - Cards dinâmicos com dados da API
 - Auto-refresh automático (30s)
@@ -48,6 +49,7 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 - Indicadores visuais de progresso
 
 #### 👥 **Gestão de Clientes**
+
 - CRUD completo (Criar, Ler, Atualizar, Deletar)
 - Sistema de busca em tempo real
 - Paginação inteligente
@@ -56,6 +58,7 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 - Validação de dados robusta
 
 #### 📦 **Gestão de Produtos**
+
 - Catálogo completo de produtos
 - Controle de estoque
 - Categorização
@@ -64,6 +67,7 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 - Status de disponibilidade
 
 #### 🔐 **Sistema de Autenticação**
+
 - Login/Logout seguro
 - Hash de senhas (bcrypt)
 - Proteção CSRF
@@ -72,6 +76,7 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 - Logs de atividade
 
 ### 🔄 **Em Desenvolvimento**
+
 - Sistema de Leads
 - Gestão de Projetos
 - Sistema de Pedidos
@@ -82,12 +87,14 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 ## 🛠️ Tecnologias
 
 ### **Backend**
+
 - **PHP 8.0+**: Linguagem principal
 - **SQLite**: Banco de dados
 - **PDO**: Camada de abstração de dados
 - **Arquitetura MVC**: Organização do código
 
 ### **Frontend**
+
 - **HTML5 & CSS3**: Estrutura e estilo
 - **JavaScript ES6+**: Interatividade
 - **Bootstrap 5**: Framework CSS
@@ -95,6 +102,7 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 - **ApexCharts**: Gráficos interativos
 
 ### **Ferramentas**
+
 - **Git**: Controle de versão
 - **Composer**: Gerenciador de dependências PHP
 - **VS Code**: IDE recomendada
@@ -102,6 +110,7 @@ O **Duralux CRM** é um sistema completo de gestão empresarial desenvolvido com
 ## 📥 Instalação
 
 ### **Pré-requisitos**
+
 - PHP 8.0 ou superior
 - Servidor web (Apache/Nginx) ou PHP built-in server
 - SQLite3 habilitado
@@ -190,14 +199,17 @@ duralux/
 ## 🔌 API Documentation
 
 ### **Base URL**
+
 ```
 /backend/api/router.php
 ```
 
 ### **Autenticação**
+
 Todas as rotas (exceto login) requerem sessão ativa.
 
 #### **Headers Obrigatórios**
+
 ```http
 Content-Type: application/json
 ```
@@ -205,6 +217,7 @@ Content-Type: application/json
 ### **Endpoints Principais**
 
 #### 🔐 **Autenticação**
+
 ```javascript
 // Login
 POST /backend/api/router.php
@@ -228,6 +241,7 @@ POST /backend/api/router.php
 ```
 
 #### 📊 **Dashboard**
+
 ```javascript
 // Estatísticas principais
 POST /backend/api/router.php
@@ -257,6 +271,7 @@ POST /backend/api/router.php
 ```
 
 #### 👥 **Clientes**
+
 ```javascript
 // Listar clientes
 POST /backend/api/router.php
@@ -301,6 +316,7 @@ POST /backend/api/router.php
 ```
 
 #### 📦 **Produtos**
+
 ```javascript
 // Listar produtos
 POST /backend/api/router.php
@@ -325,24 +341,26 @@ POST /backend/api/router.php
 ### **Respostas da API**
 
 #### **Sucesso**
+
 ```json
 {
-    "success": true,
-    "message": "Operação realizada com sucesso",
-    "data": {
-        // dados retornados
-    }
+  "success": true,
+  "message": "Operação realizada com sucesso",
+  "data": {
+    // dados retornados
+  }
 }
 ```
 
 #### **Erro**
+
 ```json
 {
-    "success": false,
-    "message": "Mensagem de erro",
-    "errors": {
-        "field": "Detalhes do erro"
-    }
+  "success": false,
+  "message": "Mensagem de erro",
+  "errors": {
+    "field": "Detalhes do erro"
+  }
 }
 ```
 
@@ -351,6 +369,7 @@ POST /backend/api/router.php
 ### **Classes JavaScript Principais**
 
 #### 🎛️ **DuraluxDashboard** (`assets/js/duralux-dashboard.js`)
+
 ```javascript
 class DuraluxDashboard {
     // Gerencia dashboard dinâmico
@@ -364,6 +383,7 @@ class DuraluxDashboard {
 ```
 
 #### 👥 **DuraluxCustomers** (`assets/js/duralux-customers.js`)
+
 ```javascript
 class DuraluxCustomers {
     // Gerencia sistema de clientes
@@ -380,6 +400,7 @@ class DuraluxCustomers {
 ### **Recursos Frontend**
 
 #### 🎨 **Interface Responsiva**
+
 - Layout adaptativo Bootstrap 5
 - Cards dinâmicos e interativos
 - Modais para formulários
@@ -387,6 +408,7 @@ class DuraluxCustomers {
 - Loading states profissionais
 
 #### ⚡ **Funcionalidades JavaScript**
+
 - Requisições AJAX assíncronas
 - Validação em tempo real
 - Auto-complete e busca instantânea
@@ -398,6 +420,7 @@ class DuraluxCustomers {
 ### **Arquitetura de Segurança**
 
 #### 🛡️ **AuthController** (`backend/classes/AuthController.php`)
+
 ```php
 class AuthController extends BaseController {
     public function login()           // Autenticação
@@ -409,6 +432,7 @@ class AuthController extends BaseController {
 ```
 
 #### 🔒 **AuthMiddleware** (`backend/classes/AuthMiddleware.php`)
+
 ```php
 class AuthMiddleware {
     public static function handle()   // Verificar autenticação
@@ -431,34 +455,39 @@ class AuthMiddleware {
 ### **Estatísticas Implementadas**
 
 #### 💰 **Faturas Aguardando Pagamento**
+
 - Contador baseado em dados reais
 - Valores calculados dinamicamente
 - Barra de progresso atualizada
 - Percentual de pending vs total
 
 #### 🎯 **Leads Convertidos**
+
 - Taxa de conversão inteligente
 - Base de cálculo proporcional
 - Métricas de performance
 - Indicadores visuais de sucesso
 
 #### 📁 **Projetos em Andamento**
+
 - Status de projetos ativos
 - Relacionamento com clientes
 - Percentual de conclusão
 - Timeline de progresso
 
 #### 📈 **Taxa de Conversão Geral**
+
 - Cálculo automático de ROI
 - Valor médio de conversão
 - Tendências de crescimento
 - Comparativo mensal
 
 ### **Auto-Refresh e Tempo Real**
+
 ```javascript
 // Atualização automática a cada 30 segundos
 setInterval(() => {
-    this.loadDashboardData();
+  this.loadDashboardData();
 }, 30000);
 ```
 
@@ -467,6 +496,7 @@ setInterval(() => {
 ### **Funcionalidades Completas**
 
 #### ✨ **Interface de Clientes**
+
 - **Lista Dinâmica**: Tabela com dados em tempo real
 - **Busca Instantânea**: Filtro por nome, email, telefone
 - **Paginação Inteligente**: Navegação otimizada
@@ -474,29 +504,31 @@ setInterval(() => {
 - **Ações em Lote**: Operações múltiplas
 
 #### 🛠️ **CRUD Completo**
+
 ```javascript
 // Exemplo de uso da API de clientes
 const customers = new DuraluxCustomers();
 
 // Criar cliente
 await customers.createCustomer({
-    name: 'João Silva',
-    email: 'joao@email.com',
-    phone: '(11) 99999-9999',
-    address: 'Rua A, 123'
+  name: "João Silva",
+  email: "joao@email.com",
+  phone: "(11) 99999-9999",
+  address: "Rua A, 123",
 });
 
 // Buscar clientes
-const results = await customers.searchCustomers('João');
+const results = await customers.searchCustomers("João");
 
 // Atualizar cliente
 await customers.updateCustomer(1, {
-    name: 'João Santos',
-    phone: '(11) 88888-8888'
+  name: "João Santos",
+  phone: "(11) 88888-8888",
 });
 ```
 
 #### 🔍 **Validações Implementadas**
+
 - **Email**: Formato válido e unicidade
 - **Telefone**: Máscara automática brasileira
 - **CPF/CNPJ**: Validação de dígitos
@@ -504,6 +536,7 @@ await customers.updateCustomer(1, {
 - **Campos Obrigatórios**: Validação em tempo real
 
 ### **CustomerController** (`backend/classes/CustomerController.php`)
+
 ```php
 class CustomerController extends BaseController {
     public function handleRequest()     // Roteamento
@@ -521,6 +554,7 @@ class CustomerController extends BaseController {
 ### **Sistema de Produtos**
 
 #### 🏷️ **Recursos Implementados**
+
 - Catálogo completo de produtos
 - Controle de estoque em tempo real
 - Categorização hierárquica
@@ -529,6 +563,7 @@ class CustomerController extends BaseController {
 - Preços promocionais e descontos
 
 #### 💼 **ProductController** (`backend/classes/ProductController.php`)
+
 ```php
 class ProductController extends BaseController {
     public function handleRequest()     // Gerencia requisições
@@ -545,6 +580,7 @@ class ProductController extends BaseController {
 ### **Testes Automáticos**
 
 #### 🔍 **test-dashboard.html**
+
 - Verificação de todas as APIs
 - Medição de performance (ms)
 - Status de conectividade
@@ -552,6 +588,7 @@ class ProductController extends BaseController {
 - Relatório visual de resultados
 
 #### 🧪 **Como Executar Testes**
+
 ```bash
 # 1. Acessar página de testes
 http://localhost:8000/duralux-admin/test-dashboard.html
@@ -562,6 +599,7 @@ http://localhost:8000/duralux-admin/test-dashboard.html
 ```
 
 #### ✅ **Cobertura de Testes**
+
 - Autenticação de usuário
 - Estatísticas do dashboard
 - Dados de receita
@@ -576,6 +614,7 @@ http://localhost:8000/duralux-admin/test-dashboard.html
 ### **Padrões de Código**
 
 #### 🏗️ **Arquitetura MVC**
+
 ```
 Model (Database) ← → Controller ← → View (Frontend)
      ↑                   ↑              ↑
@@ -583,6 +622,7 @@ Model (Database) ← → Controller ← → View (Frontend)
 ```
 
 #### 📝 **Convenções PHP**
+
 - PSR-4 para autoloading
 - CamelCase para classes e métodos
 - snake_case para variáveis de BD
@@ -590,6 +630,7 @@ Model (Database) ← → Controller ← → View (Frontend)
 - Tratamento de exceções robusto
 
 #### 🎨 **Convenções JavaScript**
+
 - ES6+ com classes modernas
 - camelCase para variáveis e funções
 - Async/await para requisições
@@ -597,6 +638,7 @@ Model (Database) ← → Controller ← → View (Frontend)
 - Comentários JSDoc
 
 ### **Git Workflow**
+
 ```bash
 # Feature branch
 git checkout -b feature/nova-funcionalidade
@@ -608,6 +650,7 @@ git push origin feature/nova-funcionalidade
 ```
 
 ### **Logs e Debug**
+
 ```php
 // Backend logging
 error_log("Erro: " . $e->getMessage());
@@ -623,6 +666,7 @@ console.error('Erro:', error);
 ### **Otimizações Implementadas**
 
 #### ⚡ **Backend**
+
 - Queries SQL otimizadas
 - Conexões PDO reutilizáveis
 - Cache de sessão inteligente
@@ -630,6 +674,7 @@ console.error('Erro:', error);
 - Índices de banco otimizados
 
 #### 🚀 **Frontend**
+
 - Carregamento assíncrono
 - Debounce para busca
 - Lazy loading de imagens
@@ -637,6 +682,7 @@ console.error('Erro:', error);
 - Compressão gzip
 
 ### **Métricas de Performance**
+
 - Tempo de resposta API: < 100ms
 - Carregamento de página: < 2s
 - Primeira interação: < 1s
@@ -648,6 +694,7 @@ console.error('Erro:', error);
 ### **Próximas Funcionalidades**
 
 #### 🎯 **Sistema de Leads** (Em Desenvolvimento)
+
 - CRUD de leads/oportunidades
 - Pipeline de vendas visual
 - Conversão automática para clientes
@@ -655,6 +702,7 @@ console.error('Erro:', error);
 - Scoring de leads
 
 #### 📊 **Gestão de Projetos**
+
 - Criação de projetos
 - Timeline e milestones
 - Atribuição de tarefas
@@ -662,6 +710,7 @@ console.error('Erro:', error);
 - Relacionamento com clientes
 
 #### 🛒 **Sistema de Pedidos**
+
 - Criação de pedidos
 - Gestão de faturas
 - Controle de pagamentos
@@ -669,6 +718,7 @@ console.error('Erro:', error);
 - Relatórios financeiros
 
 #### 📋 **Relatórios Avançados**
+
 - Relatórios personalizáveis
 - Exportação PDF/Excel
 - Gráficos interativos
@@ -676,6 +726,7 @@ console.error('Erro:', error);
 - Agendamento de relatórios
 
 #### 🔔 **Notificações**
+
 - Notificações em tempo real
 - Sistema de alertas
 - Email automático
@@ -697,6 +748,7 @@ console.error('Erro:', error);
 ### **Diretrizes**
 
 #### 📋 **Pull Requests**
+
 - Título claro e descritivo
 - Descrição detalhada das mudanças
 - Screenshots se aplicável
@@ -704,6 +756,7 @@ console.error('Erro:', error);
 - Documentação atualizada
 
 #### 🐛 **Reportar Bugs**
+
 - Título descritivo
 - Passos para reproduzir
 - Resultado esperado vs atual
@@ -711,6 +764,7 @@ console.error('Erro:', error);
 - Versão do navegador/PHP
 
 #### 💡 **Sugerir Funcionalidades**
+
 - Descrição clara da necessidade
 - Casos de uso detalhados
 - Mockups se possível
@@ -726,11 +780,13 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 ## 📞 Contato
 
 ### **Desenvolvimento**
-- **Desenvolvedor**: Ivon Martins
-- **Email**: ivon@sga.pucminas.br
+
+- **Desenvolvedor**: Maria Eduarda Cardoso de Oliveira
+- **Email**: maria.eduarda.cardoso@exemplo.com
 - **GitHub**: [Ivon-Puc](https://github.com/Ivon-Puc)
 
 ### **Suporte**
+
 - **Issues**: [GitHub Issues](https://github.com/Ivon-Puc/duralux/issues)
 - **Documentação**: [Wiki do Projeto](https://github.com/Ivon-Puc/duralux/wiki)
 - **Discussões**: [GitHub Discussions](https://github.com/Ivon-Puc/duralux/discussions)
@@ -741,7 +797,7 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 ### 🌟 **Se este projeto foi útil, considere dar uma estrela!** ⭐
 
-**Desenvolvido com ❤️ por [Ivon Matos](https://github.com/Ivon-Puc)**
+**Desenvolvido com ❤️ por [Maria Eduarda Cardoso de Oliveira](https://github.com/Ivon-Puc)**
 
 **© 2025 Duralux CRM - Todos os direitos reservados**
 

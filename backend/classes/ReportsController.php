@@ -6,7 +6,7 @@
  * Funcionalidades: Relatórios customizáveis, exportação PDF/Excel, gráficos, métricas
  * 
  * @version 1.4.0
- * @author Ivon Martins
+ * @author Maria Eduarda Cardoso de Oliveira
  * @created 2025-01-03
  */
 

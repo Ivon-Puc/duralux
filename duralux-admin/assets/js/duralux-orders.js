@@ -5,7 +5,7 @@
  * Funcionalidades: CRUD de pedidos, itens, estatísticas, faturas
  * 
  * @version 1.3.0
- * @author Ivon Martins
+ * @author Maria Eduarda Cardoso de Oliveira
  * @created 2025-01-03
  */
 
