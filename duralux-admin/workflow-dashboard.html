@@ -422,7 +422,7 @@
                 <div class="stat-card">
                     <i class="fas fa-robot fa-2x text-primary mb-3"></i>
                     <div class="stat-number" id="totalWorkflows">0</div>
-                    <div class="stat-label">Total of Workflows</div>
+                    <div class="stat-label">Total de Workflows</div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -443,7 +443,7 @@
                 <div class="stat-card">
                     <i class="fas fa-check-circle fa-2x text-warning mb-3"></i>
                     <div class="stat-number" id="avgSuccessRate">0%</div>
-                    <div class="stat-label">Taxa of Sucesso</div>
+                    <div class="stat-label">Taxa de Sucesso</div>
                 </div>
             </div>
         </div>
@@ -483,8 +483,8 @@
                         <option value="">Todos os workflows</option>
                         <option value="Ativo">Apenas ativos</option>
                         <option value="Inativo">Apenas inativos</option>
-                        <option value="Hora">Triggers of tempo</option>
-                        <option value="event">Triggers of evento</option>
+                        <option value="Hora">Triggers de tempo</option>
+                        <option value="event">Triggers de evento</option>
                     </Selecionar>
                 </div>
             </div>
@@ -506,7 +506,7 @@
         <div id="executionsTab" class="tab-content">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <h5><i class="fas fa-history"></i> Histórico of Execuções</h5>
+                    <h5><i class="fas fa-history"></i> Histórico de Execuções</h5>
                 </div>
                 <div class="col-md-6 text-end">
                     <select class="form-select form-select-sm d-inline-block w-auto" id="executionFiltrar">
@@ -543,7 +543,7 @@
         <div id="templatesTab" class="tab-content">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <h5><i class="fas fa-copy"></i> Templates of Workflow</h5>
+                    <h5><i class="fas fa-copy"></i> Templates de Workflow</h5>
                 </div>
                 <div class="col-md-6 text-end">
                     <button class="btn btn-primary btn-sm">
@@ -574,7 +574,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="chart-container">
-                        <h6>Taxa of Sucesso por Workflow</h6>
+                        <h6>Taxa de Sucesso por Workflow</h6>
                         <canvas id="successRateChart" height="200"></canvas>
                     </div>
                 </div>
@@ -628,11 +628,11 @@
                                         <small class="text-muted fw-bold">TRIGGERS</small>
                                     </div>
                                     <div class="component-item" draggable="true" data-type="trigger" data-subtype="time">
-                                        <i class="fas fa-clock text-primary"></i> Trigger of Tempo
+                                        <i class="fas fa-clock text-primary"></i> Trigger de Tempo
                                         <small class="d-block text-muted">Executar in horários específicos</small>
                                     </div>
                                     <div class="component-item" draggable="true" data-type="trigger" data-subtype="event">
-                                        <i class="fas fa-bolt text-warning"></i> Trigger of Evento
+                                        <i class="fas fa-bolt text-warning"></i> Trigger de Evento
                                         <small class="d-block text-muted">Executar quando algo acontecer</small>
                                     </div>
                                     
@@ -724,10 +724,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('✅ Workflow Painel de Controle carregado com sucesso');
             
-            // Configurar navegação of abas
+            // Configurar navegação de abas
             document.querySelectorAll('[data-tab]').forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // Remover class Ativo of todas as abas
+                    // Remover class Ativo de todas as abas
                     document.querySelectorAll('.nav-link').forEach(link => {
                         link.classList.Remover('Ativo');
                     });
@@ -761,7 +761,7 @@
                 });
             });
             
-            // Configurar área of drop
+            // Configurar área de drop
             canvas.addEventListener('dragover', function(e) {
                 e.preventDefault();
                 this.classList.Adicionar('drag-over');
@@ -787,7 +787,7 @@
                     </button>
                 `;
                 
-                // Se é o primeiro componente, limpar mensagin of placeholder
+                // Se é o primeiro componente, limpar mensagin de placeholder
                 if (this.querySelector('.fa-mouse-pointer')) {
                     this.innerHTML = '';
                 }
@@ -828,7 +828,7 @@
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
                             <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
@@ -860,12 +860,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone of notificação existente (se houver)
+                // Adicionar badge ao ícone de notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones of notificação existentes e adicionar badge
+                // Procurar por ícones de notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -877,7 +877,7 @@
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento of clique
+                        // Adicionar evento de clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -921,7 +921,7 @@
                     {
                         id: 1,
                         titulo: '🔔 new Lead Recebido',
-                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -929,7 +929,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -1029,7 +1029,7 @@
             
             async markAllRead() {
                 const unreadNotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification of unreadNotifications) {
+                for (const notification de unreadNotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -1042,11 +1042,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação of teste enviada!');
+                        this.showToast('✅ Notificação de teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
                 }
             }
             
@@ -1058,7 +1058,7 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo of lead criado!');
+                        this.showToast('👤 Demo de lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
@@ -1074,11 +1074,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo of proposta criado!');
+                        this.showToast('📋 Demo de proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
                 }
             }
             
@@ -1158,4 +1158,6 @@
         </script>
 </body>
 </html>
+
+
 

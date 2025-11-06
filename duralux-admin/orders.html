@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Sistema of Gestão of Pedidos - Duralux CRM">
+    <meta name="description" content="Sistema de Gestão de Pedidos - Duralux CRM">
     <meta name="keyword" content="pedidos, vendas, faturas, crm">
     <meta name="author" content="Duralux">
     <!--! BEGIN: Apps Title-->
-    <title>Duralux CRM || Gestão of Pedidos</title>
+    <title>Duralux CRM || Gestão de Pedidos</title>
     <!--! END: Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -257,7 +257,7 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Gestão of Pedidos</h5>
+                        <h5 class="m-b-10">Gestão de Pedidos</h5>
                     </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Painel</a></li>
@@ -292,7 +292,7 @@
                                         <div class="fs-4 fw-bolder text-dark mb-1">
                                             <span id="totalOrders">0</span>
                                         </div>
-                                        <div class="fs-12 text-muted">Total of Pedidos</div>
+                                        <div class="fs-12 text-muted">Total de Pedidos</div>
                                     </div>
                                     <div class="avatar-text avatar-lg bg-primary text-white">
                                         <i class="feather-shopping-cart"></i>
@@ -359,7 +359,7 @@
                     <div class="col-12">
                         <div class="card stretch stretch-full">
                             <div class="card-header">
-                                <h5 class="card-title">Gestão of Pedidos</h5>
+                                <h5 class="card-title">Gestão de Pedidos</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
                                         <div data-bs-toggle="tooltip" title="Delete">
@@ -396,7 +396,7 @@
                                         </Selecionar>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-12 mb-3">
-                                        <label class="form-label">Status of Pagamento</label>
+                                        <label class="form-label">Status de Pagamento</label>
                                         <select id="paymentStatusFiltrar" class="form-select">
                                             <option value="">Todos</option>
                                             <option value="unpaid">Não Pago</option>
@@ -549,7 +549,7 @@
                                 </Selecionar>
                             </div>
                             <div class="col-md-3">
-                                <label for="paymentStatus" class="form-label">Status of Pagamento</label>
+                                <label for="paymentStatus" class="form-label">Status de Pagamento</label>
                                 <select class="form-select" id="paymentStatus" name="payment_status">
                                     <option value="unpaid">Não Pago</option>
                                     <option value="Pendente">Pendente</option>
@@ -655,7 +655,7 @@
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
                             <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
@@ -687,12 +687,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone of notificação existente (se houver)
+                // Adicionar badge ao ícone de notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones of notificação existentes e adicionar badge
+                // Procurar por ícones de notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -704,7 +704,7 @@
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento of clique
+                        // Adicionar evento de clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -748,7 +748,7 @@
                     {
                         id: 1,
                         titulo: '🔔 new Lead Recebido',
-                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -756,7 +756,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -856,7 +856,7 @@
             
             async markAllRead() {
                 const unreadNotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification of unreadNotifications) {
+                for (const notification de unreadNotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -869,11 +869,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação of teste enviada!');
+                        this.showToast('✅ Notificação de teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
                 }
             }
             
@@ -885,7 +885,7 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo of lead criado!');
+                        this.showToast('👤 Demo de lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
@@ -901,11 +901,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo of proposta criado!');
+                        this.showToast('📋 Demo de proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
                 }
             }
             
@@ -986,4 +986,6 @@
 </body>
 
 </html>
+
+
 

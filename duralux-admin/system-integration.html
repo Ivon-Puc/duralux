@@ -286,7 +286,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">🎯 Duralux CRM</div>
-            <div class="subtitle">Sistema of Gestão of Relacionamento com Clientes</div>
+            <div class="subtitle">Sistema de Gestão de Relacionamento com Clientes</div>
         </div>
 
         <div class="status success">
@@ -304,7 +304,7 @@
                     Interface Administrativa
                 </h3>
                 <p>
-                    Interface completa in Bootstrap com sistema of clientes integrado à API backend.
+                    Interface completa in Bootstrap com sistema de clientes integrado à API backend.
                     Inclui busca in tempo real, filtros avançados e paginação.
                 </p>
                 <a href="customers.html" class="btn">
@@ -319,7 +319,7 @@
                 </h3>
                 <p>
                     API RESTful completa in PHP com SQLite. Inclui autenticação segura,
-                    CRUD of clientes e produtos, validação e logs of atividade.
+                    CRUD de clientes e produtos, validação e logs de atividade.
                 </p>
                 <a href="../backend/api/test.html" class="btn btn-success">
                     <span class="icon">🧪</span> Testar APIs
@@ -333,7 +333,7 @@
                 </h3>
                 <p>
                     Painel de Controle com estatísticas in tempo real, gráficos interativos
-                    e métricas of desempenho do CRM.
+                    e métricas de desempenho do CRM.
                 </p>
                 <a href="index.html" class="btn btn-info">
                     <span class="icon">📈</span> Ver Painel de Controle
@@ -346,15 +346,15 @@
             <div class="feature-list">
                 <div class="feature-item">
                     <span class="check">✓</span>
-                    <span>Sistema of Autenticação Completo</span>
+                    <span>Sistema de Autenticação Completo</span>
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
-                    <span>CRUD of Clientes com Validação</span>
+                    <span>CRUD de Clientes com Validação</span>
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
-                    <span>CRUD of Produtos com SKU Automático</span>
+                    <span>CRUD de Produtos com SKU Automático</span>
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
@@ -362,7 +362,7 @@
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
-                    <span>Banco SQLite com Dados of Exemplo</span>
+                    <span>Banco SQLite com Dados de Exemplo</span>
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
@@ -378,11 +378,11 @@
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
-                    <span>Exportaração of Dados</span>
+                    <span>Exportaração de Dados</span>
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
-                    <span>Logs of Atividade</span>
+                    <span>Logs de Atividade</span>
                 </div>
                 <div class="feature-item">
                     <span class="check">✓</span>
@@ -405,7 +405,7 @@
 
         <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #dee2e6;">
             <p style="color: #6c757d; margin: 0;">
-                <strong>Duralux CRM v1.0</strong> - Sistema of Gestão Completo<br>
+                <strong>Duralux CRM v1.0</strong> - Sistema de Gestão Completo<br>
                 Desenvolvido com PHP, SQLite, Bootstrap e JavaScript
             </p>
         </div>
@@ -442,7 +442,7 @@
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
                             <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
@@ -474,12 +474,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone of notificação existente (se houver)
+                // Adicionar badge ao ícone de notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones of notificação existentes e adicionar badge
+                // Procurar por ícones de notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -491,7 +491,7 @@
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento of clique
+                        // Adicionar evento de clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -535,7 +535,7 @@
                     {
                         id: 1,
                         titulo: '🔔 new Lead Recebido',
-                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -543,7 +543,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -643,7 +643,7 @@
             
             async markAllRead() {
                 const unreadNotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification of unreadNotifications) {
+                for (const notification de unreadNotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -656,11 +656,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação of teste enviada!');
+                        this.showToast('✅ Notificação de teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
                 }
             }
             
@@ -672,7 +672,7 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo of lead criado!');
+                        this.showToast('👤 Demo de lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
@@ -688,11 +688,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo of proposta criado!');
+                        this.showToast('📋 Demo de proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
                 }
             }
             
@@ -772,4 +772,6 @@
         </script>
 </body>
 </html>
+
+
 

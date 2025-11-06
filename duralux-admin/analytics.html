@@ -28,8 +28,8 @@
         :root {
             --duralux-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --duralux-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --duralux-Sucesso: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --duralux-Aviso: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --duralux-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --duralux-warning: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             --duralux-Informação: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             --duralux-dark: #2c3e50;
             --duralux-light: #f8f9fa;
@@ -164,11 +164,11 @@
         }
         
         .stat-card.Sucesso {
-            background: var(--duralux-Sucesso);
+            background: var(--duralux-success);
         }
         
         .stat-card.Aviso {
-            background: var(--duralux-Aviso);
+            background: var(--duralux-warning);
             color: var(--duralux-dark);
         }
         
@@ -364,7 +364,7 @@
                 <div class="col-md-3 mb-3">
                     <div class="stat-card scale-in">
                         <div class="stat-number" id="totalEmails">50.545</div>
-                        <div class="stat-label">Total of E-mails</div>
+                        <div class="stat-label">Total de E-mails</div>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -391,7 +391,7 @@
                 <!-- Main Chart -->
                 <div class="col-lg-8 mb-4">
                     <div class="chart-container fade-in">
-                        <h3 class="chart-title">Visão Geral of Visitantes</h3>
+                        <h3 class="chart-title">Visão Geral de Visitantes</h3>
                         <canvas id="visitorsChart" width="400" height="200"></canvas>
                     </div>
                 </div>
@@ -462,7 +462,7 @@
             <div class="row mb-4">
                 <div class="col-md-3 mb-3">
                     <div class="duralux-card text-center fade-in">
-                        <h4>Taxa of Rejeição</h4>
+                        <h4>Taxa de Rejeição</h4>
                         <div class="stat-number text-primary">78.65%</div>
                         <small class="text-success">+22.85% vs anterior</small>
                         <canvas id="bounceChart" width="100" height="50"></canvas>
@@ -471,7 +471,7 @@
                 
                 <div class="col-md-3 mb-3">
                     <div class="duralux-card text-center fade-in">
-                        <h4>Visualizações of Página</h4>
+                        <h4>Visualizações de Página</h4>
                         <div class="stat-number text-success">86.37%</div>
                         <small class="text-danger">-34.25% vs anterior</small>
                         <canvas id="pageViewsChart" width="100" height="50"></canvas>
@@ -489,7 +489,7 @@
                 
                 <div class="col-md-3 mb-3">
                     <div class="duralux-card text-center fade-in">
-                        <h4>Taxa of Conversão</h4>
+                        <h4>Taxa de Conversão</h4>
                         <div class="stat-number text-info">32.53%</div>
                         <small class="text-success">+35.47% vs anterior</small>
                         <canvas id="conversionChart" width="100" height="50"></canvas>
@@ -506,7 +506,7 @@
                             <div class="col-6 mb-3">
                                 <div class="text-center p-3 border rounded">
                                     <canvas id="marketingGoal" width="80" height="80"></canvas>
-                                    <h6 class="mt-2">Meta of Marketing</h6>
+                                    <h6 class="mt-2">Meta de Marketing</h6>
                                     <small>R$ 550 / R$ 1.250</small>
                                 </div>
                             </div>
@@ -520,14 +520,14 @@
                             <div class="col-6 mb-3">
                                 <div class="text-center p-3 border rounded">
                                     <canvas id="leadsGoal" width="80" height="80"></canvas>
-                                    <h6 class="mt-2">Meta of Leads</h6>
+                                    <h6 class="mt-2">Meta de Leads</h6>
                                     <small>R$ 850 / R$ 950</small>
                                 </div>
                             </div>
                             <div class="col-6 mb-3">
                                 <div class="text-center p-3 border rounded">
                                     <canvas id="revenueGoal" width="80" height="80"></canvas>
-                                    <h6 class="mt-2">Meta of Receita</h6>
+                                    <h6 class="mt-2">Meta de Receita</h6>
                                     <small>R$ 5.655 / R$ 12.500</small>
                                 </div>
                             </div>
@@ -543,7 +543,7 @@
                 <!-- Campaign Analytics -->
                 <div class="col-lg-6 mb-4">
                     <div class="duralux-card fade-in">
-                        <h3 class="chart-title mb-4">Análise of Campanhas</h3>
+                        <h3 class="chart-title mb-4">Análise de Campanhas</h3>
                         <canvas id="campaignChart" width="400" height="250"></canvas>
                         
                         <div class="row mt-4">
@@ -618,7 +618,7 @@
             // Visitors Visão geral Chart
             const visitorsCtx = document.getElementById('visitorsChart').getContext('2d');
             new Chart(visitorsCtx, {
-                Tipo: 'line',
+                type: 'line',
                 data: {
                     labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
                     datasets: [{
@@ -656,7 +656,7 @@
             // Campanha Chart
             const campaignCtx = document.getElementById('campaignChart').getContext('2d');
             new Chart(campaignCtx, {
-                Tipo: 'bar',
+                type: 'bar',
                 data: {
                     labels: ['E-mail', 'Social', 'Busca', 'Direto', 'Referência', 'Outros'],
                     datasets: [{
@@ -709,7 +709,7 @@
             goalCharts.forEach((chartId, index) => {
                 const ctx = document.getElementById(chartId).getContext('2d');
                 new Chart(ctx, {
-                    Tipo: 'doughnut',
+                    type: 'doughnut',
                     data: {
                         datasets: [{
                             data: [goalValues[index], 100 - goalValues[index]],
@@ -741,7 +741,7 @@
             miniChartDate.forEach(chart => {
                 const ctx = document.getElementById(chart.id).getContext('2d');
                 new Chart(ctx, {
-                    Tipo: 'line',
+                    type: 'line',
                     data: {
                         labels: ['', '', '', '', ''],
                         datasets: [{
@@ -814,4 +814,6 @@
     </script>
 </body>
 </html>
+
+
 

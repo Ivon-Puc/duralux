@@ -24,7 +24,7 @@
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/theme.min.css">
     <!--! END: Custom CSS-->
-    <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
+    <!--! HTML5 shim and Respond.js for IE8 support de HTML5 elements and media queries !-->
     <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
     <!--[if lt IE 9]>
 			<script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -206,7 +206,7 @@
                                 <input type="email" class="form-control" placeholder="E-mail" required>
                             </div>
                             <div class="mb-4">
-                                <input type="tel" class="form-control" placeholder="Nome of Usuário" required>
+                                <input type="tel" class="form-control" placeholder="Nome de Usuário" required>
                             </div>
                             <div class="mb-4 generate-pass">
                                 <div class="input-group field">
@@ -437,7 +437,7 @@
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
                             <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
@@ -469,12 +469,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone of notificação existente (se houver)
+                // Adicionar badge ao ícone de notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones of notificação existentes e adicionar badge
+                // Procurar por ícones de notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -486,7 +486,7 @@
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento of clique
+                        // Adicionar evento de clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -530,7 +530,7 @@
                     {
                         id: 1,
                         titulo: '🔔 new Lead Recebido',
-                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -538,7 +538,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -638,7 +638,7 @@
             
             async markAllRead() {
                 const unreadNotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification of unreadNotifications) {
+                for (const notification de unreadNotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -651,11 +651,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação of teste enviada!');
+                        this.showToast('✅ Notificação de teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
                 }
             }
             
@@ -667,7 +667,7 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo of lead criado!');
+                        this.showToast('👤 Demo de lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
@@ -683,11 +683,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo of proposta criado!');
+                        this.showToast('📋 Demo de proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
                 }
             }
             
@@ -768,4 +768,6 @@
 </body>
 
 </html>
+
+
 

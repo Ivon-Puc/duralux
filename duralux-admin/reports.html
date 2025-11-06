@@ -18,8 +18,8 @@
         :root {
             --duralux-primary: #2c3e50;
             --duralux-secondary: #3498db;
-            --duralux-Sucesso: #27ae60;
-            --duralux-Aviso: #f39c12;
+            --duralux-success: #27ae60;
+            --duralux-warning: #f39c12;
             --duralux-danger: #e74c3c;
             --duralux-light: #ecf0f1;
             --duralux-dark: #34495e;
@@ -466,9 +466,9 @@
             <div class="container">
                 <h1 class="display-4 mb-3">
                     <i class="bi bi-bar-chart-line me-3"></i>
-                    Central of Relatórios Executivos
+                    Central de Relatórios Executivos
                 </h1>
-                <p class="lead">Análises avançadas e insights estratégicos para tomada of decisão</p>
+                <p class="lead">Análises avançadas e insights estratégicos para tomada de decisão</p>
             </div>
         </div>
 
@@ -541,16 +541,16 @@
                         <i class="bi bi-speedometer2 me-2"></i>Painel de Controle Executivo
                     </button>
                     <button class="report-tab" data-tab="sales">
-                        <i class="bi bi-graph-up-arrow me-2"></i>Relatório of Vendas
+                        <i class="bi bi-graph-up-arrow me-2"></i>Relatório de Vendas
                     </button>
                     <button class="report-tab" data-tab="leads">
-                        <i class="bi bi-funnel me-2"></i>Relatório of Leads
+                        <i class="bi bi-funnel me-2"></i>Relatório de Leads
                     </button>
                     <button class="report-tab" data-tab="projects">
-                        <i class="bi bi-kanban me-2"></i>Relatório of Projetos
+                        <i class="bi bi-kanban me-2"></i>Relatório de Projetos
                     </button>
                     <button class="report-tab" data-tab="customers">
-                        <i class="bi bi-people me-2"></i>Relatório of Clientes
+                        <i class="bi bi-people me-2"></i>Relatório de Clientes
                     </button>
                     <button class="report-tab" data-tab="financial">
                         <i class="bi bi-cash-coin me-2"></i>Relatório Financeiro
@@ -569,11 +569,11 @@
                         </div>
                         <div class="col-md-3 summary-stat">
                             <h3 id="totalOrdemsMetric">0</h3>
-                            <p>Total of Pedidos</p>
+                            <p>Total de Pedidos</p>
                         </div>
                         <div class="col-md-3 summary-stat">
                             <h3 id="conversionRateMetric">0%</h3>
-                            <p>Taxa of Conversão</p>
+                            <p>Taxa de Conversão</p>
                         </div>
                         <div class="col-md-3 summary-stat">
                             <h3 id="avgOrdemValueMetric">R$ 0,00</h3>
@@ -590,7 +590,7 @@
                                 <i class="bi bi-people"></i>
                             </div>
                             <div class="metric-value" id="totalClientesMetric">0</div>
-                            <p class="metric-label">Total of Clientes</p>
+                            <p class="metric-label">Total de Clientes</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -644,7 +644,7 @@
 
                 <!-- Vendas Performance Table -->
                 <div class="performance-table">
-                    <h5 class="chart-title p-3 mb-0">Performance of Vendas por Cliente</h5>
+                    <h5 class="chart-title p-3 mb-0">Performance de Vendas por Cliente</h5>
                     <div class="table-responsive">
                         <table class="table table-hover mb-0" id="salesByCustomerTable">
                             <thead>
@@ -668,7 +668,7 @@
             <div id="leadsTab" class="tab-content">
                 <div class="charts-grid">
                     <div class="chart-container">
-                        <h5 class="chart-title">Funil of Conversão</h5>
+                        <h5 class="chart-title">Funil de Conversão</h5>
                         <canvas id="conversionFunnelChart"></canvas>
                     </div>
                     <div class="chart-container">
@@ -703,7 +703,7 @@
                                 <i class="bi bi-hourglass-split"></i>
                             </div>
                             <div class="metric-value" id="avgConversionHoraMetric">0 dias</div>
-                            <p class="metric-label">Tempo Médio of Conversão</p>
+                            <p class="metric-label">Tempo Médio de Conversão</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -712,7 +712,7 @@
                                 <i class="bi bi-percent"></i>
                             </div>
                             <div class="metric-value" id="leadConversionRateMetric">0%</div>
-                            <p class="metric-label">Taxa of Conversão</p>
+                            <p class="metric-label">Taxa de Conversão</p>
                         </div>
                     </div>
                 </div>
@@ -735,7 +735,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="chart-container">
-                            <h5 class="chart-title">Segmentação of Clientes</h5>
+                            <h5 class="chart-title">Segmentação de Clientes</h5>
                             <canvas id="customersSegmentationChart"></canvas>
                         </div>
                     </div>
@@ -747,7 +747,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="chart-container">
-                            <h5 class="chart-title">Fluxo of Caixa</h5>
+                            <h5 class="chart-title">Fluxo de Caixa</h5>
                             <canvas id="cashFlowChart"></canvas>
                         </div>
                     </div>
@@ -802,7 +802,7 @@
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
                             <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
@@ -834,12 +834,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone of notificação existente (se houver)
+                // Adicionar badge ao ícone de notificação existente (se houver)
                 this.addNãotificationBadge();
             }
             
             addNãotificationBadge() {
-                // Procurar por ícones of notificação existentes e adicionar badge
+                // Procurar por ícones de notificação existentes e adicionar badge
                 const bellIcons = document.querySelecionarorTodos('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelecionaror('.notification-badge')) {
@@ -851,7 +851,7 @@
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento of clique
+                        // Adicionar evento de clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -895,7 +895,7 @@
                     {
                         id: 1,
                         titulo: '🔔 new Lead Recebido',
-                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -903,7 +903,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -1003,7 +1003,7 @@
             
             async markTodosRead() {
                 const unreadNãotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification of unreadNãotifications) {
+                for (const notification de unreadNãotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -1016,11 +1016,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Nãotificação of teste enviada!');
+                        this.showToast('✅ Nãotificação de teste enviada!');
                         setHoraout(() => this.loadNãotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNãotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
+                    this.addLocalNãotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
                 }
             }
             
@@ -1032,7 +1032,7 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo of lead criado!');
+                        this.showToast('👤 Demo de lead criado!');
                         setHoraout(() => this.loadNãotifications(), 1000);
                     }
                 } catch (Erro) {
@@ -1048,11 +1048,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo of proposta criado!');
+                        this.showToast('📋 Demo de proposta criado!');
                         setHoraout(() => this.loadNãotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNãotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
+                    this.addLocalNãotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
                 }
             }
             
@@ -1132,4 +1132,6 @@
         </script>
 </body>
 </html>
+
+
 

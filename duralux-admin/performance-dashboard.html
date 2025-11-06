@@ -374,7 +374,7 @@
                 <!-- Response Time Trend -->
                 <div class="chart-container">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5><i class="fas fa-chart-line text-primary"></i> Tempo of Resposta in Tempo Real</h5>
+                        <h5><i class="fas fa-chart-line text-primary"></i> Tempo de Resposta in Tempo Real</h5>
                         <span class="metric-badge">Últimos 20 min</span>
                     </div>
                     <canvas id="responseTimeChart" height="100"></canvas>
@@ -383,7 +383,7 @@
                 <!-- Performance Trends -->
                 <div class="chart-container">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5><i class="fas fa-chart-area text-info"></i> Tendências of Performance (7 dias)</h5>
+                        <h5><i class="fas fa-chart-area text-info"></i> Tendências de Performance (7 dias)</h5>
                         <div class="btn-group btn-group-sm" role="group">
                             <button type="button" class="btn btn-outline-secondary active" data-period="7">7d</button>
                             <button type="button" class="btn btn-outline-secondary" data-period="30">30d</button>
@@ -441,7 +441,7 @@
 
                 <!-- Memory Distribution -->
                 <div class="chart-container sidebar-stats">
-                    <h6><i class="fas fa-memory text-success"></i> Distribuição of Memória</h6>
+                    <h6><i class="fas fa-memory text-success"></i> Distribuição de Memória</h6>
                     <canvas id="memoryChart" height="200"></canvas>
                 </div>
 
@@ -482,7 +482,7 @@
             <div class="col-12">
                 <div class="chart-container">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5><i class="fas fa-lightbulb text-warning"></i> Recomendações of Otimização</h5>
+                        <h5><i class="fas fa-lightbulb text-warning"></i> Recomendações de Otimização</h5>
                         <button class="btn btn-sm btn-outline-primary" onclick="dashboard.refreshRecommendations()">
                             <i class="fas fa-refresh"></i> Atualizar
                         </button>
@@ -531,7 +531,7 @@
                                     <input class="form-check-input" type="checkbox" id="clearCache">
                                     <label class="form-check-label" for="clearCache">
                                         <strong><i class="fas fa-trash"></i> Limpar Cache</strong><br>
-                                        <small class="text-muted">Remover entradas of cache expiradas</small>
+                                        <small class="text-muted">Remover entradas de cache expiradas</small>
                                     </label>
                                 </div>
                                 <div class="form-check mb-3">
@@ -619,7 +619,7 @@
                 }
             });
             
-            // Controles of período
+            // Controles de período
             document.querySelectorAll('[data-period]').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('[data-period]').forEach(b => b.classList.remove('active'));
@@ -661,7 +661,7 @@
             });
         }
         
-        // Detectar problemas of performance da página
+        // Detectar problemas de performance da página
         window.addEventListener('load', function() {
             const perfData = performance.getEntriesByType('navigation')[0];
             const loadTime = perfDate.loadEventEnd - perfDate.loadEventStart;
@@ -705,7 +705,7 @@
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <h5 class="mb-0">🔔 Central de Notificações</h5>
                             <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
@@ -737,12 +737,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone of notificação existente (se houver)
+                // Adicionar badge ao ícone de notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones of notificação existentes e adicionar badge
+                // Procurar por ícones de notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -754,7 +754,7 @@
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento of clique
+                        // Adicionar evento de clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -798,7 +798,7 @@
                     {
                         id: 1,
                         titulo: '🔔 new Lead Recebido',
-                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
+                        mensagem: 'Lead de Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -806,7 +806,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -906,7 +906,7 @@
             
             async markAllRead() {
                 const unreadNotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification of unreadNotifications) {
+                for (const notification de unreadNotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -919,11 +919,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação of teste enviada!');
+                        this.showToast('✅ Notificação de teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
                 }
             }
             
@@ -935,7 +935,7 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo of lead criado!');
+                        this.showToast('👤 Demo de lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
@@ -951,11 +951,11 @@
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo of proposta criado!');
+                        this.showToast('📋 Demo de proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
                 } catch (Erro) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
                 }
             }
             
@@ -1035,4 +1035,6 @@
         </script>
 </body>
 </html>
+
+
 
