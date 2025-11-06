@@ -719,25 +719,6 @@
         .status-inactive { background: var(--danger-color); }
         .status-pending { background: var(--warning-color); }
         
-        
-        /* Fix para problemas de carregamento */
-        #loadingOverlay {
-            display: none !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-        }
-        
-        .main-content {
-            opacity: 1 !important;
-            visibility: visible !important;
-        }
-        
-        /* Garantir que a página seja visível */
-        body {
-            opacity: 1 !important;
-            visibility: visible !important;
-        }
-        
         </style>
 </head>
 <body>
@@ -812,10 +793,15 @@
     <!-- Navbar -->
     
 
-    <!-- Loading overlay removido para evitar travamento -->
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="text-center">
+            <div class="spinner-border loading-spinner" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
             <div class="mt-3 text-white">
                 <h5>Processando relatórios...</h5>
-                <p>Aguarde enquanto geramos as análises</p>
+                <p>Aguarof enquanto geramos as análises</p>
             </div>
         </div>
     </div>
@@ -833,33 +819,33 @@
             </div>
         </div>
 
-        <!-- Filters Section -->
+        <!-- Filtrars Section -->
         <div class="container-fluid">
             <div class="filters-section">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="periodFilter" class="form-label">
+                        <label for="periodFiltrar" class="form-label">
                             <i class="bi bi-calendar me-2"></i>Período
                         </label>
-                        <select id="periodFilter" class="form-select">
+                        <select id="periodFiltrar" class="form-select">
                             <option value="day">Diário</option>
                             <option value="week">Semanal</option>
                             <option value="month" selected>Mensal</option>
                             <option value="quarter">Trimestral</option>
                             <option value="year">Anual</option>
-                        </select>
+                        </Selecionar>
                     </div>
                     <div class="col-md-3">
-                        <label for="startDateFilter" class="form-label">
+                        <label for="startDataFiltrar" class="form-label">
                             <i class="bi bi-calendar-event me-2"></i>Data Início
                         </label>
-                        <input type="date" id="startDateFilter" class="form-control">
+                        <input type="date" id="startDataFiltrar" class="form-control">
                     </div>
                     <div class="col-md-3">
-                        <label for="endDateFilter" class="form-label">
+                        <label for="endDataFiltrar" class="form-label">
                             <i class="bi bi-calendar-check me-2"></i>Data Final
                         </label>
-                        <input type="date" id="endDateFilter" class="form-control">
+                        <input type="date" id="endDataFiltrar" class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">&nbsp; <span style="color: var(--danger-color);">*</span></label>
@@ -1425,84 +1411,5 @@
         });
         </script>
         
-
-    <!-- Script otimizado para evitar travamento -->
-    <script>
-        // Carregamento otimizado sem travamento
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('✅ Página Reports carregada com sucesso!');
-            
-            // Remover qualquer overlay de carregamento existente
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            if (loadingOverlay) {
-                loadingOverlay.style.display = 'none';
-                loadingOverlay.remove();
-            }
-            
-            // Inicializar componentes básicos
-            initializeBasicComponents();
-            
-            // Carregar dados de forma assíncrona (não bloquear)
-            setTimeout(() => {
-                loadReportsData();
-            }, 100);
-        });
-        
-        function initializeBasicComponents() {
-            // Tooltips
-            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-            
-            // Abas de relatório
-            document.querySelectorAll('.report-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    document.querySelectorAll('.report-tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    const tabName = this.getAttribute('data-tab');
-                    const tabContent = document.getElementById(tabName + 'Tab');
-                    if (tabContent) {
-                        tabContent.classList.add('active');
-                    }
-                });
-            });
-        }
-        
-        function loadReportsData() {
-            // Simular carregamento de dados (não bloquear UI)
-            const metrics = {
-                totalReceitaMetric: 'R$ 125.450,00',
-                totalOrdemsMetric: '847',
-                conversionRateMetric: '24.3%',
-                avgOrdemValueMetric: 'R$ 1.850,00',
-                totalClientesMetric: '156',
-                totalLeadsMetric: '89',
-                totalProjectsMetric: '23',
-                convertedLeadsMetric: '34'
-            };
-            
-            // Atualizar métricas na tela
-            Object.keys(metrics).forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.textContent = metrics[id];
-                }
-            });
-            
-            console.log('📊 Dados dos relatórios carregados!');
-        }
-        
-        // Evitar erros de Chart.js se não carregado
-        window.addEventListener('error', function(e) {
-            if (e.message.includes('Chart') || e.message.includes('canvas')) {
-                console.warn('⚠️ Chart.js não disponível, usando dados estáticos');
-                return false;
-            }
-        });
-    </script>
-
 </body>
 </html>
