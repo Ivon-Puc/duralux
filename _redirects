@@ -1,0 +1,6 @@
+# Redirects para o dashboard principal
+/dashboard /duralux-admin/index.html 200
+/admin /duralux-admin/index.html 200
+
+# Fallback para SPA
+/duralux-admin/* /duralux-admin/index.html 200

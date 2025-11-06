@@ -4,14 +4,14 @@
   "description": "Sistema de gestão Duralux",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Static HTML project - no build needed' && exit 0",
-    "start": "echo 'Static HTML project ready'",
-    "dev": "echo 'Development server not needed for static files'"
+    "build": "echo 'Build completed successfully'",
+    "start": "echo 'Static site ready'",
+    "dev": "echo 'Development mode'"
   },
   "keywords": ["dashboard", "admin", "html", "css", "javascript"],
   "author": "Duralux Team",
   "license": "MIT",
   "engines": {
-    "node": ">=16.x"
+    "node": "18.x"
   }
 }

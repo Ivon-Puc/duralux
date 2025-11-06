@@ -42,6 +42,12 @@
     </div>
     
     <script>
+        // Configuração global antes do redirecionamento
+        window.DuraluxConfig = {
+            isProduction: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
+            apiBaseUrl: window.location.origin + '/api'
+        };
+        
         // Fallback em caso do meta refresh não funcionar
         setTimeout(function() {
             window.location.href = './duralux-admin/index.html';
