@@ -1,47 +1,12 @@
-# Arquivos de desenvolvimento Python
+# Python files
 *.py
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-requirements.txt
-
-# Arquivos de backup
-*.backup
-*.original
-backend/backups/
-
-# Backend complexo que não funciona como serverless
 backend/
-!backend/api/
 
-# Documentação não essencial
+# Documentation
+*.md
 docs/
-CHANGELOG.md
-CONTRIBUTING.md
-DASHBOARD-COMPLETO.md
-INSTALACAO.md
-PROGRESSO.md
-SISTEMA-IMPLEMENTADO.md
-TRADUCAO-COMPLETA-PT-BR.md
-TRANSLATION_STATUS.md
-README.md
-README-VERCEL.md
 
-# Arquivos de configuração de desenvolvimento
+# Data files
 data/
-
-# Logs e arquivos temporários
-*.log
-*.tmp
-.DS_Store
-Thumbs.db
-
-# Arquivos JSON de relatórios
 translation_report*.json
 validation_report.json
-
-# Arquivos Git
-.git/
-.gitignore

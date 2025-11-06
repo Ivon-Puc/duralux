@@ -1,17 +1,11 @@
 {
   "name": "duralux",
   "version": "1.0.0",
-  "description": "Sistema de gestão Duralux",
-  "main": "index.html",
+  "description": "Duralux Dashboard",
   "scripts": {
-    "build": "echo 'Build completed successfully - Node.js 22.x' && node --version",
-    "start": "echo 'Static site ready'",
-    "dev": "echo 'Development mode'"
+    "build": "echo 'Static site build complete'"
   },
-  "keywords": ["dashboard", "admin", "html", "css", "javascript"],
-  "author": "Duralux Team",
-  "license": "MIT",
   "engines": {
-    "node": "22.x"
+    "node": ">=18.0.0"
   }
 }

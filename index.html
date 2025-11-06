@@ -3,55 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duralux - Redirecionando...</title>
+    <title>Duralux Dashboard</title>
     <meta http-equiv="refresh" content="0; url=./duralux-admin/index.html">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .loading {
-            text-align: center;
-        }
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </head>
 <body>
-    <div class="loading">
-        <div class="spinner"></div>
-        <h2>Carregando Duralux...</h2>
-        <p>Se não for redirecionado automaticamente, <a href="./duralux-admin/index.html" style="color: #87CEEB;">clique aqui</a>.</p>
-    </div>
-    
-    <script>
-        // Configuração global antes do redirecionamento
-        window.DuraluxConfig = {
-            isProduction: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
-            apiBaseUrl: window.location.origin + '/api'
-        };
-        
-        // Fallback em caso do meta refresh não funcionar
-        setTimeout(function() {
-            window.location.href = './duralux-admin/index.html';
-        }, 1000);
-    </script>
+    <h1>Redirecionando para o Dashboard...</h1>
+    <p><a href="./duralux-admin/index.html">Clique aqui se não for redirecionado</a></p>
 </body>
 </html>
