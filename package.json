@@ -4,7 +4,7 @@
   "description": "Sistema de gestão Duralux",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Build completed successfully'",
+    "build": "echo 'Build completed successfully - Node.js 22.x' && node --version",
     "start": "echo 'Static site ready'",
     "dev": "echo 'Development mode'"
   },
