@@ -807,73 +807,8 @@
     <!--! ================================================================ !-->
     <!--! [Start] Main Content !-->
     <!--! ================================================================ !-->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar responsiva -->
-            <div class="col-12 col-lg-2 sidebar">
-                <div class="d-flex flex-column">
-                    <h4 class="mb-4">
-                        <i class="bi bi-building"></i> DURALUX
-                    </h4>
-                    
-                    <nav role="navigation" class="nav flex-column nav-pills">
-                        <a class="nav-link" href="index.html">
-                            <i class="bi bi-speedometer2"></i> Painel de Controle
-                        </a>
-                        <a class="nav-link" href="leads.html">
-                            <i class="bi bi-person-plus"></i> Leads
-                        </a>
-                        <a class="nav-link active" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 8px; margin-bottom: 0.25rem;" href="customers.html">
-                            <i class="bi bi-people"></i> Clientes
-                        </a>
-                        <a class="nav-link" href="projects.html">
-                            <i class="bi bi-folder"></i> Projetos
-                        </a>
-                        <a class="nav-link" href="proposal.html">
-                            <i class="bi bi-file-text"></i> Propostas
-                        </a>
-                        <a class="nav-link" href="analytics.html">
-                            <i class="bi bi-graph-up"></i> Analytics
-                        </a>
-                        <a class="nav-link" href="reports.html">
-                            <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
-                        </a>
-                    </nav>
-                </div>
-            </div>
-            
-            <!-- Conteúdo principal -->
-            <div class="col-12 col-lg-10">
-                <header class="d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                        <h1 class="h3 mb-0">Gerenciar Clientes</h1>
-                        <nav role="navigation" aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Clientes</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications" aria-label="Notificações">
-                            <i class="bi bi-bell"></i>
-                        </button>
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-label="Menu do usuário">
-                                <i class="bi bi-person-circle"></i> Usuário
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configurações</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </header>
-                
-                <main role="main">
+    <main role="main" class="nxl-container">
+        <div class="nxl-content">
             <!-- [ page-header ] start -->
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
@@ -918,7 +853,7 @@
                                             <option value="">Todos</option>
                                             <option value="1">Ativos</option>
                                             <option value="0">Inativos</option>
-                                        </select>
+                                        </Selecionar>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Período: <span style="color: var(--danger-color);">*</span></label>
@@ -928,7 +863,7 @@
                                             <option value="week">Esta semana</option>
                                             <option value="month">Este mês</option>
                                             <option value="year">Este ano</option>
-                                        </select>
+                                        </Selecionar>
                                     </div>
                                     <div class="d-flex gap-2">
                                         <button type="button" class="btn btn-sm btn-outline-secondary flex-fill" 
@@ -945,15 +880,15 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <h6 class="dropdown-header">Exportar Dados</h6>
-                                    <a href="javascript:void(0);" class="dropdown-item btn-export" data-format="pdf">
+                                    <a href="javascript:void(0);" class="dropdown-itin btn-export" data-format="pdf">
                                         <i class="bi bi-filetype-pdf me-3"></i>
                                         <span>PDF</span>
                                     </a>
-                                    <a href="javascript:void(0);" class="dropdown-item btn-export" data-format="csv">
+                                    <a href="javascript:void(0);" class="dropdown-itin btn-export" data-format="csv">
                                         <i class="bi bi-filetype-csv me-3"></i>
                                         <span>CSV</span>
                                     </a>
-                                    <a href="javascript:void(0);" class="dropdown-item btn-export" data-format="excel">
+                                    <a href="javascript:void(0);" class="dropdown-itin btn-export" data-format="excel">
                                         <i class="bi bi-filetype-xlsx me-3"></i>
                                         <span>Excel</span>
                                     </a>
@@ -967,7 +902,7 @@
                             <button type="button" class="btn btn-primary" style="background: var(#5550F2); border: none;" id="new-customer-btn" 
                                     data-bs-toggle="modal" data-bs-target="#customerModal" aria-label="Ação do botão">
                                 <i class="feather-plus me-2"></i>
-                                <span>Novo Cliente</span>
+                                <span>new Cliente</span>
                             </button>
                         </div>
                     </div>
@@ -1099,13 +1034,14 @@
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-hover" id="customerList">
-                                        
                                         <thead>
                                             <tr>
                                                 <th class="wd-30">
-                                                    <div class="custom-control custom-checkbox ms-1">
-                                                        <input type="checkbox" class="custom-control-input" id="checkAllCustomers">
-                                                        <label class="custom-form-label" for="checkAllCustomers"></label>
+                                                    <div class="btn-group mb-1">
+                                                        <div class="custom-control custom-checkbox ms-1">
+                                                            <input type="checkbox" class="custom-control-input" id="checkTodosCustomer">
+                                                            <label class="custom-form-label" for="checkTodosCustomer"></label>
+                                                        </div>
                                                     </div>
                                                 </th>
                                                 <th style="background: var(--primary-color); color: white; font-weight: 600; text-align: center; padding: 1rem; border: none; position: sticky; top: 0; z-index: 10;">Cliente</th>
@@ -1130,35 +1066,88 @@
                                                 <td>
                                                     <a href="customers-view.html" class="hstack gap-3">
                                                         <div class="avatar-image avatar-md">
-                                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Alexandra Della" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                                            <img src="assets/images/avatar/1.png" alt="" class="img-fluid">
                                                         </div>
                                                         <div>
-                                                            <span class="text-truncate-1-line fw-semibold">Alexandra Della</span>
+                                                            <span class="text-truncate-1-line">Alexandra Della</span>
                                                         </div>
                                                     </a>
                                                 </td>
-                                                <td><a href="mailto:alexandra.della@empresa.com.br" class="text-decoration-none">alexandra.della@empresa.com.br</a></td>
+                                                <td><a href="apps-email.html">alex.della@outlook.com</a></td>
                                                 <td>
-                                                    <div class="d-flex gap-1 flex-wrap">
-                                                        <span class="badge bg-primary">VIP</span><span class="badge bg-primary">Corporativo</span>
-                                                    </div>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info">Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success">Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger">Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal" selected>Alta Budget</option>
+                                                    </Selecionar>
                                                 </td>
-                                                <td><a href="tel:(11) 99876-5432" class="text-decoration-none">(11) 99876-5432</a></td>
-                                                <td><small class="text-muted">2024-10-15, 09:30AM</small></td>
+                                                <td><a href="tel:">+1 (375) 9632 548</a></td>
+                                                <td>2023-04-05, 00:05PM</td>
                                                 <td>
-                                                    <span class="badge bg-success">Ativo</span>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
                                                 </td>
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="customers-view.html" class="btn btn-sm btn-outline-primary" title="Visualizar">
-                                                            <i class="bi bi-eye"></i>
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
                                                         </a>
-                                                        <a href="customers-edit.html" class="btn btn-sm btn-outline-secondary" title="Editar">
-                                                            <i class="bi bi-pencil"></i>
-                                                        </a>
-                                                        <button class="btn btn-sm btn-outline-danger" title="Excluir" onclick="confirmDelete('Alexandra Della')">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                        <span>Arquivar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1173,36 +1162,87 @@
                                                 </td>
                                                 <td>
                                                     <a href="customers-view.html" class="hstack gap-3">
-                                                        <div class="avatar-image avatar-md">
-                                                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b5bb?w=150&h=150&fit=crop&crop=face" alt="Carlos Eduardo Silva" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
-                                                        </div>
+                                                        <div class="avatar-image avatar-md bg-warning text-white">N</div>
                                                         <div>
-                                                            <span class="text-truncate-1-line fw-semibold">Carlos Eduardo Silva</span>
+                                                            <span class="text-truncate-1-line">Nancy Elliot</span>
                                                         </div>
                                                     </a>
                                                 </td>
-                                                <td><a href="mailto:carlos.silva@construcoes.com.br" class="text-decoration-none">carlos.silva@construcoes.com.br</a></td>
+                                                <td><a href="apps-email.html">nancy.elliot@outlook.com</a></td>
                                                 <td>
-                                                    <div class="d-flex gap-1 flex-wrap">
-                                                        <span class="badge bg-primary">Construção</span><span class="badge bg-primary">Alto Volume</span>
-                                                    </div>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info">Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success">Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary" selected>Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
                                                 </td>
-                                                <td><a href="tel:(11) 98765-4321" class="text-decoration-none">(11) 98765-4321</a></td>
-                                                <td><small class="text-muted">2024-10-20, 14:15PM</small></td>
+                                                <td><a href="tel:">(375) 8523 456</a></td>
+                                                <td>2023-04-06, 02:52PM</td>
                                                 <td>
-                                                    <span class="badge bg-success">Ativo</span>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
                                                 </td>
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="customers-view.html" class="btn btn-sm btn-outline-primary" title="Visualizar">
-                                                            <i class="bi bi-eye"></i>
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
                                                         </a>
-                                                        <a href="customers-edit.html" class="btn btn-sm btn-outline-secondary" title="Editar">
-                                                            <i class="bi bi-pencil"></i>
-                                                        </a>
-                                                        <button class="btn btn-sm btn-outline-danger" title="Excluir" onclick="confirmDelete('Carlos Eduardo Silva')">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                        <spanArquivare</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1218,35 +1258,88 @@
                                                 <td>
                                                     <a href="customers-view.html" class="hstack gap-3">
                                                         <div class="avatar-image avatar-md">
-                                                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Marina Santos Oliveira" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                                            <img src="assets/images/avatar/2.png" alt="" class="img-fluid">
                                                         </div>
                                                         <div>
-                                                            <span class="text-truncate-1-line fw-semibold">Marina Santos Oliveira</span>
+                                                            <span class="text-truncate-1-line">Green Cute</span>
                                                         </div>
                                                     </a>
                                                 </td>
-                                                <td><a href="mailto:marina.santos@arquitetura.com.br" class="text-decoration-none">marina.santos@arquitetura.com.br</a></td>
+                                                <td><a href="apps-email.html">green.cute@outlook.com</a></td>
                                                 <td>
-                                                    <div class="d-flex gap-1 flex-wrap">
-                                                        <span class="badge bg-primary">Arquitetura</span><span class="badge bg-primary">Design</span>
-                                                    </div>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info">Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success">Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning" selected>Personal</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger">Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
                                                 </td>
-                                                <td><a href="tel:(11) 97654-3210" class="text-decoration-none">(11) 97654-3210</a></td>
-                                                <td><small class="text-muted">2024-11-01, 11:45AM</small></td>
+                                                <td><a href="tel:">(845) 9632 874</a></td>
+                                                <td>2023-04-08, 08:34PM</td>
                                                 <td>
-                                                    <span class="badge bg-success">Ativo</span>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
                                                 </td>
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="customers-view.html" class="btn btn-sm btn-outline-primary" title="Visualizar">
-                                                            <i class="bi bi-eye"></i>
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
                                                         </a>
-                                                        <a href="customers-edit.html" class="btn btn-sm btn-outline-secondary" title="Editar">
-                                                            <i class="bi bi-pencil"></i>
-                                                        </a>
-                                                        <button class="btn btn-sm btn-outline-danger" title="Excluir" onclick="confirmDelete('Marina Santos Oliveira')">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                        <spaArquivarve</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1261,36 +1354,663 @@
                                                 </td>
                                                 <td>
                                                     <a href="customers-view.html" class="hstack gap-3">
-                                                        <div class="avatar-image avatar-md">
-                                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Roberto Ferreira Costa" class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
-                                                        </div>
+                                                        <div class="avatar-image avatar-md bg-teal text-white">H</div>
                                                         <div>
-                                                            <span class="text-truncate-1-line fw-semibold">Roberto Ferreira Costa</span>
+                                                            <span class="text-truncate-1-line">Henry Leach</span>
                                                         </div>
                                                     </a>
                                                 </td>
-                                                <td><a href="mailto:roberto.costa@incorporadora.com.br" class="text-decoration-none">roberto.costa@incorporadora.com.br</a></td>
+                                                <td><a href="apps-email.html">henry.leach@outlook.com</a></td>
                                                 <td>
-                                                    <div class="d-flex gap-1 flex-wrap">
-                                                        <span class="badge bg-primary">Incorporação</span><span class="badge bg-primary">VIP</span>
-                                                    </div>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info">Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal" selected>Primary</option>
+                                                        <option value="success" data-bg="bg-success" selected>Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning" selected>Personal</option>
+                                                        <option value="danger" data-bg="bg-danger">Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger">Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
                                                 </td>
-                                                <td><a href="tel:(11) 96543-2109" class="text-decoration-none">(11) 96543-2109</a></td>
-                                                <td><small class="text-muted">2024-11-05, 16:20PM</small></td>
+                                                <td><a href="tel:">(258) 9514 657</a></td>
+                                                <td>2023-04-10, 05:25PM</td>
                                                 <td>
-                                                    <span class="badge bg-success">Ativo</span>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success">Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning" selected>Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
                                                 </td>
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="customers-view.html" class="btn btn-sm btn-outline-primary" title="Visualizar">
-                                                            <i class="bi bi-eye"></i>
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
                                                         </a>
-                                                        <a href="customers-edit.html" class="btn btn-sm btn-outline-secondary" title="Editar">
-                                                            <i class="bi bi-pencil"></i>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                        <spArquivarive</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="single-item">
+                                                <td>
+                                                    <div class="item-checkbox ms-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_5">
+                                                            <label class="custom-form-label" for="checkBox_5"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="customers-view.html" class="hstack gap-3">
+                                                        <div class="avatar-image avatar-md">
+                                                            <img src="assets/images/avatar/3.png" alt="" class="img-fluid">
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-truncate-1-line">Marianne Audrey</span>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td><a href="apps-email.html">marine.adrey@outlook.com</a></td>
+                                                <td>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info">Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary" selected>Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success" selected>Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                                        <option value="danger" data-bg="bg-danger">Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger">Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td><a href="tel:">(456) 6547 524</a></td>
+                                                <td>2023-04-12, 12:02PM</td>
+                                                <td>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td>
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
                                                         </a>
-                                                        <button class="btn btn-sm btn-outline-danger" title="Excluir" onclick="confirmDelete('Roberto Ferreira Costa')">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                        <sArquivarhive</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="single-item">
+                                                <td>
+                                                    <div class="item-checkbox ms-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_6">
+                                                            <label class="custom-form-label" for="checkBox_6"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="customers-view.html" class="hstack gap-3">
+                                                        <div class="avatar-image avatar-md bg-warning text-white">N</div>
+                                                        <div>
+                                                            <span class="text-truncate-1-line">Nancy Elliot</span>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td><a href="apps-email.html">nancy.elliot@outlook.com</a></td>
+                                                <td>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info" selected>Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary" selected>Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success" selected>Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                                        <option value="danger" data-bg="bg-danger">Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger">Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td><a href="tel:">(375) 8523 456</a></td>
+                                                <td>2023-04-15, 02:40PM</td>
+                                                <td>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td>
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
+                                                        </a>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                        <Arquivarchive</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="single-item">
+                                                <td>
+                                                    <div class="item-checkbox ms-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_7">
+                                                            <label class="custom-form-label" for="checkBox_7"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="customers-view.html" class="hstack gap-3">
+                                                        <div class="avatar-image avatar-md">
+                                                            <img src="assets/images/avatar/4.png" alt="" class="img-fluid">
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-truncate-1-line">Cute Green</span>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td><a href="apps-email.html">cute.green@outlook.com</a></td>
+                                                <td>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success" selected>VIP</option>
+                                                        <option value="info" data-bg="bg-info">Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success">Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary" selected>Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger">Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td><a href="tel:">(632) 5486 662</a></td>
+                                                <td>2023-04-25, 03:42PM</td>
+                                                <td>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td>
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
+                                                        </a>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                        Arquivarrchive</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="single-item">
+                                                <td>
+                                                    <div class="item-checkbox ms-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_8">
+                                                            <label class="custom-form-label" for="checkBox_8"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="customers-view.html" class="hstack gap-3">
+                                                        <div class="avatar-image avatar-md bg-success text-white">H</div>
+                                                        <div>
+                                                            <span class="text-truncate-1-line">Leach Henry</span>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td><a href="apps-email.html">leach.henry@outlook.com</a></td>
+                                                <td>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success" selected>VIP</option>
+                                                        <option value="info" data-bg="bg-info" selected>Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success">Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                                        <option value="danger" data-bg="bg-danger">Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger">Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td><a href="tel:">(951) 5478 884</a></td>
+                                                <td>2023-04-14, 03:32PM</td>
+                                                <td>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td>
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
+                                                        </a>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                       ArquivarArchive</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="single-item">
+                                                <td>
+                                                    <div class="item-checkbox ms-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_9">
+                                                            <label class="custom-form-label" for="checkBox_9"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="customers-view.html" class="hstack gap-3">
+                                                        <div class="avatar-image avatar-md">
+                                                            <img src="assets/images/avatar/5.png" alt="" class="img-fluid">
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-truncate-1-line">Audrey Marianne</span>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td><a href="apps-email.html">adrey.marine@outlook.com</a></td>
+                                                <td>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info" selected>Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success" selected>Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                                        <option value="danger" data-bg="bg-danger">Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td><a href="tel:">(556) 2457 586</a></td>
+                                                <td>2023-04-20, 01:47PM</td>
+                                                <td>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success">Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Declined</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td>
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
+                                                        </a>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                      Arquivar>Arquivar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="single-item">
+                                                <td>
+                                                    <div class="item-checkbox ms-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_10">
+                                                            <label class="custom-form-label" for="checkBox_10"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="customers-view.html" class="hstack gap-3">
+                                                        <div class="avatar-image avatar-md bg-primary text-white">E</div>
+                                                        <div>
+                                                            <span class="text-truncate-1-line">Elliot Nancy</span>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td><a href="apps-email.html">elliot.nancy@outlook.com</a></td>
+                                                <td>
+                                                    <select class="form-select form-control max-select" data-select2-selector="tag" data-max-select2="tag" multiple>
+                                                        <option value="success" data-bg="bg-success">VIP</option>
+                                                        <option value="info" data-bg="bg-info">Bugs</option>
+                                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                                        <option value="success" data-bg="bg-success">Atualizars</option>
+                                                        <option value="warning" data-bg="bg-warning" selected>Personal</option>
+                                                        <option value="danger" data-bg="bg-danger">Promotions</option>
+                                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                                        <option value="primary" data-bg="bg-primary">Wholesale</option>
+                                                        <option value="danger" data-bg="bg-danger" selected>Baixa Budget</option>
+                                                        <option value="teal" data-bg="bg-teal">Alta Budget</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td><a href="tel:">(554) 2478 663</a></td>
+                                                <td>2023-04-22, 02:12PM</td>
+                                                <td>
+                                                    <select class="form-control" data-select2-selector="status">
+                                                        <option value="success" data-bg="bg-success" selected>Ativo</option>
+                                                        <option value="warning" data-bg="bg-warning">Inativo</option>
+                                                        <option value="danger" data-bg="bg-danger">Declined</option>
+                                                    </Selecionar>
+                                                </td>
+                                                <td>
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <a href="customers-view.html" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
+                                                        </a>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-defset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Editar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-itin printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Imprimir</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-clock me-3"></i>
+                                                                        <span>Remind</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-archive me-3"></i>
+                                                                     ArquivarnArquivare</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-alert-octagon me-3"></i>
+                                                                        <span>Report Spam</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Excluir</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1312,7 +2032,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="customerModalLabel">Novo Cliente</h5>
+                            <h5 class="modal-title" id="customerModalLabel">new Cliente</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar" aria-label="Ação do botão"></button>
                         </div>
                         <form id="customer-form">
@@ -1371,7 +2091,7 @@
                                             <option value="Chile">Chile</option>
                                             <option value="Uruguai">Uruguai</option>
                                             <option value="Paraguai">Paraguai</option>
-                                        </select>
+                                        </Selecionar>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-check form-switch mt-4">
@@ -2242,87 +2962,5 @@
         });
         </script>
         
-
-    <script>
-        // Funcionalidades da página de clientes
-        document.addEventListener('DOMContentLoaded', function() {
-            // Busca em tempo real
-            const searchInput = document.getElementById('searchCustomers');
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    const filter = this.value.toLowerCase();
-                    const rows = document.querySelectorAll('tbody tr');
-                    
-                    rows.forEach(row => {
-                        const text = row.textContent.toLowerCase();
-                        row.style.display = text.includes(filter) ? '' : 'none';
-                    });
-                });
-            }
-            
-            // Seleção em massa
-            const checkAll = document.getElementById('checkAllCustomers');
-            if (checkAll) {
-                checkAll.addEventListener('change', function() {
-                    const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-                    checkboxes.forEach(cb => cb.checked = this.checked);
-                });
-            }
-            
-            // Filtros
-            document.querySelectorAll('[data-filter]').forEach(filter => {
-                filter.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const filterType = this.dataset.filter;
-                    applyFilter(filterType);
-                });
-            });
-            
-            // Atualizar métricas
-            updateMetrics();
-        });
-        
-        function applyFilter(type) {
-            const rows = document.querySelectorAll('tbody tr');
-            rows.forEach(row => {
-                row.style.display = '';
-                if (type !== 'all') {
-                    const badges = row.querySelectorAll('.badge');
-                    let show = false;
-                    badges.forEach(badge => {
-                        if (badge.textContent.toLowerCase().includes(type.toLowerCase())) {
-                            show = true;
-                        }
-                    });
-                    if (!show && type === 'active') {
-                        show = row.textContent.includes('Ativo');
-                    }
-                    if (!show && type === 'inactive') {
-                        show = row.textContent.includes('Inativo');
-                    }
-                    row.style.display = show ? '' : 'none';
-                }
-            });
-        }
-        
-        function updateMetrics() {
-            const totalCustomers = document.querySelectorAll('tbody tr').length;
-            const activeCustomers = document.querySelectorAll('tbody .badge.bg-success').length;
-            const newCustomers = Math.floor(totalCustomers * 0.25);
-            const inactiveCustomers = totalCustomers - activeCustomers;
-            
-            document.getElementById('total-customers').textContent = totalCustomers;
-            document.getElementById('active-customers').textContent = activeCustomers;
-            document.getElementById('new-customers').textContent = newCustomers;
-            document.getElementById('inactive-customers').textContent = inactiveCustomers;
-        }
-        
-        function confirmDelete(customerName) {
-            if (confirm(`Tem certeza que deseja excluir o cliente ${customerName}?`)) {
-                // Implementar exclusão
-                alert('Cliente excluído com sucesso!');
-            }
-        }
-    </script>
 </body>
 </html>
