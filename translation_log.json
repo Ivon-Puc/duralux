@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-11-06T12:20:42.634426",
+  "backup_path": "backup_html_20251106_122033",
+  "total_files": 10,
+  "total_translations": 0,
+  "results": [
+    {
+      "file": "analytics-advanced.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "analytics.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "apps-calendar.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "apps-chat.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "apps-email.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "apps-notes.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "apps-storage.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "apps-tasks.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "auth-404-cover.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "auth-404-creative.html",
+      "translations_count": 0,
+      "translations": []
+    }
+  ]
+}

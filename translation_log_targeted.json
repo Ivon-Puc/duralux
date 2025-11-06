@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-11-06T12:21:48.827368",
+  "backup_path": "backup_html_20251106_122133",
+  "target_files": [
+    "widgets-tables.html",
+    "widgets-lists.html",
+    "customers-create.html",
+    "customers-view.html",
+    "customers.html",
+    "widgets-statistics.html",
+    "widgets-miscellaneous.html",
+    "index.html",
+    "projects.html",
+    "leads.html"
+  ],
+  "total_files": 10,
+  "total_translations": 0,
+  "results": [
+    {
+      "file": "widgets-tables.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "widgets-lists.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "customers-create.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "customers-view.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "customers.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "widgets-statistics.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "widgets-miscellaneous.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "index.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "projects.html",
+      "translations_count": 0,
+      "translations": []
+    },
+    {
+      "file": "leads.html",
+      "translations_count": 0,
+      "translations": []
+    }
+  ]
+}
