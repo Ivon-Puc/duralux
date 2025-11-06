@@ -436,8 +436,8 @@
                 <header class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                         <h1 class="h3 mb-0">Dashboard</h1>
-                        <nav aria-label="breadcrumb">
-                            <nav aria-label="breadcrumb"><ol class="breadcrumb">
+                        <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
+                            <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;"><ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Início</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li>
                             </ol></nav>
@@ -479,7 +479,7 @@
         </div>
 
         <div class="grid">
-            <div class="card">
+            <div class="card" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 15px rgba(0, 0, 0, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.07)'">
                 <h3>
                     <span class="icon">🎨</span>
                     Interface Administrativa
@@ -493,7 +493,7 @@
                 </a>
             </div>
 
-            <div class="card">
+            <div class="card" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 15px rgba(0, 0, 0, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.07)'">
                 <h3>
                     <span class="icon">🔧</span>
                     API Backend
@@ -507,7 +507,7 @@
                 </a>
             </div>
 
-            <div class="card">
+            <div class="card" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 15px rgba(0, 0, 0, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.07)'">
                 <h3>
                     <span class="icon">📊</span>
                     Painel de Controle
@@ -707,5 +707,107 @@
     </script>
     
     
+
+        <script>
+        // Melhorias de UX da identidade Duralux 2025
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Efeito ripple nos botões
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Feedback visual para formulários
+            document.querySelectorAll('.form-control, .form-select').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-color)';
+                    this.style.boxShadow = '0 0 0 0.2rem rgba(85, 80, 242, 0.25)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.style.borderColor = '#dee2e6';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+            
+            // Animação de carregamento para botões
+            document.querySelectorAll('.btn[type="submit"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Processando...';
+                    this.disabled = true;
+                    
+                    // Simular carregamento (remover em produção real)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            });
+            
+        });
+        
+        // CSS para animação de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        </script>
+        
 </body>
 </html>
