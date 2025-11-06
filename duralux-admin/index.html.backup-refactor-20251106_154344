@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema de CRM Duralux - Gestão completa de leads, clientes e projetos" />
+    <title>Dashboard - Duralux CRM - Duralux CRM</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <style>
+        
+        :root {
+            --primary-color: #5550F2;
+            --secondary-color: #027368;
+            --success-color: #04BF9D;
+            --warning-color: #F2B33D;
+            --light-color: #F2F2F2;
+            --dark-color: #2C3E50;
+            --info-color: #3498DB;
+            --danger-color: #E74C3C;
+            
+            
+            
+            
+            
+        }
+        
+        /* Reset e melhorias base */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background-color: #F2F2F2;
+        }
+        
+        /* Layout responsivo */
+        .container-fluid {
+            padding: 1rem;
+        }
+        
+        /* Sidebar responsiva */
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        
+        @media (max-width: 768px) {
+            
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
+        
+        /* Botões modernos */
+        .btn {
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
+        
+        /* Tabelas responsivas */
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .table th {
+            background-color: #F2F2F2;
+            border-top: none;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        /* Formulários modernos */
+        .form-control, .form-select {
+            border-radius: 0.375rem;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #5550F2;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Navegação */
+        .nav-pills .nav-link {
+            border-radius: 0.375rem;
+            color: #2C3E50;
+            margin-bottom: 0.25rem;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: #5550F2;
+        }
+        
+        /* Estatísticas cards */
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5550F2;
+        }
+        
+        .stats-label {
+            color: #2C3E50;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Modo escuro opcional */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1d29;
+                color: #F2F2F2;
+            }
+            
+            .card {
+                background-color: #2d3748;
+                color: #F2F2F2;
+            }
+            
+            .form-control, .form-select {
+                background-color: #4a5568;
+                border-color: #2C3E50;
+                color: #F2F2F2;
+            }
+            
+            .table {
+                color: #F2F2F2;
+            }
+            
+            .table th {
+                background-color: #374151;
+            }
+        }
+    
+        /* === DURALUX IDENTITY 2025 === */
+        
+        /* Animações suaves */
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Botões com nova identidade */
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
+        
+        .btn-primary:hover {
+            background-color: #5550F2;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(85, 80, 242, 0.3) !important;
+        }
+        
+        /* Sidebar nova identidade */
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        
+        .nav-pills .nav-link.active {
+            background: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 8px !important;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+            overflow: hidden !important;
+        }
+        
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
+        
+        /* Tabelas aprimoradas */
+        .table th {
+            background: var(--light-color) !important;
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            border: none !important;
+            padding: 1rem !important;
+        }
+        
+        .table td {
+            padding: 1rem !important;
+            vertical-align: middle !important;
+            border-color: #E9ECEF !important;
+        }
+        
+        .table-responsive {
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+        }
+        
+        /* Estatísticas coloridas */
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
+        
+        .stats-number {
+            color: var(--primary-color) !important;
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+        }
+        
+        .stats-label {
+            color: var(--dark-color) !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        /* Badges com nova identidade */
+        .badge-primary {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color) !important;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        /* Formulários aprimorados */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 0.2rem rgba(85, 80, 242, 0.25) !important;
+        }
+        
+        .form-label {
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumb {
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color) !important;
+            text-decoration: none !important;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Alertas personalizados */
+        .alert {
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }
+        
+        .alert-success {
+            background-color: var(--success-color) !important;
+            color: white !important;
+        }
+        
+        .alert-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        .alert-info {
+            background-color: var(--info-color) !important;
+            color: white !important;
+        }
+        
+        /* Responsividade aprimorada */
+        @media (max-width: 768px) {
+            
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        /* Animações de carregamento */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Efeitos hover para cards */
+        .card:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        
+        /* Melhorias de navegação */
+        .nav-pills .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+        }
+        
+        .nav-pills .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-pills .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: white;
+            border-radius: 2px;
+        }
+        
+        
+        /* Melhorias de formulários */
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(85, 80, 242, 0.1);
+            outline: none;
+            background: #fafbfc;
+        }
+        
+        .form-control:invalid {
+            border-color: var(--danger-color);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+        
+        .form-control:valid {
+            border-color: var(--success-color);
+        }
+        
+        /* Placeholder melhorado */
+        .form-control::placeholder {
+            color: #8e9aaf;
+            font-style: italic;
+        }
+        
+        /* Grupos de formulário */
+        .form-group, .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Botões de formulário */
+        .btn[type="submit"] {
+            min-width: 120px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.75rem 2rem;
+        }
+        
+        
+        /* Melhorias de tabelas */
+        .table-responsive {
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+        
+        .table {
+            margin-bottom: 0;
+        }
+        
+        .table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-color: #f1f3f4;
+            font-size: 0.9rem;
+        }
+        
+        .table tbody tr:hover {
+            background-color: #f8f9fe;
+            transform: scale(1.001);
+            transition: all 0.2s ease;
+        }
+        
+        /* Status badges melhorados */
+        .badge {
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Paginação melhorada */
+        .pagination {
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .page-link {
+            border: none;
+            border-radius: 6px;
+            margin: 0 2px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .page-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        
+        /* === UI/UX ENHANCEMENTS === */
+        
+        /* Loading states */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            color: var(--primary-color);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+            height: 20px;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Micro-interactions */
+        .btn, .card, .form-control {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Focus indicators melhorados */
+        *:focus {
+            outline: 3px solid rgba(85, 80, 242, 0.3);
+            outline-offset: 2px;
+        }
+        
+        /* Toast notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+        
+        .toast {
+            min-width: 300px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toast-success {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .toast-error {
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        /* Progress indicators */
+        .progress {
+            height: 8px;
+            border-radius: 4px;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: var(--primary-color);
+            transition: width 0.6s ease;
+        }
+        
+        /* Empty states */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #6c757d;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #dee2e6;
+            margin-bottom: 1rem;
+        }
+        
+        /* Search improvements */
+        .search-container {
+            position: relative;
+        }
+        
+        .search-container input {
+            padding-left: 2.5rem;
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        /* Keyboard navigation */
+        .keyboard-navigation:focus-within {
+            box-shadow: 0 0 0 3px rgba(85, 80, 242, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Mobile improvements */
+        @media (max-width: 768px) {
+            .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .table-responsive {
+                font-size: 0.8rem;
+            }
+            
+            .form-control {
+                padding: 1rem;
+                font-size: 1rem; /* Evita zoom no iOS */
+            }
+            
+            .sidebar {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+        /* Hover states aprimorados */
+        .clickable:hover {
+            cursor: pointer;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Status indicators */
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .status-active { background: var(--success-color); }
+        .status-inactive { background: var(--danger-color); }
+        .status-pending { background: var(--warning-color); }
+        
+        </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar responsiva -->
+            <div class="col-12 col-lg-2 sidebar">
+                <div class="d-flex flex-column">
+                    <h4 class="mb-4">
+                        <i class="bi bi-building"></i> DURALUX
+                    </h4>
+                    
+                    <nav role="navigation" class="nav flex-column nav-pills">
+                        <a class="nav-link active" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 8px; margin-bottom: 0.25rem;" href="index.html">
+                            <i class="bi bi-speedometer2"></i> Painel de Controle
+                        </a>
+                        <a class="nav-link " href="leads.html">
+                            <i class="bi bi-person-plus"></i> Leads
+                        </a>
+                        <a class="nav-link " href="customers.html">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                        <a class="nav-link " href="projects.html">
+                            <i class="bi bi-folder"></i> Projetos
+                        </a>
+                        <a class="nav-link " href="proposal.html">
+                            <i class="bi bi-file-text"></i> Propostas
+                        </a>
+                        <a class="nav-link " href="analytics.html">
+                            <i class="bi bi-graph-up"></i> Analytics
+                        </a>
+                        <a class="nav-link " href="reports.html">
+                            <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="col-12 col-lg-10">
+                <header class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-0">Painel de Controle</h1>
+                        <nav role="navigation" aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
+                            <nav role="navigation" aria-label="breadcrumb" style="margin-bottom: 1.5rem;"><ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            </ol></nav>
+                        </nav>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications" aria-label="Ação do botão">
+                            <i class="bi bi-bell"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-label="Ação do botão">
+                                <i class="bi bi-person-circle"></i> Usuário
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configurações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                
+                <main role="main">
+                    
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main role="main" class="nxl-container">
+        <div class="nxl-content">
+            <!-- [ page-header ] start -->
+            <div class="page-header">
+                <div class="page-header-left d-flex align-items-center">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Painel de Controle</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                        <li class="breadcrumb-item">Painel de Controle</li>
+                    </ul>
+                </div>
+                <div class="page-header-right ms-auto">
+                    <div class="page-header-right-items">
+                        <div class="d-flex d-md-none">
+                            <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                                <i class="feather-arrow-left me-2"></i>
+                                <span>Voltar</span>
+                            </a>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
+                            <div id="reportrange" class="reportrange-picker d-flex align-items-center">
+                                <span class="reportrange-picker-field"></span>
+                            </div>
+                            <div class="dropdown filter-dropdown">
+                                <a class="btn btn-md btn-light-brand" data-bs-toggle="dropdown" data-bs-offset="0, 10" data-bs-auto-close="outside">
+                                    <i class="feather-filter me-2"></i>
+                                    <span>Filtrar</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <div class="dropdown-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="Role" checked="checked" />
+                                            <label class="custom-form-label c-pointer" for="Role">Role</label>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="Team" checked="checked" />
+                                            <label class="custom-form-label c-pointer" for="Team">Team</label>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="Email" checked="checked" />
+                                            <label class="custom-form-label c-pointer" for="Email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="Member" checked="checked" />
+                                            <label class="custom-form-label c-pointer" for="Member">Member</label>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="Recommendation" checked="checked" />
+                                            <label class="custom-form-label c-pointer" for="Recommendation">Recommendation</label>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="feather-plus me-3"></i>
+                                        <span>Criar Novo</span>
+                                    </a>
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="feather-filter me-3"></i>
+                                        <span>Manage Filtrar</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-md-none d-flex align-items-center">
+                        <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                            <i class="feather-align-right fs-20"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- [ page-header ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="main-content">
+                <div class="row">
+                    <!-- [Invoices Aguardando Payment] start -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start justify-content-between mb-4">
+                                    <div class="d-flex gap-4 align-items-center">
+                                        <div class="avatar-text avatar-lg bg-gray-200">
+                                            <i class="feather-dollar-sign"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fs-4 fw-bold text-dark"><span class="counter">45</span>/<span class="counter">76</span></div>
+                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Faturas Aguardando Pagamento</h3>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="">
+                                        <i class="feather-more-vertical"></i>
+                                    </a>
+                                </div>
+                                <div class="pt-4">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Faturas Aguardando</a>
+                                        <div class="w-100 text-end">
+                                            <span class="fs-12 text-dark">R$ 5.569</span>
+                                            <span class="fs-11 text-muted">(56%)</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-2 ht-3">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 56%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Invoices Aguardando Payment] end -->
+                    <!-- [Converted Leads] start -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start justify-content-between mb-4">
+                                    <div class="d-flex gap-4 align-items-center">
+                                        <div class="avatar-text avatar-lg bg-gray-200">
+                                            <i class="feather-cast"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fs-4 fw-bold text-dark"><span class="counter">48</span>/<span class="counter">86</span></div>
+                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Leads Convertidos</h3>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="">
+                                        <i class="feather-more-vertical"></i>
+                                    </a>
+                                </div>
+                                <div class="pt-4">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Leads Convertidos</a>
+                                        <div class="w-100 text-end">
+                                            <span class="fs-12 text-dark">52 Concluídos</span>
+                                            <span class="fs-11 text-muted">(63%)</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-2 ht-3">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 63%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Converted Leads] end -->
+                    <!-- [Projects Em Andamento] start -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start justify-content-between mb-4">
+                                    <div class="d-flex gap-4 align-items-center">
+                                        <div class="avatar-text avatar-lg bg-gray-200">
+                                            <i class="feather-briefcase"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fs-4 fw-bold text-dark"><span class="counter">16</span>/<span class="counter">20</span></div>
+                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Projetos in Andamento</h3>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="">
+                                        <i class="feather-more-vertical"></i>
+                                    </a>
+                                </div>
+                                <div class="pt-4">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Projetos in Andamento</a>
+                                        <div class="w-100 text-end">
+                                            <span class="fs-12 text-dark">16 Concluídos</span>
+                                            <span class="fs-11 text-muted">(78%)</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-2 ht-3">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Projects Em Andamento] end -->
+                    <!-- [Conversion Rate] start -->
+                    <div class="col-xxl-3 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start justify-content-between mb-4">
+                                    <div class="d-flex gap-4 align-items-center">
+                                        <div class="avatar-text avatar-lg bg-gray-200">
+                                            <i class="feather-activity"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fs-4 fw-bold text-dark"><span class="counter">46.59</span>%</div>
+                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Taxa de Conversão</h3>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="">
+                                        <i class="feather-more-vertical"></i>
+                                    </a>
+                                </div>
+                                <div class="pt-4">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Taxa de Conversão</a>
+                                        <div class="w-100 text-end">
+                                            <span class="fs-12 text-dark">R$ 2.254</span>
+                                            <span class="fs-11 text-muted">(46%)</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-2 ht-3">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 46%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Conversion Rate] end -->
+                    <!-- [Payment Records] start -->
+                    <div class="col-xxl-8">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header" style="background: var(#5550F2); color: white;">
+                                <h5 class="card-title">Histórico de Pagamentos</h5>
+                                <div class="card-header-action">
+                                    <div class="card-header-btn">
+                                        <div data-bs-toggle="tooltip" title="Delete">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-danger"data-bs-toggle="remove"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Refresh">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-warning"data-bs-toggle="refresh"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-success"data-bs-toggle="expand"></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="dropdown" data-bs-offset="25, 25">
+                                            <div data-bs-toggle="tooltip" title="Options">
+                                                <i class="feather-more-vertical"></i>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-at-sign"></i>Novo</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-calendar"></i>Event</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-bell"></i>Snoozed</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-trash-2"></i>Deleted</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-settings"></i>Configurações</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-life-buoy"></i>Tips & Tricks</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action p-0">
+                                <div id="payment-records-chart"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row g-4">
+                                    <div class="col-lg-3">
+                                        <div class="p-3 border border-dashed rounded">
+                                            <div class="fs-12 text-muted mb-1">Aguardando</div>
+                                            <h6 class="fw-bold text-dark">R$ 5.486</h6>
+                                            <div class="progress mt-2 ht-3">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 81%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="p-3 border border-dashed rounded">
+                                            <div class="fs-12 text-muted mb-1">Concluído</div>
+                                            <h6 class="fw-bold text-dark">R$ 9.275</h6>
+                                            <div class="progress mt-2 ht-3">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 82%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="p-3 border border-dashed rounded">
+                                            <div class="fs-12 text-muted mb-1">Rejeitado</div>
+                                            <h6 class="fw-bold text-dark">R$ 3.868</h6>
+                                            <div class="progress mt-2 ht-3">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 68%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="p-3 border border-dashed rounded">
+                                            <div class="fs-12 text-muted mb-1">Receita</div>
+                                            <h6 class="fw-bold text-dark">R$ 50.668</h6>
+                                            <div class="progress mt-2 ht-3">
+                                                <div class="progress-bar bg-dark" role="progressbar" style="width: 75%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Payment Records] end -->
+                    <!-- [Total Vendas] start -->
+                    <div class="col-xxl-4">
+                        <div class="card stretch stretch-full overflow-hidden">
+                            <div class="bg-primary text-white">
+                                <div class="p-4">
+                                    <span class="badge bg-light text-primary text-dark float-end">12%</span>
+                                    <div class="text-start">
+                                        <h4 class="text-reset">30,569</h4>
+                                        <p class="text-reset m-0">Total Vendas</p>
+                                    </div>
+                                </div>
+                                <div id="total-sales-color-graph"></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="hstack gap-3">
+                                        <div class="avatar-image avatar-lg p-2 rounded">
+                                            <img class="img-fluid" src="assets/images/brand/shopify.png" alt="" />
+                                        </div>
+                                        <div>
+                                            <a href="javascript:void(0);" class="d-block">Shopify eCommerce Store</a>
+                                            <span class="fs-12 text-muted">Development</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold text-dark">R$ 1.200</div>
+                                        <div class="fs-12 text-end">6 Projects</div>
+                                    </div>
+                                </div>
+                                <hr class="border-dashed my-3" />
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="hstack gap-3">
+                                        <div class="avatar-image avatar-lg p-2 rounded">
+                                            <img class="img-fluid" src="assets/images/brand/app-store.png" alt="" />
+                                        </div>
+                                        <div>
+                                            <a href="javascript:void(0);" class="d-block">iOS Apps Development</a>
+                                            <span class="fs-12 text-muted">Development</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold text-dark">R$ 1.450</div>
+                                        <div class="fs-12 text-end">3 Projects</div>
+                                    </div>
+                                </div>
+                                <hr class="border-dashed my-3" />
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="hstack gap-3">
+                                        <div class="avatar-image avatar-lg p-2 rounded">
+                                            <img class="img-fluid" src="assets/images/brand/figma.png" alt="" />
+                                        </div>
+                                        <div>
+                                            <a href="javascript:void(0);" class="d-block">Figma Painel de Controle Design</a>
+                                            <span class="fs-12 text-muted">UI/UX Design</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold text-dark">R$ 1.250</div>
+                                        <div class="fs-12 text-end">5 Projects</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="card-footer fs-11 fw-bold text-uppercase text-center py-4">Detalhes Completos</a>
+                        </div>
+                    </div>
+                    <!-- [Total Vendas] end !-->
+                    <!-- [Mini] start -->
+                    <div class="col-lg-4">
+                        <div class="card mb-4 stretch stretch-full">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <div class="avatar-text">
+                                        <i class="feather feather-star"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold text-dark">Tarefas Concluídas</div>
+                                        <div class="fs-12 text-muted">22/35 concluídas</div>
+                                    </div>
+                                </div>
+                                <div class="fs-4 fw-bold text-dark">22/35</div>
+                            </div>
+                            <div class="card-body d-flex align-items-center justify-content-between gap-4">
+                                <div id="task-completed-area-chart"></div>
+                                <div class="fs-12 text-muted text-nowrap">
+                                    <span class="fw-semibold text-primary">28% mais</span><br />
+                                    <span>da semana passada</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card mb-4 stretch stretch-full">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <div class="avatar-text">
+                                        <i class="feather feather-file-text"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold text-dark">Novas Tarefas</div>
+                                        <div class="fs-12 text-muted">0/20 tarefas</div>
+                                    </div>
+                                </div>
+                                <div class="fs-4 fw-bold text-dark">5/20</div>
+                            </div>
+                            <div class="card-body d-flex align-items-center justify-content-between gap-4">
+                                <div id="new-tasks-area-chart"></div>
+                                <div class="fs-12 text-muted text-nowrap">
+                                    <span class="fw-semibold text-success">34% mais</span><br />
+                                    <span>da semana passada</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card mb-4 stretch stretch-full">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <div class="avatar-text">
+                                        <i class="feather feather-airplay"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold text-dark">Projetos Concluídos</div>
+                                        <div class="fs-12 text-muted">20/30 projetos</div>
+                                    </div>
+                                </div>
+                                <div class="fs-4 fw-bold text-dark">20/30</div>
+                            </div>
+                            <div class="card-body d-flex align-items-center justify-content-between gap-4">
+                                <div id="project-done-area-chart"></div>
+                                <div class="fs-12 text-muted text-nowrap">
+                                    <span class="fw-semibold text-danger">42% mais</span><br />
+                                    <span>da semana passada</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Mini] end !-->
+                    <!-- [Leads Overview] start -->
+                    <div class="col-xxl-4">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header" style="background: var(#5550F2); color: white;">
+                                <h5 class="card-title">Visão Geral de Leads</h5>
+                                <div class="card-header-action">
+                                    <div class="card-header-btn">
+                                        <div data-bs-toggle="tooltip" title="Delete">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-danger"data-bs-toggle="remove"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Refresh">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-warning"data-bs-toggle="refresh"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-success"data-bs-toggle="expand"></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="dropdown" data-bs-offset="25, 25">
+                                            <div data-bs-toggle="tooltip" title="Options">
+                                                <i class="feather-more-vertical"></i>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-at-sign"></i>Novo</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-calendar"></i>Event</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-bell"></i>Snoozed</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-trash-2"></i>Deleted</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-settings"></i>Configurações</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-life-buoy"></i>Tips & Tricks</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action">
+                                <div id="leads-overview-donut"></div>
+                                <div class="row g-2">
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #3454d1"></span>
+                                            <span>Novo<span class="fs-10 text-muted ms-1">(20K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #0d519e"></span>
+                                            <span>Contacted<span class="fs-10 text-muted ms-1">(15K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #1976d2"></span>
+                                            <span>Qualified<span class="fs-10 text-muted ms-1">(10K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #1e88e5"></span>
+                                            <span>Working<span class="fs-10 text-muted ms-1">(18K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #2196f3"></span>
+                                            <span>Customer<span class="fs-10 text-muted ms-1">(10K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #42a5f5"></span>
+                                            <span>Proposal<span class="fs-10 text-muted ms-1">(15K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #64b5f6"></span>
+                                            <span>Leads<span class="fs-10 text-muted ms-1">(16K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #90caf9"></span>
+                                            <span>Progress<span class="fs-10 text-muted ms-1">(14K)</span></span>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="javascript:void(0);" class="p-2 hstack gap-2 rounded border border-dashed border-gray-5">
+                                            <span class="wd-7 ht-7 rounded-circle d-inline-block" style="background-color: #aad6fa"></span>
+                                            <span>Others<span class="fs-10 text-muted ms-1">(10K)</span></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Leads Overview] end -->
+                    <!-- [Latest Leads] start -->
+                    <div class="col-xxl-8">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header" style="background: var(#5550F2); color: white;">
+                                <h5 class="card-title">Latest Leads</h5>
+                                <div class="card-header-action">
+                                    <div class="card-header-btn">
+                                        <div data-bs-toggle="tooltip" title="Delete">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-danger"data-bs-toggle="remove"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Refresh">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-warning"data-bs-toggle="refresh"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-success"data-bs-toggle="expand"></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="dropdown" data-bs-offset="25, 25">
+                                            <div data-bs-toggle="tooltip" title="Options">
+                                                <i class="feather-more-vertical"></i>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-at-sign"></i>Novo</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-calendar"></i>Event</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-bell"></i>Snoozed</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-trash-2"></i>Deleted</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-settings"></i>Configurações</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-life-buoy"></i>Tips & Tricks</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th scope="row" style="background: var(--primary-color); color: white; font-weight: 600; text-align: center; padding: 1rem; border: none; position: sticky; top: 0; z-index: 10;">Usuários</th>
+                                                <th style="background: var(--primary-color); color: white; font-weight: 600; text-align: center; padding: 1rem; border: none; position: sticky; top: 0; z-index: 10;">Proposta</th>
+                                                <th style="background: var(--primary-color); color: white; font-weight: 600; text-align: center; padding: 1rem; border: none; position: sticky; top: 0; z-index: 10;">Data</th>
+                                                <th style="background: var(--primary-color); color: white; font-weight: 600; text-align: center; padding: 1rem; border: none; position: sticky; top: 0; z-index: 10;">Status</th>
+                                                <th class="text-end" style="background: var(--primary-color); color: white; font-weight: 600; text-align: center; padding: 1rem; border: none; position: sticky; top: 0; z-index: 10;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="avatar-image">
+                                                            <img src="assets/images/avatar/2.png" alt="" class="img-fluid" />
+                                                        </div>
+                                                        <a href="javascript:void(0);">
+                                                            <span class="d-block">Archie Cantones</span>
+                                                            <span class="fs-12 d-block fw-normal text-muted">arcie.tones@gmail.com</span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-gray-200 text-dark">Sent</span>
+                                                </td>
+                                                <td>11/06/2023 10:53</td>
+                                                <td>
+                                                    <span class="badge bg-soft-success text-success">Concluído</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="javascript:void(0);"><i class="feather-more-vertical"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="avatar-image">
+                                                            <img src="assets/images/avatar/3.png" alt="" class="img-fluid" />
+                                                        </div>
+                                                        <a href="javascript:void(0);">
+                                                            <span class="d-block">Holmes Cherryman</span>
+                                                            <span class="fs-12 d-block fw-normal text-muted">golms.chan@gmail.com</span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-gray-200 text-dark">Novo</span>
+                                                </td>
+                                                <td>11/06/2023 10:53</td>
+                                                <td>
+                                                    <span class="badge bg-soft-primary text-primary">Em Andamento</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="javascript:void(0);"><i class="feather-more-vertical"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="avatar-image">
+                                                            <img src="assets/images/avatar/4.png" alt="" class="img-fluid" />
+                                                        </div>
+                                                        <a href="javascript:void(0);">
+                                                            <span class="d-block">Malanie Hanvey</span>
+                                                            <span class="fs-12 d-block fw-normal text-muted">lanie.nveyn@gmail.com</span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-gray-200 text-dark">Sent</span>
+                                                </td>
+                                                <td>11/06/2023 10:53</td>
+                                                <td>
+                                                    <span class="badge bg-soft-success text-success">Concluído</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="javascript:void(0);"><i class="feather-more-vertical"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="avatar-image">
+                                                            <img src="assets/images/avatar/5.png" alt="" class="img-fluid" />
+                                                        </div>
+                                                        <a href="javascript:void(0);">
+                                                            <span class="d-block">Kenneth Hune</span>
+                                                            <span class="fs-12 d-block fw-normal text-muted">nneth.une@gmail.com</span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-gray-200 text-dark">Returning</span>
+                                                </td>
+                                                <td>11/06/2023 10:53</td>
+                                                <td>
+                                                    <span class="badge bg-soft-warning text-warning">Not Interested</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="javascript:void(0);"><i class="feather-more-vertical"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="avatar-image">
+                                                            <img src="assets/images/avatar/6.png" alt="" class="img-fluid" />
+                                                        </div>
+                                                        <a href="javascript:void(0);">
+                                                            <span class="d-block">Valentine Maton</span>
+                                                            <span class="fs-12 d-block fw-normal text-muted">alenine.aton@gmail.com</span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-gray-200 text-dark">Sent</span>
+                                                </td>
+                                                <td>11/06/2023 10:53</td>
+                                                <td>
+                                                    <span class="badge bg-soft-success text-success">Concluído</span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <a href="javascript:void(0);"><i class="feather-more-vertical"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table></div></div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style">
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="bi bi-arrow-left"></i></a>
+                                    </li>
+                                    <li><a href="javascript:void(0);" class="active">1</a></li>
+                                    <li><a href="javascript:void(0);">2</a></li>
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="bi bi-dot"></i></a>
+                                    </li>
+                                    <li><a href="javascript:void(0);">8</a></li>
+                                    <li><a href="javascript:void(0);">9</a></li>
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="bi bi-arrow-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [Latest Leads] end -->
+                    <!--! BEGIN: [Upcoming Schedule] !-->
+                    <div class="col-xxl-4">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header" style="background: var(#5550F2); color: white;">
+                                <h5 class="card-title">Upcoming Schedule</h5>
+                                <div class="card-header-action">
+                                    <div class="card-header-btn">
+                                        <div data-bs-toggle="tooltip" title="Delete">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-danger"data-bs-toggle="remove"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Refresh">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-warning"data-bs-toggle="refresh"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-success"data-bs-toggle="expand"></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="dropdown" data-bs-offset="25, 25">
+                                            <div data-bs-toggle="tooltip" title="Options">
+                                                <i class="feather-more-vertical"></i>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-at-sign"></i>Novo</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-calendar"></i>Event</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-bell"></i>Snoozed</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-trash-2"></i>Deleted</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-settings"></i>Configurações</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-life-buoy"></i>Tips & Tricks</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!--! BEGIN: [Events] !-->
+                                <div class="p-3 border border-dashed rounded-3 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="wd-50 ht-50 bg-soft-primary text-primary lh-1 d-flex align-items-center justify-content-center flex-column rounded-2 schedule-date">
+                                                <span class="fs-18 fw-bold mb-1 d-block">20</span>
+                                                <span class="fs-10 fw-semibold text-uppercase d-block">Dec</span>
+                                            </div>
+                                            <div class="text-dark">
+                                                <a href="javascript:void(0);" class="fw-bold mb-2 text-truncate-1-line">React Painel de Controle Design</a>
+                                                <span class="fs-11 fw-normal text-muted text-truncate-1-line">11:30am - 12:30pm</span>
+                                            </div>
+                                        </div>
+                                        <div class="img-group lh-0 ms-3 justify-content-start d-none d-sm-flex">
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Janette Dalton">
+                                                <img src="assets/images/avatar/2.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Michael Ksen">
+                                                <img src="assets/images/avatar/3.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Socrates Itumay">
+                                                <img src="assets/images/avatar/4.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Marianne Audrey">
+                                                <img src="assets/images/avatar/6.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Explorar Mais">
+                                                <i class="feather-more-horizontal"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--! BEGIN: [Events] !-->
+                                <div class="p-3 border border-dashed rounded-3 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="wd-50 ht-50 bg-soft-warning text-warning lh-1 d-flex align-items-center justify-content-center flex-column rounded-2 schedule-date">
+                                                <span class="fs-18 fw-bold mb-1 d-block">30</span>
+                                                <span class="fs-10 fw-semibold text-uppercase d-block">Dec</span>
+                                            </div>
+                                            <div class="text-dark">
+                                                <a href="javascript:void(0);" class="fw-bold mb-2 text-truncate-1-line">Conceito de Design Admin</a>
+                                                <span class="fs-11 fw-normal text-muted text-truncate-1-line">10:00am - 12:00pm</span>
+                                            </div>
+                                        </div>
+                                        <div class="img-group lh-0 ms-3 justify-content-start d-none d-sm-flex">
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Janette Dalton">
+                                                <img src="assets/images/avatar/2.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Michael Ksen">
+                                                <img src="assets/images/avatar/3.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Marianne Audrey">
+                                                <img src="assets/images/avatar/5.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Marianne Audrey">
+                                                <img src="assets/images/avatar/6.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Explorar Mais">
+                                                <i class="feather-more-horizontal"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--! BEGIN: [Events] !-->
+                                <div class="p-3 border border-dashed rounded-3 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="wd-50 ht-50 bg-soft-success text-success lh-1 d-flex align-items-center justify-content-center flex-column rounded-2 schedule-date">
+                                                <span class="fs-18 fw-bold mb-1 d-block">17</span>
+                                                <span class="fs-10 fw-semibold text-uppercase d-block">Dec</span>
+                                            </div>
+                                            <div class="text-dark">
+                                                <a href="javascript:void(0);" class="fw-bold mb-2 text-truncate-1-line">Standup Team Meeting</a>
+                                                <span class="fs-11 fw-normal text-muted text-truncate-1-line">8:00am - 9:00am</span>
+                                            </div>
+                                        </div>
+                                        <div class="img-group lh-0 ms-3 justify-content-start d-none d-sm-flex">
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Janette Dalton">
+                                                <img src="assets/images/avatar/2.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Michael Ksen">
+                                                <img src="assets/images/avatar/3.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Socrates Itumay">
+                                                <img src="assets/images/avatar/4.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Marianne Audrey">
+                                                <img src="assets/images/avatar/5.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Explorar Mais">
+                                                <i class="feather-more-horizontal"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--! BEGIN: [Events] !-->
+                                <div class="p-3 border border-dashed rounded-3 mb-2">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="wd-50 ht-50 bg-soft-danger text-danger lh-1 d-flex align-items-center justify-content-center flex-column rounded-2 schedule-date">
+                                                <span class="fs-18 fw-bold mb-1 d-block">25</span>
+                                                <span class="fs-10 fw-semibold text-uppercase d-block">Dec</span>
+                                            </div>
+                                            <div class="text-dark">
+                                                <a href="javascript:void(0);" class="fw-bold mb-2 text-truncate-1-line">Zoom Team Meeting</a>
+                                                <span class="fs-11 fw-normal text-muted text-truncate-1-line">03:30pm - 05:30pm</span>
+                                            </div>
+                                        </div>
+                                        <div class="img-group lh-0 ms-3 justify-content-start d-none d-sm-flex">
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Janette Dalton">
+                                                <img src="assets/images/avatar/2.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Socrates Itumay">
+                                                <img src="assets/images/avatar/4.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Marianne Audrey">
+                                                <img src="assets/images/avatar/5.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-image avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Marianne Audrey">
+                                                <img src="assets/images/avatar/6.png" class="img-fluid" alt="image" />
+                                            </a>
+                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Explorar Mais">
+                                                <i class="feather-more-horizontal"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="card-footer fs-11 fw-bold text-uppercase text-center py-4">Upcomming Schedule</a>
+                        </div>
+                    </div>
+                    <!--! END: [Upcoming Schedule] !-->
+                    <!--! BEGIN: [Project Status] !-->
+                    <div class="col-xxl-4">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header" style="background: var(#5550F2); color: white;">
+                                <h5 class="card-title">Project Status</h5>
+                                <div class="card-header-action">
+                                    <div class="card-header-btn">
+                                        <div data-bs-toggle="tooltip" title="Delete">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-danger"data-bs-toggle="remove"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Refresh">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-warning"data-bs-toggle="refresh"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-success"data-bs-toggle="expand"></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="dropdown" data-bs-offset="25, 25">
+                                            <div data-bs-toggle="tooltip" title="Options">
+                                                <i class="feather-more-vertical"></i>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-at-sign"></i>Novo</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-calendar"></i>Event</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-bell"></i>Snoozed</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-trash-2"></i>Deleted</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-settings"></i>Configurações</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-life-buoy"></i>Tips & Tricks</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action">
+                                <div class="mb-3">
+                                    <div class="mb-4 pb-1 d-flex">
+                                        <div class="d-flex w-50 align-items-center me-3">
+                                            <img src="assets/images/brand/app-store.png" alt="laravel-logo" class="me-3" width="35" />
+                                            <div>
+                                                <a href="javascript:void(0);" class="text-truncate-1-line">Apps Development</a>
+                                                <div class="fs-11 text-muted">Applications</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-grow-1 align-items-center">
+                                            <div class="progress w-100 me-3 ht-5">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 54%" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <span class="text-muted">54%</span>
+                                        </div>
+                                    </div>
+                                    <hr class="border-dashed my-3" />
+                                    <div class="mb-4 pb-1 d-flex">
+                                        <div class="d-flex w-50 align-items-center me-3">
+                                            <img src="assets/images/brand/figma.png" alt="figma-logo" class="me-3" width="35" />
+                                            <div>
+                                                <a href="javascript:void(0);" class="text-truncate-1-line">Painel de Controle Design</a>
+                                                <div class="fs-11 text-muted">App UI Kit</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-grow-1 align-items-center">
+                                            <div class="progress w-100 me-3 ht-5">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 86%" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <span class="text-muted">86%</span>
+                                        </div>
+                                    </div>
+                                    <hr class="border-dashed my-3" />
+                                    <div class="mb-4 pb-1 d-flex">
+                                        <div class="d-flex w-50 align-items-center me-3">
+                                            <img src="assets/images/brand/facebook.png" alt="vue-logo" class="me-3" width="35" />
+                                            <div>
+                                                <a href="javascript:void(0);" class="text-truncate-1-line">Facebook Marketing</a>
+                                                <div class="fs-11 text-muted">Marketing</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-grow-1 align-items-center">
+                                            <div class="progress w-100 me-3 ht-5">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <span class="text-muted">90%</span>
+                                        </div>
+                                    </div>
+                                    <hr class="border-dashed my-3" />
+                                    <div class="mb-4 pb-1 d-flex">
+                                        <div class="d-flex w-50 align-items-center me-3">
+                                            <img src="assets/images/brand/github.png" alt="react-logo" class="me-3" width="35" />
+                                            <div>
+                                                <a href="javascript:void(0);" class="text-truncate-1-line">React Painel de Controle Github</a>
+                                                <div class="fs-11 text-muted">Painel de Controle</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-grow-1 align-items-center">
+                                            <div class="progress w-100 me-3 ht-5">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 37%" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <span class="text-muted">37%</span>
+                                        </div>
+                                    </div>
+                                    <hr class="border-dashed my-3" />
+                                    <div class="d-flex">
+                                        <div class="d-flex w-50 align-items-center me-3">
+                                            <img src="assets/images/brand/paypal.png" alt="sketch-logo" class="me-3" width="35" />
+                                            <div>
+                                                <a href="javascript:void(0);" class="text-truncate-1-line">Paypal Payment Gateway</a>
+                                                <div class="fs-11 text-muted">Payment</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-grow-1 align-items-center">
+                                            <div class="progress w-100 me-3 ht-5">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 29%" aria-valuenow="29" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <span class="text-muted">29%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="card-footer fs-11 fw-bold text-uppercase text-center">Upcomming Projects</a>
+                        </div>
+                    </div>
+                    <!--! END: [Project Status] !-->
+                    <!--! BEGIN: [Team Progress] !-->
+                    <div class="col-xxl-4">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header" style="background: var(#5550F2); color: white;">
+                                <h5 class="card-title">Team Progress</h5>
+                                <div class="card-header-action">
+                                    <div class="card-header-btn">
+                                        <div data-bs-toggle="tooltip" title="Delete">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-danger"data-bs-toggle="remove"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Refresh">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-warning"data-bs-toggle="refresh"></a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                            <ahref="javascript:void(0);"class="avatar-textavatar-xsbg-success"data-bs-toggle="expand"></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="dropdown" data-bs-offset="25, 25">
+                                            <div data-bs-toggle="tooltip" title="Options">
+                                                <i class="feather-more-vertical"></i>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-at-sign"></i>Novo</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-calendar"></i>Event</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-bell"></i>Snoozed</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-trash-2"></i>Deleted</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-settings"></i>Configurações</a>
+                                            <a href="javascript:void(0);" class="dropdown-item"><i class="feather-life-buoy"></i>Tips & Tricks</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action">
+                                <div class="hstack justify-content-between border border-dashed rounded-3 p-3 mb-3">
+                                    <div class="hstack gap-3">
+                                        <div class="avatar-image">
+                                            <img src="assets/images/avatar/1.png" alt="" class="img-fluid" />
+                                        </div>
+                                        <div>
+                                            <a href="javascript:void(0);">Alexandra Della</a>
+                                            <div class="fs-11 text-muted">Frontend Developer</div>
+                                        </div>
+                                    </div>
+                                    <div class="team-progress-1"></div>
+                                </div>
+                                <div class="hstack justify-content-between border border-dashed rounded-3 p-3 mb-3">
+                                    <div class="hstack gap-3">
+                                        <div class="avatar-image">
+                                            <img src="assets/images/avatar/2.png" alt="" class="img-fluid" />
+                                        </div>
+                                        <div>
+                                            <a href="javascript:void(0);">Archie Cantones</a>
+                                            <div class="fs-11 text-muted">UI/UX Designer</div>
+                                        </div>
+                                    </div>
+                                    <div class="team-progress-2"></div>
+                                </div>
+                                <div class="hstack justify-content-between border border-dashed rounded-3 p-3 mb-3">
+                                    <div class="hstack gap-3">
+                                        <div class="avatar-image">
+                                            <img src="assets/images/avatar/3.png" alt="" class="img-fluid" />
+                                        </div>
+                                        <div>
+                                            <a href="javascript:void(0);">Malanie Hanvey</a>
+                                            <div class="fs-11 text-muted">Backend Developer</div>
+                                        </div>
+                                    </div>
+                                    <div class="team-progress-3"></div>
+                                </div>
+                                <div class="hstack justify-content-between border border-dashed rounded-3 p-3 mb-2">
+                                    <div class="hstack gap-3">
+                                        <div class="avatar-image">
+                                            <img src="assets/images/avatar/4.png" alt="" class="img-fluid" />
+                                        </div>
+                                        <div>
+                                            <a href="javascript:void(0);">Kenneth Hune</a>
+                                            <div class="fs-11 text-muted">Digital Marketer</div>
+                                        </div>
+                                    </div>
+                                    <div class="team-progress-4"></div>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="card-footer fs-11 fw-bold text-uppercase text-center">Update 30 Min Ago</a>
+                        </div>
+                    </div>
+                    <!--! END: [Team Progress] !-->
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+        <!-- [ Footer ] start -->
+        <footer class="footer">
+            <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
+                <span>Copyright ©</span>
+                
+            </p>
+            <div class="d-flex align-items-center gap-4">
+                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
+                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
+                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a>
+            </div>
+        </footer>
+        <!-- [ Footer ] end -->
+    </main>
+    <!--! ================================================================ !-->
+    <!--! [End] Main Content !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Theme Customizer !-->
+    <!--! ================================================================ !-->
+    <div class="theme-customizer">
+        <div class="customizer-handle">
+            <a href="javascript:void(0);" class="cutomizer-open-trigger bg-primary">
+                <i class="feather-settings"></i>
+            </a>
+        </div>
+        <div class="customizer-sidebar-wrapper">
+            <div class="customizer-sidebar-header px-4 ht-80 border-bottom d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Theme Configurações</h5>
+                <a href="javascript:void(0);" class="cutomizer-close-trigger d-flex">
+                    <i class="feather-x"></i>
+                </a>
+            </div>
+            <div class="customizer-sidebar-body position-relative p-4" data-scrollbar-target="#psScrollbarInit">
+                <!--! BEGIN: [Navigation] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-5 border border-gray-2 theme-options-set">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Navegação</label>
+                    <div class="row g-2 theme-options-items app-navigation" id="appNavigationList">
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-navigation-light" name="app-navigation" value="1" data-app-navigation="app-navigation-light" checked />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-navigation-light">Light</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-navigation-dark" name="app-navigation" value="2" data-app-navigation="app-navigation-dark" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-navigation-dark">Dark</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Navigation] !-->
+                <!--! BEGIN: [Header] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-5 border border-gray-2 theme-options-set mt-5">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Header</label>
+                    <div class="row g-2 theme-options-items app-header" id="appHeaderList">
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-header-light" name="app-header" value="1" data-app-header="app-header-light" checked />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-header-light">Light</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-header-dark" name="app-header" value="2" data-app-header="app-header-dark" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-header-dark">Dark</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Header] !-->
+                <!--! BEGIN: [Skins] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-5 border border-gray-2 theme-options-set">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Skins</label>
+                    <div class="row g-2 theme-options-items app-skin" id="appSkinList">
+                        <div class="col-6 text-center position-relative single-option light-button active">
+                            <input type="radio" class="btn-check" id="app-skin-light" name="app-skin" value="1" data-app-skin="app-skin-light" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-skin-light">Light</label>
+                        </div>
+                        <div class="col-6 text-center position-relative single-option dark-button">
+                            <input type="radio" class="btn-check" id="app-skin-dark" name="app-skin" value="2" data-app-skin="app-skin-dark" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-skin-dark">Dark</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Skins] !-->
+                <!--! BEGIN: [Typography] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-0 border border-gray-2 theme-options-set">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Typography</label>
+                    <div class="row g-2 theme-options-items font-family" id="fontFamilyList">
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-lato" name="font-family" value="1" data-font-family="app-font-family-lato" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-lato">Lato</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-rubik" name="font-family" value="2" data-font-family="app-font-family-rubik" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-rubik">Rubik</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-inter" name="font-family" value="3" data-font-family="app-font-family-inter" checked />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-inter">Inter</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-cinzel" name="font-family" value="4" data-font-family="app-font-family-cinzel" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-cinzel">Cinzel</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-nunito" name="font-family" value="6" data-font-family="app-font-family-nunito" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-nunito">Nunito</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-roboto" name="font-family" value="7" data-font-family="app-font-family-roboto" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-roboto">Roboto</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-ubuntu" name="font-family" value="8" data-font-family="app-font-family-ubuntu" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-ubuntu">Ubuntu</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-poppins" name="font-family" value="9" data-font-family="app-font-family-poppins" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-poppins">Poppins</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-raleway" name="font-family" value="10" data-font-family="app-font-family-raleway" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-raleway">Raleway</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-system-ui" name="font-family" value="11" data-font-family="app-font-family-system-ui" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-system-ui">Systin UI</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-noto-sans" name="font-family" value="12" data-font-family="app-font-family-noto-sans" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-noto-sans">Noto Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-fira-sans" name="font-family" value="13" data-font-family="app-font-family-fira-sans" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-fira-sans">Fira Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-work-sans" name="font-family" value="14" data-font-family="app-font-family-work-sans" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-work-sans">Work Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-open-sans" name="font-family" value="15" data-font-family="app-font-family-open-sans" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-open-sans">Open Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-maven-pro" name="font-family" value="16" data-font-family="app-font-family-maven-pro" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-maven-pro">Maven Pro</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-quicksand" name="font-family" value="17" data-font-family="app-font-family-quicksand" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-quicksand">Quicksand</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-montserrat" name="font-family" value="18" data-font-family="app-font-family-montserrat" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-montserrat">Montserrat</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-josefin-sans" name="font-family" value="19" data-font-family="app-font-family-josefin-sans" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-josefin-sans">Josefin Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-ibm-plex-sans" name="font-family" value="20" data-font-family="app-font-family-ibm-plex-sans" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-ibm-plex-sans">IBM Plex Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-source-sans-pro" name="font-family" value="5" data-font-family="app-font-family-source-sans-pro" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-source-sans-pro">Source Sans Pro</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-montserrat-alt" name="font-family" value="21" data-font-family="app-font-family-montserrat-alt" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-montserrat-alt">Montserrat Alt</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-roboto-slab" name="font-family" value="22" data-font-family="app-font-family-roboto-slab" />
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-roboto-slab">Roboto Slab</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Typography] !-->
+            </div>
+            <div class="customizer-sidebar-footer px-4 ht-60 border-top d-flex align-items-center gap-2">
+                <div class="flex-fill w-50">
+                    <a href="javascript:void(0);" class="btn btn-danger" data-style="reset-all-common-style">Reset</a>
+                </div>
+                <div class="flex-fill w-50">
+                    <a href="javascript:void(0);" class="btn btn-primary" style="background: var(#5550F2); border: none;">Baixar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--! ================================================================ !-->
+    <!--! [End] Theme Customizer !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! Footer Script !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Vendors JS !-->
+    
+    <!-- vendors.min.js {always must need to be top} -->
+    
+    
+    
+    <!--! END: Vendors JS !-->
+    <!--! BEGIN: Apps Init  !-->
+    
+    
+    <!--! END: Apps Init !-->
+    <!--! BEGIN: Custom Painel de Controle !-->
+    
+    <!--! END: Custom Painel de Controle !-->
+    <!--! BEGIN: Theme Customizer  !-->
+    
+    <!--! END: Theme Customizer !-->
+
+        <!-- Notification Center v6.0 JavaScript -->
+        
+
+    <!-- Botão flutuante do AI Assistant -->
+    <div id="ai-assistant-fab" class="ai-assistant-fab" onclick="window.open('apps-chat.html', '_blank')">
+        <i class="feather-message-circle"></i>
+        <span class="ai-pulse"></span>
+    </div>
+
+    
+
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Painel de notificações -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Notificações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Ação do botão"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Novo lead cadastrado</h6>
+                        <small>5 min atrás</small>
+                    </div>
+                    <p class="mb-1">João Silva enviou uma solicitação de orçamento.</p>
+                </div>
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Projeto aprovado</h6>
+                        <small>1 hora atrás</small>
+                    </div>
+                    <p class="mb-1">Projeto "Reforma Comercial" foi aprovado pelo cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts customizados -->
+    <script>
+        // Funcionalidades modernas do sistema
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Auto-salvar formulários
+            const forms = document.querySelectorAll('form[data-auto-save]');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        const formData = new FormData(form);
+                        console.log('Auto-salvando...', Object.fromEntries(formData));
+                        // Implementar auto-save aqui
+                    });
+                });
+            });
+            
+            // Confirmar ações críticas
+            const deleteButtons = document.querySelectorAll('[data-action="delete"]');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Tem certeza que deseja excluir este item?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Responsividade da sidebar
+            function handleSidebarToggle() {
+                const sidebar = document.querySelector('.sidebar');
+                if (window.innerWidth < 992) {
+                    sidebar.classList.add('d-none', 'd-lg-block');
+                } else {
+                    sidebar.classList.remove('d-none');
+                }
+            }
+            
+            window.addEventListener('resize', handleSidebarToggle);
+            handleSidebarToggle();
+        });
+        
+        // Função para atualizar gráficos responsivos
+        function updateChartsOnResize() {
+            if (typeof Chart !== 'undefined') {
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    instance.resize();
+                });
+            }
+        }
+        
+        window.addEventListener('resize', updateChartsOnResize);
+        
+        // Performance: Lazy loading de imagens
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+    
+    
+
+        <script>
+        // Melhorias de UX da identidade Duralux 2025
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Efeito ripple nos botões
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Feedback visual para formulários
+            document.querySelectorAll('.form-control, .form-select').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-color)';
+                    this.style.boxShadow = '0 0 0 0.2rem rgba(85, 80, 242, 0.25)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.style.borderColor = '#dee2e6';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+            
+            // Animação de carregamento para botões
+            document.querySelectorAll('.btn[type="submit"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Processando...';
+                    this.disabled = true;
+                    
+                    // Simular carregamento (remover em produção real)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            });
+            
+        });
+        
+        // CSS para animação de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        </script>
+        
+
+        <script>
+        // Estados de carregamento e feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Loading overlay
+            function showLoading() {
+                const overlay = document.createElement('div');
+                overlay.id = 'loadingOverlay';
+                overlay.innerHTML = `
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Carregando...</p>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+            }
+            
+            function hideLoading() {
+                const overlay = document.getElementById('loadingOverlay');
+                if (overlay) overlay.remove();
+            }
+            
+            // Loading em formulários
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Processando...';
+                        
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = submitBtn.getAttribute('data-original-text') || 'Salvar';
+                        }, 2000);
+                    }
+                });
+            });
+            
+            // Loading em links de navegação
+            document.querySelectorAll('a[href]:not([href^="#"])').forEach(link => {
+                link.addEventListener('click', function() {
+                    showLoading();
+                    setTimeout(hideLoading, 1000);
+                });
+            });
+            
+            // Skeleton loading para tabelas
+            function showTableSkeleton(table) {
+                const tbody = table.querySelector('tbody');
+                if (tbody) {
+                    tbody.innerHTML = `
+                        ${'<tr>' + '<td><div class="skeleton"></div></td>'.repeat(6) + '</tr>'.repeat(3)}
+                    `;
+                }
+            }
+            
+            // Auto-save feedback
+            let autoSaveTimeout;
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('input', function() {
+                    clearTimeout(autoSaveTimeout);
+                    
+                    // Mostrar indicador de mudanças não salvas
+                    this.style.borderLeftColor = 'var(--warning-color)';
+                    this.style.borderLeftWidth = '4px';
+                    
+                    autoSaveTimeout = setTimeout(() => {
+                        // Simular auto-save
+                        this.style.borderLeftColor = 'var(--success-color)';
+                        
+                        setTimeout(() => {
+                            this.style.borderLeftColor = '';
+                            this.style.borderLeftWidth = '';
+                        }, 2000);
+                    }, 1000);
+                });
+            });
+        });
+        </script>
+        
+</body>
+</html>
