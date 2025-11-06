@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema de CRM Duralux - Gestão completa de leads, clientes e projetos" />
+    <title>Analytics - Duralux CRM - Duralux CRM</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <style>
+        
+        :root {
+            --primary-color: #5550F2;
+            --secondary-color: #027368;
+            --success-color: #04BF9D;
+            --warning-color: #F2B33D;
+            --light-color: #F2F2F2;
+            --dark-color: #2C3E50;
+            --info-color: #3498DB;
+            --danger-color: #E74C3C;
+            
+            
+            
+            
+            
+        }
+        
+        /* Reset e melhorias base */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background-color: #F2F2F2;
+        }
+        
+        /* Layout responsivo */
+        .container-fluid {
+            padding: 1rem;
+        }
+        
+        /* Sidebar responsiva */
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        
+        @media (max-width: 768px) {
+            
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
+        
+        /* Botões modernos */
+        .btn {
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
+        
+        /* Tabelas responsivas */
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .table th {
+            background-color: #F2F2F2;
+            border-top: none;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        /* Formulários modernos */
+        .form-control, .form-select {
+            border-radius: 0.375rem;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #5550F2;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Navegação */
+        .nav-pills .nav-link {
+            border-radius: 0.375rem;
+            color: #2C3E50;
+            margin-bottom: 0.25rem;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: #5550F2;
+        }
+        
+        /* Estatísticas cards */
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5550F2;
+        }
+        
+        .stats-label {
+            color: #2C3E50;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Modo escuro opcional */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1d29;
+                color: #F2F2F2;
+            }
+            
+            .card {
+                background-color: #2d3748;
+                color: #F2F2F2;
+            }
+            
+            .form-control, .form-select {
+                background-color: #4a5568;
+                border-color: #2C3E50;
+                color: #F2F2F2;
+            }
+            
+            .table {
+                color: #F2F2F2;
+            }
+            
+            .table th {
+                background-color: #374151;
+            }
+        }
+    
+        /* === DURALUX IDENTITY 2025 === */
+        
+        /* Animações suaves */
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Botões com nova identidade */
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
+        
+        .btn-primary:hover {
+            background-color: #5550F2;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(85, 80, 242, 0.3) !important;
+        }
+        
+        /* Sidebar nova identidade */
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        
+        .nav-pills .nav-link.active {
+            background: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 8px !important;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+            overflow: hidden !important;
+        }
+        
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
+        
+        /* Tabelas aprimoradas */
+        .table th {
+            background: var(--light-color) !important;
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            border: none !important;
+            padding: 1rem !important;
+        }
+        
+        .table td {
+            padding: 1rem !important;
+            vertical-align: middle !important;
+            border-color: #E9ECEF !important;
+        }
+        
+        .table-responsive {
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+        }
+        
+        /* Estatísticas coloridas */
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
+        
+        .stats-number {
+            color: var(--primary-color) !important;
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+        }
+        
+        .stats-label {
+            color: var(--dark-color) !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        /* Badges com nova identidade */
+        .badge-primary {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color) !important;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        /* Formulários aprimorados */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 0.2rem rgba(85, 80, 242, 0.25) !important;
+        }
+        
+        .form-label {
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumb {
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color) !important;
+            text-decoration: none !important;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Alertas personalizados */
+        .alert {
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }
+        
+        .alert-success {
+            background-color: var(--success-color) !important;
+            color: white !important;
+        }
+        
+        .alert-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        .alert-info {
+            background-color: var(--info-color) !important;
+            color: white !important;
+        }
+        
+        /* Responsividade aprimorada */
+        @media (max-width: 768px) {
+            
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        /* Animações de carregamento */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Efeitos hover para cards */
+        .card:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar responsiva -->
+            <div class="col-12 col-lg-2 sidebar">
+                <div class="d-flex flex-column">
+                    <h4 class="mb-4">
+                        <i class="bi bi-building"></i> DURALUX
+                    </h4>
+                    
+                    <nav class="nav flex-column nav-pills">
+                        <a class="nav-link " href="index.html">
+                            <i class="bi bi-speedometer2"></i> Painel de Controle
+                        </a>
+                        <a class="nav-link " href="leads.html">
+                            <i class="bi bi-person-plus"></i> Leads
+                        </a>
+                        <a class="nav-link " href="customers.html">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                        <a class="nav-link " href="projects.html">
+                            <i class="bi bi-folder"></i> Projetos
+                        </a>
+                        <a class="nav-link " href="proposal.html">
+                            <i class="bi bi-file-text"></i> Propostas
+                        </a>
+                        <a class="nav-link active" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 8px; margin-bottom: 0.25rem;" href="analytics.html">
+                            <i class="bi bi-graph-up"></i> Analytics
+                        </a>
+                        <a class="nav-link " href="reports.html">
+                            <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="col-12 col-lg-10">
+                <header class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-0">Analytics Avançadas</h1>
+                        <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
+                            <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;"><ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item active">Analytics</li>
+                            </ol></nav>
+                        </nav>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                            <i class="bi bi-bell"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> Usuário
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configurações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                
+                <main>
+                    
+    <!-- Sidebar -->
+    
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-chart-line me-2"></i>Análises Avançadas</h1>
+            <div>
+                <button class="btn-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="container-fluid p-4">
+            
+            <!-- Statistics Cards -->
+            <div class="row mb-4 fade-in">
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card scale-in">
+                        <div class="stat-number" id="totalEmails">50.545</div>
+                        <div class="stat-label">Total de E-mails</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card success scale-in" style="animation-delay: 0.1s">
+                        <div class="stat-number" id="emailsSent">25.000</div>
+                        <div class="stat-label">E-mails Enviados</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card warning scale-in" style="animation-delay: 0.2s">
+                        <div class="stat-number" id="emailsDelivered">20.354</div>
+                        <div class="stat-label">E-mails Entregues</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card secondary scale-in" style="animation-delay: 0.3s">
+                        <div class="stat-number" id="emailsBounced">2.047</div>
+                        <div class="stat-label">E-mails Rejeitados</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Main Chart -->
+                <div class="col-lg-8 mb-4">
+                    <div class="chart-container fade-in">
+                        <h3 class="chart-title">Visão Geral de Visitantes</h3>
+                        <canvas id="visitorsChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Browser Statistics -->
+                <div class="col-lg-4 mb-4">
+                    <div class="duralux-card fade-in">
+                        <h3 class="chart-title mb-4">Estatísticas do Navegador</h3>
+                        
+                        <div class="browser-stat">
+                            <i class="fab fa-chrome browser-icon text-primary"></i>
+                            <span style="flex: 1;">Google Chrome</span>
+                            <div class="progress-modern">
+                                <div class="progress-bar-modern bg-success" style="width: 90%"></div>
+                            </div>
+                            <span class="ms-2">90%</span>
+                        </div>
+                        
+                        <div class="browser-stat">
+                            <i class="fab fa-firefox browser-icon text-warning"></i>
+                            <span style="flex: 1;">Mozilla Firefox</span>
+                            <div class="progress-modern">
+                                <div class="progress-bar-modern bg-primary" style="width: 76%"></div>
+                            </div>
+                            <span class="ms-2">76%</span>
+                        </div>
+                        
+                        <div class="browser-stat">
+                            <i class="fab fa-safari browser-icon text-info"></i>
+                            <span style="flex: 1;">Apple Safari</span>
+                            <div class="progress-modern">
+                                <div class="progress-bar-modern bg-warning" style="width: 50%"></div>
+                            </div>
+                            <span class="ms-2">50%</span>
+                        </div>
+                        
+                        <div class="browser-stat">
+                            <i class="fab fa-edge browser-icon text-success"></i>
+                            <span style="flex: 1;">Microsoft Edge</span>
+                            <div class="progress-modern">
+                                <div class="progress-bar-modern bg-success" style="width: 20%"></div>
+                            </div>
+                            <span class="ms-2">20%</span>
+                        </div>
+                        
+                        <div class="browser-stat">
+                            <i class="fab fa-opera browser-icon text-danger"></i>
+                            <span style="flex: 1;">Opera Mini</span>
+                            <div class="progress-modern">
+                                <div class="progress-bar-modern bg-danger" style="width: 15%"></div>
+                            </div>
+                            <span class="ms-2">15%</span>
+                        </div>
+                        
+                        <div class="browser-stat">
+                            <i class="fab fa-internet-explorer browser-icon text-secondary"></i>
+                            <span style="flex: 1;">Internet Explorer</span>
+                            <div class="progress-modern">
+                                <div class="progress-bar-modern bg-secondary" style="width: 12%"></div>
+                            </div>
+                            <span class="ms-2">12%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="duralux-card text-center fade-in">
+                        <h4>Taxa de Rejeição</h4>
+                        <div class="stat-number text-primary">78.65%</div>
+                        <small class="text-success">+22.85% vs anterior</small>
+                        <canvas id="bounceChart" width="100" height="50"></canvas>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <div class="duralux-card text-center fade-in">
+                        <h4>Visualizações de Página</h4>
+                        <div class="stat-number text-success">86.37%</div>
+                        <small class="text-danger">-34.25% vs anterior</small>
+                        <canvas id="pageViewsChart" width="100" height="50"></canvas>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <div class="duralux-card text-center fade-in">
+                        <h4>Impressões do Site</h4>
+                        <div class="stat-number text-warning">67.53%</div>
+                        <small class="text-success">+42.72% vs anterior</small>
+                        <canvas id="impressionsChart" width="100" height="50"></canvas>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-3">
+                    <div class="duralux-card text-center fade-in">
+                        <h4>Taxa de Conversão</h4>
+                        <div class="stat-number text-info">32.53%</div>
+                        <small class="text-success">+35.47% vs anterior</small>
+                        <canvas id="conversionChart" width="100" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals Progress -->
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="duralux-card fade-in">
+                        <h3 class="chart-title mb-4">Progresso das Metas</h3>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <div class="text-center p-3 border rounded">
+                                    <canvas id="marketingGoal" width="80" height="80"></canvas>
+                                    <h6 class="mt-2">Meta de Marketing</h6>
+                                    <small>R$ 550 / R$ 1.250</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="text-center p-3 border rounded">
+                                    <canvas id="teamGoal" width="80" height="80"></canvas>
+                                    <h6 class="mt-2">Meta da Equipe</h6>
+                                    <small>R$ 750 / R$ 1.000</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="text-center p-3 border rounded">
+                                    <canvas id="leadsGoal" width="80" height="80"></canvas>
+                                    <h6 class="mt-2">Meta de Leads</h6>
+                                    <small>R$ 850 / R$ 950</small>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="text-center p-3 border rounded">
+                                    <canvas id="revenueGoal" width="80" height="80"></canvas>
+                                    <h6 class="mt-2">Meta de Receita</h6>
+                                    <small>R$ 5.655 / R$ 12.500</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" style="background: var(#5550F2); border: none;">
+                                <i class="fas fa-file-alt me-2"></i>Gerar Relatório
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign Analytics -->
+                <div class="col-lg-6 mb-4">
+                    <div class="duralux-card fade-in">
+                        <h3 class="chart-title mb-4">Análise de Campanhas</h3>
+                        <canvas id="campaignChart" width="400" height="250"></canvas>
+                        
+                        <div class="row mt-4">
+                            <div class="col-3 text-center">
+                                <div class="p-2 border rounded">
+                                    <small class="text-muted">Alcance</small>
+                                    <h6 class="mb-0">5.486</h6>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-primary" style="width: 81%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-center">
+                                <div class="p-2 border rounded">
+                                    <small class="text-muted">Abertos</small>
+                                    <h6 class="mb-0">42.75%</h6>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-success" style="width: 82%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-center">
+                                <div class="p-2 border rounded">
+                                    <small class="text-muted">Clicados</small>
+                                    <h6 class="mb-0">38.68%</h6>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-warning" style="width: 68%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-center">
+                                <div class="p-2 border rounded">
+                                    <small class="text-muted">Convertidos</small>
+                                    <h6 class="mb-0">24.32%</h6>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-info" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    
+    
+    <!-- Chart.js -->
+    
+    
+    <!-- Custom Scripts -->
+    
+
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Painel de notificações -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Notificações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Novo lead cadastrado</h6>
+                        <small>5 min atrás</small>
+                    </div>
+                    <p class="mb-1">João Silva enviou uma solicitação de orçamento.</p>
+                </div>
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Projeto aprovado</h6>
+                        <small>1 hora atrás</small>
+                    </div>
+                    <p class="mb-1">Projeto "Reforma Comercial" foi aprovado pelo cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts customizados -->
+    <script>
+        // Funcionalidades modernas do sistema
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Auto-salvar formulários
+            const forms = document.querySelectorAll('form[data-auto-save]');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        const formData = new FormData(form);
+                        console.log('Auto-salvando...', Object.fromEntries(formData));
+                        // Implementar auto-save aqui
+                    });
+                });
+            });
+            
+            // Confirmar ações críticas
+            const deleteButtons = document.querySelectorAll('[data-action="delete"]');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Tem certeza que deseja excluir este item?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Responsividade da sidebar
+            function handleSidebarToggle() {
+                const sidebar = document.querySelector('.sidebar');
+                if (window.innerWidth < 992) {
+                    sidebar.classList.add('d-none', 'd-lg-block');
+                } else {
+                    sidebar.classList.remove('d-none');
+                }
+            }
+            
+            window.addEventListener('resize', handleSidebarToggle);
+            handleSidebarToggle();
+        });
+        
+        // Função para atualizar gráficos responsivos
+        function updateChartsOnResize() {
+            if (typeof Chart !== 'undefined') {
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    instance.resize();
+                });
+            }
+        }
+        
+        window.addEventListener('resize', updateChartsOnResize);
+        
+        // Performance: Lazy loading de imagens
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+    
+    
+                <script>
+                // Scripts específicos para analytics
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Inicializar gráficos responsivos
+                    initAnalyticsCharts();
+                });
+                
+                function initAnalyticsCharts() {
+                    // Implementação dos gráficos será mantida do arquivo original
+                    console.log('Inicializando gráficos analytics...');
+                }
+                </script>
+                
+
+        <script>
+        // Melhorias de UX da identidade Duralux 2025
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Efeito ripple nos botões
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Feedback visual para formulários
+            document.querySelectorAll('.form-control, .form-select').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-color)';
+                    this.style.boxShadow = '0 0 0 0.2rem rgba(85, 80, 242, 0.25)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.style.borderColor = '#dee2e6';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+            
+            // Animação de carregamento para botões
+            document.querySelectorAll('.btn[type="submit"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Processando...';
+                    this.disabled = true;
+                    
+                    // Simular carregamento (remover em produção real)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            });
+            
+        });
+        
+        // CSS para animação de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        </script>
+        
+</body>
+</html>

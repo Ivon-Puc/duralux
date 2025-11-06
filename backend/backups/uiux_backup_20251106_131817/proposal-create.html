@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema de CRM Duralux - Gestão completa de leads, clientes e projetos" />
+    <title>Propostas - Duralux CRM - Duralux CRM</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <style>
+        
+        :root {
+            --primary-color: #5550F2;
+            --secondary-color: #027368;
+            --success-color: #04BF9D;
+            --warning-color: #F2B33D;
+            --light-color: #F2F2F2;
+            --dark-color: #2C3E50;
+            --info-color: #3498DB;
+            --danger-color: #E74C3C;
+            
+            
+            
+            
+            
+        }
+        
+        /* Reset e melhorias base */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background-color: #F2F2F2;
+        }
+        
+        /* Layout responsivo */
+        .container-fluid {
+            padding: 1rem;
+        }
+        
+        /* Sidebar responsiva */
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        
+        @media (max-width: 768px) {
+            
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
+        
+        /* Botões modernos */
+        .btn {
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
+        
+        /* Tabelas responsivas */
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .table th {
+            background-color: #F2F2F2;
+            border-top: none;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        /* Formulários modernos */
+        .form-control, .form-select {
+            border-radius: 0.375rem;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #5550F2;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Navegação */
+        .nav-pills .nav-link {
+            border-radius: 0.375rem;
+            color: #2C3E50;
+            margin-bottom: 0.25rem;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: #5550F2;
+        }
+        
+        /* Estatísticas cards */
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5550F2;
+        }
+        
+        .stats-label {
+            color: #2C3E50;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Modo escuro opcional */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1d29;
+                color: #F2F2F2;
+            }
+            
+            .card {
+                background-color: #2d3748;
+                color: #F2F2F2;
+            }
+            
+            .form-control, .form-select {
+                background-color: #4a5568;
+                border-color: #2C3E50;
+                color: #F2F2F2;
+            }
+            
+            .table {
+                color: #F2F2F2;
+            }
+            
+            .table th {
+                background-color: #374151;
+            }
+        }
+    
+        /* === DURALUX IDENTITY 2025 === */
+        
+        /* Animações suaves */
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Botões com nova identidade */
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
+        
+        .btn-primary:hover {
+            background-color: #5550F2;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(85, 80, 242, 0.3) !important;
+        }
+        
+        /* Sidebar nova identidade */
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+        
+        .nav-pills .nav-link.active {
+            background: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 8px !important;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+            overflow: hidden !important;
+        }
+        
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
+        
+        /* Tabelas aprimoradas */
+        .table th {
+            background: var(--light-color) !important;
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            border: none !important;
+            padding: 1rem !important;
+        }
+        
+        .table td {
+            padding: 1rem !important;
+            vertical-align: middle !important;
+            border-color: #E9ECEF !important;
+        }
+        
+        .table-responsive {
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+        }
+        
+        /* Estatísticas coloridas */
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
+        
+        .stats-number {
+            color: var(--primary-color) !important;
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+        }
+        
+        .stats-label {
+            color: var(--dark-color) !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        /* Badges com nova identidade */
+        .badge-primary {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color) !important;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        /* Formulários aprimorados */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 0.2rem rgba(85, 80, 242, 0.25) !important;
+        }
+        
+        .form-label {
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumb {
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color) !important;
+            text-decoration: none !important;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Alertas personalizados */
+        .alert {
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }
+        
+        .alert-success {
+            background-color: var(--success-color) !important;
+            color: white !important;
+        }
+        
+        .alert-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        .alert-info {
+            background-color: var(--info-color) !important;
+            color: white !important;
+        }
+        
+        /* Responsividade aprimorada */
+        @media (max-width: 768px) {
+            
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        /* Animações de carregamento */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Efeitos hover para cards */
+        .card:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar responsiva -->
+            <div class="col-12 col-lg-2 sidebar">
+                <div class="d-flex flex-column">
+                    <h4 class="mb-4">
+                        <i class="bi bi-building"></i> DURALUX
+                    </h4>
+                    
+                    <nav class="nav flex-column nav-pills">
+                        <a class="nav-link " href="index.html">
+                            <i class="bi bi-speedometer2"></i> Painel de Controle
+                        </a>
+                        <a class="nav-link " href="leads.html">
+                            <i class="bi bi-person-plus"></i> Leads
+                        </a>
+                        <a class="nav-link " href="customers.html">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                        <a class="nav-link " href="projects.html">
+                            <i class="bi bi-folder"></i> Projetos
+                        </a>
+                        <a class="nav-link active" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 8px; margin-bottom: 0.25rem;" href="proposal.html">
+                            <i class="bi bi-file-text"></i> Propostas
+                        </a>
+                        <a class="nav-link " href="analytics.html">
+                            <i class="bi bi-graph-up"></i> Analytics
+                        </a>
+                        <a class="nav-link " href="reports.html">
+                            <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="col-12 col-lg-10">
+                <header class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-0">Gerenciar Propostas</h1>
+                        <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
+                            <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;"><ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item active">Propostas</li>
+                            </ol></nav>
+                        </nav>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                            <i class="bi bi-bell"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> Usuário
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configurações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                
+                <main>
+                    
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main class="nxl-container">
+        <div class="nxl-content">
+            <!-- [ page-header ] start -->
+            <div class="page-header">
+                <div class="page-header-left d-flex align-items-center">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Propostas</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                        <li class="breadcrumb-item">Create</li>
+                    </ul>
+                </div>
+                <div class="page-header-right ms-auto">
+                    <div class="page-header-right-items">
+                        <div class="d-flex d-md-none">
+                            <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                                <i class="feather-arrow-left me-2"></i>
+                                <span>Voltar</span>
+                            </a>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
+                            <a href="javascript:void(0);" class="btn btn-light-brand" data-bs-toggle="offcanvas" data-bs-target="#proposalSent">
+                                <i class="feather-layers me-2"></i>
+                                <span>Salvar & Send</span>
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-primary successAlertMessage">
+                                <i class="feather-save me-2"></i>
+                                <span>Salvar</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="d-md-none d-flex align-items-center">
+                        <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                            <i class="feather-align-right fs-20"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- [ page-header ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label">Subject <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Assunto">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Related <span class="text-danger">*</span></label>
+                                    <select class="form-control" data-select2-selector="icon">
+                                        <option value="lead" data-icon="feather-at-sign">Lead</option>
+                                        <option value="coustomer" data-icon="feather-users">Coustomer</option>
+                                    </Selecionar>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Lead <span class="text-danger">*</span></label>
+                                    <select class="form-select" data-select2-selector="user">
+                                        <option value="1" data-user="1">Alexandra Della - Website design and development</option>
+                                        <option value="2" data-user="2">Curtis Green - User experience (UX) and user interface (UI) design</option>
+                                        <option value="3" data-user="3">Marianne Audrey - Responsive and mobile design</option>
+                                        <option value="4" data-user="4">Holland Scott - E-commerce website design and development</option>
+                                        <option value="5" data-user="5">Olive Delarosa - Custom graphics and icon design</option>
+                                    </Selecionar>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Discount</label>
+                                    <select class="form-select" data-select2-selector="default">
+                                        <option value="">No Discount</option>
+                                        <option value="">Before Tax</option>
+                                        <option value="">After Tax</option>
+                                    </Selecionar>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Visibility:</label>
+                                    <select class="form-select form-control" data-select2-selector="visibility">
+                                        <option value="public" data-icon="feather-globe">Public</option>
+                                        <option value="private" data-icon="feather-lock">Private</option>
+                                        <option value="private" data-icon="feather-user">Personal</option>
+                                        <option value="customs" data-icon="feather-settings">Customs</option>
+                                    </Selecionar>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Start <span class="text-danger">*</span></label>
+                                        <input class="form-control" id="startDate" placeholder="Pick start date ">
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Due <span class="text-danger">*</span></label>
+                                        <input class="form-control" id="dueDate" placeholder="Pick due date">
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Tags:</label>
+                                    <select class="form-select form-control" data-select2-selector="tag" multiple>
+                                        <option value="primary" data-bg="bg-primary">Team</option>
+                                        <option value="teal" data-bg="bg-teal">Primary</option>
+                                        <option value="success" data-bg="bg-success">Updates</option>
+                                        <option value="warning" data-bg="bg-warning">Personal</option>
+                                        <option value="danger" data-bg="bg-danger">Promotions</option>
+                                        <option value="indigo" data-bg="bg-indigo">Customs</option>
+                                    </Selecionar>
+                                </div>
+                                <div class="mb-0">
+                                    <label class="form-label">Assignee:</label>
+                                    <select class="form-select form-control" data-select2-selector="user" multiple>
+                                        <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
+                                        <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
+                                        <option value="green.cutte@outlook.com" data-user="3">green.cutte@outlook.com</option>
+                                        <option value="nancy.elliot@outlook.com" data-user="4">nancy.elliot@outlook.com</option>
+                                        <option value="mar.audrey@gmail.com" data-user="5">mar.audrey@gmail.com</option>
+                                        <option value="erna.serpa@outlook.com" data-user="6">erna.serpa@outlook.com</option>
+                                        <option value="green.cutte@outlook.com" data-user="7">green.cutte@outlook.com</option>
+                                        <option value="nancy.elliot@outlook.com" data-user="8">nancy.elliot@outlook.com</option>
+                                        <option value="mar.audrey@gmail.com" data-user="9">mar.audrey@gmail.com</option>
+                                        <option value="erna.serpa@outlook.com" data-user="10">erna.serpa@outlook.com</option>
+                                        <option value="mar.audrey@gmail.com" data-user="11">mar.audrey@gmail.com</option>
+                                        <option value="erna.serpa@outlook.com" data-user="12">erna.serpa@outlook.com</option>
+                                    </Selecionar>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label">To <span class="text-danger">*</span></label>
+                                    <select class="form-select form-control" data-select2-selector="user">
+                                        <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
+                                        <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
+                                        <option value="green.cutte@outlook.com" data-user="3">green.cutte@outlook.com</option>
+                                        <option value="nancy.elliot@outlook.com" data-user="4">nancy.elliot@outlook.com</option>
+                                        <option value="mar.audrey@gmail.com" data-user="5">mar.audrey@gmail.com</option>
+                                        <option value="erna.serpa@outlook.com" data-user="6">erna.serpa@outlook.com</option>
+                                        <option value="green.cutte@outlook.com" data-user="7">green.cutte@outlook.com</option>
+                                        <option value="nancy.elliot@outlook.com" data-user="8">nancy.elliot@outlook.com</option>
+                                        <option value="mar.audrey@gmail.com" data-user="9">mar.audrey@gmail.com</option>
+                                        <option value="erna.serpa@outlook.com" data-user="10">erna.serpa@outlook.com</option>
+                                        <option value="mar.audrey@gmail.com" data-user="11">mar.audrey@gmail.com</option>
+                                        <option value="erna.serpa@outlook.com" data-user="12">erna.serpa@outlook.com</option>
+                                    </Selecionar>
+                                </div>
+                                <div>
+                                    <label class="form-label">Address <span class="text-danger">*</span></label>
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-4">
+                                            <input type="text" class="form-control mb-2" placeholder="Address Line 1">
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <input type="text" class="form-control" placeholder="Address Line 2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Email <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Emial">
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Phone <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Phone">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Country <span class="text-danger">*</span></label>
+                                        <select class="form-control" data-select2-selector="country">
+                                            <option data-country="af">Afghanistan</option>
+                                            <option data-country="ax">Åland Islands</option>
+                                            <option data-country="al">Albania</option>
+                                            <option data-country="dz">Algeria</option>
+                                            <option data-country="as">American Samoa</option>
+                                            <option data-country="ad">Andorra</option>
+                                            <option data-country="ao">Angola</option>
+                                            <option data-country="ai">Anguilla</option>
+                                            <option data-country="aq">Antarctica</option>
+                                            <option data-country="ag">Antigua & Barbuda</option>
+                                            <option data-country="ar">Argentina</option>
+                                            <option data-country="am">Armenia</option>
+                                            <option data-country="aw">Aruba</option>
+                                            <option data-country="au">Australia</option>
+                                            <option data-country="at">Austria</option>
+                                            <option data-country="az">Azerbaijan</option>
+                                            <option data-country="bs">Bahamas</option>
+                                            <option data-country="bh">Bahrain</option>
+                                            <option data-country="bd">Bangladesh</option>
+                                            <option data-country="bb">Barbados</option>
+                                            <option data-country="by">Belarus</option>
+                                            <option data-country="be">Belgium</option>
+                                            <option data-country="bz">Belize</option>
+                                            <option data-country="bj">Benin</option>
+                                            <option data-country="bm">Bermuda</option>
+                                            <option data-country="bt">Bhutan</option>
+                                            <option data-country="bo">Bolivia</option>
+                                            <option data-country="bq">Caribbean Netherlands</option>
+                                            <option data-country="ba">Bosnia & Herzegovina</option>
+                                            <option data-country="bw">Botswana</option>
+                                            <option data-country="bv">Bouvet Island</option>
+                                            <option data-country="br">Brazil</option>
+                                            <option data-country="io">British Indian Ocean Territory</option>
+                                            <option data-country="bn">Brunei</option>
+                                            <option data-country="bg">Bulgaria</option>
+                                            <option data-country="bf">Burkina Faso</option>
+                                            <option data-country="bi">Burundi</option>
+                                            <option data-country="kh">Cambodia</option>
+                                            <option data-country="cm">Cameroon</option>
+                                            <option data-country="ca">Canada</option>
+                                            <option data-country="cv">Cape Verde</option>
+                                            <option data-country="ky">Cayman Islands</option>
+                                            <option data-country="cf">Central African Republic</option>
+                                            <option data-country="td">Chad</option>
+                                            <option data-country="cl">Chile</option>
+                                            <option data-country="cn">China</option>
+                                            <option data-country="cx">Christmas Island</option>
+                                            <option data-country="cc">Cocos (Keeling) Islands</option>
+                                            <option data-country="co">Colombia</option>
+                                            <option data-country="km">Comoros</option>
+                                            <option data-country="cg">Congo - Brazzaville</option>
+                                            <option data-country="cd">Congo - Kinshasa</option>
+                                            <option data-country="ck">Cook Islands</option>
+                                            <option data-country="cr">Costa Rica</option>
+                                            <option data-country="ci">Côte d'Ivoire</option>
+                                            <option data-country="hr">Croatia</option>
+                                            <option data-country="cu">Cuba</option>
+                                            <option data-country="cu">Curaçao</option>
+                                            <option data-country="cy">Cyprus</option>
+                                            <option data-country="cz">Czechia</option>
+                                            <option data-country="dk">Denmark</option>
+                                            <option data-country="dj">Djibouti</option>
+                                            <option data-country="dm">Dominica</option>
+                                            <option data-country="do">Dominican Republic</option>
+                                            <option data-country="ec">Ecuador</option>
+                                            <option data-country="eg">Egypt</option>
+                                            <option data-country="sv">El Salvador</option>
+                                            <option data-country="gq">Equatorial Guinea</option>
+                                            <option data-country="er">Eritrea</option>
+                                            <option data-country="ee">Estonia</option>
+                                            <option data-country="et">Ethiopia</option>
+                                            <option data-country="fk">Falkland Islands (Islas Malvinas)</option>
+                                            <option data-country="fo">Faroe Islands</option>
+                                            <option data-country="fj">Fiji</option>
+                                            <option data-country="fi">Finland</option>
+                                            <option data-country="fr">France</option>
+                                            <option data-country="gf">French Guiana</option>
+                                            <option data-country="pf">French Polynesia</option>
+                                            <option data-country="tf">French Southern Territories</option>
+                                            <option data-country="ga">Gabon</option>
+                                            <option data-country="gm">Gambia</option>
+                                            <option data-country="ge">Georgia</option>
+                                            <option data-country="de">Germany</option>
+                                            <option data-country="gh">Ghana</option>
+                                            <option data-country="gi">Gibraltar</option>
+                                            <option data-country="gr">Greece</option>
+                                            <option data-country="gl">Greenland</option>
+                                            <option data-country="gd">Grenada</option>
+                                            <option data-country="gp">Guadeloupe</option>
+                                            <option data-country="gu">Guam</option>
+                                            <option data-country="gt">Guatemala</option>
+                                            <option data-country="gg">Guernsey</option>
+                                            <option data-country="gn">Guinea</option>
+                                            <option data-country="gw">Guinea-Bissau</option>
+                                            <option data-country="gy">Guyana</option>
+                                            <option data-country="ht">Haiti</option>
+                                            <option data-country="hm">Heard & McDonald Islands</option>
+                                            <option data-country="va">Vatican City</option>
+                                            <option data-country="hn">Honduras</option>
+                                            <option data-country="hk">Hong Kong</option>
+                                            <option data-country="hu">Hungary</option>
+                                            <option data-country="is">Iceland</option>
+                                            <option data-country="in">India</option>
+                                            <option data-country="id">Indonesia</option>
+                                            <option data-country="ir">Iran</option>
+                                            <option data-country="iq">Iraq</option>
+                                            <option data-country="ie">Ireland</option>
+                                            <option data-country="im">Isle de Man</option>
+                                            <option data-country="il">Israel</option>
+                                            <option data-country="it">Italy</option>
+                                            <option data-country="jm">Jamaica</option>
+                                            <option data-country="jp">Japan</option>
+                                            <option data-country="je">Jersey</option>
+                                            <option data-country="jo">Jordan</option>
+                                            <option data-country="kz">Kazakhstan</option>
+                                            <option data-country="ke">Kenya</option>
+                                            <option data-country="ki">Kiribati</option>
+                                            <option data-country="kp">North Korea</option>
+                                            <option data-country="kr">South Korea</option>
+                                            <option data-country="xk">Kosovo</option>
+                                            <option data-country="kw">Kuwait</option>
+                                            <option data-country="kg">Kyrgyzstan</option>
+                                            <option data-country="la">Laos</option>
+                                            <option data-country="lv">Latvia</option>
+                                            <option data-country="lb">Lebanon</option>
+                                            <option data-country="ls">Lesotho</option>
+                                            <option data-country="lr">Liberia</option>
+                                            <option data-country="ly">Libya</option>
+                                            <option data-country="li">Liechtenstein</option>
+                                            <option data-country="lt">Lithuania</option>
+                                            <option data-country="lu">Luxembourg</option>
+                                            <option data-country="mo">Macao</option>
+                                            <option data-country="mk">North Macedonia</option>
+                                            <option data-country="mg">Madagascar</option>
+                                            <option data-country="mw">Malawi</option>
+                                            <option data-country="my">Malaysia</option>
+                                            <option data-country="mv">Maldives</option>
+                                            <option data-country="ml">Mali</option>
+                                            <option data-country="mt">Malta</option>
+                                            <option data-country="mh">Marshall Islands</option>
+                                            <option data-country="mq">Martinique</option>
+                                            <option data-country="mr">Mauritania</option>
+                                            <option data-country="mu">Mauritius</option>
+                                            <option data-country="yt">Mayotte</option>
+                                            <option data-country="mx">Mexico</option>
+                                            <option data-country="fm">Micronesia</option>
+                                            <option data-country="md">Moldova</option>
+                                            <option data-country="mc">Monaco</option>
+                                            <option data-country="mn">Mongolia</option>
+                                            <option data-country="me">Montenegro</option>
+                                            <option data-country="ms">Montserrat</option>
+                                            <option data-country="ma">Morocco</option>
+                                            <option data-country="mz">Mozambique</option>
+                                            <option data-country="mm">Myanmar (Burma)</option>
+                                            <option data-country="na">Namibia</option>
+                                            <option data-country="nr">Nauru</option>
+                                            <option data-country="np">Nepal</option>
+                                            <option data-country="nl">Netherlands</option>
+                                            <option data-country="cu">Curaçao</option>
+                                            <option data-country="nc">new Caledonia</option>
+                                            <option data-country="nz">new Zealand</option>
+                                            <option data-country="ni">Nicaragua</option>
+                                            <option data-country="ne">Niger</option>
+                                            <option data-country="ng">Nigeria</option>
+                                            <option data-country="nu">Niue</option>
+                                            <option data-country="nf">Norfolk Island</option>
+                                            <option data-country="mp">Northern Mariana Islands</option>
+                                            <option data-country="no">Norway</option>
+                                            <option data-country="om">Oman</option>
+                                            <option data-country="pk">Pakistan</option>
+                                            <option data-country="pw">Palau</option>
+                                            <option data-country="ps">Palestine</option>
+                                            <option data-country="pa">Panama</option>
+                                            <option data-country="pg">Papua new Guinea</option>
+                                            <option data-country="py">Paraguay</option>
+                                            <option data-country="pe">Peru</option>
+                                            <option data-country="ph">Philippines</option>
+                                            <option data-country="pn">Pitcairn Islands</option>
+                                            <option data-country="pl">Poland</option>
+                                            <option data-country="pt">Portugal</option>
+                                            <option data-country="pr">Puerto Rico</option>
+                                            <option data-country="qa">Qatar</option>
+                                            <option data-country="re">Réunion</option>
+                                            <option data-country="ro">Romania</option>
+                                            <option data-country="ru">Russia</option>
+                                            <option data-country="rw">Rwanda</option>
+                                            <option data-country="bl">St. Barthélemy</option>
+                                            <option data-country="sh">St. Helena</option>
+                                            <option data-country="kn">St. Kitts & Nevis</option>
+                                            <option data-country="lc">St. Lucia</option>
+                                            <option data-country="mf">St. Martin</option>
+                                            <option data-country="pm">St. Pierre & Miquelon</option>
+                                            <option data-country="vc">St. Vincent & Grenadines</option>
+                                            <option data-country="ws">Samoa</option>
+                                            <option data-country="sm">San Marino</option>
+                                            <option data-country="st">São Tomé & Príncipe</option>
+                                            <option data-country="sa">Saudi Arabia</option>
+                                            <option data-country="sn">Senegal</option>
+                                            <option data-country="rs">Serbia</option>
+                                            <option data-country="sr">Serbia</option>
+                                            <option data-country="sc">Seychelles</option>
+                                            <option data-country="sl">Sierra Leone</option>
+                                            <option data-country="sg">Singapore</option>
+                                            <option data-country="sx">Sint Maarten</option>
+                                            <option data-country="sk">Slovakia</option>
+                                            <option data-country="si">Slovenia</option>
+                                            <option data-country="sb">Solomon Islands</option>
+                                            <option data-country="so">Somalia</option>
+                                            <option data-country="za">South Africa</option>
+                                            <option data-country="gs">South Georgia & South Sandwich Islands</option>
+                                            <option data-country="ss">South Sudan</option>
+                                            <option data-country="es">Spain</option>
+                                            <option data-country="lk">Sri Lanka</option>
+                                            <option data-country="sd">Sudan</option>
+                                            <option data-country="sr">Suriname</option>
+                                            <option data-country="sj">Svalbard & Jan Mayen</option>
+                                            <option data-country="sz">Eswatini</option>
+                                            <option data-country="se">Sweden</option>
+                                            <option data-country="ch">Switzerland</option>
+                                            <option data-country="sy">Syria</option>
+                                            <option data-country="tw">Taiwan</option>
+                                            <option data-country="tj">Tajikistan</option>
+                                            <option data-country="tz">Tanzania</option>
+                                            <option data-country="th">Thailand</option>
+                                            <option data-country="tl">Timor-Leste</option>
+                                            <option data-country="tg">Togo</option>
+                                            <option data-country="tk">Tokelau</option>
+                                            <option data-country="to">Tonga</option>
+                                            <option data-country="tt">Trinidad & Tobago</option>
+                                            <option data-country="tn">Tunisia</option>
+                                            <option data-country="tr">Turkey</option>
+                                            <option data-country="tm">Turkmenistan</option>
+                                            <option data-country="tc">Turks & Caicos Islands</option>
+                                            <option data-country="tv">Tuvalu</option>
+                                            <option data-country="ug">Uganda</option>
+                                            <option data-country="ua">Ukraine</option>
+                                            <option data-country="ae">United Arab Emirates</option>
+                                            <option data-country="gb">United Kingdom</option>
+                                            <option data-country="us" selected>United States</option>
+                                            <option data-country="um">U.S. Outlying Islands</option>
+                                            <option data-country="uy">Uruguay</option>
+                                            <option data-country="uz">Uzbekistan</option>
+                                            <option data-country="vu">Vanuatu</option>
+                                            <option data-country="ve">Venezuela</option>
+                                            <option data-country="vn">Vietnam</option>
+                                            <option data-country="vg">British Virgin Islands</option>
+                                            <option data-country="vi">U.S. Virgin Islands</option>
+                                            <option data-country="wf">Wallis & Futuna</option>
+                                            <option data-country="eh">Western Sahara</option>
+                                            <option data-country="ye">Yemen</option>
+                                            <option data-country="zm">Zambia</option>
+                                            <option data-country="zw">Zimbabwe</option>
+                                        </Selecionar>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">State</label>
+                                        <select class="form-control" data-select2-selector="state">
+                                            <option data-state="al">Alabama</option>
+                                            <option data-state="ak" selected>Alaska</option>
+                                            <option data-state="as">American Samoa</option>
+                                            <option data-state="az">Arizona</option>
+                                            <option data-state="ar">Arkansas</option>
+                                            <option data-state="um">Baker Island</option>
+                                            <option data-state="ca">California</option>
+                                            <option data-state="co">Colorado</option>
+                                            <option data-state="ct">Connecticut</option>
+                                            <option data-state="de">Delaware</option>
+                                            <option data-state="dc">District de Columbia</option>
+                                            <option data-state="fl">Florida</option>
+                                            <option data-state="ga">Georgia</option>
+                                            <option data-state="gu">Guam</option>
+                                            <option data-state="hi">Hawaii</option>
+                                            <option data-state="um">Howland Island</option>
+                                            <option data-state="id">Idaho</option>
+                                            <option data-state="il">Illinois</option>
+                                            <option data-state="in">Indiana</option>
+                                            <option data-state="ia">Iowa</option>
+                                            <option data-state="um">Jarvis Island</option>
+                                            <option data-state="um">Johnston Atoll</option>
+                                            <option data-state="ks">Kansas</option>
+                                            <option data-state="ky">Kentucky</option>
+                                            <option data-state="um">Kingman Reef</option>
+                                            <option data-state="la">Louisiana</option>
+                                            <option data-state="me">Maine</option>
+                                            <option data-state="md">Maryland</option>
+                                            <option data-state="ma">Massachusetts</option>
+                                            <option data-state="mi">Michigan</option>
+                                            <option data-state="um">Midway Atoll</option>
+                                            <option data-state="mn">Minnesota</option>
+                                            <option data-state="ms">Mississippi</option>
+                                            <option data-state="mo">Missouri</option>
+                                            <option data-state="mt">Montana</option>
+                                            <option data-state="um">Navassa Island</option>
+                                            <option data-state="ne">Nebraska</option>
+                                            <option data-state="nv">Nevada</option>
+                                            <option data-state="nh">new Hampshire</option>
+                                            <option data-state="nj">new Jersey</option>
+                                            <option data-state="nm">new Mexico</option>
+                                            <option data-state="ny">new York</option>
+                                            <option data-state="nc">North Carolina</option>
+                                            <option data-state="nd">North Dakota</option>
+                                            <option data-state="mp">Northern Mariana Islands</option>
+                                            <option data-state="oh">Ohio</option>
+                                            <option data-state="ok">Oklahoma</option>
+                                            <option data-state="or">Oregon</option>
+                                            <option data-state="um">Palmyra Atoll</option>
+                                            <option data-state="pa">Pennsylvania</option>
+                                            <option data-state="pr">Puerto Rico</option>
+                                            <option data-state="ri">Rhoof Island</option>
+                                            <option data-state="sc">South Carolina</option>
+                                            <option data-state="sd">South Dakota</option>
+                                            <option data-state="tn">Tennessee</option>
+                                            <option data-state="tx">Texas</option>
+                                            <option data-state="um">United States Minor Outlying Islands</option>
+                                            <option data-state="vi">United States Virgin Islands</option>
+                                            <option data-state="ut">Utah</option>
+                                            <option data-state="vt">Vermont</option>
+                                            <option data-state="va">Virginia</option>
+                                            <option data-state="um">Wake Island</option>
+                                            <option data-state="wa">Washington</option>
+                                            <option data-state="wv">West Virginia</option>
+                                            <option data-state="wi">Wisconsin</option>
+                                            <option data-state="wy">Wyoming</option>
+                                        </Selecionar>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">City</label>
+                                        <select class="form-control" data-select2-selector="city">
+                                            <option data-city="bg-primary">Akutan</option>
+                                            <option data-city="bg-secondary">Aleutians East Borough</option>
+                                            <option data-city="bg-success">Aleutians West Census Area</option>
+                                            <option data-city="bg-warning">Anchor Point</option>
+                                            <option data-city="bg-info">Anchorage</option>
+                                            <option data-city="bg-danger">Anchorage Municipality</option>
+                                            <option data-city="bg-dark">Badger</option>
+                                            <option data-city="bg-black">Barrow</option>
+                                            <option data-city="bg-muted">Bear Creek</option>
+                                            <option data-city="bg-blue">Bethel</option>
+                                            <option data-city="bg-teal">Bethel Census Area</option>
+                                            <option data-city="bg-cyan">Big Lake</option>
+                                            <option data-city="bg-indigo">Bristol Bay Borough</option>
+                                            <option data-city="bg-green">Butte</option>
+                                            <option data-city="bg-red">Chevak</option>
+                                            <option data-city="bg-orange">City and Borough de Wrangell</option>
+                                            <option data-city="bg-darken">Cohoe</option>
+                                            <option data-city="bg-primary">College</option>
+                                            <option data-city="bg-warning">Cordova</option>
+                                            <option data-city="bg-danger">Craig</option>
+                                            <option data-city="bg-red">Deltana</option>
+                                            <option data-city="bg-green">Denali Borough</option>
+                                            <option data-city="bg-orange">Diamond Ridge</option>
+                                            <option data-city="bg-muted">Dillingham</option>
+                                            <option data-city="bg-teal">Dillingham Census Area</option>
+                                            <option data-city="bg-info">Dutch Harbor</option>
+                                            <option data-city="bg-indigo">Eagle River</option>
+                                            <option data-city="bg-cyan">Eielson Air Force Base</option>
+                                            <option data-city="bg-orange">Elmendorf Air Force Base</option>
+                                            <option data-city="bg-black">Ester</option>
+                                            <option data-city="bg-warning">Fairbanks</option>
+                                            <option data-city="bg-green">Fairbanks North Star Borough</option>
+                                            <option data-city="bg-indigo">Farm Loop</option>
+                                            <option data-city="bg-danger">Farmers Loop</option>
+                                            <option data-city="bg-success">Fishhook</option>
+                                            <option data-city="bg-teal">Fritz Creek</option>
+                                            <option data-city="bg-cyan">Gateway</option>
+                                            <option data-city="bg-black">Girdwood</option>
+                                            <option data-city="bg-warning">Haines</option>
+                                            <option data-city="bg-green">Haines Borough</option>
+                                            <option data-city="bg-indigo">Healy</option>
+                                            <option data-city="bg-danger">Homer</option>
+                                            <option data-city="bg-success">Hoonah-Angoon Census Area</option>
+                                            <option data-city="bg-teal">Hooper Bay</option>
+                                            <option data-city="bg-cyan">Houston</option>
+                                            <option data-city="bg-warning">Juneau</option>
+                                            <option data-city="bg-black">Kalifornsky</option>
+                                            <option data-city="bg-green">Kenai</option>
+                                            <option data-city="bg-danger">Kenai Peninsula Borough</option>
+                                            <option data-city="bg-success">Ketchikan</option>
+                                            <option data-city="bg-indigo">Ketchikan Gateway Borough</option>
+                                            <option data-city="bg-teal">King Cove</option>
+                                            <option data-city="bg-black">Knik-Fairview</option>
+                                            <option data-city="bg-green">Kodiak</option>
+                                            <option data-city="bg-cyan">Kodiak Island Borough</option>
+                                            <option data-city="bg-warning">Kodiak Station</option>
+                                            <option data-city="bg-darken">Kotzebue</option>
+                                        </Selecionar>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Timezone</label>
+                                        <select class="form-control" data-select2-selector="tzone">
+                                            <option data-tzone="feather-moon">(GMT -12:00) Eniwetok, Kwajalein</option>
+                                            <option data-tzone="feather-moon">(GMT -11:00) Midway Island, Samoa</option>
+                                            <option data-tzone="feather-moon">(GMT -10:00) Hawaii</option>
+                                            <option data-tzone="feather-moon">(GMT -9:30) Taiohae</option>
+                                            <option data-tzone="feather-moon">(GMT -9:00) Alaska</option>
+                                            <option data-tzone="feather-moon">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+                                            <option data-tzone="feather-moon">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+                                            <option data-tzone="feather-moon">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+                                            <option data-tzone="feather-moon">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+                                            <option data-tzone="feather-moon">(GMT -4:30) Caracas</option>
+                                            <option data-tzone="feather-moon">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+                                            <option data-tzone="feather-moon">(GMT -3:30) Novofoundland</option>
+                                            <option data-tzone="feather-moon">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+                                            <option data-tzone="feather-moon">(GMT -2:00) Mid-Atlantic</option>
+                                            <option data-tzone="feather-moon">(GMT -1:00) Azores, Cape Verof Islands</option>
+                                            <option data-tzone="feather-sunrise">(GMT) Western Europe Time</option>
+                                            <option data-tzone="feather-sun">(GMT +1:00) Brussels, Copenhagen, Madrid, Paris</option>
+                                            <option data-tzone="feather-sun">(GMT +2:00) Kaliningrad, South Africa</option>
+                                            <option data-tzone="feather-sun">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+                                            <option data-tzone="feather-sun">(GMT +3:30) Tehran</option>
+                                            <option data-tzone="feather-sun">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                                            <option data-tzone="feather-sun">(GMT +4:30) Kabul</option>
+                                            <option data-tzone="feather-sun">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+                                            <option data-tzone="feather-sun">(GMT +5:30) Bombay, Calcutta, Madras, new Delhi</option>
+                                            <option data-tzone="feather-sun">(GMT +5:45) Kathmandu, Pokhara</option>
+                                            <option data-tzone="feather-sun">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+                                            <option data-tzone="feather-sun">(GMT +6:30) Yangon, Mandalay</option>
+                                            <option data-tzone="feather-sun">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+                                            <option data-tzone="feather-sun">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                                            <option data-tzone="feather-sun">(GMT +8:45) Eucla</option>
+                                            <option data-tzone="feather-sun">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                                            <option data-tzone="feather-sun">(GMT +9:30) Adelaide, Darwin</option>
+                                            <option data-tzone="feather-sun">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+                                            <option data-tzone="feather-sun">(GMT +10:30) Lord Howe Island</option>
+                                            <option data-tzone="feather-sun">(GMT +11:00) Magadan, Solomon Islands, new Caledonia</option>
+                                            <option data-tzone="feather-sun">(GMT +11:30) Norfolk Island</option>
+                                            <option data-tzone="feather-sun">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+                                            <option data-tzone="feather-sun">(GMT +12:45) Chatham Islands</option>
+                                            <option data-tzone="feather-sun">(GMT +13:00) Apia, Nukualofa</option>
+                                            <option data-tzone="feather-sun">(GMT +14:00) Line Islands, Tokelau</option>
+                                        </Selecionar>
+                                    </div>
+                                </div>
+                                <hr class="my-5">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Currency</label>
+                                        <select class="form-control" data-select2-selector="currency">
+                                            <option data-currency="af">AFN - Afghan Afghani - ؋</option>
+                                            <option data-currency="al">ALL - Albanian Lek - Lek</option>
+                                            <option data-currency="dz">DZD - Algerian Dinar - دج</option>
+                                            <option data-currency="ao">AOA - Angolan Kwanza - Kz</option>
+                                            <option data-currency="ar">ARS - Argentine Peso - $</option>
+                                            <option data-currency="am">AMD - Armenian Dram - ֏</option>
+                                            <option data-currency="aw">AWG - Aruban Florin - ƒ</option>
+                                            <option data-currency="au">AUD - Australian Dollar - $</option>
+                                            <option data-currency="az">AZN - Azerbaijani Manat - m</option>
+                                            <option data-currency="bs">BSD - Bahamian Dollar - B$</option>
+                                            <option data-currency="bh">BHD - Bahraini Dinar - .د.ب</option>
+                                            <option data-currency="bd">BDT - Bangladeshi Taka - ৳</option>
+                                            <option data-currency="bb">BBD - Barbadian Dollar - Bds$</option>
+                                            <option data-currency="by">BYR - Belarusian Ruble - Br</option>
+                                            <option data-currency="be">BEF - Belgian Franc - fr</option>
+                                            <option data-currency="bz">BZD - Belize Dollar - $</option>
+                                            <option data-currency="bm">BMD - Bermudan Dollar - $</option>
+                                            <option data-currency="bt">BTN - Bhutanese Ngultrum - Nu.</option>
+                                            <option data-currency="bt">BTC - Bitcoin - ฿</option>
+                                            <option data-currency="bo">BOB - Bolivian Boliviano - Bs.</option>
+                                            <option data-currency="ba">BAM - Bosnia-Herzegovina Convertible Mark - KM</option>
+                                            <option data-currency="bw">BWP - Botswanan Pula - P</option>
+                                            <option data-currency="br">BRL - Brazilian Real - R$</option>
+                                            <option data-currency="gb">GBP - British Pound Sterling - £</option>
+                                            <option data-currency="bn">BND - Brunei Dollar - B$</option>
+                                            <option data-currency="bg">BGN - Bulgarian Lev - Лв.</option>
+                                            <option data-currency="bi">BIF - Burundian Franc - FBu</option>
+                                            <option data-currency="kh">KHR - Cambodian Riel - KHR</option>
+                                            <option data-currency="ca">CAD - Canadian Dollar - $</option>
+                                            <option data-currency="cv">CVE - Cape Verdean Escudo - $</option>
+                                            <option data-currency="ky">KYD - Cayman Islands Dollar - $</option>
+                                            <option data-currency="fr">XOF - CFA Franc BCEAO - CFA</option>
+                                            <option data-currency="fr">XAF - CFA Franc BEAC - FCFA</option>
+                                            <option data-currency="fr">XPF - CFP Franc - ₣</option>
+                                            <option data-currency="cl">CLP - Chilean Peso - $</option>
+                                            <option data-currency="cn">CNY - Chinese Yuan - ¥</option>
+                                            <option data-currency="co">COP - Colombian Peso - $</option>
+                                            <option data-currency="km">KMF - Comorian Franc - CF</option>
+                                            <option data-currency="cd">CDF - Congolese Franc - FC</option>
+                                            <option data-currency="cr">CRC - Costa Rican ColÃ³n - ₡</option>
+                                            <option data-currency="hr">HRK - Croatian Kuna - kn</option>
+                                            <option data-currency="cu">CUC - Cuban Convertible Peso - $, CUC</option>
+                                            <option data-currency="cz">CZK - Czech Republic Koruna - Kč</option>
+                                            <option data-currency="dk">DKK - Danish Krone - Kr.</option>
+                                            <option data-currency="dj">DJF - Djiboutian Franc - Fdj</option>
+                                            <option data-currency="do">DOP - Dominican Peso - $</option>
+                                            <option data-currency="bq">XCD - East Caribbean Dollar - $</option>
+                                            <option data-currency="eg">EGP - Egyptian Pound - ج.م</option>
+                                            <option data-currency="er">ERN - Eritrean Nakfa - Nfk</option>
+                                            <option data-currency="ee">EEK - Estonian Kroon - kr</option>
+                                            <option data-currency="et">ETB - Ethiopian Birr - Nkf</option>
+                                            <option data-currency="eu">EUR - Euro - €</option>
+                                            <option data-currency="fk">FKP - Falkland Islands Pound - £</option>
+                                            <option data-currency="fj">FJD - Fijian Dollar - FJ$</option>
+                                            <option data-currency="gm">GMD - Gambian Dalasi - D</option>
+                                            <option data-currency="ge">GEL - Georgian Lari - ლ</option>
+                                            <option data-currency="de">DEM - German Mark - DM</option>
+                                            <option data-currency="gh">GHS - Ghanaian Cedi - GH₵</option>
+                                            <option data-currency="gi">GIP - Gibraltar Pound - £</option>
+                                            <option data-currency="gr">GRD - Greek Drachma - ₯, Δρχ, Δρ</option>
+                                            <option data-currency="gt">GTQ - Guatemalan Quetzal - Q</option>
+                                            <option data-currency="gn">GNF - Guinean Franc - FG</option>
+                                            <option data-currency="gy">GYD - Guyanaese Dollar - $</option>
+                                            <option data-currency="ht">HTG - Haitian Gourof - G</option>
+                                            <option data-currency="hn">HNL - Honduran Lempira - L</option>
+                                            <option data-currency="hk">HKD - Hong Kong Dollar - $</option>
+                                            <option data-currency="hu">HUF - Hungarian Forint - Ft</option>
+                                            <option data-currency="is">ISK - Icelandic KrÃ³na - kr</option>
+                                            <option data-currency="in">INR - Indian Rupee - ₹</option>
+                                            <option data-currency="id">IDR - Indonesian Rupiah - Rp</option>
+                                            <option data-currency="ir">IRR - Iranian Rial - ﷼</option>
+                                            <option data-currency="iq">IQD - Iraqi Dinar - د.ع</option>
+                                            <option data-currency="il">ILS - Israeli new Sheqel - ₪</option>
+                                            <option data-currency="it">ITL - Italian Lira - L,£</option>
+                                            <option data-currency="jm">JMD - Jamaican Dollar - J$</option>
+                                            <option data-currency="jp">JPY - Japanese Yen - ¥</option>
+                                            <option data-currency="jo">JOD - Jordanian Dinar - ا.د</option>
+                                            <option data-currency="kz">KZT - Kazakhstani Tenge - лв</option>
+                                            <option data-currency="ke">KES - Kenyan Shilling - KSh</option>
+                                            <option data-currency="kw">KWD - Kuwaiti Dinar - ك.د</option>
+                                            <option data-currency="kg">KGS - Kyrgystani Som - лв</option>
+                                            <option data-currency="la">LAK - Laotian Kip - ₭</option>
+                                            <option data-currency="lv">LVL - Latvian Lats - Ls</option>
+                                            <option data-currency="lb">LBP - Lebanese Pound - £</option>
+                                            <option data-currency="ls">LSL - Lesotho Loti - L</option>
+                                            <option data-currency="lr">LRD - Liberian Dollar - $</option>
+                                            <option data-currency="ly">LYD - Libyan Dinar - د.ل</option>
+                                            <option data-currency="lt">LTL - Lithuanian Litas - Lt</option>
+                                            <option data-currency="mo">MOP - Macanese Pataca - $</option>
+                                            <option data-currency="mk">MKD - Macedonian Denar - ден</option>
+                                            <option data-currency="mg">MGA - Malagasy Ariary - Ar</option>
+                                            <option data-currency="mw">MWK - Malawian Kwacha - MK</option>
+                                            <option data-currency="my">MYR - Malaysian Ringgit - RM</option>
+                                            <option data-currency="mv">MVR - Maldivian Rufiyaa - Rf</option>
+                                            <option data-currency="mr">MRO - Mauritanian Ouguiya - MRU</option>
+                                            <option data-currency="mu">MUR - Mauritian Rupee - ₨</option>
+                                            <option data-currency="mx">MXN - Mexican Peso - $</option>
+                                            <option data-currency="md">MDL - Moldovan Leu - L</option>
+                                            <option data-currency="mn">MNT - Mongolian Tugrik - ₮</option>
+                                            <option data-currency="ma">MAD - Moroccan Dirham - MAD</option>
+                                            <option data-currency="mz">MZM - Mozambican Metical - MT</option>
+                                            <option data-currency="mm">MMK - Myanmar Kyat - K</option>
+                                            <option data-currency="na">NAD - Namibian Dollar - $</option>
+                                            <option data-currency="np">NPR - Nepalese Rupee - ₨</option>
+                                            <option data-currency="nl">ANG - Netherlands Antillean Guilder - ƒ</option>
+                                            <option data-currency="tw">TWD - new Taiwan Dollar - $</option>
+                                            <option data-currency="nz">NZD - new Zealand Dollar - $</option>
+                                            <option data-currency="ni">NIO - Nicaraguan CÃ³rdoba - C$</option>
+                                            <option data-currency="ng">NGN - Nigerian Naira - ₦</option>
+                                            <option data-currency="kp">KPW - North Korean Won - ₩</option>
+                                            <option data-currency="no">NOK - Norwegian Krone - kr</option>
+                                            <option data-currency="om">OMR - Omani Rial - .ع.ر</option>
+                                            <option data-currency="pk">PKR - Pakistani Rupee - ₨</option>
+                                            <option data-currency="pa">PAB - Panamanian Balboa - B/.</option>
+                                            <option data-currency="pg">PGK - Papua new Guinean Kina - K</option>
+                                            <option data-currency="py">PYG - Paraguayan Guarani - ₲</option>
+                                            <option data-currency="pe">PEN - Peruvian Nuevo Sol - S/.</option>
+                                            <option data-currency="ph">PHP - Philippine Peso - ₱</option>
+                                            <option data-currency="pl">PLN - Polish Zloty - zł</option>
+                                            <option data-currency="qa">QAR - Qatari Rial - ق.ر</option>
+                                            <option data-currency="ro">RON - Romanian Leu - lei</option>
+                                            <option data-currency="ru">RUB - Russian Ruble - ₽</option>
+                                            <option data-currency="rw">RWF - Rwandan Franc - FRw</option>
+                                            <option data-currency="sv">SVC - Salvadoran ColÃ³n - ₡</option>
+                                            <option data-currency="ws">WST - Samoan Tala - SAT</option>
+                                            <option data-currency="sa">SAR - Saudi Riyal - ﷼</option>
+                                            <option data-currency="sr">RSD - Serbian Dinar - din</option>
+                                            <option data-currency="sc">SCR - Seychellois Rupee - SRe</option>
+                                            <option data-currency="sl">SLL - Sierra Leonean Leone - Le</option>
+                                            <option data-currency="sg">SGD - Singapore Dollar - $</option>
+                                            <option data-currency="sk">SKK - Slovak Koruna - Sk</option>
+                                            <option data-currency="sb">SBD - Solomon Islands Dollar - Si$</option>
+                                            <option data-currency="so">SOS - Somali Shilling - Sh.so.</option>
+                                            <option data-currency="za">ZAR - South African Rand - R</option>
+                                            <option data-currency="kr">KRW - South Korean Won - ₩</option>
+                                            <option data-currency="lk">LKR - Sri Lankan Rupee - Rs</option>
+                                            <option data-currency="sh">SHP - St. Helena Pound - £</option>
+                                            <option data-currency="sd">SDG - Sudanese Pound - .س.ج</option>
+                                            <option data-currency="sr">SRD - Surinamese Dollar - $</option>
+                                            <option data-currency="sz">SZL - Swazi Lilangeni - E</option>
+                                            <option data-currency="se">SEK - Swedish Krona - kr</option>
+                                            <option data-currency="ch">CHF - Swiss Franc - CHf</option>
+                                            <option data-currency="sy">SYP - Syrian Pound - LS</option>
+                                            <option data-currency="st">STD - São Tomé and Príncipe Dobra - Db</option>
+                                            <option data-currency="tj">TJS - Tajikistani Somoni - SM</option>
+                                            <option data-currency="tz">TZS - Tanzanian Shilling - TSh</option>
+                                            <option data-currency="th">THB - Thai Baht - ฿</option>
+                                            <option data-currency="to">TOP - Tongan pa'anga - $</option>
+                                            <option data-currency="tt">TTD - Trinidad & Tobago Dollar - $</option>
+                                            <option data-currency="tn">TND - Tunisian Dinar - ت.د</option>
+                                            <option data-currency="tr">TRY - Turkish Lira - ₺</option>
+                                            <option data-currency="tm">TMT - Turkmenistani Manat - T</option>
+                                            <option data-currency="ug">UGX - Ugandan Shilling - USh</option>
+                                            <option data-currency="ua">UAH - Ukrainian Hryvnia - ₴</option>
+                                            <option data-currency="ae">AED - United Arab Emirates Dirham - إ.د</option>
+                                            <option data-currency="uy">UYU - Uruguayan Peso - $</option>
+                                            <option data-currency="us" selected> - US Dollar - $</option>
+                                            <option data-currency="uz">UZS - Uzbekistan Som - лв</option>
+                                            <option data-currency="vu">VUV - Vanuatu Vatu - VT</option>
+                                            <option data-currency="ve">VEF - Venezuelan BolÃ­var - Bs</option>
+                                            <option data-currency="vn">VND - Vietnamese Dong - ₫</option>
+                                            <option data-currency="ye">YER - Yemeni Rial - ﷼</option>
+                                            <option data-currency="zm">ZMK - Zambian Kwacha - ZK</option>
+                                        </Selecionar>
+                                    </div>
+                                    <div class="col-lg-6 mb-4">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-control" data-select2-selector="status">
+                                            <option value="teal" data-bg="bg-teal">Sent</option>
+                                            <option value="secondary" data-bg="bg-secondary">Draft</option>
+                                            <option value="primary" data-bg="bg-primary">Open</option>
+                                            <option value="warning" data-bg="bg-warning">Revised</option>
+                                            <option value="danger" data-bg="bg-danger">Declined</option>
+                                            <option value="success" data-bg="bg-success">Accepted</option>
+                                        </Selecionar>
+                                    </div>
+                                </div>
+                                <hr class="my-5">
+                                <div class="row mb-4">
+                                    <div class="form-check form-switch form-switch-sm ps-5">
+                                        <input class="form-check-input c-pointer" type="checkbox" id="commentSwitch">
+                                        <label class="form-check-label fw-500 text-dark c-pointer" for="commentSwitch">Allow Comments</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="mb-4">
+                                            <h5 class="fw-bold">Add Items:</h5>
+                                            <span class="fs-12 text-muted">Add items to proposal</span>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered overflow-hidden" id="tab_logic">
+                                                <thead>
+                                                    <tr class="single-item">
+                                                        <th class="text-center">#</th>
+                                                        <th class="text-center wd-450">Product</th>
+                                                        <th class="text-center wd-150">Qty</th>
+                                                        <th class="text-center wd-150">Price</th>
+                                                        <th class="text-center wd-150">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="addr0">
+                                                        <td>1</td>
+                                                        <td><input type="text" name="product[]" placeholder="Product Name" class="form-control"></td>
+                                                        <td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" step="1" min="1"></td>
+                                                        <td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" step="1.00"></td>
+                                                        <td><input type="number" name="total[]" placeholder="0.00" class="form-control total" readonly=""></td>
+                                                    </tr>
+                                                    <tr id="addr1">
+                                                        <td>3</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table></div></div>
+                                        </div>
+                                        <div class="d-flex justify-content-end gap-2 mt-3">
+                                            <button id="delete_row" class="btn btn-md bg-soft-danger text-danger">Excluir</button>
+                                            <button id="add_row" class="btn btn-md btn-primary">Add Items</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <h5 class="fw-bold">Total Geral:</h5>
+                                            <span class="fs-12 text-muted">Total geral proposal</span>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="tab_logic_total">
+                                                <tbody>
+                                                    <tr class="single-item">
+                                                        <th class="fs-10 text-dark text-uppercase">Sub Total</th>
+                                                        <td class="w-25"><input type="number" name="sub_total" placeholder="0.00" class="form-control border-0 bg-transparent p-0" id="sub_total" readonly=""></td>
+                                                    </tr>
+                                                    <tr class="single-item">
+                                                        <th class="fs-10 text-dark text-uppercase">Tax</th>
+                                                        <td class="w-25">
+                                                            <div class="input-group mb-2 mb-sm-0">
+                                                                <input type="number" class="form-control border-0 bg-transparent p-0" id="tax" placeholder="0">
+                                                                <div class="input-group-text">%</div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="single-item">
+                                                        <th class="fs-10 text-dark text-uppercase">Tax Amount</th>
+                                                        <td class="w-25"><input type="number" name="tax_amount" id="tax_amount" placeholder="0.00" class="form-control border-0 bg-transparent p-0" readonly=""></td>
+                                                    </tr>
+                                                    <tr class="single-item">
+                                                        <th class="fs-10 text-dark text-uppercase bg-gray-100">Total Geral</th>
+                                                        <td class="bg-gray-100 w-25"><input type="number" name="total_amount" id="total_amount" placeholder="0.00" class="form-control border-0 bg-transparent p-0 fw-700 text-dark" readonly=""></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+        <!-- [ Footer ] start -->
+        <footer class="footer">
+            <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
+                <span>Copyright ©</span>
+                
+            </p>
+            <div class="d-flex align-items-center gap-4">
+                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
+                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
+                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a>
+            </div>
+        </footer>
+        <!-- [ Footer ] end -->
+    </main>
+    <!--! ================================================================ !-->
+    <!--! [End] Main Content !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Sent Proposal l !-->
+    <!--! ================================================================ !-->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="proposalSent">
+        <div class="offcanvas-header ht-80 px-4 border-bottom border-gray-5">
+            <div>
+                <h2 class="fs-16 fw-bold text-truncate-1-line">Sent Proposal</h2>
+                <small class="fs-12 text-muted">Sent proposal to your client's</small>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom border-bottom-dashed border-gray-5 bg-gray-100">
+            <div>
+                <span class="fw-bold text-dark">Date:</span>
+                <span class="fs-11 fw-medium text-muted">25 MAY, 2023</span>
+            </div>
+            <div>
+                <span class="fw-bold text-dark">Proposal No:</span>
+                <span class="fs-12 fw-bold text-primary c-pointer">#NXL369852</span>
+            </div>
+        </div>
+        <div class="offcanvas-body">
+            <div class="mb-3 mb-4">
+                <label class="form-label">From: <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" value="wrapcode.info@gmail.com" placeholder="Clients..." readonly="" required>
+            </div>
+            <div class="mb-3 mb-4">
+                <label class="form-label">To: <span class="text-danger">*</span></label>
+                <input class="form-control" name="tomailcontent" value="wrapcode.info@gmail.com" placeholder="To..." required>
+            </div>
+            <div class="mb-3 mb-4">
+                <label class="form-label">Subject: <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Subject..." required>
+            </div>
+            <div class="mb-3 mb-4">
+                <label class="form-label">URL:</label>
+                <input type="url" class="form-control" placeholder="URL...">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Messages:</label>
+                <div data-editor-target="editor" class="ht-200"></div>
+            </div>
+        </div>
+        <div class="px-4 gap-2 d-flex align-items-center ht-80 border border-end-0 border-gray-2">
+            <a href="javascript:void(0);" class="btn btn-primary w-50" data-alert-target="#alertMessage">Sent Proposal</a>
+            <a href="javascript:void(0);" class="btn btn-danger w-50" data-bs-dismiss="offcanvas">Cancelar</a>
+        </div>
+    </div>
+    <!--! ================================================================ !-->
+    <!--! [End] Sent Proposal !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Buscar Modal !-->
+    <!--! ================================================================ !-->
+    <div class="modal fade-scale" id="searchModal" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-top modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header search-form py-0">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="feather-search fs-4 text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control search-input-field" placeholder="Buscar...">
+                        <span class="input-group-text">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="searching-for mb-5">
+                        <h4 class="fs-13 fw-normal text-gray-600 mb-3">I'm searching for...</h4>
+                        <div class="row g-1">
+                            <div class="col-md-4 col-xl-2">
+                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                    <i class="feather-compass"></i>
+                                    <span>Recent</span>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xl-2">
+                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                    <i class="feather-command"></i>
+                                    <span>Command</span>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xl-2">
+                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                    <i class="feather-users"></i>
+                                    <span>Peoples</span>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xl-2">
+                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                    <i class="feather-file"></i>
+                                    <span>Files</span>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xl-2">
+                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                    <i class="feather-video"></i>
+                                    <span>Medias</span>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xl-2">
+                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                    <span>Mais</span>
+                                    <i class="feather-chevron-down"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-result mb-5">
+                        <h4 class="fs-13 fw-normal text-gray-600 mb-3">Recnet <span class="badge small bg-gray-200 rounded ms-1 text-dark">3</span></h4>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-airplay fs-5"></i>
+                                <div class="fs-13 fw-semibold">Redesign do painel CRM</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">/<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-file-plus fs-5"></i>
+                                <div class="fs-13 fw-semibold">Create new eocument</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">N /<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-user-plus fs-5"></i>
+                                <div class="fs-13 fw-semibold">Invite project colleagues</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">P /<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                    </div>
+                    <div class="command-result mb-5">
+                        <h4 class="fs-13 fw-normal text-gray-600 mb-3">Command <span class="badge small bg-gray-200 rounded ms-1 text-dark">5</span></h4>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-user fs-5"></i>
+                                <div class="fs-13 fw-semibold">My profile</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">P /<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-users fs-5"></i>
+                                <div class="fs-13 fw-semibold">Team profile</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">T /<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-user-plus fs-5"></i>
+                                <div class="fs-13 fw-semibold">Invite colleagues</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">I /<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-briefcase fs-5"></i>
+                                <div class="fs-13 fw-semibold">Create new project</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">CP /<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-life-buoy fs-5"></i>
+                                <div class="fs-13 fw-semibold">Support center</div>
+                            </a>
+                            <a href="javascript:void(0);" class="badge border rounded text-dark">SC /<i class="feather-command ms-1 fs-12"></i></a>
+                        </div>
+                    </div>
+                    <div class="file-result mb-4">
+                        <h4 class="fs-13 fw-normal text-gray-600 mb-3">Files <span class="badge small bg-gray-200 rounded ms-1 text-dark">3</span></h4>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-folder-plus fs-5"></i>
+                                <div class="fs-13 fw-semibold">CRM Desing Project <span class="fs-12 fw-normal text-muted">(56.74 MB)</span></div>
+                            </a>
+                            <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-folder-plus fs-5"></i>
+                                <div class="fs-13 fw-semibold">Admin Painel de Controle Project <span class="fs-12 fw-normal text-muted">(46.83 MB)</span></div>
+                            </a>
+                            <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                                <i class="feather-folder-plus fs-5"></i>
+                                <div class="fs-13 fw-semibold">CRM Painel de Controle Project <span class="fs-12 fw-normal text-muted">(68.59 MB)</span></div>
+                            </a>
+                            <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--! ================================================================ !-->
+    <!--! [End] Buscar Modal !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Language Select !-->
+    <!--! ================================================================ !-->
+    <div class="modal fade-scale" id="languageSelectModal" aria-hidden="true" aria-labelledby="languageSelectModalLabel" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="languageSelectModalLabel">Select Language</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sa.svg" alt="" class="img-fluid"></div>
+                                <span>Arabic</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/bd.svg" alt="" class="img-fluid"></div>
+                                <span>Bengali</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ch.svg" alt="" class="img-fluid"></div>
+                                <span>Chinese</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/hr.svg" alt="" class="img-fluid"></div>
+                                <span>Croatian</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/dk.svg" alt="" class="img-fluid"></div>
+                                <span>Danish</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/nl.svg" alt="" class="img-fluid"></div>
+                                <span>Dutch</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select active">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/us.svg" alt="" class="img-fluid"></div>
+                                <span>English</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fi.svg" alt="" class="img-fluid"></div>
+                                <span>Filipino</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fr.svg" alt="" class="img-fluid"></div>
+                                <span>French</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/de.svg" alt="" class="img-fluid"></div>
+                                <span>German</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/il.svg" alt="" class="img-fluid"></div>
+                                <span>Hebrew</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/in.svg" alt="" class="img-fluid"></div>
+                                <span>Hindi</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/id.svg" alt="" class="img-fluid"></div>
+                                <span>Indonesian</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/it.svg" alt="" class="img-fluid"></div>
+                                <span>Italian</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/jp.svg" alt="" class="img-fluid"></div>
+                                <span>Japanese</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/kr.svg" alt="" class="img-fluid"></div>
+                                <span>Korean</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ir.svg" alt="" class="img-fluid"></div>
+                                <span>Persian</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pt.svg" alt="" class="img-fluid"></div>
+                                <span>Portuguese</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ru.svg" alt="" class="img-fluid"></div>
+                                <span>Russian</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/es.svg" alt="" class="img-fluid"></div>
+                                <span>Spanish</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sv.svg" alt="" class="img-fluid"></div>
+                                <span>Swedish</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/tr.svg" alt="" class="img-fluid"></div>
+                                <span>Turkish</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pk.svg" alt="" class="img-fluid"></div>
+                                <span>Urdo</span>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 language_select">
+                            <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                                <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/vi.svg" alt="" class="img-fluid"></div>
+                                <span>Vietnamese</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--! ================================================================ !-->
+    <!--! [End] Language Select !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Downloading Toast !-->
+    <!--! ================================================================ !-->
+    <div class="position-fixed" style="right: 5px; bottom: 5px; z-index: 999999">
+        <div id="toast" class="toast bg-black hide" data-bs-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header px-3 bg-transparent d-flex align-items-center justify-content-between border-bottom border-light border-opacity-10">
+                <div class="text-white mb-0 me-auto">Downloading...</div>
+                <a href="javascript:void(0)" class="ms-2 mb-1 close fw-normal" data-bs-dismiss="toast" aria-label="Close">
+                    <span class="text-white">&times;</span>
+                </a>
+            </div>
+            <div class="toast-body p-3 text-white">
+                <h6 class="fs-13 text-white">Project.zip</h6>
+                <span class="text-light fs-11">4.2mb de 5.5mb</span>
+            </div>
+            <div class="toast-footer p-3 pt-0 border-top border-light border-opacity-10">
+                <div class="progress mt-3" style="height: 5px">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated w-75 bg-dark" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--! ================================================================ !-->
+    <!--! END: Downloading Toast !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Theme Customizer !-->
+    <!--! ================================================================ !-->
+    <div class="theme-customizer">
+        <div class="customizer-handle">
+            <a href="javascript:void(0);" class="cutomizer-open-trigger bg-primary">
+                <i class="feather-settings"></i>
+            </a>
+        </div>
+        <div class="customizer-sidebar-wrapper">
+            <div class="customizer-sidebar-header px-4 ht-80 border-bottom d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Theme Configurações</h5>
+                <a href="javascript:void(0);" class="cutomizer-close-trigger d-flex">
+                    <i class="feather-x"></i>
+                </a>
+            </div>
+            <div class="customizer-sidebar-body position-relative p-4" data-scrollbar-target="#psScrollbarInit">
+                <!--! BEGIN: [Navigation] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-5 border border-gray-2 theme-options-set">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Navegação</label>
+                    <div class="row g-2 theme-options-items app-navigation" id="appNavigationList">
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-navigation-light" name="app-navigation" value="1" data-app-navigation="app-navigation-light" checked>
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-navigation-light">Light</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-navigation-dark" name="app-navigation" value="2" data-app-navigation="app-navigation-dark">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-navigation-dark">Dark</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Navigation] !-->
+                <!--! BEGIN: [Header] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-5 border border-gray-2 theme-options-set mt-5">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Header</label>
+                    <div class="row g-2 theme-options-items app-header" id="appHeaderList">
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-header-light" name="app-header" value="1" data-app-header="app-header-light" checked>
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-header-light">Light</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-header-dark" name="app-header" value="2" data-app-header="app-header-dark">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-header-dark">Dark</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Header] !-->
+                <!--! BEGIN: [Skins] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-5 border border-gray-2 theme-options-set">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Skins</label>
+                    <div class="row g-2 theme-options-items app-skin" id="appSkinList">
+                        <div class="col-6 text-center position-relative single-option light-button active">
+                            <input type="radio" class="btn-check" id="app-skin-light" name="app-skin" value="1" data-app-skin="app-skin-light">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-skin-light">Light</label>
+                        </div>
+                        <div class="col-6 text-center position-relative single-option dark-button">
+                            <input type="radio" class="btn-check" id="app-skin-dark" name="app-skin" value="2" data-app-skin="app-skin-dark">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-skin-dark">Dark</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Skins] !-->
+                <!--! BEGIN: [Typography] !-->
+                <div class="position-relative px-3 pb-3 pt-4 mt-3 mb-0 border border-gray-2 theme-options-set">
+                    <label class="py-1 px-2 fs-8 fw-bold text-uppercase text-muted text-spacing-2 bg-white border border-gray-2 position-absolute rounded-2 options-label" style="top: -12px">Typography</label>
+                    <div class="row g-2 theme-options-items font-family" id="fontFamilyList">
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-lato" name="font-family" value="1" data-font-family="app-font-family-lato">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-lato">Lato</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-rubik" name="font-family" value="2" data-font-family="app-font-family-rubik">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-rubik">Rubik</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-inter" name="font-family" value="3" data-font-family="app-font-family-inter" checked>
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-inter">Inter</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-cinzel" name="font-family" value="4" data-font-family="app-font-family-cinzel">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-cinzel">Cinzel</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-nunito" name="font-family" value="6" data-font-family="app-font-family-nunito">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-nunito">Nunito</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-roboto" name="font-family" value="7" data-font-family="app-font-family-roboto">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-roboto">Roboto</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-ubuntu" name="font-family" value="8" data-font-family="app-font-family-ubuntu">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-ubuntu">Ubuntu</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-poppins" name="font-family" value="9" data-font-family="app-font-family-poppins">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-poppins">Poppins</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-raleway" name="font-family" value="10" data-font-family="app-font-family-raleway">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-raleway">Raleway</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-system-ui" name="font-family" value="11" data-font-family="app-font-family-system-ui">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-system-ui">Systin UI</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-noto-sans" name="font-family" value="12" data-font-family="app-font-family-noto-sans">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-noto-sans">Noto Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-fira-sans" name="font-family" value="13" data-font-family="app-font-family-fira-sans">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-fira-sans">Fira Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-work-sans" name="font-family" value="14" data-font-family="app-font-family-work-sans">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-work-sans">Work Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-open-sans" name="font-family" value="15" data-font-family="app-font-family-open-sans">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-open-sans">Open Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-maven-pro" name="font-family" value="16" data-font-family="app-font-family-maven-pro">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-maven-pro">Maven Pro</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-quicksand" name="font-family" value="17" data-font-family="app-font-family-quicksand">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-quicksand">Quicksand</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-montserrat" name="font-family" value="18" data-font-family="app-font-family-montserrat">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-montserrat">Montserrat</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-josefin-sans" name="font-family" value="19" data-font-family="app-font-family-josefin-sans">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-josefin-sans">Josefin Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-ibm-plex-sans" name="font-family" value="20" data-font-family="app-font-family-ibm-plex-sans">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-ibm-plex-sans">IBM Plex Sans</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-source-sans-pro" name="font-family" value="5" data-font-family="app-font-family-source-sans-pro">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-source-sans-pro">Source Sans Pro</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-montserrat-alt" name="font-family" value="21" data-font-family="app-font-family-montserrat-alt">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-montserrat-alt">Montserrat Alt</label>
+                        </div>
+                        <div class="col-6 text-center single-option">
+                            <input type="radio" class="btn-check" id="app-font-family-roboto-slab" name="font-family" value="22" data-font-family="app-font-family-roboto-slab">
+                            <label class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label" for="app-font-family-roboto-slab">Roboto Slab</label>
+                        </div>
+                    </div>
+                </div>
+                <!--! END: [Typography] !-->
+            </div>
+            <div class="customizer-sidebar-footer px-4 ht-60 border-top d-flex align-items-center gap-2">
+                <div class="flex-fill w-50">
+                    <a href="javascript:void(0);" class="btn btn-danger" data-style="reset-all-common-style">Reset</a>
+                </div>
+                <div class="flex-fill w-50">
+                    <a href="javascript:void(0);" class="btn btn-primary" style="background: var(#5550F2); border: none;">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--! ================================================================ !-->
+    <!--! [End] Theme Customizer !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! Footer Script !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Vendors JS !-->
+    
+    <!-- vendors.min.js {always must need to be top} -->
+    
+    
+    
+    
+    
+    
+    <!--! END: Vendors JS !-->
+    <!--! BEGIN: Apps Init  !-->
+    
+    
+    <!--! END: Apps Init !-->
+    <!--! BEGIN: Theme Customizer  !-->
+    
+    <!--! END: Theme Customizer !-->
+    
+
+        <!-- Notification Center v6.0 JavaScript -->
+        
+
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Painel de notificações -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Notificações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Novo lead cadastrado</h6>
+                        <small>5 min atrás</small>
+                    </div>
+                    <p class="mb-1">João Silva enviou uma solicitação de orçamento.</p>
+                </div>
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Projeto aprovado</h6>
+                        <small>1 hora atrás</small>
+                    </div>
+                    <p class="mb-1">Projeto "Reforma Comercial" foi aprovado pelo cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts customizados -->
+    <script>
+        // Funcionalidades modernas do sistema
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Auto-salvar formulários
+            const forms = document.querySelectorAll('form[data-auto-save]');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        const formData = new FormData(form);
+                        console.log('Auto-salvando...', Object.fromEntries(formData));
+                        // Implementar auto-save aqui
+                    });
+                });
+            });
+            
+            // Confirmar ações críticas
+            const deleteButtons = document.querySelectorAll('[data-action="delete"]');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Tem certeza que deseja excluir este item?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Responsividade da sidebar
+            function handleSidebarToggle() {
+                const sidebar = document.querySelector('.sidebar');
+                if (window.innerWidth < 992) {
+                    sidebar.classList.add('d-none', 'd-lg-block');
+                } else {
+                    sidebar.classList.remove('d-none');
+                }
+            }
+            
+            window.addEventListener('resize', handleSidebarToggle);
+            handleSidebarToggle();
+        });
+        
+        // Função para atualizar gráficos responsivos
+        function updateChartsOnResize() {
+            if (typeof Chart !== 'undefined') {
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    instance.resize();
+                });
+            }
+        }
+        
+        window.addEventListener('resize', updateChartsOnResize);
+        
+        // Performance: Lazy loading de imagens
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+    
+    
+
+        <script>
+        // Melhorias de UX da identidade Duralux 2025
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Efeito ripple nos botões
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Feedback visual para formulários
+            document.querySelectorAll('.form-control, .form-select').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-color)';
+                    this.style.boxShadow = '0 0 0 0.2rem rgba(85, 80, 242, 0.25)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.style.borderColor = '#dee2e6';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+            
+            // Animação de carregamento para botões
+            document.querySelectorAll('.btn[type="submit"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Processando...';
+                    this.disabled = true;
+                    
+                    // Simular carregamento (remover em produção real)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            });
+            
+        });
+        
+        // CSS para animação de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        </script>
+        
+</body>
+</html>

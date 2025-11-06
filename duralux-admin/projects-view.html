@@ -404,6 +404,321 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
         }
         
+        
+        /* Melhorias de navegação */
+        .nav-pills .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+        }
+        
+        .nav-pills .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-pills .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: white;
+            border-radius: 2px;
+        }
+        
+        
+        /* Melhorias de formulários */
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(85, 80, 242, 0.1);
+            outline: none;
+            background: #fafbfc;
+        }
+        
+        .form-control:invalid {
+            border-color: var(--danger-color);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+        
+        .form-control:valid {
+            border-color: var(--success-color);
+        }
+        
+        /* Placeholder melhorado */
+        .form-control::placeholder {
+            color: #8e9aaf;
+            font-style: italic;
+        }
+        
+        /* Grupos de formulário */
+        .form-group, .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Botões de formulário */
+        .btn[type="submit"] {
+            min-width: 120px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.75rem 2rem;
+        }
+        
+        
+        /* Melhorias de tabelas */
+        .table-responsive {
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+        
+        .table {
+            margin-bottom: 0;
+        }
+        
+        .table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-color: #f1f3f4;
+            font-size: 0.9rem;
+        }
+        
+        .table tbody tr:hover {
+            background-color: #f8f9fe;
+            transform: scale(1.001);
+            transition: all 0.2s ease;
+        }
+        
+        /* Status badges melhorados */
+        .badge {
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Paginação melhorada */
+        .pagination {
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .page-link {
+            border: none;
+            border-radius: 6px;
+            margin: 0 2px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .page-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        
+        /* === UI/UX ENHANCEMENTS === */
+        
+        /* Loading states */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            color: var(--primary-color);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+            height: 20px;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Micro-interactions */
+        .btn, .card, .form-control {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Focus indicators melhorados */
+        *:focus {
+            outline: 3px solid rgba(85, 80, 242, 0.3);
+            outline-offset: 2px;
+        }
+        
+        /* Toast notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+        
+        .toast {
+            min-width: 300px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toast-success {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .toast-error {
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        /* Progress indicators */
+        .progress {
+            height: 8px;
+            border-radius: 4px;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: var(--primary-color);
+            transition: width 0.6s ease;
+        }
+        
+        /* Empty states */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #6c757d;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #dee2e6;
+            margin-bottom: 1rem;
+        }
+        
+        /* Search improvements */
+        .search-container {
+            position: relative;
+        }
+        
+        .search-container input {
+            padding-left: 2.5rem;
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        /* Keyboard navigation */
+        .keyboard-navigation:focus-within {
+            box-shadow: 0 0 0 3px rgba(85, 80, 242, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Mobile improvements */
+        @media (max-width: 768px) {
+            .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .table-responsive {
+                font-size: 0.8rem;
+            }
+            
+            .form-control {
+                padding: 1rem;
+                font-size: 1rem; /* Evita zoom no iOS */
+            }
+            
+            .sidebar {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+        /* Hover states aprimorados */
+        .clickable:hover {
+            cursor: pointer;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Status indicators */
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .status-active { background: var(--success-color); }
+        .status-inactive { background: var(--danger-color); }
+        .status-pending { background: var(--warning-color); }
+        
         </style>
 </head>
 <body>
@@ -416,7 +731,7 @@
                         <i class="bi bi-building"></i> DURALUX
                     </h4>
                     
-                    <nav class="nav flex-column nav-pills">
+                    <nav role="navigation" class="nav flex-column nav-pills">
                         <a class="nav-link " href="index.html">
                             <i class="bi bi-speedometer2"></i> Painel de Controle
                         </a>
@@ -447,20 +762,20 @@
                 <header class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                         <h1 class="h3 mb-0">Gerenciar Projetos</h1>
-                        <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
-                            <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;"><ol class="breadcrumb">
+                        <nav role="navigation" aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
+                            <nav role="navigation" aria-label="breadcrumb" style="margin-bottom: 1.5rem;"><ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Início</a></li>
-                                <li class="breadcrumb-item active">Projetos</li>
+                                <li class="breadcrumb-item active" aria-current="page">Projetos</li>
                             </ol></nav>
                         </nav>
                     </div>
                     
                     <div class="d-flex gap-2">
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications" aria-label="Ação do botão">
                             <i class="bi bi-bell"></i>
                         </button>
                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-label="Ação do botão">
                                 <i class="bi bi-person-circle"></i> Usuário
                             </button>
                             <ul class="dropdown-menu">
@@ -473,7 +788,7 @@
                     </div>
                 </header>
                 
-                <main>
+                <main role="main">
                     
     <!--! ================================================================ !-->
     <!--! [Start] Navigation Manu !-->
@@ -492,7 +807,7 @@
     <!--! ================================================================ !-->
     <!--! [Start] Main Content !-->
     <!--! ================================================================ !-->
-    <main class="nxl-container">
+    <main role="main" class="nxl-container">
         <div class="nxl-content">
             <!-- [ page-header ] start -->
             <div class="page-header">
@@ -795,39 +1110,39 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Project</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Project <span style="color: var(--danger-color);">*</span></label>
                                                 <p>#01 - CRM Applications - G.Cute</p>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Billing Type</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Billing Type <span style="color: var(--danger-color);">*</span></label>
                                                 <p>Project Horas</p>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Status</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Status <span style="color: var(--danger-color);">*</span></label>
                                                 <p>Em Andamento</p>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Customer</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Customer <span style="color: var(--danger-color);">*</span></label>
                                                 <p>Green Cute</p>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Data de Início</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Data de Início <span style="color: var(--danger-color);">*</span></label>
                                                 <p>2023-02-25</p>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Data de Fim</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Data de Fim <span style="color: var(--danger-color);">*</span></label>
                                                 <p>2023-03-20</p>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Hourly Rate</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Hourly Rate <span style="color: var(--danger-color);">*</span></label>
                                                 <p>R$ 25,00</p>
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <label class="form-label">Logged Hours</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Logged Hours <span style="color: var(--danger-color);">*</span></label>
                                                 <p>00:00:00</p>
                                             </div>
                                             <div class="col-md-12">
-                                                <label class="form-label">Descrição</label>
+                                                <label class="form-label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Descrição <span style="color: var(--danger-color);">*</span></label>
                                                 <p>CRM (Customer Relationship Management) applications are software tools that Ajuda organizations manage interactions with their Clientes, streamline Vendas and Marketing activities, and improve overall customer satisfaction. There are many different CRM applications available, ranging from simple Contato management tools to Mais sophisticated platforms that integrate with other business systems.</p>
                                                 <p class="fw-semibold mt-4">Some de the common features de CRM applications include:</p>
                                                 <ul>
@@ -1016,9 +1331,9 @@
                         <span class="input-group-text">
                             <i class="feather-search fs-4 text-muted"></i>
                         </span>
-                        <input type="text" class="form-control search-input-field" placeholder="Buscar...">
+                        <input type="text" class="form-control search-input-field" placeholder="Buscar..." id="input_8459">
                         <span class="input-group-text">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" aria-label="Ação do botão"></button>
                         </span>
                     </div>
                 </div>
@@ -1165,7 +1480,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="languageSelectModalLabel">Select Language</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" aria-label="Ação do botão"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -1546,7 +1861,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">Notificações</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Ação do botão"></button>
         </div>
         <div class="offcanvas-body">
             <div class="list-group list-group-flush">
@@ -1749,6 +2064,87 @@
             }
         `;
         document.head.appendChild(style);
+        </script>
+        
+
+        <script>
+        // Estados de carregamento e feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Loading overlay
+            function showLoading() {
+                const overlay = document.createElement('div');
+                overlay.id = 'loadingOverlay';
+                overlay.innerHTML = `
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Carregando...</p>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+            }
+            
+            function hideLoading() {
+                const overlay = document.getElementById('loadingOverlay');
+                if (overlay) overlay.remove();
+            }
+            
+            // Loading em formulários
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Processando...';
+                        
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = submitBtn.getAttribute('data-original-text') || 'Salvar';
+                        }, 2000);
+                    }
+                });
+            });
+            
+            // Loading em links de navegação
+            document.querySelectorAll('a[href]:not([href^="#"])').forEach(link => {
+                link.addEventListener('click', function() {
+                    showLoading();
+                    setTimeout(hideLoading, 1000);
+                });
+            });
+            
+            // Skeleton loading para tabelas
+            function showTableSkeleton(table) {
+                const tbody = table.querySelector('tbody');
+                if (tbody) {
+                    tbody.innerHTML = `
+                        ${'<tr>' + '<td><div class="skeleton"></div></td>'.repeat(6) + '</tr>'.repeat(3)}
+                    `;
+                }
+            }
+            
+            // Auto-save feedback
+            let autoSaveTimeout;
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('input', function() {
+                    clearTimeout(autoSaveTimeout);
+                    
+                    // Mostrar indicador de mudanças não salvas
+                    this.style.borderLeftColor = 'var(--warning-color)';
+                    this.style.borderLeftWidth = '4px';
+                    
+                    autoSaveTimeout = setTimeout(() => {
+                        // Simular auto-save
+                        this.style.borderLeftColor = 'var(--success-color)';
+                        
+                        setTimeout(() => {
+                            this.style.borderLeftColor = '';
+                            this.style.borderLeftWidth = '';
+                        }, 2000);
+                    }, 1000);
+                });
+            });
+        });
         </script>
         
 </body>
