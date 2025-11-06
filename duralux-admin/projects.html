@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Sistema de CRM Duralux - Gestão completa de projetos e cronogramas" />
-    <title>Projetos - Duralux CRM</title>
+    <meta name="description" content="Sistema de CRM Duralux - Gestão de Projetos" />
+    <title>Gestão de Projetos - Duralux CRM</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,13 +35,11 @@
             padding: 0;
         }
         
-        /* Layout principal */
         .layout-container {
             display: flex;
             min-height: 100vh;
         }
         
-        /* Sidebar */
         .sidebar {
             width: 250px;
             background: var(--primary-color);
@@ -82,14 +80,12 @@
             font-weight: 600;
         }
         
-        /* Conteúdo principal */
         .main-content {
             flex: 1;
             margin-left: 250px;
             padding: 2rem;
         }
         
-        /* Header */
         .page-header {
             background: white;
             border-radius: 12px;
@@ -116,7 +112,6 @@
             text-decoration: none;
         }
         
-        /* Cards de estatísticas */
         .stats-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -157,7 +152,6 @@
             margin: 0.5rem 0 0 0;
         }
         
-        /* Toolbar */
         .toolbar {
             background: white;
             border-radius: 12px;
@@ -233,7 +227,6 @@
             background: var(--light-color);
         }
         
-        /* Content area */
         .content-area {
             background: white;
             border-radius: 12px;
@@ -242,7 +235,6 @@
             margin-bottom: 2rem;
         }
         
-        /* Tabela */
         .table-container {
             background: white;
             border-radius: 12px;
@@ -283,70 +275,11 @@
             letter-spacing: 0.5px;
         }
         
-        .badge-success {
-            background: var(--success-color);
-            color: white;
-        }
-        
-        .badge-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .badge-info {
-            background: var(--info-color);
-            color: white;
-        }
-        
-        .badge-warning {
-            background: var(--warning-color);
-            color: white;
-        }
-        
-        .badge-danger {
-            background: var(--danger-color);
-            color: white;
-        }
-        
-        /* Responsivo */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-            
-            .sidebar.open {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-            
-            .toolbar-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .stats-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .table-container {
-                overflow-x: auto;
-            }
-        }
-        
-        /* Animações e efeitos */
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .badge-success { background: var(--success-color); color: white; }
+        .badge-primary { background: var(--primary-color); color: white; }
+        .badge-info { background: var(--info-color); color: white; }
+        .badge-warning { background: var(--warning-color); color: white; }
+        .badge-danger { background: var(--danger-color); color: white; }
         
         .avatar {
             width: 40px;
@@ -366,42 +299,98 @@
             font-size: 0.8rem;
         }
         
-        .btn-outline-primary {
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
+        .btn-outline-primary { color: var(--primary-color); border: 1px solid var(--primary-color); }
+        .btn-outline-primary:hover { background: var(--primary-color); color: white; }
+        .btn-outline-secondary { color: #6c757d; border: 1px solid #6c757d; }
+        .btn-outline-secondary:hover { background: #6c757d; color: white; }
+        .btn-outline-success { color: var(--success-color); border: 1px solid var(--success-color); }
+        .btn-outline-success:hover { background: var(--success-color); color: white; }
+        .btn-outline-info { color: var(--info-color); border: 1px solid var(--info-color); }
+        .btn-outline-info:hover { background: var(--info-color); color: white; }
+        .btn-outline-danger { color: var(--danger-color); border: 1px solid var(--danger-color); }
+        .btn-outline-danger:hover { background: var(--danger-color); color: white; }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
         }
         
-        .btn-outline-primary:hover {
-            background: var(--primary-color);
-            color: white;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .btn-outline-danger {
-            color: var(--danger-color);
-            border: 1px solid var(--danger-color);
-        }
-        
-        .btn-outline-danger:hover {
-            background: var(--danger-color);
-            color: white;
-        }
-        
-        .btn-outline-secondary {
-            color: #6c757d;
-            border: 1px solid #6c757d;
-        }
-        
-        .btn-outline-secondary:hover {
-            background: #6c757d;
-            color: white;
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 1rem; }
+            .toolbar-row { flex-direction: column; align-items: stretch; }
+            .stats-row { grid-template-columns: 1fr; }
         }
         
         
+                /* Timeline de projetos */
+                .project-timeline {
+                    position: relative;
+                    padding-left: 2rem;
+                }
+                
+                .project-timeline::before {
+                    content: '';
+                    position: absolute;
+                    left: 15px;
+                    top: 0;
+                    bottom: 0;
+                    width: 2px;
+                    background: #e9ecef;
+                }
+                
+                .timeline-item {
+                    position: relative;
+                    margin-bottom: 2rem;
+                }
+                
+                .timeline-marker {
+                    position: absolute;
+                    left: -23px;
+                    top: 5px;
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 50%;
+                    border: 3px solid white;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                
+                .timeline-content h6 {
+                    margin-bottom: 0.5rem;
+                    color: var(--dark-color);
+                }
+                
+                .timeline-content p {
+                    margin-bottom: 0.25rem;
+                    color: #6c757d;
+                }
+                
+                /* Progress bars */
+                .progress {
+                    border-radius: 10px;
+                    overflow: hidden;
+                }
+                
+                .progress-bar {
+                    border-radius: 10px;
+                    transition: width 0.6s ease;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: 600;
+                    font-size: 0.8rem;
+                }
+            
     </style>
 </head>
 <body>
     <div class="layout-container">
-        <!-- Sidebar -->
         <nav class="sidebar">
             <div class="brand">
                 <i class="bi bi-building"></i> DURALUX
@@ -409,39 +398,30 @@
             
             <div class="nav-menu">
                 <a href="index.html" class="nav-link ">
-                    <i class="bi bi-speedometer2"></i>
-                    Painel de Controle
+                    <i class="bi bi-speedometer2"></i> Painel de Controle
                 </a>
                 <a href="leads.html" class="nav-link ">
-                    <i class="bi bi-person-plus"></i>
-                    Leads
+                    <i class="bi bi-person-plus"></i> Leads
                 </a>
                 <a href="customers.html" class="nav-link ">
-                    <i class="bi bi-people"></i>
-                    Clientes
+                    <i class="bi bi-people"></i> Clientes
                 </a>
                 <a href="projects.html" class="nav-link active">
-                    <i class="bi bi-folder"></i>
-                    Projetos
+                    <i class="bi bi-folder"></i> Projetos
                 </a>
                 <a href="proposal.html" class="nav-link ">
-                    <i class="bi bi-file-text"></i>
-                    Propostas
+                    <i class="bi bi-file-text"></i> Propostas
                 </a>
                 <a href="analytics.html" class="nav-link ">
-                    <i class="bi bi-graph-up"></i>
-                    Analytics
+                    <i class="bi bi-graph-up"></i> Analytics
                 </a>
                 <a href="reports.html" class="nav-link ">
-                    <i class="bi bi-file-earmark-bar-graph"></i>
-                    Relatórios
+                    <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
                 </a>
             </div>
         </nav>
         
-        <!-- Conteúdo Principal -->
         <main class="main-content">
-            <!-- Header -->
             <header class="page-header fade-in">
                 <h1 class="page-title">Gerenciar Projetos</h1>
                 <nav aria-label="breadcrumb">
@@ -452,121 +432,209 @@
                 </nav>
             </header>
             
+            
+            <!-- Estatísticas de Projetos -->
             <div class="stats-row fade-in">
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--primary-color);">
-                        <i class="bi-folder"></i>
+                        <i class="bi bi-folder"></i>
                     </div>
                     <h3 class="stat-number">34</h3>
                     <p class="stat-label">Projetos Ativos</p>
                 </div>
+                
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--success-color);">
-                        <i class="bi-check-circle"></i>
+                        <i class="bi bi-check-circle"></i>
                     </div>
                     <h3 class="stat-number">128</h3>
                     <p class="stat-label">Projetos Concluídos</p>
                 </div>
+                
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--info-color);">
-                        <i class="bi-clock"></i>
+                        <i class="bi bi-clock"></i>
                     </div>
                     <h3 class="stat-number">7</h3>
                     <p class="stat-label">Em Andamento</p>
                 </div>
+                
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--danger-color);">
-                        <i class="bi-exclamation-triangle"></i>
+                        <i class="bi bi-exclamation-triangle"></i>
                     </div>
                     <h3 class="stat-number">3</h3>
                     <p class="stat-label">Atrasados</p>
                 </div>
             </div>
 
-            <!-- Toolbar -->
+            <!-- Timeline de Projetos -->
+            <div class="content-area fade-in">
+                <h4><i class="bi bi-calendar-event me-2"></i>Timeline de Projetos</h4>
+                <div class="project-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-success"></div>
+                        <div class="timeline-content">
+                            <h6>Projeto Finalizado</h6>
+                            <p>Reforma Comercial ABC - Entregue no prazo</p>
+                            <small class="text-muted">Hoje, 09:30</small>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-warning"></div>
+                        <div class="timeline-content">
+                            <h6>Marco Importante</h6>
+                            <p>Projeto Residencial XYZ - 75% concluído</p>
+                            <small class="text-muted">Ontem, 14:15</small>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h6>Novo Projeto Iniciado</h6>
+                            <p>Escritório Moderno - Fase de planejamento</p>
+                            <small class="text-muted">2 dias atrás</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toolbar de Projetos -->
             <div class="toolbar fade-in">
                 <div class="toolbar-row">
                     <div class="search-box">
-                        <input type="text" placeholder="Buscar..." id="searchInput">
+                        <input type="text" placeholder="Buscar projetos..." id="searchProjects">
                         <i class="bi bi-search"></i>
                     </div>
                     
                     <div class="toolbar-actions">
-                        <button class="btn btn-outline" onclick="exportData()">
-                            <i class="bi bi-download"></i>
-                            Exportar
+                        <div class="btn-group me-2">
+                            <button class="btn btn-outline dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="bi bi-funnel"></i> Status
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="filterProjects('all')">Todos</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterProjects('planning')">Planejamento</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterProjects('progress')">Em Andamento</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterProjects('completed')">Concluídos</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterProjects('delayed')">Atrasados</a></li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline" onclick="exportProjects()">
+                            <i class="bi bi-download"></i> Relatório
                         </button>
-                        <button class="btn btn-primary" onclick="newItem()">
-                            <i class="bi bi-plus-lg"></i>
-                            Novo
+                        <button class="btn btn-primary" onclick="newProject()">
+                            <i class="bi bi-plus-lg"></i> Novo Projeto
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Tabela de dados -->
-            <div class="table-container fade-in">
+            <!-- Tabela de Projetos -->
+            <div class="table-container fade-in" id="projectsTable">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
+                            <th>Projeto</th>
+                            <th>Cliente</th>
+                            <th>Progresso</th>
                             <th>Status</th>
-                            <th>Data</th>
+                            <th>Prazo</th>
+                            <th>Orçamento</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-status="progress">
                             <td>
-                                <div style="display: flex; align-items: center; gap: 1rem;">
-                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b5bb?w=150&h=150&fit=crop&crop=face" alt="Item 1" class="avatar">
-                                    <div>
-                                        <div style="font-weight: 600;">Item de Exemplo 1</div>
-                                        <small style="color: #6c757d;">ID: #001</small>
-                                    </div>
+                                <div>
+                                    <div style="font-weight: 600;">Reforma Comercial</div>
+                                    <small style="color: #6c757d;">Loja Centro - Fase de acabamento</small>
                                 </div>
                             </td>
-                            <td>exemplo1@empresa.com.br</td>
-                            <td><span class="badge badge-success">Ativo</span></td>
-                            <td>06/11/2025</td>
+                            <td>Comércio ABC Ltda</td>
+                            <td>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" style="width: 85%; background: var(--success-color);">85%</div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-success">Em Andamento</span></td>
+                            <td>15/11/2025</td>
+                            <td>R$ 125.000</td>
                             <td>
                                 <div class="actions">
-                                    <button class="btn btn-sm btn-outline-primary" title="Visualizar">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="viewProject(1)" title="Visualizar">
                                         <i class="bi bi-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-secondary" title="Editar">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="editProject(1)" title="Editar">
                                         <i class="bi bi-pencil"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-danger" title="Excluir">
-                                        <i class="bi bi-trash"></i>
+                                    <button class="btn btn-sm btn-outline-info" onclick="projectTasks(1)" title="Tarefas">
+                                        <i class="bi bi-list-check"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        
+                        <tr data-status="planning">
                             <td>
-                                <div style="display: flex; align-items: center; gap: 1rem;">
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Item 2" class="avatar">
-                                    <div>
-                                        <div style="font-weight: 600;">Item de Exemplo 2</div>
-                                        <small style="color: #6c757d;">ID: #002</small>
-                                    </div>
+                                <div>
+                                    <div style="font-weight: 600;">Escritório Moderno</div>
+                                    <small style="color: #6c757d;">Coworking Premium - Projeto arquitetônico</small>
                                 </div>
                             </td>
-                            <td>exemplo2@empresa.com.br</td>
-                            <td><span class="badge badge-warning">Pendente</span></td>
-                            <td>05/11/2025</td>
+                            <td>Inovação Corp</td>
+                            <td>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" style="width: 25%; background: var(--warning-color);">25%</div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-warning">Planejamento</span></td>
+                            <td>30/12/2025</td>
+                            <td>R$ 280.000</td>
                             <td>
                                 <div class="actions">
-                                    <button class="btn btn-sm btn-outline-primary" title="Visualizar">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="viewProject(2)" title="Visualizar">
                                         <i class="bi bi-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-secondary" title="Editar">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="editProject(2)" title="Editar">
                                         <i class="bi bi-pencil"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-danger" title="Excluir">
-                                        <i class="bi bi-trash"></i>
+                                    <button class="btn btn-sm btn-outline-info" onclick="projectTasks(2)" title="Tarefas">
+                                        <i class="bi bi-list-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr data-status="delayed">
+                            <td>
+                                <div>
+                                    <div style="font-weight: 600;">Residencial Luxo</div>
+                                    <small style="color: #6c757d;">Casa Alto Padrão - Revisão estrutural</small>
+                                </div>
+                            </td>
+                            <td>Família Santos</td>
+                            <td>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" style="width: 60%; background: var(--danger-color);">60%</div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-danger">Atrasado</span></td>
+                            <td>01/11/2025</td>
+                            <td>R$ 450.000</td>
+                            <td>
+                                <div class="actions">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="viewProject(3)" title="Visualizar">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="editProject(3)" title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-info" onclick="projectTasks(3)" title="Tarefas">
+                                        <i class="bi bi-list-check"></i>
                                     </button>
                                 </div>
                             </td>
@@ -574,22 +642,28 @@
                     </tbody>
                 </table>
             </div>
+            
         </main>
     </div>
     
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        // Funcionalidades globais
         document.addEventListener('DOMContentLoaded', function() {
+            // Animações
+            const elements = document.querySelectorAll('.stat-card, .content-area, .table-container');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('fade-in');
+                }, index * 100);
+            });
+            
             // Busca global
             const searchInputs = document.querySelectorAll('input[type="text"]');
             searchInputs.forEach(input => {
                 if (input.placeholder && input.placeholder.includes('Buscar')) {
                     input.addEventListener('input', function() {
                         const filter = this.value.toLowerCase();
-                        const rows = document.querySelectorAll('tbody tr, .list-item');
+                        const rows = document.querySelectorAll('tbody tr');
                         
                         rows.forEach(row => {
                             const text = row.textContent.toLowerCase();
@@ -598,29 +672,40 @@
                     });
                 }
             });
-            
-            // Animações
-            const elements = document.querySelectorAll('.stat-card, .content-area, .table-container');
-            elements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add('fade-in');
-                }, index * 100);
-            });
         });
         
-        // Menu mobile
-        function toggleMenu() {
-            document.querySelector('.sidebar').classList.toggle('open');
-        }
         
-        
-        function newItem() {
-            alert('Funcionalidade será implementada em breve');
-        }
-        
-        function exportData() {
-            alert('Funcionalidade de exportação será implementada');
-        }
+                function filterProjects(status) {
+                    const rows = document.querySelectorAll('#projectsTable tbody tr');
+                    rows.forEach(row => {
+                        if (status === 'all' || row.dataset.status === status) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                }
+                
+                function newProject() {
+                    alert('Abrindo formulário de novo projeto...');
+                }
+                
+                function viewProject(id) {
+                    alert(`Visualizando detalhes do projeto ID: ${id}`);
+                }
+                
+                function editProject(id) {
+                    alert(`Editando projeto ID: ${id}`);
+                }
+                
+                function projectTasks(id) {
+                    alert(`Visualizando tarefas do projeto ID: ${id}`);
+                }
+                
+                function exportProjects() {
+                    alert('Gerando relatório de projetos...');
+                }
+            
     </script>
 </body>
 </html>

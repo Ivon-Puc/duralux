@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Sistema de CRM Duralux - Painel de Controle" />
+    <meta name="description" content="Sistema de CRM Duralux - Dashboard principal com métricas e visão geral" />
     <title>Painel de Controle - Duralux CRM</title>
     
     <!-- Bootstrap CSS -->
@@ -35,11 +35,13 @@
             padding: 0;
         }
         
+        /* Layout principal */
         .layout-container {
             display: flex;
             min-height: 100vh;
         }
         
+        /* Sidebar */
         .sidebar {
             width: 250px;
             background: var(--primary-color);
@@ -80,12 +82,14 @@
             font-weight: 600;
         }
         
+        /* Conteúdo principal */
         .main-content {
             flex: 1;
             margin-left: 250px;
             padding: 2rem;
         }
         
+        /* Header */
         .page-header {
             background: white;
             border-radius: 12px;
@@ -112,6 +116,7 @@
             text-decoration: none;
         }
         
+        /* Cards de estatísticas */
         .stats-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -152,6 +157,7 @@
             margin: 0.5rem 0 0 0;
         }
         
+        /* Toolbar */
         .toolbar {
             background: white;
             border-radius: 12px;
@@ -227,6 +233,7 @@
             background: var(--light-color);
         }
         
+        /* Content area */
         .content-area {
             background: white;
             border-radius: 12px;
@@ -235,6 +242,7 @@
             margin-bottom: 2rem;
         }
         
+        /* Tabela */
         .table-container {
             background: white;
             border-radius: 12px;
@@ -275,11 +283,70 @@
             letter-spacing: 0.5px;
         }
         
-        .badge-success { background: var(--success-color); color: white; }
-        .badge-primary { background: var(--primary-color); color: white; }
-        .badge-info { background: var(--info-color); color: white; }
-        .badge-warning { background: var(--warning-color); color: white; }
-        .badge-danger { background: var(--danger-color); color: white; }
+        .badge-success {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .badge-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-info {
+            background: var(--info-color);
+            color: white;
+        }
+        
+        .badge-warning {
+            background: var(--warning-color);
+            color: white;
+        }
+        
+        .badge-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+            
+            .toolbar-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+        }
+        
+        /* Animações e efeitos */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         
         .avatar {
             width: 40px;
@@ -299,32 +366,34 @@
             font-size: 0.8rem;
         }
         
-        .btn-outline-primary { color: var(--primary-color); border: 1px solid var(--primary-color); }
-        .btn-outline-primary:hover { background: var(--primary-color); color: white; }
-        .btn-outline-secondary { color: #6c757d; border: 1px solid #6c757d; }
-        .btn-outline-secondary:hover { background: #6c757d; color: white; }
-        .btn-outline-success { color: var(--success-color); border: 1px solid var(--success-color); }
-        .btn-outline-success:hover { background: var(--success-color); color: white; }
-        .btn-outline-info { color: var(--info-color); border: 1px solid var(--info-color); }
-        .btn-outline-info:hover { background: var(--info-color); color: white; }
-        .btn-outline-danger { color: var(--danger-color); border: 1px solid var(--danger-color); }
-        .btn-outline-danger:hover { background: var(--danger-color); color: white; }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
         }
         
-        @media (max-width: 768px) {
-            .sidebar { transform: translateX(-100%); }
-            .sidebar.open { transform: translateX(0); }
-            .main-content { margin-left: 0; padding: 1rem; }
-            .toolbar-row { flex-direction: column; align-items: stretch; }
-            .stats-row { grid-template-columns: 1fr; }
+        .btn-outline-danger {
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+        
+        .btn-outline-danger:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-outline-secondary {
+            color: #6c757d;
+            border: 1px solid #6c757d;
+        }
+        
+        .btn-outline-secondary:hover {
+            background: #6c757d;
+            color: white;
         }
         
         
@@ -332,6 +401,7 @@
 </head>
 <body>
     <div class="layout-container">
+        <!-- Sidebar -->
         <nav class="sidebar">
             <div class="brand">
                 <i class="bi bi-building"></i> DURALUX
@@ -339,32 +409,41 @@
             
             <div class="nav-menu">
                 <a href="index.html" class="nav-link active">
-                    <i class="bi bi-speedometer2"></i> Painel de Controle
+                    <i class="bi bi-speedometer2"></i>
+                    Painel de Controle
                 </a>
                 <a href="leads.html" class="nav-link ">
-                    <i class="bi bi-person-plus"></i> Leads
+                    <i class="bi bi-person-plus"></i>
+                    Leads
                 </a>
                 <a href="customers.html" class="nav-link ">
-                    <i class="bi bi-people"></i> Clientes
+                    <i class="bi bi-people"></i>
+                    Clientes
                 </a>
                 <a href="projects.html" class="nav-link ">
-                    <i class="bi bi-folder"></i> Projetos
+                    <i class="bi bi-folder"></i>
+                    Projetos
                 </a>
                 <a href="proposal.html" class="nav-link ">
-                    <i class="bi bi-file-text"></i> Propostas
+                    <i class="bi bi-file-text"></i>
+                    Propostas
                 </a>
                 <a href="analytics.html" class="nav-link ">
-                    <i class="bi bi-graph-up"></i> Analytics
+                    <i class="bi bi-graph-up"></i>
+                    Analytics
                 </a>
                 <a href="reports.html" class="nav-link ">
-                    <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
+                    <i class="bi bi-file-earmark-bar-graph"></i>
+                    Relatórios
                 </a>
             </div>
         </nav>
         
+        <!-- Conteúdo Principal -->
         <main class="main-content">
+            <!-- Header -->
             <header class="page-header fade-in">
-                <h1 class="page-title">Dashboard Executivo</h1>
+                <h1 class="page-title">Painel de Controle</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Início</a></li>
@@ -373,147 +452,98 @@
                 </nav>
             </header>
             
-            
-            <!-- Estatísticas Principais -->
             <div class="stats-row fade-in">
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--primary-color);">
-                        <i class="bi bi-person-plus"></i>
+                        <i class="bi-person-plus"></i>
                     </div>
                     <h3 class="stat-number">156</h3>
                     <p class="stat-label">Total de Leads</p>
                 </div>
-                
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--success-color);">
-                        <i class="bi bi-people"></i>
+                        <i class="bi-people"></i>
                     </div>
                     <h3 class="stat-number">89</h3>
                     <p class="stat-label">Clientes Ativos</p>
                 </div>
-                
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--info-color);">
-                        <i class="bi bi-folder"></i>
+                        <i class="bi-folder"></i>
                     </div>
                     <h3 class="stat-number">34</h3>
                     <p class="stat-label">Projetos Ativos</p>
                 </div>
-                
                 <div class="stat-card">
                     <div class="stat-icon" style="background: var(--warning-color);">
-                        <i class="bi bi-currency-dollar"></i>
+                        <i class="bi-graph-up"></i>
                     </div>
                     <h3 class="stat-number">R$ 2.4M</h3>
                     <p class="stat-label">Receita Total</p>
                 </div>
             </div>
 
-            <!-- Gráficos e Widgets -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="content-area fade-in">
-                        <h4><i class="bi bi-graph-up me-2"></i>Performance Mensal</h4>
-                        <div style="height: 300px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 1rem 0;">
-                            <div class="text-center">
-                                <i class="bi bi-bar-chart" style="font-size: 3rem; color: var(--primary-color);"></i>
-                                <p class="mt-2">Gráfico de Performance dos Últimos 6 Meses</p>
-                                <small class="text-muted">Crescimento de 24% no período</small>
-                            </div>
-                        </div>
+            <!-- Toolbar -->
+            <div class="toolbar fade-in">
+                <div class="toolbar-row">
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar..." id="searchInput">
+                        <i class="bi bi-search"></i>
                     </div>
-                </div>
-                
-                <div class="col-lg-4">
-                    <div class="content-area fade-in">
-                        <h5><i class="bi bi-clock me-2"></i>Atividades Recentes</h5>
-                        <div class="activity-list">
-                            <div class="activity-item d-flex align-items-center mb-3">
-                                <div class="activity-icon bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 32px; height: 32px;">
-                                    <i class="bi bi-person-plus" style="font-size: 0.8rem;"></i>
-                                </div>
-                                <div>
-                                    <div class="fw-semibold">Novo cliente cadastrado</div>
-                                    <small class="text-muted">Marina Santos - há 5 min</small>
-                                </div>
-                            </div>
-                            
-                            <div class="activity-item d-flex align-items-center mb-3">
-                                <div class="activity-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 32px; height: 32px;">
-                                    <i class="bi bi-folder" style="font-size: 0.8rem;"></i>
-                                </div>
-                                <div>
-                                    <div class="fw-semibold">Projeto finalizado</div>
-                                    <small class="text-muted">Reforma Comercial ABC - há 1h</small>
-                                </div>
-                            </div>
-                            
-                            <div class="activity-item d-flex align-items-center mb-3">
-                                <div class="activity-icon bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 32px; height: 32px;">
-                                    <i class="bi bi-file-text" style="font-size: 0.8rem;"></i>
-                                </div>
-                                <div>
-                                    <div class="fw-semibold">Proposta aprovada</div>
-                                    <small class="text-muted">Orçamento #1247 - há 2h</small>
-                                </div>
-                            </div>
-                        </div>
+                    
+                    <div class="toolbar-actions">
+                        <button class="btn btn-outline" onclick="exportData()">
+                            <i class="bi bi-download"></i>
+                            Exportar
+                        </button>
+                        <button class="btn btn-primary" onclick="newItem()">
+                            <i class="bi bi-plus-lg"></i>
+                            Novo
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Resumo Executivo -->
+            <!-- Gráficos e widgets do dashboard -->
             <div class="content-area fade-in">
-                <h4><i class="bi bi-pie-chart me-2"></i>Resumo Executivo</h4>
+                <h4>Visão Geral</h4>
+                <p>Dashboard principal com métricas em tempo real do sistema Duralux CRM.</p>
+                
                 <div class="row">
-                    <div class="col-md-3 text-center">
-                        <div class="metric-summary">
-                            <div class="display-6 text-success fw-bold">87%</div>
-                            <p class="text-muted">Taxa de Satisfação</p>
+                    <div class="col-md-6">
+                        <div class="chart-placeholder" style="height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6c757d;">
+                            <div class="text-center">
+                                <i class="bi bi-bar-chart" style="font-size: 3rem;"></i>
+                                <p>Gráfico de Performance</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 text-center">
-                        <div class="metric-summary">
-                            <div class="display-6 text-primary fw-bold">24%</div>
-                            <p class="text-muted">Crescimento Mensal</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <div class="metric-summary">
-                            <div class="display-6 text-info fw-bold">156</div>
-                            <p class="text-muted">Leads Convertidos</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <div class="metric-summary">
-                            <div class="display-6 text-warning fw-bold">4.8</div>
-                            <p class="text-muted">Avaliação Média</p>
+                    <div class="col-md-6">
+                        <div class="chart-placeholder" style="height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6c757d;">
+                            <div class="text-center">
+                                <i class="bi bi-pie-chart" style="font-size: 3rem;"></i>
+                                <p>Distribuição por Categoria</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
         </main>
     </div>
     
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
+        // Funcionalidades globais
         document.addEventListener('DOMContentLoaded', function() {
-            // Animações
-            const elements = document.querySelectorAll('.stat-card, .content-area, .table-container');
-            elements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add('fade-in');
-                }, index * 100);
-            });
-            
             // Busca global
             const searchInputs = document.querySelectorAll('input[type="text"]');
             searchInputs.forEach(input => {
                 if (input.placeholder && input.placeholder.includes('Buscar')) {
                     input.addEventListener('input', function() {
                         const filter = this.value.toLowerCase();
-                        const rows = document.querySelectorAll('tbody tr');
+                        const rows = document.querySelectorAll('tbody tr, .list-item');
                         
                         rows.forEach(row => {
                             const text = row.textContent.toLowerCase();
@@ -522,31 +552,29 @@
                     });
                 }
             });
+            
+            // Animações
+            const elements = document.querySelectorAll('.stat-card, .content-area, .table-container');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('fade-in');
+                }, index * 100);
+            });
         });
         
+        // Menu mobile
+        function toggleMenu() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        }
         
-                // Dashboard específico
-                function loadDashboardData() {
-                    // Simular carregamento de dados do dashboard
-                    setTimeout(() => {
-                        updateRecentActivities();
-                        updateMetrics();
-                    }, 1000);
-                }
-                
-                function updateRecentActivities() {
-                    // Atualizar atividades recentes
-                    console.log('Atividades atualizadas');
-                }
-                
-                function updateMetrics() {
-                    // Atualizar métricas em tempo real
-                    console.log('Métricas atualizadas');
-                }
-                
-                // Carregar dados quando a página carrega
-                document.addEventListener('DOMContentLoaded', loadDashboardData);
-            
+        
+        function newItem() {
+            alert('Funcionalidade será implementada em breve');
+        }
+        
+        function exportData() {
+            alert('Funcionalidade de exportação será implementada');
+        }
     </script>
 </body>
 </html>
