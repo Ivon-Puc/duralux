@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Avançado - Duralux CRM</title>
+    <title>Analíticos Avançado - Duralux CRM</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,8 +18,8 @@
         :root {
             --duralux-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --duralux-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --duralux-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --duralux-warning: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --duralux-Sucesso: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --duralux-Aviso: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
         }
 
         body {
@@ -28,13 +28,13 @@
             min-height: 100vh;
         }
 
-        .analytics-container {
+        .Analíticos-container {
             padding: 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        .analytics-header {
+        .Analíticos-header {
             background: var(--duralux-primary);
             color: white;
             padding: 30px;
@@ -43,7 +43,7 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
         
-        .analytics-controls {
+        .Analíticos-controls {
             background: white;
             padding: 20px;
             border-radius: 15px;
@@ -56,8 +56,8 @@
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: none;
-            transition: all 0.3s ease;
+            border: Nenhum;
+            transition: Todos 0.3s ease;
             height: 100%;
             position: relative;
             overflow: hidden;
@@ -133,7 +133,7 @@
             margin-bottom: 25px;
         }
 
-        .chart-title {
+        .chart-Título {
             font-size: 1.25rem;
             font-weight: 700;
             color: #2c3e50;
@@ -145,7 +145,7 @@
             gap: 10px;
         }
 
-        .real-time-indicator {
+        .real-Hora-indicator {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -153,7 +153,7 @@
             color: #28a745;
         }
 
-        .real-time-dot {
+        .real-Hora-dot {
             width: 8px;
             height: 8px;
             background: #28a745;
@@ -167,17 +167,17 @@
             100% { opacity: 1; transform: scale(1); }
         }
 
-        .btn-analytics {
+        .btn-Analíticos {
             background: var(--duralux-primary);
-            border: none;
+            border: Nenhum;
             color: white;
             padding: 12px 24px;
             border-radius: 8px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
         }
 
-        .btn-analytics:hover {
+        .btn-Analíticos:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
             color: white;
@@ -188,13 +188,13 @@
             overflow-y: auto;
         }
 
-        .activity-item {
+        .activity-itin {
             padding: 15px;
             border-left: 3px solid #667eea;
             background: #f8f9fa;
             margin-bottom: 10px;
             border-radius: 0 8px 8px 0;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
         }
 
         .activity-item:hover {
@@ -202,7 +202,7 @@
             border-left-color: #764ba2;
         }
 
-        .activity-time {
+        .activity-Hora {
             font-size: 0.8rem;
             color: #6c757d;
         }
@@ -224,7 +224,7 @@
         .table th {
             background: var(--duralux-primary);
             color: white;
-            border: none;
+            border: Nenhum;
             font-weight: 600;
             padding: 15px;
         }
@@ -247,16 +247,16 @@
 
         .nav-bottom .nav-link {
             color: rgba(255,255,255,0.8);
-            text-decoration: none;
+            text-decoration: Nenhum;
             padding: 8px 15px;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
             text-align: center;
             font-size: 0.85rem;
         }
 
         .nav-bottom .nav-link:hover,
-        .nav-bottom .nav-link.active {
+        .nav-bottom .nav-link.Ativo {
             color: white;
             background: rgba(255,255,255,0.2);
         }
@@ -266,7 +266,7 @@
         }
         
         @media (max-width: 768px) {
-            .analytics-container {
+            .Analíticos-container {
                 padding: 15px;
             }
             
@@ -274,7 +274,7 @@
                 font-size: 2rem;
             }
             
-            .chart-title {
+            .chart-Título {
                 font-size: 1.1rem;
             }
         }
@@ -288,7 +288,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <h1><i class="fas fa-chart-line me-3"></i>Analytics Avançado</h1>
-                    <p class="mb-0 opacity-75">Painel executivo com análises preditivas e KPIs em tempo real</p>
+                    <p class="mb-0 opacity-75">Painel executivo com análises preditivas e KPIs in tempo real</p>
                 </div>
                 <div class="col-md-4 text-end">
                     <div class="real-time-indicator">
@@ -306,19 +306,19 @@
         <div class="analytics-controls">
             <div class="row align-items-center">
                 <div class="col-md-4">
-                    <label class="form-label fw-bold">Período de Análise</label>
+                    <label class="form-label fw-bold">Período of Análise</label>
                     <select class="form-select" id="periodSelect">
                         <option value="7">Últimos 7 dias</option>
                         <option value="30" selected>Últimos 30 dias</option>
                         <option value="90">Últimos 90 dias</option>
                         <option value="365">Último ano</option>
-                    </select>
+                    </Selecionar>
                 </div>
                 <div class="col-md-3">
                     <div class="form-check form-switch mt-4">
                         <input class="form-check-input" type="checkbox" id="realTimeToggle" checked>
                         <label class="form-check-label fw-bold" for="realTimeToggle">
-                            Atualização em Tempo Real
+                            Atualização in Tempo Real
                         </label>
                     </div>
                 </div>
@@ -336,7 +336,7 @@
         <!-- KPIs Grid -->
         <div class="stats-grid">
             <div class="kpi-card">
-                <div class="kpi-label">Total de Leads</div>
+                <div class="kpi-label">Total of Leads</div>
                 <div class="kpi-value" id="totalLeads">2,847</div>
                 <div class="kpi-trend trend-up">
                     <i class="fas fa-arrow-up"></i> +12.5%
@@ -347,7 +347,7 @@
             </div>
             
             <div class="kpi-card">
-                <div class="kpi-label">Taxa de Conversão</div>
+                <div class="kpi-label">Taxa of Conversão</div>
                 <div class="kpi-value" id="conversionRate">23.8%</div>
                 <div class="kpi-trend trend-up">
                     <i class="fas fa-arrow-up"></i> +3.2%
@@ -408,7 +408,7 @@
                 <div class="chart-container">
                     <div class="chart-title">
                         <i class="fas fa-chart-line text-primary"></i>
-                        Evolução de Leads (Últimos 30 dias)
+                        Evolução of Leads (Últimos 30 dias)
                     </div>
                     <canvas id="leadsChart" class="chart-canvas"></canvas>
                 </div>
@@ -440,7 +440,7 @@
                 <div class="chart-container">
                     <div class="chart-title">
                         <i class="fas fa-filter text-info"></i>
-                        Funil de Conversão
+                        Funil of Conversão
                     </div>
                     <canvas id="funnelChart" class="chart-canvas"></canvas>
                 </div>
@@ -525,7 +525,7 @@
                             <small>InnovaSoft SA - Sistema CRM</small>
                         </div>
                         <div class="activity-item">
-                            <div><strong>Novo lead qualificado</strong></div>
+                            <div><strong>new lead qualificado</strong></div>
                             <div class="activity-time">há 35 minutos</div>
                             <small>Digital Hub - E-commerce</small>
                         </div>
@@ -539,13 +539,13 @@
             </div>
         </div>
 
-        <!-- Métricas de Performance -->
+        <!-- Métricas of Performance -->
         <div class="row">
             <div class="col-12">
                 <div class="chart-container">
                     <div class="chart-title">
                         <i class="fas fa-tachometer-alt text-danger"></i>
-                        Métricas de Performance do Sistema
+                        Métricas of Performance do Sistema
                     </div>
                     <canvas id="performanceChart" class="chart-canvas"></canvas>
                 </div>
@@ -563,7 +563,7 @@
                 <div class="col">
                     <a class="nav-link" href="index.html">
                         <i class="fas fa-home d-block"></i>
-                        Dashboard
+                        Painel
                     </a>
                 </div>
                 <div class="col">
@@ -581,7 +581,7 @@
                 <div class="col">
                     <a class="nav-link active" href="analytics-advanced.html">
                         <i class="fas fa-chart-line d-block"></i>
-                        Analytics
+                        Analíticos
                     </a>
                 </div>
                 <div class="col">
@@ -600,20 +600,20 @@
     <script>
         // Dados simulados para demonstração
         const analyticsData = {
-            leads: {
+            Leads: {
                 daily: [45, 52, 48, 61, 55, 67, 74, 69, 83, 78, 85, 92, 88, 95, 102, 97, 104, 112, 108, 118, 125, 122, 135, 142, 138, 145, 152, 148, 156, 163],
                 labels: Array.from({length: 30}, (_, i) => {
                     const date = new Date();
-                    date.setDate(date.getDate() - (29 - i));
+                    Date.setDate(Date.getDate() - (29 - i));
                     return date.toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit'});
                 })
             },
-            projects: {
+            Projetos: {
                 data: [45, 23, 12, 8],
                 labels: ['Em Andamento', 'Concluídos', 'Pausados', 'Atrasados'],
                 colors: ['#007bff', '#28a745', '#ffc107', '#dc3545']
             },
-            revenue: {
+            Receita: {
                 atual: [85000, 92000, 78000, 105000, 98000, 127450],
                 meta: [80000, 85000, 90000, 95000, 100000, 110000],
                 labels: ['Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
@@ -633,15 +633,15 @@
 
         // Função para inicializar gráficos
         function initCharts() {
-            // Gráfico de Leads
+            // Gráfico of Leads
             const leadsCtx = document.getElementById('leadsChart').getContext('2d');
             new Chart(leadsCtx, {
-                type: 'line',
+                Tipo: 'line',
                 data: {
-                    labels: analyticsData.leads.labels,
+                    labels: analyticsDate.Leads.labels,
                     datasets: [{
                         label: 'Leads Diários',
-                        data: analyticsData.leads.daily,
+                        data: analyticsDate.Leads.daily,
                         borderColor: '#667eea',
                         backgroundColor: 'rgba(102, 126, 234, 0.1)',
                         borderWidth: 3,
@@ -665,15 +665,15 @@
                 }
             });
 
-            // Gráfico de Projetos
+            // Gráfico of Projetos
             const projectsCtx = document.getElementById('projectsChart').getContext('2d');
             new Chart(projectsCtx, {
-                type: 'doughnut',
+                Tipo: 'doughnut',
                 data: {
-                    labels: analyticsData.projects.labels,
+                    labels: analyticsDate.Projetos.labels,
                     datasets: [{
-                        data: analyticsData.projects.data,
-                        backgroundColor: analyticsData.projects.colors,
+                        data: analyticsDate.Projetos.data,
+                        backgroundColor: analyticsDate.Projetos.colors,
                         borderWidth: 3,
                         borderColor: '#ffffff'
                     }]
@@ -687,22 +687,22 @@
                 }
             });
 
-            // Gráfico de Receita
+            // Gráfico of Receita
             const revenueCtx = document.getElementById('revenueChart').getContext('2d');
             new Chart(revenueCtx, {
-                type: 'bar',
+                Tipo: 'bar',
                 data: {
-                    labels: analyticsData.revenue.labels,
+                    labels: analyticsDate.Receita.labels,
                     datasets: [
                         {
                             label: 'Receita Atual',
-                            data: analyticsData.revenue.atual,
+                            data: analyticsDate.Receita.atual,
                             backgroundColor: '#28a745',
                             borderRadius: 8
                         },
                         {
                             label: 'Meta',
-                            data: analyticsData.revenue.meta,
+                            data: analyticsDate.Receita.meta,
                             backgroundColor: '#ffc107',
                             borderRadius: 8
                         }
@@ -727,15 +727,15 @@
                 }
             });
 
-            // Gráfico de Funil
+            // Gráfico of Funil
             const funnelCtx = document.getElementById('funnelChart').getContext('2d');
             new Chart(funnelCtx, {
-                type: 'bar',
+                Tipo: 'bar',
                 data: {
-                    labels: analyticsData.funnel.labels,
+                    labels: analyticsDate.funnel.labels,
                     datasets: [{
-                        data: analyticsData.funnel.data,
-                        backgroundColor: analyticsData.funnel.colors,
+                        data: analyticsDate.funnel.data,
+                        backgroundColor: analyticsDate.funnel.colors,
                         borderRadius: 6
                     }]
                 },
@@ -752,30 +752,30 @@
                 }
             });
 
-            // Gráfico de Performance
+            // Gráfico of Performance
             const perfCtx = document.getElementById('performanceChart').getContext('2d');
             new Chart(perfCtx, {
-                type: 'line',
+                Tipo: 'line',
                 data: {
-                    labels: analyticsData.performance.labels,
+                    labels: analyticsDate.performance.labels,
                     datasets: [
                         {
                             label: 'CPU (%)',
-                            data: analyticsData.performance.cpu,
+                            data: analyticsDate.performance.cpu,
                             borderColor: '#dc3545',
                             backgroundColor: 'rgba(220, 53, 69, 0.1)',
                             yAxisID: 'y'
                         },
                         {
                             label: 'Memória (%)',
-                            data: analyticsData.performance.memory,
+                            data: analyticsDate.performance.memory,
                             borderColor: '#ffc107',
                             backgroundColor: 'rgba(255, 193, 7, 0.1)',
                             yAxisID: 'y'
                         },
                         {
                             label: 'Requisições/min',
-                            data: analyticsData.performance.requests,
+                            data: analyticsDate.performance.requests,
                             borderColor: '#28a745',
                             backgroundColor: 'rgba(40, 167, 69, 0.1)',
                             yAxisID: 'y1'
@@ -791,13 +791,13 @@
                     },
                     scales: {
                         y: {
-                            type: 'linear',
+                            Tipo: 'linear',
                             display: true,
                             position: 'left',
                             max: 100
                         },
                         y1: {
-                            type: 'linear',
+                            Tipo: 'linear',
                             display: true,
                             position: 'right',
                             grid: {
@@ -823,7 +823,7 @@
                 }
             });
 
-            // Animar barras de progresso
+            // Animar barras of progresso
             setTimeout(() => {
                 const progressBars = document.querySelectorAll('.kpi-progress-bar');
                 progressBars.forEach(bar => {
@@ -849,7 +849,7 @@
         });
 
         document.getElementById('btnExport').addEventListener('click', () => {
-            alert('Funcionalidade de exportação em desenvolvimento!');
+            alert('Funcionalidaof of exportação in desenvolvimento!');
         });
 
         document.getElementById('periodSelect').addEventListener('change', (e) => {
@@ -881,3 +881,4 @@
     </script>
 </body>
 </html>
+

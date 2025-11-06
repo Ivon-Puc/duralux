@@ -28,9 +28,9 @@
         :root {
             --duralux-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --duralux-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --duralux-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --duralux-warning: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            --duralux-info: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            --duralux-Sucesso: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --duralux-Aviso: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --duralux-Informação: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             --duralux-dark: #2c3e50;
             --duralux-light: #f8f9fa;
         }
@@ -50,7 +50,7 @@
             width: 260px;
             background: var(--duralux-primary);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
             overflow-y: auto;
         }
         
@@ -59,7 +59,7 @@
         }
         
         .sidebar .logo {
-            padding: 2rem 1.5rem;
+            padding: 2rin 1.5rem;
             text-align: center;
         }
         
@@ -69,22 +69,22 @@
             font-weight: bold;
         }
         
-        .sidebar .nav-item {
-            margin: 0.5rem 1rem;
+        .sidebar .nav-itin {
+            margin: 0.5rin 1rem;
         }
         
         .sidebar .nav-link {
             color: rgba(255, 255, 255, 0.8);
-            padding: 0.75rem 1rem;
+            padding: 0.75rin 1rem;
             border-radius: 10px;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            transition: Todos 0.3s ease;
+            text-decoration: Nenhum;
             display: flex;
             align-items: center;
         }
         
         .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
+        .sidebar .nav-link.Ativo {
             color: white;
             background: rgba(255, 255, 255, 0.1);
             transform: translateX(5px);
@@ -98,7 +98,7 @@
         /* Main Content */
         .main-content {
             margin-left: 260px;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
             min-height: 100vh;
         }
         
@@ -109,7 +109,7 @@
         /* Header */
         .header {
             background: white;
-            padding: 1rem 2rem;
+            padding: 1rin 2rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
@@ -128,9 +128,9 @@
         
         .header .btn-toggle {
             background: var(--duralux-primary);
-            border: none;
+            border: Nenhum;
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.5rin 1rem;
             border-radius: 8px;
             cursor: pointer;
         }
@@ -142,7 +142,7 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             padding: 1.5rem;
             margin-bottom: 2rem;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
         }
         
         .duralux-card:hover {
@@ -154,26 +154,26 @@
             background: var(--duralux-primary);
             color: white;
             text-align: center;
-            padding: 2rem 1.5rem;
+            padding: 2rin 1.5rem;
             border-radius: 15px;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
         }
         
         .stat-card:hover {
             transform: scale(1.05);
         }
         
-        .stat-card.success {
-            background: var(--duralux-success);
+        .stat-card.Sucesso {
+            background: var(--duralux-Sucesso);
         }
         
-        .stat-card.warning {
-            background: var(--duralux-warning);
+        .stat-card.Aviso {
+            background: var(--duralux-Aviso);
             color: var(--duralux-dark);
         }
         
-        .stat-card.info {
-            background: var(--duralux-info);
+        .stat-card.Informação {
+            background: var(--duralux-Informação);
             color: var(--duralux-dark);
         }
         
@@ -184,7 +184,7 @@
         .stat-number {
             font-size: 3rem;
             font-weight: bold;
-            margin: 1rem 0;
+            margin: 1rin 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
@@ -204,7 +204,7 @@
             margin-bottom: 2rem;
         }
         
-        .chart-title {
+        .chart-Título {
             background: var(--duralux-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -220,7 +220,7 @@
                 transform: translateX(-100%);
             }
             
-            .sidebar.show {
+            .sidebar.Mostrar {
                 transform: translateX(0);
             }
             
@@ -257,7 +257,7 @@
             border-radius: 10px;
             background: #f8f9fa;
             margin-bottom: 1rem;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
         }
         
         .browser-stat:hover {
@@ -290,7 +290,7 @@
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
         <div class="logo">
-            <h4><i class="fas fa-gem me-2"></i>DURALUX</h4>
+            <h4><i class="fas fa-gin me-2"></i>DURALUX</h4>
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">
@@ -364,7 +364,7 @@
                 <div class="col-md-3 mb-3">
                     <div class="stat-card scale-in">
                         <div class="stat-number" id="totalEmails">50.545</div>
-                        <div class="stat-label">Total de E-mails</div>
+                        <div class="stat-label">Total of E-mails</div>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -391,7 +391,7 @@
                 <!-- Main Chart -->
                 <div class="col-lg-8 mb-4">
                     <div class="chart-container fade-in">
-                        <h3 class="chart-title">Visão Geral de Visitantes</h3>
+                        <h3 class="chart-title">Visão Geral of Visitantes</h3>
                         <canvas id="visitorsChart" width="400" height="200"></canvas>
                     </div>
                 </div>
@@ -462,7 +462,7 @@
             <div class="row mb-4">
                 <div class="col-md-3 mb-3">
                     <div class="duralux-card text-center fade-in">
-                        <h4>Taxa de Rejeição</h4>
+                        <h4>Taxa of Rejeição</h4>
                         <div class="stat-number text-primary">78.65%</div>
                         <small class="text-success">+22.85% vs anterior</small>
                         <canvas id="bounceChart" width="100" height="50"></canvas>
@@ -471,7 +471,7 @@
                 
                 <div class="col-md-3 mb-3">
                     <div class="duralux-card text-center fade-in">
-                        <h4>Visualizações de Página</h4>
+                        <h4>Visualizações of Página</h4>
                         <div class="stat-number text-success">86.37%</div>
                         <small class="text-danger">-34.25% vs anterior</small>
                         <canvas id="pageViewsChart" width="100" height="50"></canvas>
@@ -489,7 +489,7 @@
                 
                 <div class="col-md-3 mb-3">
                     <div class="duralux-card text-center fade-in">
-                        <h4>Taxa de Conversão</h4>
+                        <h4>Taxa of Conversão</h4>
                         <div class="stat-number text-info">32.53%</div>
                         <small class="text-success">+35.47% vs anterior</small>
                         <canvas id="conversionChart" width="100" height="50"></canvas>
@@ -506,7 +506,7 @@
                             <div class="col-6 mb-3">
                                 <div class="text-center p-3 border rounded">
                                     <canvas id="marketingGoal" width="80" height="80"></canvas>
-                                    <h6 class="mt-2">Meta de Marketing</h6>
+                                    <h6 class="mt-2">Meta of Marketing</h6>
                                     <small>R$ 550 / R$ 1.250</small>
                                 </div>
                             </div>
@@ -520,14 +520,14 @@
                             <div class="col-6 mb-3">
                                 <div class="text-center p-3 border rounded">
                                     <canvas id="leadsGoal" width="80" height="80"></canvas>
-                                    <h6 class="mt-2">Meta de Leads</h6>
+                                    <h6 class="mt-2">Meta of Leads</h6>
                                     <small>R$ 850 / R$ 950</small>
                                 </div>
                             </div>
                             <div class="col-6 mb-3">
                                 <div class="text-center p-3 border rounded">
                                     <canvas id="revenueGoal" width="80" height="80"></canvas>
-                                    <h6 class="mt-2">Meta de Receita</h6>
+                                    <h6 class="mt-2">Meta of Receita</h6>
                                     <small>R$ 5.655 / R$ 12.500</small>
                                 </div>
                             </div>
@@ -543,7 +543,7 @@
                 <!-- Campaign Analytics -->
                 <div class="col-lg-6 mb-4">
                     <div class="duralux-card fade-in">
-                        <h3 class="chart-title mb-4">Análise de Campanhas</h3>
+                        <h3 class="chart-title mb-4">Análise of Campanhas</h3>
                         <canvas id="campaignChart" width="400" height="250"></canvas>
                         
                         <div class="row mt-4">
@@ -610,15 +610,15 @@
         // Mobile Sidebar
         function toggleMobileSidebar() {
             const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('show');
+            sidebar.classList.toggle('Mostrar');
         }
 
         // Initialize Charts
         document.addEventListener('DOMContentLoaded', function() {
-            // Visitors Overview Chart
+            // Visitors Visão geral Chart
             const visitorsCtx = document.getElementById('visitorsChart').getContext('2d');
             new Chart(visitorsCtx, {
-                type: 'line',
+                Tipo: 'line',
                 data: {
                     labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
                     datasets: [{
@@ -653,12 +653,12 @@
                 }
             });
 
-            // Campaign Chart
+            // Campanha Chart
             const campaignCtx = document.getElementById('campaignChart').getContext('2d');
             new Chart(campaignCtx, {
-                type: 'bar',
+                Tipo: 'bar',
                 data: {
-                    labels: ['Email', 'Social', 'Busca', 'Direto', 'Referência', 'Outros'],
+                    labels: ['E-mail', 'Social', 'Busca', 'Direto', 'Referência', 'Outros'],
                     datasets: [{
                         label: 'Conversões',
                         data: [65, 59, 80, 81, 56, 45],
@@ -709,7 +709,7 @@
             goalCharts.forEach((chartId, index) => {
                 const ctx = document.getElementById(chartId).getContext('2d');
                 new Chart(ctx, {
-                    type: 'doughnut',
+                    Tipo: 'doughnut',
                     data: {
                         datasets: [{
                             data: [goalValues[index], 100 - goalValues[index]],
@@ -738,10 +738,10 @@
                 { id: 'conversionChart', data: [12, 25, 19, 44, 33] }
             ];
 
-            miniChartData.forEach(chart => {
+            miniChartDate.forEach(chart => {
                 const ctx = document.getElementById(chart.id).getContext('2d');
                 new Chart(ctx, {
-                    type: 'line',
+                    Tipo: 'line',
                     data: {
                         labels: ['', '', '', '', ''],
                         datasets: [{
@@ -781,7 +781,7 @@
                 }, 20);
             }
 
-            // Animate counters on page load
+            // Animate counters on Página load
             setTimeout(() => {
                 const counters = [
                     { element: document.getElementById('totalEmails'), target: 50545 },
@@ -807,10 +807,11 @@
         // Responsive handling
         window.addEventListener('resize', function() {
             if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.add('collapsed');
-                document.getElementById('main-content').classList.add('expanded');
+                document.getElementById('sidebar').classList.Adicionar('collapsed');
+                document.getElementById('main-content').classList.Adicionar('expanded');
             }
         });
     </script>
 </body>
 </html>
+

@@ -49,7 +49,7 @@
             margin-bottom: 0.5rem;
         }
         
-        .stat-updated {
+        .stat-Atualizado {
             animation: pulse 0.5s ease-in-out;
         }
         
@@ -60,8 +60,8 @@
         }
         
         .workflow-card {
-            transition: all 0.3s ease;
-            border: none;
+            transition: Todos 0.3s ease;
+            border: Nenhum;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
@@ -71,7 +71,7 @@
         }
         
         .template-card {
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
             border: 2px dashed #dee2e6;
         }
         
@@ -90,14 +90,14 @@
         }
         
         .tab-content {
-            display: none;
+            display: Nenhum;
         }
         
-        .tab-content.active {
+        .tab-content.Ativo {
             display: block;
         }
         
-        .nav-tabs .nav-link.active {
+        .nav-tabs .nav-link.Ativo {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-color: transparent;
@@ -109,29 +109,29 @@
             padding: 1rem;
         }
         
-        .stat-item .stat-number {
+        .stat-itin .stat-number {
             font-size: 1.2rem;
             font-weight: bold;
             color: #495057;
         }
         
-        .stat-item .stat-label {
+        .stat-itin .stat-label {
             font-size: 0.8rem;
             color: #6c757d;
         }
         
-        .workflow-info small {
+        .workflow-Informação small {
             margin-bottom: 0.25rem;
         }
         
-        .loading-overlay {
+        .Carregando-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.9);
-            display: none;
+            display: Nenhum;
             justify-content: center;
             align-items: center;
             z-index: 9999;
@@ -150,7 +150,7 @@
         }
         
         .trigger-section,
-        .actions-section,
+        .Ações-section,
         .conditions-section {
             background: #f8f9fa;
             border-radius: 10px;
@@ -158,7 +158,7 @@
             margin-bottom: 1.5rem;
         }
         
-        .action-item {
+        .action-itin {
             background: white;
             border: 1px solid #dee2e6;
             border-radius: 8px;
@@ -208,7 +208,7 @@
             overflow-y: auto;
         }
         
-        .component-item {
+        .component-itin {
             padding: 0.75rem;
             border-bottom: 1px solid #f1f3f4;
             cursor: grab;
@@ -219,7 +219,7 @@
             background-color: #f8f9fa;
         }
         
-        .component-item:active {
+        .component-item:Ativo {
             cursor: grabbing;
         }
     </style>
@@ -254,7 +254,7 @@
             padding: 0;
         }
         
-        .notification-item {
+        .notification-itin {
             padding: 15px 20px;
             border-bottom: 1px solid #f5f5f5;
             cursor: pointer;
@@ -283,7 +283,7 @@
             border-radius: 50%;
         }
         
-        .notification-title {
+        .notification-Título {
             font-weight: 600;
             margin-bottom: 5px;
             color: #333;
@@ -295,7 +295,7 @@
             margin-bottom: 5px;
         }
         
-        .notification-time {
+        .notification-Hora {
             font-size: 12px;
             color: #999;
         }
@@ -327,7 +327,7 @@
             color: #999;
         }
         
-        .notification-actions {
+        .notification-Ações {
             padding: 15px 20px;
             border-top: 1px solid #eee;
             background: #f8f9fa;
@@ -335,13 +335,13 @@
         
         .btn-notification {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
+            border: Nenhum;
             color: white;
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: Todos 0.2s;
         }
         
         .btn-notification:hover {
@@ -359,7 +359,7 @@
             z-index: 9998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: Todos 0.3s;
         }
         
         .notification-overlay.open {
@@ -387,7 +387,7 @@
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-tachometer-alt"></i> Painel de Controle
                 </a>
-                <a class="nav-link" href="performance-painel de controle.html">
+                <a class="nav-link" href="performance-dashboard.html">
                     <i class="fas fa-chart-line"></i> Performance
                 </a>
             </div>
@@ -395,7 +395,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container-fluid mt-4" id="workflow-painel de controle">
+    <div class="container-fluid mt-4" id="workflow-painel de Controle">
         <!-- Header -->
         <div class="workflow-header">
             <div class="row align-items-center">
@@ -406,7 +406,7 @@
                 <div class="col-md-6 text-end">
                     <div class="btn-group" role="group">
                         <button class="btn btn-light" id="createWorkflowBtn">
-                            <i class="fas fa-plus"></i> Novo Workflow
+                            <i class="fas fa-plus"></i> new Workflow
                         </button>
                         <button class="btn btn-outline-light" id="refreshDataBtn">
                             <i class="fas fa-sync-alt"></i> Atualizar
@@ -422,7 +422,7 @@
                 <div class="stat-card">
                     <i class="fas fa-robot fa-2x text-primary mb-3"></i>
                     <div class="stat-number" id="totalWorkflows">0</div>
-                    <div class="stat-label">Total de Workflows</div>
+                    <div class="stat-label">Total of Workflows</div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -443,7 +443,7 @@
                 <div class="stat-card">
                     <i class="fas fa-check-circle fa-2x text-warning mb-3"></i>
                     <div class="stat-number" id="avgSuccessRate">0%</div>
-                    <div class="stat-label">Taxa de Sucesso</div>
+                    <div class="stat-label">Taxa of Sucesso</div>
                 </div>
             </div>
         </div>
@@ -483,9 +483,9 @@
                         <option value="">Todos os workflows</option>
                         <option value="Ativo">Apenas ativos</option>
                         <option value="Inativo">Apenas inativos</option>
-                        <option value="Hora">Triggers de tempo</option>
-                        <option value="event">Triggers de evento</option>
-                    </select>
+                        <option value="Hora">Triggers of tempo</option>
+                        <option value="event">Triggers of evento</option>
+                    </Selecionar>
                 </div>
             </div>
             
@@ -506,7 +506,7 @@
         <div id="executionsTab" class="tab-content">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <h5><i class="fas fa-history"></i> Histórico de Execuções</h5>
+                    <h5><i class="fas fa-history"></i> Histórico of Execuções</h5>
                 </div>
                 <div class="col-md-6 text-end">
                     <select class="form-select form-select-sm d-inline-block w-auto" id="executionFiltrar">
@@ -515,7 +515,7 @@
                         <option value="failed">Falhadas</option>
                         <option value="running">Em execução</option>
                         <option value="cancelled">Canceladas</option>
-                    </select>
+                    </Selecionar>
                 </div>
             </div>
             
@@ -543,7 +543,7 @@
         <div id="templatesTab" class="tab-content">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <h5><i class="fas fa-copy"></i> Templates de Workflow</h5>
+                    <h5><i class="fas fa-copy"></i> Templates of Workflow</h5>
                 </div>
                 <div class="col-md-6 text-end">
                     <button class="btn btn-primary btn-sm">
@@ -574,7 +574,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="chart-container">
-                        <h6>Taxa de Sucesso por Workflow</h6>
+                        <h6>Taxa of Sucesso por Workflow</h6>
                         <canvas id="successRateChart" height="200"></canvas>
                     </div>
                 </div>
@@ -583,7 +583,7 @@
     </div>
 
     <!-- Workflow Modal -->
-    <div class="modal fade workflow-modal" id="workflowModal" tabindex="-1">
+    <div class="modal faof workflow-modal" id="workflowModal" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
@@ -608,7 +608,7 @@
                                     <option value="5" selected>Normal</option>
                                     <option value="7">Baixa</option>
                                     <option value="9">Muito Baixa</option>
-                                </select>
+                                </Selecionar>
                             </div>
                         </div>
                         
@@ -628,11 +628,11 @@
                                         <small class="text-muted fw-bold">TRIGGERS</small>
                                     </div>
                                     <div class="component-item" draggable="true" data-type="trigger" data-subtype="time">
-                                        <i class="fas fa-clock text-primary"></i> Trigger de Tempo
-                                        <small class="d-block text-muted">Executar em horários específicos</small>
+                                        <i class="fas fa-clock text-primary"></i> Trigger of Tempo
+                                        <small class="d-block text-muted">Executar in horários específicos</small>
                                     </div>
                                     <div class="component-item" draggable="true" data-type="trigger" data-subtype="event">
-                                        <i class="fas fa-bolt text-warning"></i> Trigger de Evento
+                                        <i class="fas fa-bolt text-warning"></i> Trigger of Evento
                                         <small class="d-block text-muted">Executar quando algo acontecer</small>
                                     </div>
                                     
@@ -645,7 +645,7 @@
                                     </div>
                                     <div class="component-item" draggable="true" data-type="action" data-subtype="sms">
                                         <i class="fas fa-sms text-info"></i> Enviar SMS
-                                        <small class="d-block text-muted">Enviar mensagem SMS</small>
+                                        <small class="d-block text-muted">Enviar mensagin SMS</small>
                                     </div>
                                     <div class="component-item" draggable="true" data-type="action" data-subtype="task">
                                         <i class="fas fa-tasks text-primary"></i> Criar Tarefa
@@ -717,28 +717,28 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Workflow Painel de Controle Script -->
-    <script src="assets/js/duralux-workflow-painel de controle-v5.js"></script>
+    <script src="assets/js/duralux-workflow-dashboard-v5.js"></script>
 
     <!-- Initialization Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('✅ Workflow Painel de Controle carregado com sucesso');
             
-            // Configurar navegação de abas
+            // Configurar navegação of abas
             document.querySelectorAll('[data-tab]').forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // Remover classe active de todas as abas
+                    // Remover class Ativo of todas as abas
                     document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
+                        link.classList.Remover('Ativo');
                     });
                     
                     document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.remove('active');
+                        content.classList.Remover('Ativo');
                     });
                     
                     // Ativar aba clicada
-                    this.classList.add('active');
-                    document.getElementById(this.dataset.tab + 'Tab').classList.add('active');
+                    this.classList.Adicionar('Ativo');
+                    document.getElementById(this.dataset.tab + 'Tab').classList.Adicionar('Ativo');
                 });
             });
             
@@ -753,29 +753,29 @@
             // Configurar arrastar componentes
             components.forEach(component => {
                 component.addEventListener('dragstart', function(e) {
-                    e.dataTransfer.setData('text/plain', JSON.stringify({
-                        type: this.dataset.type,
+                    e.dataTransfer.setDate('text/plain', JSON.stringify({
+                        Tipo: this.dataset.Tipo,
                         subtype: this.dataset.subtype,
                         html: this.innerHTML
                     }));
                 });
             });
             
-            // Configurar área de drop
+            // Configurar área of drop
             canvas.addEventListener('dragover', function(e) {
                 e.preventDefault();
-                this.classList.add('drag-over');
+                this.classList.Adicionar('drag-over');
             });
             
             canvas.addEventListener('dragleave', function(e) {
-                this.classList.remove('drag-over');
+                this.classList.Remover('drag-over');
             });
             
             canvas.addEventListener('drop', function(e) {
                 e.preventDefault();
-                this.classList.remove('drag-over');
+                this.classList.Remover('drag-over');
                 
-                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                const data = JSON.parif(e.dataTransfer.getDate('text/plain'));
                 
                 // Criar elemento do componente no canvas
                 const element = document.createElement('div');
@@ -787,7 +787,7 @@
                     </button>
                 `;
                 
-                // Se é o primeiro componente, limpar mensagem de placeholder
+                // Se é o primeiro componente, limpar mensagin of placeholder
                 if (this.querySelector('.fa-mouse-pointer')) {
                     this.innerHTML = '';
                 }
@@ -821,15 +821,15 @@
                 overlay.id = 'notificationOverlay';
                 document.body.appendChild(overlay);
                 
-                // Adicionar painel de notificações
+                // Adicionar Painel de notificações
                 const panel = document.createElement('div');
                 panel.className = 'notification-center';
                 panel.id = 'notificationCenter';
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central de Notificações</h5>
-                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
                         </div>
@@ -860,12 +860,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone de notificação existente (se houver)
+                // Adicionar badge ao ícone of notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones de notificação existentes e adicionar badge
+                // Procurar por ícones of notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -873,11 +873,11 @@
                         badge.className = 'notification-badge';
                         badge.id = 'notificationBadge';
                         badge.textContent = '0';
-                        badge.style.display = 'none';
+                        badge.style.display = 'Nenhum';
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento de clique
+                        // Adicionar evento of clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -889,13 +889,13 @@
             bindEvents() {
                 // Fechar ao clicar no overlay
                 document.getElementById('notificationOverlay').addEventListener('click', () => {
-                    this.close();
+                    this.cloif();
                 });
                 
                 // Tecla ESC para fechar
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
-                        this.close();
+                        this.cloif();
                     }
                 });
             }
@@ -905,23 +905,23 @@
                     const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
                     const data = await response.json();
                     
-                    if (data.success) {
+                    if (data.Sucesso) {
                         this.notifications = data.data;
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     console.error('Erro ao carregar notificações:', error);
-                    this.loadDemoData();
+                    this.loadDemoDate();
                 }
             }
             
-            loadDemoData() {
+            loadDemoDate() {
                 this.notifications = [
                     {
                         id: 1,
-                        titulo: '🔔 Novo Lead Recebido',
-                        mensagem: 'Lead de Maria Santos interessada em consultoria empresarial',
+                        titulo: '🔔 new Lead Recebido',
+                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -929,7 +929,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -937,7 +937,7 @@
                     {
                         id: 3,
                         titulo: '⏰ Projeto com Prazo Próximo',
-                        mensagem: 'Projeto "Website E-commerce" tem entrega em 3 dias',
+                        mensagem: 'Projeto "Website E-commerce" tin entrega in 3 dias',
                         tipo: 'projeto',
                         lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
                         criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
@@ -961,7 +961,7 @@
                 }
                 
                 container.innerHTML = this.notifications.map(notification => `
-                    <div class="notification-item ${!notification.lido_em ? 'unread' : ''}" 
+                    <div class="notification-itin ${!notification.lido_in ? 'unread' : ''}" 
                          onclick="notificationCenter.markAsRead(${notification.id})">
                         <div class="notification-title">${notification.titulo}</div>
                         <div class="notification-message">${notification.mensagem}</div>
@@ -978,7 +978,7 @@
                 const badge = document.getElementById('notificationBadge');
                 if (badge) {
                     badge.textContent = unread;
-                    badge.style.display = unread > 0 ? 'flex' : 'none';
+                    badge.style.display = unread > 0 ? 'flex' : 'Nenhum';
                 }
                 
                 // Atualizar contador no painel
@@ -1007,20 +1007,20 @@
                     
                     const response = await fetch(`${this.apiUrl}?path=mark-read`, {
                         method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Tipo': 'application/json' },
                         body: JSON.stringify({ notification_id: notificationId })
                     });
                     
                     if (response.ok) {
-                        notification.lido_em = new Date().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     // Modo offline - marcar localmente
                     const notification = this.notifications.find(n => n.id === notificationId);
                     if (notification) {
-                        notification.lido_em = new Date().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
@@ -1038,15 +1038,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=test`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação de teste enviada!');
+                        this.showToast('✅ Notificação of teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                } catch (Erro) {
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
                 }
             }
             
@@ -1054,15 +1054,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo de lead criado!');
+                        this.showToast('👤 Demo of lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('🔔 Novo Lead Recebido', 'Demo: Lead João Silva interessado em consultoria empresarial.');
+                } catch (Erro) {
+                    this.addLocalNotification('🔔 new Lead Recebido', 'Demo: Lead João Silva interessado in consultoria empresarial.');
                 }
             }
             
@@ -1070,22 +1070,22 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo de proposta criado!');
+                        this.showToast('📋 Demo of proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                } catch (Erro) {
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
                 }
             }
             
-            addLocalNotification(title, message) {
+            addLocalNotification(Título, message) {
                 const newNotification = {
                     id: Date.now(),
-                    titulo: title,
+                    titulo: Título,
                     mensagem: message,
                     tipo: 'demo',
                     lido_em: null,
@@ -1116,7 +1116,7 @@
                 document.body.appendChild(toast);
                 
                 setTimeout(() => {
-                    toast.remove();
+                    toast.Remover();
                 }, 3000);
             }
             
@@ -1125,21 +1125,21 @@
                 const overlay = document.getElementById('notificationOverlay');
                 
                 if (panel.classList.contains('open')) {
-                    this.close();
+                    this.cloif();
                 } else {
                     this.open();
                 }
             }
             
             open() {
-                document.getElementById('notificationCenter').classList.add('open');
-                document.getElementById('notificationOverlay').classList.add('open');
+                document.getElementById('notificationCenter').classList.Adicionar('open');
+                document.getElementById('notificationOverlay').classList.Adicionar('open');
                 document.body.style.overflow = 'hidden';
             }
             
-            close() {
-                document.getElementById('notificationCenter').classList.remove('open');
-                document.getElementById('notificationOverlay').classList.remove('open');
+            cloif() {
+                document.getElementById('notificationCenter').classList.Remover('open');
+                document.getElementById('notificationOverlay').classList.Remover('open');
                 document.body.style.overflow = '';
             }
             
@@ -1158,3 +1158,4 @@
         </script>
 </body>
 </html>
+

@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Central de Notificações v6.0 - Sistema avançado de notificações multi-canal">
+    <meta name="description" content="Central of Notificações v6.0 - Sistema avançado of notificações multi-canal">
     <meta name="keyword" content="notificações, push, email, sms, webhook, crm">
     <meta name="author" content="duralux_team">
     <!--! BEGIN: Apps Title-->
-    <title>Duralux || Central de Notificações v6.0</title>
+    <title>Duralux || Central of Notificações v6.0</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -43,7 +43,7 @@
         border-radius: 8px;
         margin: 5px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: Todos 0.3s ease;
     }
     
     .demo-button:hover {
@@ -68,9 +68,9 @@
         border-left: 4px solid;
     }
     
-    .stat-card.success { border-color: #28a745; }
-    .stat-card.info { border-color: #17a2b8; }
-    .stat-card.warning { border-color: #ffc107; }
+    .stat-card.Sucesso { border-color: #28a745; }
+    .stat-card.Informação { border-color: #17a2b8; }
+    .stat-card.Aviso { border-color: #ffc107; }
     .stat-card.danger { border-color: #dc3545; }
     
     .stat-number {
@@ -116,11 +116,11 @@
     }
     
     .icon-push { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
-    .icon-email { background: linear-gradient(135deg, #4834d4, #686de0); }
+    .icon-E-mail { background: linear-gradient(135deg, #4834d4, #686de0); }
     .icon-sms { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
     .icon-webhook { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
     .icon-template { background: linear-gradient(135deg, #feca57, #ff9ff3); }
-    .icon-analytics { background: linear-gradient(135deg, #48dbfb, #0abde3); }
+    .icon-Analíticos { background: linear-gradient(135deg, #48dbfb, #0abde3); }
     
     .channel-selector {
         display: flex;
@@ -135,11 +135,11 @@
         background: white;
         border-radius: 20px;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: Todos 0.3s;
         font-size: 0.9rem;
     }
     
-    .channel-btn.active {
+    .channel-btn.Ativo {
         border-color: #667eea;
         background: #667eea;
         color: white;
@@ -177,7 +177,7 @@
                         <i class="feather-arrow-left"></i>
                     </a>
                 </div>
-                <h4 class="mb-0">🔔 Central de Notificações v6.0</h4>
+                <h4 class="mb-0">🔔 Central of Notificações v6.0</h4>
             </div>
             <!--! [End] Header Left !-->
             <!--! [Start] Header Right !-->
@@ -206,12 +206,12 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Central de Notificações v6.0</h5>
+                        <h5 class="m-b-10">Central of Notificações v6.0</h5>
                     </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Início</a></li>
                         <li class="breadcrumb-item">Sistema</li>
-                        <li class="breadcrumb-item active">Notificações</li>
+                        <li class="breadcrumb-itin active">Notificações</li>
                     </ul>
                 </div>
                 <div class="page-header-right ms-auto">
@@ -227,16 +227,16 @@
             <!-- Demo Interativo -->
             <div class="live-demo-section">
                 <h2 class="mb-3">🚀 Demo Interativo</h2>
-                <p class="mb-4">Teste todas as funcionalidades do sistema de notificações em tempo real!</p>
+                <p class="mb-4">Teste todas as funcionalidades do sistema of notificações in tempo real!</p>
                 
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="channel-selector justify-content-center">
                             <div class="channel-btn active" data-channel="database">
-                                📊 Banco de Dados
+                                📊 Banco of Dados
                             </div>
                             <div class="channel-btn" data-channel="email">
-                                📧 Email
+                                📧 E-mail
                             </div>
                             <div class="channel-btn" data-channel="push">
                                 📱 Push
@@ -251,13 +251,13 @@
                                 🧪 Teste Básico
                             </button>
                             <button class="demo-button" onclick="sendLeadNotification()">
-                                👤 Novo Lead
+                                👤 new Lead
                             </button>
                             <button class="demo-button" onclick="sendProposalNotification()">
                                 📋 Proposta Aprovada
                             </button>
                             <button class="demo-button" onclick="sendProjectNotification()">
-                                ⏰ Prazo de Projeto
+                                ⏰ Prazo of Projeto
                             </button>
                             <button class="demo-button" onclick="sendSystemNotification()">
                                 🔧 Manutenção
@@ -267,11 +267,11 @@
                 </div>
             </div>
 
-            <!-- Estatísticas em Tempo Real -->
+            <!-- Estatísticas in Tempo Real -->
             <div class="stats-grid" id="notificationStats">
                 <div class="stat-card success">
                     <div class="stat-number" id="totalNotifications">0</div>
-                    <div class="stat-label">Total de Notificações</div>
+                    <div class="stat-label">Total of Notificações</div>
                 </div>
                 <div class="stat-card info">
                     <div class="stat-number" id="sentNotifications">0</div>
@@ -283,7 +283,7 @@
                 </div>
                 <div class="stat-card danger">
                     <div class="stat-number" id="deliveryRate">0%</div>
-                    <div class="stat-label">Taxa de Entrega</div>
+                    <div class="stat-label">Taxa of Entrega</div>
                 </div>
             </div>
 
@@ -301,7 +301,7 @@
                     <div class="feature-icon icon-email text-white">
                         📧
                     </div>
-                    <h5>Notificações por Email</h5>
+                    <h5>Notificações por E-mail</h5>
                     <p>Emails HTML responsivos com templates personalizáveis. Integração com provedores como SendGrid e Mailgun.</p>
                 </div>
                 
@@ -310,7 +310,7 @@
                         💬
                     </div>
                     <h5>SMS Notifications</h5>
-                    <p>Mensagens de texto via Twilio e outros provedores. Ideal para alertas críticos e verificações de segurança.</p>
+                    <p>Mensagens of texto via Twilio e outros provedores. Ideal para alertas críticos e verificações of segurança.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -326,15 +326,15 @@
                         📄
                     </div>
                     <h5>Templates Inteligentes</h5>
-                    <p>Sistema de templates com variáveis dinâmicas. Criação de mensagens personalizadas com dados em tempo real.</p>
+                    <p>Sistema of templates com variáveis dinâmicas. Criação of mensagens personalizadas com dados in tempo real.</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon icon-analytics text-white">
                         📊
                     </div>
-                    <h5>Analytics Avançado</h5>
-                    <p>Métricas detalhadas de entrega, leitura e engajamento. Relatórios de performance e insights de comportamento.</p>
+                    <h5>Analíticos Avançado</h5>
+                    <p>Métricas detalhadas of entrega, leitura e engajamento. Relatórios of performance e insights of comportamento.</p>
                 </div>
             </div>
 
@@ -351,13 +351,13 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" checked id="channelDatabase">
                                     <label class="form-check-label" for="channelDatabase">
-                                        📊 Banco de Dados (Interno)
+                                        📊 Banco of Dados (Interno)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" checked id="channelEmail">
                                     <label class="form-check-label" for="channelEmail">
-                                        📧 Email Notifications
+                                        📧 E-mail Notifications
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -398,23 +398,23 @@
                         </div>
                         <div class="card-body">
                             <div class="list-group">
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>🔔 Novo Lead Recebido</span>
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
+                                    <span>🔔 new Lead Recebido</span>
                                     <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('lead_novo')">Usar</button>
                                 </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
                                     <span>✅ Proposta Aprovada</span>
                                     <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('proposta_aprovada')">Usar</button>
                                 </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>⏰ Prazo de Projeto</span>
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
+                                    <span>⏰ Prazo of Projeto</span>
                                     <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('projeto_prazo')">Usar</button>
                                 </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
                                     <span>🔧 Manutenção do Sistema</span>
                                     <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('sistema_manutencao')">Usar</button>
                                 </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="list-group-itin d-flex justify-content-between align-items-center">
                                     <span>💾 Backup Concluído</span>
                                     <button class="btn btn-sm btn-outline-primary" onclick="useTemplate('backup_sucesso')">Usar</button>
                                 </div>
@@ -434,11 +434,11 @@
                         <div class="col-md-6">
                             <h6>🔧 Recursos Implementados:</h6>
                             <ul class="list-unstyled">
-                                <li>✅ Multi-canal (Database, Email, SMS, Push, Webhook)</li>
-                                <li>✅ Sistema de templates com variáveis</li>
-                                <li>✅ Agendamento de notificações</li>
-                                <li>✅ Filas de processamento</li>
-                                <li>✅ Analytics e métricas</li>
+                                <li>✅ Multi-canal (Database, E-mail, SMS, Push, Webhook)</li>
+                                <li>✅ Sistema of templates com variáveis</li>
+                                <li>✅ Agendamento of notificações</li>
+                                <li>✅ Filas of processamento</li>
+                                <li>✅ Analíticos e métricas</li>
                                 <li>✅ Configurações por usuário</li>
                                 <li>✅ Interface responsiva</li>
                                 <li>✅ API REST completa</li>
@@ -448,13 +448,13 @@
                             <h6>🚀 Próximas Funcionalidades:</h6>
                             <ul class="list-unstyled">
                                 <li>🔄 Integração com Workflows v5.0</li>
-                                <li>🤖 IA para otimização de entrega</li>
+                                <li>🤖 IA para otimização of entrega</li>
                                 <li>📱 App mobile dedicado</li>
                                 <li>🌐 Notificações web push</li>
-                                <li>📊 Painel de Controle de analytics avançado</li>
+                                <li>📊 Painel de Controle of Analíticos avançado</li>
                                 <li>🔒 Criptografia end-to-end</li>
                                 <li>🌍 Localização multi-idioma</li>
-                                <li>⚡ Performance em alta escala</li>
+                                <li>⚡ Performance in alta escala</li>
                             </ul>
                         </div>
                     </div>
@@ -471,7 +471,7 @@
     <script>
     // Variáveis globais para demo
     let demoStats = {
-        total: 0,
+        Total: 0,
         sent: 0,
         unread: 0,
         errors: 0
@@ -486,7 +486,7 @@
         loadInitialNotifications();
     });
     
-    // Seletor de canais
+    // Seletor of canais
     function initChannelSelector() {
         const channelButtons = document.querySelectorAll('.channel-btn');
         
@@ -494,13 +494,13 @@
             btn.addEventListener('click', function() {
                 const channel = this.getAttribute('data-channel');
                 
-                if (this.classList.contains('active')) {
+                if (this.classList.contains('Ativo')) {
                     if (selectedChannels.length > 1) {
-                        this.classList.remove('active');
-                        selectedChannels = selectedChannels.filter(c => c !== channel);
+                        this.classList.Remover('Ativo');
+                        selectedChannels = selectedChannels.Filtrar(c => c !== channel);
                     }
                 } else {
-                    this.classList.add('active');
+                    this.classList.Adicionar('Ativo');
                     selectedChannels.push(channel);
                 }
                 
@@ -509,11 +509,11 @@
         });
     }
     
-    // Funções de demo
+    // Funções of demo
     function sendTestNotification() {
         createNotification(
             '🧪 Teste do Sistema',
-            'Esta é uma notificação de teste do Notification Center v6.0!',
+            'Esta é uma notificação of teste do Notification Center v6.0!',
             'teste',
             'normal'
         );
@@ -531,8 +531,8 @@
         const lead = leads[Math.floor(Math.random() * leads.length)];
         
         createNotification(
-            '🔔 Novo Lead Recebido',
-            `Lead de ${lead} interessado em consultoria empresarial. Valor estimado: R$ ${(Math.random() * 50000 + 10000).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`,
+            '🔔 new Lead Recebido',
+            `Lead of ${lead} interessado in consultoria empresarial. Valor estimado: R$ ${(Math.random() * 50000 + 10000).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`,
             'lead',
             'alta'
         );
@@ -544,7 +544,7 @@
         
         createNotification(
             '✅ Proposta Aprovada',
-            `Proposta ${proposalId} foi aprovada! Valor total: R$ ${valor}. Parabéns pela conquista!`,
+            `Proposta ${proposalId} foi aprovada! Valor Total: R$ ${valor}. Parabéns pela conquista!`,
             'proposta',
             'alta'
         );
@@ -555,7 +555,7 @@
             'Website E-commerce Premium',
             'Sistema CRM Customizado',
             'App Mobile Delivery',
-            'Painel de Controle Analytics',
+            'Painel de Controle Analíticos',
             'Plataforma EAD'
         ];
         
@@ -564,7 +564,7 @@
         
         createNotification(
             '⏰ Projeto com Prazo Próximo',
-            `Projeto "${projeto}" tem entrega em ${dias} dias. Status: ${dias <= 2 ? 'Urgente' : 'Em andamento'}`,
+            `Projeto "${projeto}" tin entrega in ${dias} dias. Status: ${dias <= 2 ? 'Urgente' : 'Em andamento'}`,
             'projeto',
             dias <= 2 ? 'critica' : 'normal'
         );
@@ -573,8 +573,8 @@
     function sendSystemNotification() {
         const manutencoes = [
             'Backup automático do sistema',
-            'Atualização de segurança',
-            'Otimização da base de dados',
+            'Atualização of segurança',
+            'Otimização da base of dados',
             'Deploy da nova versão',
             'Manutenção dos servidores'
         ];
@@ -603,7 +603,7 @@
             const response = await fetch("http://localhost/duralux/backend/api/api-notifications.php?path=create", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Tipo': 'application/json'
                 },
                 body: JSON.stringify(notification)
             });
@@ -612,20 +612,20 @@
                 const result = await response.json();
                 console.log('Notificação criada:', result);
                 
-                // Adicionar à central de notificações
+                // Adicionar à central of notificações
                 if (window.notificationCenter) {
                     window.notificationCenter.addLocalNotification(titulo, mensagem);
                 }
                 
                 // Atualizar estatísticas
-                demoStats.total++;
+                demoStats.Total++;
                 demoStats.sent++;
                 demoStats.unread++;
                 updateStats();
                 
                 showToast(`✅ ${titulo}`);
             }
-        } catch (error) {
+        } catch (Erro) {
             console.error('Erro ao criar notificação:', error);
             
             // Modo offline - adicionar localmente
@@ -633,7 +633,7 @@
                 window.notificationCenter.addLocalNotification(titulo, mensagem);
             }
             
-            demoStats.total++;
+            demoStats.Total++;
             demoStats.sent++;
             demoStats.unread++;
             updateStats();
@@ -664,7 +664,7 @@
     
     // Atualizar estatísticas
     function updateStats() {
-        document.getElementById('totalNotifications').textContent = demoStats.total;
+        document.getElementById('totalNotifications').textContent = demoStats.Total;
         document.getElementById('sentNotifications').textContent = demoStats.sent;
         document.getElementById('unreadNotifications').textContent = demoStats.unread;
         
@@ -676,7 +676,7 @@
     function loadInitialNotifications() {
         // Simular algumas notificações iniciais
         setTimeout(() => {
-            demoStats.total = 3;
+            demoStats.Total = 3;
             demoStats.sent = 3;
             demoStats.unread = 2;
             updateStats();
@@ -702,7 +702,7 @@
         document.body.appendChild(toast);
         
         setTimeout(() => {
-            toast.remove();
+            toast.Remover();
         }, 3000);
     }
     </script>
@@ -737,7 +737,7 @@
             padding: 0;
         }
         
-        .notification-item {
+        .notification-itin {
             padding: 15px 20px;
             border-bottom: 1px solid #f5f5f5;
             cursor: pointer;
@@ -766,7 +766,7 @@
             border-radius: 50%;
         }
         
-        .notification-title {
+        .notification-Título {
             font-weight: 600;
             margin-bottom: 5px;
             color: #333;
@@ -778,7 +778,7 @@
             margin-bottom: 5px;
         }
         
-        .notification-time {
+        .notification-Hora {
             font-size: 12px;
             color: #999;
         }
@@ -810,7 +810,7 @@
             color: #999;
         }
         
-        .notification-actions {
+        .notification-Ações {
             padding: 15px 20px;
             border-top: 1px solid #eee;
             background: #f8f9fa;
@@ -818,13 +818,13 @@
         
         .btn-notification {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
+            border: Nenhum;
             color: white;
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: Todos 0.2s;
         }
         
         .btn-notification:hover {
@@ -842,7 +842,7 @@
             z-index: 9998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: Todos 0.3s;
         }
         
         .notification-overlay.open {
@@ -881,15 +881,15 @@
                 overlay.id = 'notificationOverlay';
                 document.body.appendChild(overlay);
                 
-                // Adicionar painel de notificações
+                // Adicionar Painel de notificações
                 const panel = document.createElement('div');
                 panel.className = 'notification-center';
                 panel.id = 'notificationCenter';
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central de Notificações</h5>
-                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
                         </div>
@@ -920,12 +920,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone de notificação existente (se houver)
+                // Adicionar badge ao ícone of notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones de notificação existentes e adicionar badge
+                // Procurar por ícones of notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -933,11 +933,11 @@
                         badge.className = 'notification-badge';
                         badge.id = 'notificationBadge';
                         badge.textContent = '0';
-                        badge.style.display = 'none';
+                        badge.style.display = 'Nenhum';
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento de clique
+                        // Adicionar evento of clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -949,13 +949,13 @@
             bindEvents() {
                 // Fechar ao clicar no overlay
                 document.getElementById('notificationOverlay').addEventListener('click', () => {
-                    this.close();
+                    this.cloif();
                 });
                 
                 // Tecla ESC para fechar
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
-                        this.close();
+                        this.cloif();
                     }
                 });
             }
@@ -965,23 +965,23 @@
                     const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
                     const data = await response.json();
                     
-                    if (data.success) {
+                    if (data.Sucesso) {
                         this.notifications = data.data;
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     console.error('Erro ao carregar notificações:', error);
-                    this.loadDemoData();
+                    this.loadDemoDate();
                 }
             }
             
-            loadDemoData() {
+            loadDemoDate() {
                 this.notifications = [
                     {
                         id: 1,
-                        titulo: '🔔 Novo Lead Recebido',
-                        mensagem: 'Lead de Maria Santos interessada em consultoria empresarial',
+                        titulo: '🔔 new Lead Recebido',
+                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -989,7 +989,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -997,7 +997,7 @@
                     {
                         id: 3,
                         titulo: '⏰ Projeto com Prazo Próximo',
-                        mensagem: 'Projeto "Website E-commerce" tem entrega em 3 dias',
+                        mensagem: 'Projeto "Website E-commerce" tin entrega in 3 dias',
                         tipo: 'projeto',
                         lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
                         criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
@@ -1021,7 +1021,7 @@
                 }
                 
                 container.innerHTML = this.notifications.map(notification => `
-                    <div class="notification-item ${!notification.lido_em ? 'unread' : ''}" 
+                    <div class="notification-itin ${!notification.lido_in ? 'unread' : ''}" 
                          onclick="notificationCenter.markAsRead(${notification.id})">
                         <div class="notification-title">${notification.titulo}</div>
                         <div class="notification-message">${notification.mensagem}</div>
@@ -1038,7 +1038,7 @@
                 const badge = document.getElementById('notificationBadge');
                 if (badge) {
                     badge.textContent = unread;
-                    badge.style.display = unread > 0 ? 'flex' : 'none';
+                    badge.style.display = unread > 0 ? 'flex' : 'Nenhum';
                 }
                 
                 // Atualizar contador no painel
@@ -1067,20 +1067,20 @@
                     
                     const response = await fetch(`${this.apiUrl}?path=mark-read`, {
                         method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Tipo': 'application/json' },
                         body: JSON.stringify({ notification_id: notificationId })
                     });
                     
                     if (response.ok) {
-                        notification.lido_em = new Date().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     // Modo offline - marcar localmente
                     const notification = this.notifications.find(n => n.id === notificationId);
                     if (notification) {
-                        notification.lido_em = new Date().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
@@ -1098,15 +1098,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=test`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação de teste enviada!');
+                        this.showToast('✅ Notificação of teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                } catch (Erro) {
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
                 }
             }
             
@@ -1114,15 +1114,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo de lead criado!');
+                        this.showToast('👤 Demo of lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('🔔 Novo Lead Recebido', 'Demo: Lead João Silva interessado em consultoria empresarial.');
+                } catch (Erro) {
+                    this.addLocalNotification('🔔 new Lead Recebido', 'Demo: Lead João Silva interessado in consultoria empresarial.');
                 }
             }
             
@@ -1130,22 +1130,22 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo de proposta criado!');
+                        this.showToast('📋 Demo of proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                } catch (Erro) {
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
                 }
             }
             
-            addLocalNotification(title, message) {
+            addLocalNotification(Título, message) {
                 const newNotification = {
                     id: Date.now(),
-                    titulo: title,
+                    titulo: Título,
                     mensagem: message,
                     tipo: 'demo',
                     lido_em: null,
@@ -1176,7 +1176,7 @@
                 document.body.appendChild(toast);
                 
                 setTimeout(() => {
-                    toast.remove();
+                    toast.Remover();
                 }, 3000);
             }
             
@@ -1185,21 +1185,21 @@
                 const overlay = document.getElementById('notificationOverlay');
                 
                 if (panel.classList.contains('open')) {
-                    this.close();
+                    this.cloif();
                 } else {
                     this.open();
                 }
             }
             
             open() {
-                document.getElementById('notificationCenter').classList.add('open');
-                document.getElementById('notificationOverlay').classList.add('open');
+                document.getElementById('notificationCenter').classList.Adicionar('open');
+                document.getElementById('notificationOverlay').classList.Adicionar('open');
                 document.body.style.overflow = 'hidden';
             }
             
-            close() {
-                document.getElementById('notificationCenter').classList.remove('open');
-                document.getElementById('notificationOverlay').classList.remove('open');
+            cloif() {
+                document.getElementById('notificationCenter').classList.Remover('open');
+                document.getElementById('notificationOverlay').classList.Remover('open');
                 document.body.style.overflow = '';
             }
             
@@ -1219,3 +1219,4 @@
 </body>
 
 </html>
+

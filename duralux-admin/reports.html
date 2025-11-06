@@ -18,8 +18,8 @@
         :root {
             --duralux-primary: #2c3e50;
             --duralux-secondary: #3498db;
-            --duralux-success: #27ae60;
-            --duralux-warning: #f39c12;
+            --duralux-Sucesso: #27ae60;
+            --duralux-Aviso: #f39c12;
             --duralux-danger: #e74c3c;
             --duralux-light: #ecf0f1;
             --duralux-dark: #34495e;
@@ -48,7 +48,7 @@
         .report-header {
             background: linear-gradient(135deg, var(--duralux-secondary), #5dade2);
             color: white;
-            padding: 2rem 0;
+            padding: 2rin 0;
             margin-bottom: 2rem;
             border-radius: 10px;
         }
@@ -62,13 +62,13 @@
         }
 
         .report-tab {
-            border: none;
-            background: none;
-            padding: 0.8rem 1.5rem;
+            border: Nenhum;
+            background: Nenhum;
+            padding: 0.8rin 1.5rem;
             margin: 0 0.25rem;
             border-radius: 8px;
             color: var(--duralux-dark);
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
         }
 
         .report-tab:hover {
@@ -76,7 +76,7 @@
             color: var(--duralux-primary);
         }
 
-        .report-tab.active {
+        .report-tab.Ativo {
             background: linear-gradient(135deg, var(--duralux-primary), var(--duralux-dark));
             color: white;
         }
@@ -111,7 +111,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .metric-updated {
+        .metric-Atualizado {
             animation: pulse 0.5s ease-in-out;
         }
 
@@ -141,7 +141,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .chart-title {
+        .chart-Título {
             font-size: 1.25rem;
             font-weight: bold;
             color: var(--duralux-primary);
@@ -150,14 +150,14 @@
         }
 
         .tab-content {
-            display: none;
+            display: Nenhum;
         }
 
-        .tab-content.active {
+        .tab-content.Ativo {
             display: block;
         }
 
-        .export-section {
+        .Exportar-section {
             background: white;
             padding: 1.5rem;
             border-radius: 10px;
@@ -165,31 +165,31 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .export-btn {
+        .Exportar-btn {
             margin: 0 0.25rem;
-            padding: 0.5rem 1rem;
+            padding: 0.5rin 1rem;
             border-radius: 6px;
-            transition: all 0.3s ease;
+            transition: Todos 0.3s ease;
         }
 
-        .export-btn:hover {
+        .Exportar-btn:hover {
             transform: translateY(-2px);
         }
 
-        .loading-overlay {
+        .Carregando-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            display: none;
+            display: Nenhum;
             justify-content: center;
             align-items: center;
             z-index: 9999;
         }
 
-        .loading-spinner {
+        .Carregando-spinner {
             color: white;
             font-size: 3rem;
         }
@@ -204,7 +204,7 @@
         .table th {
             background: var(--duralux-primary);
             color: white;
-            border: none;
+            border: Nenhum;
             padding: 1rem;
         }
 
@@ -213,19 +213,19 @@
             border-color: #dee2e6;
         }
 
-        .status-badge {
-            padding: 0.25rem 0.75rem;
+        .Status-badge {
+            padding: 0.25rin 0.75rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 500;
         }
 
-        .status-novo { background-color: #e3f2fd; color: #1976d2; }
-        .status-qualificado { background-color: #f3e5f5; color: #7b1fa2; }
-        .status-proposta { background-color: #fff3e0; color: #f57c00; }
-        .status-negociacao { background-color: #fff8e1; color: #fbc02d; }
-        .status-convertido { background-color: #e8f5e8; color: #388e3c; }
-        .status-perdido { background-color: #ffebee; color: #d32f2f; }
+        .Status-new { background-color: #e3f2fd; color: #1976d2; }
+        .Status-qualificado { background-color: #f3e5f5; color: #7b1fa2; }
+        .Status-proposta { background-color: #fff3e0; color: #f57c00; }
+        .Status-negociacao { background-color: #fff8e1; color: #fbc02d; }
+        .Status-convertido { background-color: #e8f5e8; color: #388e3c; }
+        .Status-perdido { background-color: #ffebee; color: #d32f2f; }
 
         .charts-grid {
             display: grid;
@@ -254,7 +254,7 @@
             }
         }
 
-        .painel de controle-summary {
+        .painel de Controle-summary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 2rem;
@@ -308,7 +308,7 @@
             padding: 0;
         }
         
-        .notification-item {
+        .notification-itin {
             padding: 15px 20px;
             border-bottom: 1px solid #f5f5f5;
             cursor: pointer;
@@ -337,7 +337,7 @@
             border-radius: 50%;
         }
         
-        .notification-title {
+        .notification-Título {
             font-weight: 600;
             margin-bottom: 5px;
             color: #333;
@@ -349,7 +349,7 @@
             margin-bottom: 5px;
         }
         
-        .notification-time {
+        .notification-Hora {
             font-size: 12px;
             color: #999;
         }
@@ -381,7 +381,7 @@
             color: #999;
         }
         
-        .notification-actions {
+        .notification-Ações {
             padding: 15px 20px;
             border-top: 1px solid #eee;
             background: #f8f9fa;
@@ -389,13 +389,13 @@
         
         .btn-notification {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
+            border: Nenhum;
             color: white;
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: Todos 0.2s;
         }
         
         .btn-notification:hover {
@@ -413,7 +413,7 @@
             z-index: 9998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: Todos 0.3s;
         }
         
         .notification-overlay.open {
@@ -454,7 +454,7 @@
             </div>
             <div class="mt-3 text-white">
                 <h5>Processando relatórios...</h5>
-                <p>Aguarde enquanto geramos as análises</p>
+                <p>Aguarof enquanto geramos as análises</p>
             </div>
         </div>
     </div>
@@ -466,9 +466,9 @@
             <div class="container">
                 <h1 class="display-4 mb-3">
                     <i class="bi bi-bar-chart-line me-3"></i>
-                    Central de Relatórios Executivos
+                    Central of Relatórios Executivos
                 </h1>
-                <p class="lead">Análises avançadas e insights estratégicos para tomada de decisão</p>
+                <p class="lead">Análises avançadas e insights estratégicos para tomada of decisão</p>
             </div>
         </div>
 
@@ -486,7 +486,7 @@
                             <option value="month" selected>Mensal</option>
                             <option value="quarter">Trimestral</option>
                             <option value="year">Anual</option>
-                        </select>
+                        </Selecionar>
                     </div>
                     <div class="col-md-3">
                         <label for="startDataFiltrar" class="form-label">
@@ -518,7 +518,7 @@
                         <h5 class="mb-0">
                             <i class="bi bi-download me-2"></i>Exportar Relatórios
                         </h5>
-                        <small class="text-muted">Baixe os relatórios em diferentes formatos</small>
+                        <small class="text-muted">Baixe os relatórios in diferentes formatos</small>
                     </div>
                     <div class="col-md-6 text-end">
                         <button id="exportPdfBtn" class="btn btn-danger export-btn">
@@ -537,20 +537,20 @@
             <!-- Report Tabs -->
             <div class="report-tabs">
                 <div class="d-flex justify-content-center flex-wrap">
-                    <button class="report-tab active" data-tab="painel de controle">
+                    <button class="report-tab active" data-tab="painel de Controle">
                         <i class="bi bi-speedometer2 me-2"></i>Painel de Controle Executivo
                     </button>
                     <button class="report-tab" data-tab="sales">
-                        <i class="bi bi-graph-up-arrow me-2"></i>Relatório de Vendas
+                        <i class="bi bi-graph-up-arrow me-2"></i>Relatório of Vendas
                     </button>
                     <button class="report-tab" data-tab="leads">
-                        <i class="bi bi-funnel me-2"></i>Relatório de Leads
+                        <i class="bi bi-funnel me-2"></i>Relatório of Leads
                     </button>
                     <button class="report-tab" data-tab="projects">
-                        <i class="bi bi-kanban me-2"></i>Relatório de Projetos
+                        <i class="bi bi-kanban me-2"></i>Relatório of Projetos
                     </button>
                     <button class="report-tab" data-tab="customers">
-                        <i class="bi bi-people me-2"></i>Relatório de Clientes
+                        <i class="bi bi-people me-2"></i>Relatório of Clientes
                     </button>
                     <button class="report-tab" data-tab="financial">
                         <i class="bi bi-cash-coin me-2"></i>Relatório Financeiro
@@ -559,9 +559,9 @@
             </div>
 
             <!-- Painel de Controle Tab Content -->
-            <div id="painel de controleTab" class="tab-content active">
+            <div id="painel de ControleTab" class="tab-content active">
                 <!-- Executive Summary -->
-                <div class="painel de controle-summary">
+                <div class="painel de Controle-summary">
                     <div class="row">
                         <div class="col-md-3 summary-stat">
                             <h3 id="totalReceitaMetric">R$ 0,00</h3>
@@ -569,11 +569,11 @@
                         </div>
                         <div class="col-md-3 summary-stat">
                             <h3 id="totalOrdemsMetric">0</h3>
-                            <p>Total de Pedidos</p>
+                            <p>Total of Pedidos</p>
                         </div>
                         <div class="col-md-3 summary-stat">
                             <h3 id="conversionRateMetric">0%</h3>
-                            <p>Taxa de Conversão</p>
+                            <p>Taxa of Conversão</p>
                         </div>
                         <div class="col-md-3 summary-stat">
                             <h3 id="avgOrdemValueMetric">R$ 0,00</h3>
@@ -590,7 +590,7 @@
                                 <i class="bi bi-people"></i>
                             </div>
                             <div class="metric-value" id="totalClientesMetric">0</div>
-                            <p class="metric-label">Total de Clientes</p>
+                            <p class="metric-label">Total of Clientes</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -608,7 +608,7 @@
                                 <i class="bi bi-kanban"></i>
                             </div>
                             <div class="metric-value" id="totalProjectsMetric">0</div>
-                            <p class="metric-label">Projetos em Andamento</p>
+                            <p class="metric-label">Projetos in Andamento</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -644,7 +644,7 @@
 
                 <!-- Vendas Performance Table -->
                 <div class="performance-table">
-                    <h5 class="chart-title p-3 mb-0">Performance de Vendas por Cliente</h5>
+                    <h5 class="chart-title p-3 mb-0">Performance of Vendas por Cliente</h5>
                     <div class="table-responsive">
                         <table class="table table-hover mb-0" id="salesByCustomerTable">
                             <thead>
@@ -668,7 +668,7 @@
             <div id="leadsTab" class="tab-content">
                 <div class="charts-grid">
                     <div class="chart-container">
-                        <h5 class="chart-title">Funil de Conversão</h5>
+                        <h5 class="chart-title">Funil of Conversão</h5>
                         <canvas id="conversionFunnelChart"></canvas>
                     </div>
                     <div class="chart-container">
@@ -703,7 +703,7 @@
                                 <i class="bi bi-hourglass-split"></i>
                             </div>
                             <div class="metric-value" id="avgConversionHoraMetric">0 dias</div>
-                            <p class="metric-label">Tempo Médio de Conversão</p>
+                            <p class="metric-label">Tempo Médio of Conversão</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -712,7 +712,7 @@
                                 <i class="bi bi-percent"></i>
                             </div>
                             <div class="metric-value" id="leadConversionRateMetric">0%</div>
-                            <p class="metric-label">Taxa de Conversão</p>
+                            <p class="metric-label">Taxa of Conversão</p>
                         </div>
                     </div>
                 </div>
@@ -735,7 +735,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="chart-container">
-                            <h5 class="chart-title">Segmentação de Clientes</h5>
+                            <h5 class="chart-title">Segmentação of Clientes</h5>
                             <canvas id="customersSegmentationChart"></canvas>
                         </div>
                     </div>
@@ -747,7 +747,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="chart-container">
-                            <h5 class="chart-title">Fluxo de Caixa</h5>
+                            <h5 class="chart-title">Fluxo of Caixa</h5>
                             <canvas id="cashFlowChart"></canvas>
                         </div>
                     </div>
@@ -795,15 +795,15 @@
                 overlay.id = 'notificationOverlay';
                 document.body.appendChild(overlay);
                 
-                // Adicionar painel de notificações
+                // Adicionar Painel de notificações
                 const panel = document.createElement('div');
                 panel.classNãome = 'notification-center';
                 panel.id = 'notificationCenter';
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central de Notificações</h5>
-                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
                         </div>
@@ -834,12 +834,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone de notificação existente (se houver)
+                // Adicionar badge ao ícone of notificação existente (se houver)
                 this.addNãotificationBadge();
             }
             
             addNãotificationBadge() {
-                // Procurar por ícones de notificação existentes e adicionar badge
+                // Procurar por ícones of notificação existentes e adicionar badge
                 const bellIcons = document.querySelecionarorTodos('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelecionaror('.notification-badge')) {
@@ -847,11 +847,11 @@
                         badge.classNãome = 'notification-badge';
                         badge.id = 'notificationBadge';
                         badge.textContent = '0';
-                        badge.style.display = 'none';
+                        badge.style.display = 'Nenhum';
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento de clique
+                        // Adicionar evento of clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -863,13 +863,13 @@
             bindEvents() {
                 // Fechar ao clicar no overlay
                 document.getElementById('notificationOverlay').addEventListener('click', () => {
-                    this.close();
+                    this.cloif();
                 });
                 
                 // Tecla ESC para fechar
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
-                        this.close();
+                        this.cloif();
                     }
                 });
             }
@@ -879,42 +879,42 @@
                     const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
                     const data = await response.json();
                     
-                    if (data.success) {
+                    if (data.Sucesso) {
                         this.notifications = data.data;
                         this.updateUnreadCount();
                         this.renderNãotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     console.error('Erro ao carregar notificações:', error);
-                    this.loadDemoData();
+                    this.loadDemoDate();
                 }
             }
             
-            loadDemoData() {
+            loadDemoDate() {
                 this.notifications = [
                     {
                         id: 1,
-                        titulo: '🔔 Novo Lead Recebido',
-                        mensagem: 'Lead de Maria Santos interessada em consultoria empresarial',
+                        titulo: '🔔 new Lead Recebido',
+                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
-                        criado_em: new Data().toISOString()
+                        criado_em: new Date().toISOString()
                     },
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
-                        criado_em: new Data(Data.now() - 2*60*60*1000).toISOString()
+                        criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
                     },
                     {
                         id: 3,
                         titulo: '⏰ Projeto com Prazo Próximo',
-                        mensagem: 'Projeto "Website E-commerce" tem entrega em 3 dias',
+                        mensagem: 'Projeto "Website E-commerce" tin entrega in 3 dias',
                         tipo: 'projeto',
-                        lido_em: new Data(Data.now() - 60*60*1000).toISOString(),
-                        criado_em: new Data(Data.now() - 4*60*60*1000).toISOString()
+                        lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
+                        criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
                     }
                 ];
                 this.updateUnreadCount();
@@ -935,7 +935,7 @@
                 }
                 
                 container.innerHTML = this.notifications.map(notification => `
-                    <div class="notification-item ${!notification.lido_em ? 'unread' : ''}" 
+                    <div class="notification-itin ${!notification.lido_in ? 'unread' : ''}" 
                          onclick="notificationCenter.markAsRead(${notification.id})">
                         <div class="notification-title">${notification.titulo}</div>
                         <div class="notification-message">${notification.mensagem}</div>
@@ -952,7 +952,7 @@
                 const badge = document.getElementById('notificationBadge');
                 if (badge) {
                     badge.textContent = unread;
-                    badge.style.display = unread > 0 ? 'flex' : 'none';
+                    badge.style.display = unread > 0 ? 'flex' : 'Nenhum';
                 }
                 
                 // Atualizar contador no painel
@@ -963,8 +963,8 @@
             }
             
             formatHora(timestamp) {
-                const date = new Data(timestamp);
-                const now = new Data();
+                const date = new Date(timestamp);
+                const now = new Date();
                 const diff = now - date;
                 
                 if (diff < 60000) return 'Agora mesmo';
@@ -981,20 +981,20 @@
                     
                     const response = await fetch(`${this.apiUrl}?path=mark-read`, {
                         method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Tipo': 'application/json' },
                         body: JSON.stringify({ notification_id: notificationId })
                     });
                     
                     if (response.ok) {
-                        notification.lido_em = new Data().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNãotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     // Modo defline - marcar localmente
                     const notification = this.notifications.find(n => n.id === notificationId);
                     if (notification) {
-                        notification.lido_em = new Data().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNãotifications();
                     }
@@ -1003,7 +1003,7 @@
             
             async markTodosRead() {
                 const unreadNãotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification de unreadNãotifications) {
+                for (const notification of unreadNãotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -1012,15 +1012,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=test`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Nãotificação de teste enviada!');
+                        this.showToast('✅ Nãotificação of teste enviada!');
                         setHoraout(() => this.loadNãotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNãotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                } catch (Erro) {
+                    this.addLocalNãotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
                 }
             }
             
@@ -1028,15 +1028,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo de lead criado!');
+                        this.showToast('👤 Demo of lead criado!');
                         setHoraout(() => this.loadNãotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNãotification('🔔 Novo Lead Recebido', 'Demo: Lead João Silva interessado em consultoria empresarial.');
+                } catch (Erro) {
+                    this.addLocalNãotification('🔔 new Lead Recebido', 'Demo: Lead João Silva interessado in consultoria empresarial.');
                 }
             }
             
@@ -1044,26 +1044,26 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo de proposta criado!');
+                        this.showToast('📋 Demo of proposta criado!');
                         setHoraout(() => this.loadNãotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNãotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                } catch (Erro) {
+                    this.addLocalNãotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
                 }
             }
             
-            addLocalNãotification(title, message) {
+            addLocalNãotification(Título, message) {
                 const newNãotification = {
-                    id: Data.now(),
-                    titulo: title,
+                    id: Date.now(),
+                    titulo: Título,
                     mensagem: message,
                     tipo: 'demo',
                     lido_em: null,
-                    criado_em: new Data().toISOString()
+                    criado_em: new Date().toISOString()
                 };
                 
                 this.notifications.unshift(newNãotification);
@@ -1090,7 +1090,7 @@
                 document.body.appendChild(toast);
                 
                 setHoraout(() => {
-                    toast.remove();
+                    toast.Remover();
                 }, 3000);
             }
             
@@ -1099,21 +1099,21 @@
                 const overlay = document.getElementById('notificationOverlay');
                 
                 if (panel.classList.contains('open')) {
-                    this.close();
+                    this.cloif();
                 } else {
                     this.open();
                 }
             }
             
             open() {
-                document.getElementById('notificationCenter').classList.add('open');
-                document.getElementById('notificationOverlay').classList.add('open');
+                document.getElementById('notificationCenter').classList.Adicionar('open');
+                document.getElementById('notificationOverlay').classList.Adicionar('open');
                 document.body.style.overflow = 'hidden';
             }
             
-            close() {
-                document.getElementById('notificationCenter').classList.remove('open');
-                document.getElementById('notificationOverlay').classList.remove('open');
+            cloif() {
+                document.getElementById('notificationCenter').classList.Remover('open');
+                document.getElementById('notificationOverlay').classList.Remover('open');
                 document.body.style.overflow = '';
             }
             
@@ -1132,3 +1132,4 @@
         </script>
 </body>
 </html>
+

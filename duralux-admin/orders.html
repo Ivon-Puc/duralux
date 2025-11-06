@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Sistema de Gestão de Pedidos - Duralux CRM">
+    <meta name="description" content="Sistema of Gestão of Pedidos - Duralux CRM">
     <meta name="keyword" content="pedidos, vendas, faturas, crm">
     <meta name="author" content="Duralux">
     <!--! BEGIN: Apps Title-->
-    <title>Duralux CRM || Gestão de Pedidos</title>
+    <title>Duralux CRM || Gestão of Pedidos</title>
     <!--! END: Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -60,7 +60,7 @@
             padding: 0;
         }
         
-        .notification-item {
+        .notification-itin {
             padding: 15px 20px;
             border-bottom: 1px solid #f5f5f5;
             cursor: pointer;
@@ -89,7 +89,7 @@
             border-radius: 50%;
         }
         
-        .notification-title {
+        .notification-Título {
             font-weight: 600;
             margin-bottom: 5px;
             color: #333;
@@ -101,7 +101,7 @@
             margin-bottom: 5px;
         }
         
-        .notification-time {
+        .notification-Hora {
             font-size: 12px;
             color: #999;
         }
@@ -133,7 +133,7 @@
             color: #999;
         }
         
-        .notification-actions {
+        .notification-Ações {
             padding: 15px 20px;
             border-top: 1px solid #eee;
             background: #f8f9fa;
@@ -141,13 +141,13 @@
         
         .btn-notification {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
+            border: Nenhum;
             color: white;
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: Todos 0.2s;
         }
         
         .btn-notification:hover {
@@ -165,7 +165,7 @@
             z-index: 9998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: Todos 0.3s;
         }
         
         .notification-overlay.open {
@@ -194,7 +194,7 @@
             </div>
             <div class="navbar-content">
                 <ul class="nxl-navbar">
-                    <li class="nxl-item nxl-caption">
+                    <li class="nxl-itin nxl-caption">
                         <label>Principal</label>
                     </li>
                     <li class="nxl-item">
@@ -203,7 +203,7 @@
                             <span class="nxl-mtext">Painel</span>
                         </a>
                     </li>
-                    <li class="nxl-item nxl-caption">
+                    <li class="nxl-itin nxl-caption">
                         <label>CRM</label>
                     </li>
                     <li class="nxl-item">
@@ -224,16 +224,16 @@
                             <span class="nxl-mtext">Projetos</span>
                         </a>
                     </li>
-                    <li class="nxl-item nxl-active">
+                    <li class="nxl-itin nxl-active">
                         <a href="orders.html" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-shopping-cart"></i></span>
                             <span class="nxl-mtext">Pedidos</span>
                         </a>
                     </li>
-                    <li class="nxl-item nxl-caption">
+                    <li class="nxl-itin nxl-caption">
                         <label>Relatórios</label>
                     </li>
-                    <li class="nxl-item nxl-hasmenu">
+                    <li class="nxl-itin nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-bar-chart-2"></i></span>
                             <span class="nxl-mtext">Relatórios</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
@@ -257,7 +257,7 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Gestão de Pedidos</h5>
+                        <h5 class="m-b-10">Gestão of Pedidos</h5>
                     </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Painel</a></li>
@@ -273,7 +273,7 @@
                             </button>
                             <button id="newOrderBtn" class="btn btn-primary">
                                 <i class="feather-plus me-2"></i>
-                                Novo Pedido
+                                new Pedido
                             </button>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
                                         <div class="fs-4 fw-bolder text-dark mb-1">
                                             <span id="totalOrders">0</span>
                                         </div>
-                                        <div class="fs-12 text-muted">Total de Pedidos</div>
+                                        <div class="fs-12 text-muted">Total of Pedidos</div>
                                     </div>
                                     <div class="avatar-text avatar-lg bg-primary text-white">
                                         <i class="feather-shopping-cart"></i>
@@ -359,7 +359,7 @@
                     <div class="col-12">
                         <div class="card stretch stretch-full">
                             <div class="card-header">
-                                <h5 class="card-title">Gestão de Pedidos</h5>
+                                <h5 class="card-title">Gestão of Pedidos</h5>
                                 <div class="card-header-action">
                                     <div class="card-header-btn">
                                         <div data-bs-toggle="tooltip" title="Delete">
@@ -393,10 +393,10 @@
                                             <option value="delivered">Entregue</option>
                                             <option value="Concluído">Completo</option>
                                             <option value="cancelled">Cancelado</option>
-                                        </select>
+                                        </Selecionar>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-12 mb-3">
-                                        <label class="form-label">Status de Pagamento</label>
+                                        <label class="form-label">Status of Pagamento</label>
                                         <select id="paymentStatusFiltrar" class="form-select">
                                             <option value="">Todos</option>
                                             <option value="unpaid">Não Pago</option>
@@ -404,13 +404,13 @@
                                             <option value="paid">Pago</option>
                                             <option value="partially_paid">Parcialmente Pago</option>
                                             <option value="refunded">Reembolsado</option>
-                                        </select>
+                                        </Selecionar>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-12 mb-3">
                                         <label class="form-label">Cliente</label>
                                         <select id="customerFiltrar" class="form-select">
                                             <option value="">Todos os clientes</option>
-                                        </select>
+                                        </Selecionar>
                                     </div>
                                     <div class="col-lg-3 col-md-6 col-12 mb-3">
                                         <label class="form-label">Período</label>
@@ -522,7 +522,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="orderModalLabel">Novo Pedido</h5>
+                    <h5 class="modal-title" id="orderModalLabel">new Pedido</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="orderForm">
@@ -535,7 +535,7 @@
                                 <label for="customerId" class="form-label">Cliente <span class="text-danger">*</span></label>
                                 <select class="form-select" id="customerId" name="customer_id" required>
                                     <option value="">Selecione um cliente</option>
-                                </select>
+                                </Selecionar>
                             </div>
                             <div class="col-md-3">
                                 <label for="orderStatus" class="form-label">Status do Pedido</label>
@@ -546,16 +546,16 @@
                                     <option value="shipped">Enviado</option>
                                     <option value="delivered">Entregue</option>
                                     <option value="Concluído">Completo</option>
-                                </select>
+                                </Selecionar>
                             </div>
                             <div class="col-md-3">
-                                <label for="paymentStatus" class="form-label">Status de Pagamento</label>
+                                <label for="paymentStatus" class="form-label">Status of Pagamento</label>
                                 <select class="form-select" id="paymentStatus" name="payment_status">
                                     <option value="unpaid">Não Pago</option>
                                     <option value="Pendente">Pendente</option>
                                     <option value="paid">Pago</option>
                                     <option value="partially_paid">Parcialmente Pago</option>
-                                </select>
+                                </Selecionar>
                             </div>
                         </div>
 
@@ -620,9 +620,9 @@
     <!--! BEGIN: Theme Customizer !-->
     <script src="assets/js/theme-customizer-init.min.js"></script>
     <!--! END: Theme Customizer !-->
-    <!--! BEGIN: Orders Management System !-->
+    <!--! BEGIN: Orders Management Systin !-->
     <script src="assets/js/duralux-orders.js"></script>
-    <!--! END: Orders Management System !-->
+    <!--! END: Orders Management Systin !-->
 
         <!-- Notification Center v6.0 JavaScript -->
         <script>
@@ -648,15 +648,15 @@
                 overlay.id = 'notificationOverlay';
                 document.body.appendChild(overlay);
                 
-                // Adicionar painel de notificações
+                // Adicionar Painel de notificações
                 const panel = document.createElement('div');
                 panel.className = 'notification-center';
                 panel.id = 'notificationCenter';
                 panel.innerHTML = `
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">🔔 Central de Notificações</h5>
-                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
+                            <h5 class="mb-0">🔔 Central of Notificações</h5>
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
                                 <i class="feather-x"></i>
                             </button>
                         </div>
@@ -687,12 +687,12 @@
                 `;
                 document.body.appendChild(panel);
                 
-                // Adicionar badge ao ícone de notificação existente (se houver)
+                // Adicionar badge ao ícone of notificação existente (se houver)
                 this.addNotificationBadge();
             }
             
             addNotificationBadge() {
-                // Procurar por ícones de notificação existentes e adicionar badge
+                // Procurar por ícones of notificação existentes e adicionar badge
                 const bellIcons = document.querySelectorAll('.feather-bell, .fa-bell');
                 bellIcons.forEach(icon => {
                     if (!icon.parentElement.querySelector('.notification-badge')) {
@@ -700,11 +700,11 @@
                         badge.className = 'notification-badge';
                         badge.id = 'notificationBadge';
                         badge.textContent = '0';
-                        badge.style.display = 'none';
+                        badge.style.display = 'Nenhum';
                         icon.parentElement.style.position = 'relative';
                         icon.parentElement.appendChild(badge);
                         
-                        // Adicionar evento de clique
+                        // Adicionar evento of clique
                         icon.parentElement.addEventListener('click', (e) => {
                             e.preventDefault();
                             this.toggle();
@@ -716,13 +716,13 @@
             bindEvents() {
                 // Fechar ao clicar no overlay
                 document.getElementById('notificationOverlay').addEventListener('click', () => {
-                    this.close();
+                    this.cloif();
                 });
                 
                 // Tecla ESC para fechar
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
-                        this.close();
+                        this.cloif();
                     }
                 });
             }
@@ -732,23 +732,23 @@
                     const response = await fetch(`${this.apiUrl}?path=list&limit=20`);
                     const data = await response.json();
                     
-                    if (data.success) {
+                    if (data.Sucesso) {
                         this.notifications = data.data;
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     console.error('Erro ao carregar notificações:', error);
-                    this.loadDemoData();
+                    this.loadDemoDate();
                 }
             }
             
-            loadDemoData() {
+            loadDemoDate() {
                 this.notifications = [
                     {
                         id: 1,
-                        titulo: '🔔 Novo Lead Recebido',
-                        mensagem: 'Lead de Maria Santos interessada em consultoria empresarial',
+                        titulo: '🔔 new Lead Recebido',
+                        mensagem: 'Lead of Maria Santos interessada in consultoria empresarial',
                         tipo: 'lead',
                         lido_em: null,
                         criado_em: new Date().toISOString()
@@ -756,7 +756,7 @@
                     {
                         id: 2,
                         titulo: '✅ Proposta Aprovada',
-                        mensagem: 'Proposta #PROP-001 aprovada no valor de R$ 15.000',
+                        mensagem: 'Proposta #PROP-001 aprovada no valor of R$ 15.000',
                         tipo: 'proposta',
                         lido_em: null,
                         criado_em: new Date(Date.now() - 2*60*60*1000).toISOString()
@@ -764,7 +764,7 @@
                     {
                         id: 3,
                         titulo: '⏰ Projeto com Prazo Próximo',
-                        mensagem: 'Projeto "Website E-commerce" tem entrega em 3 dias',
+                        mensagem: 'Projeto "Website E-commerce" tin entrega in 3 dias',
                         tipo: 'projeto',
                         lido_em: new Date(Date.now() - 60*60*1000).toISOString(),
                         criado_em: new Date(Date.now() - 4*60*60*1000).toISOString()
@@ -788,7 +788,7 @@
                 }
                 
                 container.innerHTML = this.notifications.map(notification => `
-                    <div class="notification-item ${!notification.lido_em ? 'unread' : ''}" 
+                    <div class="notification-itin ${!notification.lido_in ? 'unread' : ''}" 
                          onclick="notificationCenter.markAsRead(${notification.id})">
                         <div class="notification-title">${notification.titulo}</div>
                         <div class="notification-message">${notification.mensagem}</div>
@@ -805,7 +805,7 @@
                 const badge = document.getElementById('notificationBadge');
                 if (badge) {
                     badge.textContent = unread;
-                    badge.style.display = unread > 0 ? 'flex' : 'none';
+                    badge.style.display = unread > 0 ? 'flex' : 'Nenhum';
                 }
                 
                 // Atualizar contador no painel
@@ -834,20 +834,20 @@
                     
                     const response = await fetch(`${this.apiUrl}?path=mark-read`, {
                         method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Tipo': 'application/json' },
                         body: JSON.stringify({ notification_id: notificationId })
                     });
                     
                     if (response.ok) {
-                        notification.lido_em = new Date().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
-                } catch (error) {
+                } catch (Erro) {
                     // Modo offline - marcar localmente
                     const notification = this.notifications.find(n => n.id === notificationId);
                     if (notification) {
-                        notification.lido_em = new Date().toISOString();
+                        notification.lido_in = new Date().toISOString();
                         this.updateUnreadCount();
                         this.renderNotifications();
                     }
@@ -865,15 +865,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=test`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('✅ Notificação de teste enviada!');
+                        this.showToast('✅ Notificação of teste enviada!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação de teste do sistema Duralux CRM!');
+                } catch (Erro) {
+                    this.addLocalNotification('🧪 Teste do Sistema', 'Esta é uma notificação of teste do sistema Duralux CRM!');
                 }
             }
             
@@ -881,15 +881,15 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-lead`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('👤 Demo de lead criado!');
+                        this.showToast('👤 Demo of lead criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('🔔 Novo Lead Recebido', 'Demo: Lead João Silva interessado em consultoria empresarial.');
+                } catch (Erro) {
+                    this.addLocalNotification('🔔 new Lead Recebido', 'Demo: Lead João Silva interessado in consultoria empresarial.');
                 }
             }
             
@@ -897,22 +897,22 @@
                 try {
                     const response = await fetch(`${this.apiUrl}?path=demo-proposta`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 'Content-Tipo': 'application/json' }
                     });
                     
                     if (response.ok) {
-                        this.showToast('📋 Demo de proposta criado!');
+                        this.showToast('📋 Demo of proposta criado!');
                         setTimeout(() => this.loadNotifications(), 1000);
                     }
-                } catch (error) {
-                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor de R$ 20.000!');
+                } catch (Erro) {
+                    this.addLocalNotification('✅ Proposta Aprovada', 'Demo: Proposta #DEMO-001 aprovada no valor of R$ 20.000!');
                 }
             }
             
-            addLocalNotification(title, message) {
+            addLocalNotification(Título, message) {
                 const newNotification = {
                     id: Date.now(),
-                    titulo: title,
+                    titulo: Título,
                     mensagem: message,
                     tipo: 'demo',
                     lido_em: null,
@@ -943,7 +943,7 @@
                 document.body.appendChild(toast);
                 
                 setTimeout(() => {
-                    toast.remove();
+                    toast.Remover();
                 }, 3000);
             }
             
@@ -952,21 +952,21 @@
                 const overlay = document.getElementById('notificationOverlay');
                 
                 if (panel.classList.contains('open')) {
-                    this.close();
+                    this.cloif();
                 } else {
                     this.open();
                 }
             }
             
             open() {
-                document.getElementById('notificationCenter').classList.add('open');
-                document.getElementById('notificationOverlay').classList.add('open');
+                document.getElementById('notificationCenter').classList.Adicionar('open');
+                document.getElementById('notificationOverlay').classList.Adicionar('open');
                 document.body.style.overflow = 'hidden';
             }
             
-            close() {
-                document.getElementById('notificationCenter').classList.remove('open');
-                document.getElementById('notificationOverlay').classList.remove('open');
+            cloif() {
+                document.getElementById('notificationCenter').classList.Remover('open');
+                document.getElementById('notificationOverlay').classList.Remover('open');
                 document.body.style.overflow = '';
             }
             
@@ -986,3 +986,4 @@
 </body>
 
 </html>
+

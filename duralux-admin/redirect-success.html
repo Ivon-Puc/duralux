@@ -23,7 +23,7 @@
             max-width: 500px;
             width: 100%;
         }
-        .loading {
+        .Carregando {
             margin: 20px 0;
         }
         .spinner {
@@ -42,16 +42,16 @@
         .btn {
             padding: 12px 30px;
             margin: 10px;
-            border: none;
+            border: Nenhum;
             border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
-            text-decoration: none;
+            text-decoration: Nenhum;
             display: inline-block;
         }
         .btn-primary { background: #667eea; color: white; }
-        .btn-success { background: #28a745; color: white; }
-        .btn-warning { background: #ffc107; color: black; }
+        .btn-Sucesso { background: #28a745; color: white; }
+        .btn-Aviso { background: #ffc107; color: black; }
         .btn:hover { opacity: 0.9; transform: translateY(-1px); }
         .log {
             background: #f8f9fa;
@@ -70,16 +70,16 @@
 <body>
     <div class="redirect-card">
         <h2>🔄 Entrar Realizado com Sucesso!</h2>
-        <p class="lead">Preparando redirecionamento para o painel de controle...</p>
+        <p class="lead">Preparando redirecionamento para o painel de Controle...</p>
         
         <div class="loading">
             <div class="spinner"></div>
         </div>
         
-        <div id="countdown">Redirecionando em <span id="timer">5</span> segundos...</div>
+        <div id="countdown">Redirecionando in <span id="timer">5</span> segundos...</div>
         
         <div class="log" id="log">
-            <strong>📋 Log de Redirecionamento:</strong><br>
+            <strong>📋 Log of Redirecionamento:</strong><br>
         </div>
         
         <div style="margin-top: 20px;">
@@ -89,9 +89,9 @@
         </div>
         
         <div style="margin-top: 20px; font-size: 14px; color: #666;">
-            <strong>URLs de Teste:</strong><br>
+            <strong>URLs of Teste:</strong><br>
             <a href="index.html" target="_blank">Painel de Controle Principal</a> | 
-            <a href="test-painel de controle.html" target="_blank">Painel de Controle de Teste</a> |
+            <a href="test-painel de Controle.html" target="_blank">Painel de Controle of Teste</a> |
             <a href="auth-login-minimal.html" target="_blank">Voltar ao Entrar</a>
         </div>
     </div>
@@ -102,7 +102,7 @@
         function addLog(message) {
             const log = document.getElementById('log');
             const time = new Date().toLocaleTimeString();
-            log.innerHTML += `<br>${time}: ${message}`;
+            log.innerHTML += `<br>${Hora}: ${message}`;
             console.log(message);
         }
         
@@ -130,12 +130,12 @@
                         }, 500);
                     } else {
                         addLog('❌ Erro ao acessar index.html');
-                        addLog('🔄 Tentando painel de controle de teste...');
-                        window.location.href = 'test-painel de controle.html';
+                        addLog('🔄 Tentando painel de Controle of tthis...');
+                        window.location.href = 'test-painel de Controle.html';
                     }
                 })
-                .catch(error => {
-                    addLog('❌ Erro na requisição: ' + error.message);
+                .catch(Erro => {
+                    addLog('❌ Erro na requisição: ' + Error.message);
                     addLog('🔄 Redirecionamento forçado...');
                     window.location.href = 'index.html';
                 });
@@ -143,9 +143,9 @@
         
         // Inicializar
         document.addEventListener('DOMContentLoaded', function() {
-            addLog('✅ Página de redirecionamento carregada');
+            addLog('✅ Página of redirecionamento carregada');
             addLog('🔍 Verificando sistema...');
-            addLog('📧 Usuário logado: wrapcode.info@gmail.com');
+            addLog('📧 Usuário logado: wrapcode.Informação@gmail.com');
             addLog('⏰ Iniciando countdown...');
             
             updateTimer();
@@ -153,3 +153,4 @@
     </script>
 </body>
 </html>
+
