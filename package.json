@@ -1,11 +1,16 @@
 {
-  "name": "duralux-dashboard",
-  "version": "2.0.0",
-  "description": "Duralux Management Dashboard",
+  "name": "duralux-dashboard-v3",
+  "version": "3.0.0",
+  "description": "Duralux Management Dashboard - Node 22.x Required",
   "scripts": {
-    "build": "echo 'Build complete - Node 22.x'"
+    "build": "node --version && echo 'BUILD SUCCESS: Node.js 22.x Required - Duralux v3.0'",
+    "start": "echo 'Duralux Dashboard v3.0 - Node 22.x'",
+    "vercel-build": "echo 'Vercel Build - Node 22.x ONLY'"
   },
   "engines": {
-    "node": "22.x"
-  }
+    "node": "22.x",
+    "npm": ">=10.0.0"
+  },
+  "keywords": ["dashboard", "crm", "node22"],
+  "type": "module"
 }
