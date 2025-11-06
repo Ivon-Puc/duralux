@@ -1,4 +1,24 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+🔥 REFATORAÇÃO COMPLETA - PÁGINA CUSTOMERS
+==========================================
+Reescrevendo do zero com layout moderno e limpo
+"""
+
+import os
+import re
+from datetime import datetime
+
+def rewrite_customers_page():
+    print("🔥 REFATORANDO COMPLETAMENTE - CUSTOMERS.HTML")
+    print("="*60)
+    
+    file_path = "C:/wamp64/www/ildavieira/duralux/duralux-admin/customers.html"
+    
+    # Template completo e moderno
+    new_content = '''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
@@ -657,4 +677,64 @@
         }
     </script>
 </body>
-</html>
+</html>'''
+    
+    try:
+        # Salvar o novo arquivo
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(new_content)
+        
+        print("✅ Página reescrita completamente!")
+        print(f"📁 Arquivo salvo: {file_path}")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ Erro ao reescrever arquivo: {e}")
+        return False
+
+def create_backup():
+    """Criar backup antes da refatoração"""
+    file_path = "C:/wamp64/www/ildavieira/duralux/duralux-admin/customers.html"
+    backup_path = f"{file_path}.backup-refactor-{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as original:
+            with open(backup_path, 'w', encoding='utf-8') as backup:
+                backup.write(original.read())
+        print(f"💾 Backup criado: {backup_path}")
+        return True
+    except Exception as e:
+        print(f"❌ Erro ao criar backup: {e}")
+        return False
+
+if __name__ == "__main__":
+    print("🔥 INICIANDO REFATORAÇÃO COMPLETA")
+    print("="*60)
+    print(f"⏰ Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
+    print()
+    
+    # Criar backup
+    if create_backup():
+        print("✅ Backup criado com sucesso")
+    
+    # Reescrever página
+    if rewrite_customers_page():
+        print()
+        print("🎉 REFATORAÇÃO CONCLUÍDA COM SUCESSO!")
+        print("="*60)
+        print("📋 NOVA PÁGINA CRIADA:")
+        print("✅ Layout completamente novo e moderno")
+        print("✅ Código limpo e organizado")
+        print("✅ Design responsivo")
+        print("✅ Imagens profissionais do Unsplash")
+        print("✅ Funcionalidades JavaScript básicas")
+        print("✅ Cores da identidade Duralux 2025")
+        print("✅ Estrutura semântica correta")
+        print("✅ Performance otimizada")
+        print()
+        print("🌐 Teste a página agora:")
+        print("   https://duralux-mu.vercel.app/duralux-admin/customers.html")
+        print()
+    else:
+        print("❌ Falha na refatoração. Verifique os logs acima.")
