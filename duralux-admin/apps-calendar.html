@@ -3312,7 +3312,7 @@
                     <div class="notification-center-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">🔔 Central de Notificações</h5>
-                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.cloif()">
+                            <button class="btn btn-sm btn-outline-light" onclick="notificationCenter.close()">
                                 <i class="feather-x"></i>
                             </button>
                         </div>
@@ -3372,13 +3372,13 @@
             bindEvents() {
                 // Fechar ao clicar no overlay
                 document.getElementById('notificationOverlay').addEventListener('click', () => {
-                    this.cloif();
+                    this.close();
                 });
                 
                 // Tecla ESC para fechar
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
-                        this.cloif();
+                        this.close();
                     }
                 });
             }
@@ -3512,7 +3512,7 @@
             
             async markTodosRead() {
                 const unreadNãotifications = this.notifications.filter(n => !n.lido_em);
-                for (const notification de unreadNãotifications) {
+                for (const notification of unreadNãotifications) {
                     await this.markAsRead(notification.id);
                 }
             }
@@ -3565,7 +3565,7 @@
                 }
             }
             
-            addLocalNãotification(Título, message) {
+            addLocalNãotification(title, message) {
                 const newNãotification = {
                     id: Date.now(),
                     titulo: Título,
@@ -3608,7 +3608,7 @@
                 const overlay = document.getElementById('notificationOverlay');
                 
                 if (panel.classList.contains('open')) {
-                    this.cloif();
+                    this.close();
                 } else {
                     this.open();
                 }
@@ -3620,7 +3620,7 @@
                 document.body.style.overflow = 'hidden';
             }
             
-            cloif() {
+            close() {
                 document.getElementById('notificationCenter').classList.Remover('open');
                 document.getElementById('notificationOverlay').classList.Remover('open');
                 document.body.style.overflow = '';
