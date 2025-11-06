@@ -29,10 +29,10 @@
             --info-color: #3498DB;
             --danger-color: #E74C3C;
             
-            /* Gradientes modernos */
-            --primary-gradient: linear-gradient(135deg, #5550F2 0%, #027368 100%);
-            --success-gradient: linear-gradient(135deg, #04BF9D 0%, #027368 100%);
-            --warning-gradient: linear-gradient(135deg, #F2B33D 0%, #F39C12 100%);
+            
+            
+            
+            
         }
         
         /* Reset e melhorias base */
@@ -53,17 +53,17 @@
         }
         
         /* Sidebar responsiva */
-        .sidebar {
-            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
-            min-height: 100vh;
-            padding: 1rem;
-            color: white;
-        }
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
         
         @media (max-width: 768px) {
+            
             .sidebar {
-                min-height: auto;
-                margin-bottom: 1rem;
+                background-color: #5550F2 !important;
+                color: white;
             }
         }
         
@@ -75,12 +75,12 @@
             margin-bottom: 1.5rem;
         }
         
-        .card-header {
-            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
-            color: white;
-            border-radius: 0.5rem 0.5rem 0 0 !important;
-            padding: 1rem;
-        }
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
         
         /* Botões modernos */
         .btn {
@@ -89,10 +89,19 @@
             font-weight: 500;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
-            border: none;
-        }
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
         
         /* Tabelas responsivas */
         .table-responsive {
@@ -127,18 +136,15 @@
         }
         
         .nav-pills .nav-link.active {
-            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
+            background: #5550F2;
         }
         
         /* Estatísticas cards */
-        .stats-card {
-            background: white;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            margin-bottom: 1rem;
-        }
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
         
         .stats-number {
             font-size: 2rem;
@@ -207,26 +213,32 @@
         }
         
         /* Botões com nova identidade */
-        .btn-primary {
-            background: var(--primary-gradient) !important;
-            border: none !important;
-            border-radius: 8px !important;
-            font-weight: 600 !important;
-            padding: 0.75rem 1.5rem !important;
-            box-shadow: 0 2px 4px rgba(85, 80, 242, 0.2) !important;
-        }
+        
+            .btn-primary {
+                background-color: #5550F2 !important;
+                border-color: #5550F2 !important;
+                color: white !important;
+            }
+            
+            .btn-primary:hover {
+                background-color: #027368 !important;
+                border-color: #027368 !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(85, 80, 242, 0.3);
+            }
         
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+            background-color: #5550F2;
             transform: translateY(-2px) !important;
             box-shadow: 0 6px 12px rgba(85, 80, 242, 0.3) !important;
         }
         
         /* Sidebar nova identidade */
-        .sidebar {
-            background: var(--primary-gradient) !important;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
-        }
+        
+            .sidebar {
+                background-color: #5550F2 !important;
+                color: white;
+            }
         
         .nav-pills .nav-link.active {
             background: rgba(255, 255, 255, 0.2) !important;
@@ -247,13 +259,12 @@
             overflow: hidden !important;
         }
         
-        .card-header {
-            background: var(--primary-gradient) !important;
-            color: white !important;
-            border: none !important;
-            padding: 1.25rem !important;
-            font-weight: 600 !important;
-        }
+        
+            .card-header {
+                background-color: #5550F2 !important;
+                color: white !important;
+                border: none !important;
+            }
         
         /* Tabelas aprimoradas */
         .table th {
@@ -276,13 +287,11 @@
         }
         
         /* Estatísticas coloridas */
-        .stats-card {
-            background: white !important;
-            border-radius: 12px !important;
-            padding: 1.5rem !important;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
-            border-left: 4px solid var(--primary-color) !important;
-        }
+        
+            .stats-card {
+                background: white !important;
+                border-left: 4px solid #5550F2 !important;
+            }
         
         .stats-number {
             color: var(--primary-color) !important;
@@ -363,8 +372,10 @@
         
         /* Responsividade aprimorada */
         @media (max-width: 768px) {
+            
             .sidebar {
-                border-radius: 0 0 12px 12px !important;
+                background-color: #5550F2 !important;
+                color: white;
             }
             
             .stats-number {
@@ -1421,7 +1432,7 @@
                     <a href="javascript:void(0);" class="btn btn-danger" data-style="reset-all-common-style">Reset</a>
                 </div>
                 <div class="flex-fill w-50">
-                    <a href="javascript:void(0);" class="btn btn-primary" style="background: var(--primary-gradient); border: none;">Download</a>
+                    <a href="javascript:void(0);" class="btn btn-primary" style="background: var(#5550F2); border: none;">Download</a>
                 </div>
             </div>
         </div>

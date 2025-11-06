@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema de CRM Duralux - Gestão completa de leads, clientes e projetos" />
+    <title>Duralux CRM - Duralux CRM</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <style>
+        
+        :root {
+            --primary-color: #5550F2;
+            --secondary-color: #027368;
+            --success-color: #04BF9D;
+            --warning-color: #F2B33D;
+            --light-color: #F2F2F2;
+            --dark-color: #2C3E50;
+            --info-color: #3498DB;
+            --danger-color: #E74C3C;
+            
+            /* Gradientes modernos */
+            --primary-gradient: linear-gradient(135deg, #5550F2 0%, #027368 100%);
+            --success-gradient: linear-gradient(135deg, #04BF9D 0%, #027368 100%);
+            --warning-gradient: linear-gradient(135deg, #F2B33D 0%, #F39C12 100%);
+        }
+        
+        /* Reset e melhorias base */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background-color: #F2F2F2;
+        }
+        
+        /* Layout responsivo */
+        .container-fluid {
+            padding: 1rem;
+        }
+        
+        /* Sidebar responsiva */
+        .sidebar {
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
+            min-height: 100vh;
+            padding: 1rem;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                min-height: auto;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0 !important;
+            padding: 1rem;
+        }
+        
+        /* Botões modernos */
+        .btn {
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
+            border: none;
+        }
+        
+        /* Tabelas responsivas */
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .table th {
+            background-color: #F2F2F2;
+            border-top: none;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        /* Formulários modernos */
+        .form-control, .form-select {
+            border-radius: 0.375rem;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #5550F2;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Navegação */
+        .nav-pills .nav-link {
+            border-radius: 0.375rem;
+            color: #2C3E50;
+            margin-bottom: 0.25rem;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #5550F2 0%, #027368 100%);
+        }
+        
+        /* Estatísticas cards */
+        .stats-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1rem;
+        }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5550F2;
+        }
+        
+        .stats-label {
+            color: #2C3E50;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 576px) {
+            .container-fluid {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Modo escuro opcional */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1d29;
+                color: #F2F2F2;
+            }
+            
+            .card {
+                background-color: #2d3748;
+                color: #F2F2F2;
+            }
+            
+            .form-control, .form-select {
+                background-color: #4a5568;
+                border-color: #2C3E50;
+                color: #F2F2F2;
+            }
+            
+            .table {
+                color: #F2F2F2;
+            }
+            
+            .table th {
+                background-color: #374151;
+            }
+        }
+    
+        /* === DURALUX IDENTITY 2025 === */
+        
+        /* Animações suaves */
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Botões com nova identidade */
+        .btn-primary {
+            background: var(--primary-gradient) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            padding: 0.75rem 1.5rem !important;
+            box-shadow: 0 2px 4px rgba(85, 80, 242, 0.2) !important;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(85, 80, 242, 0.3) !important;
+        }
+        
+        /* Sidebar nova identidade */
+        .sidebar {
+            background: var(--primary-gradient) !important;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 8px !important;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Cards modernos */
+        .card {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+            overflow: hidden !important;
+        }
+        
+        .card-header {
+            background: var(--primary-gradient) !important;
+            color: white !important;
+            border: none !important;
+            padding: 1.25rem !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Tabelas aprimoradas */
+        .table th {
+            background: var(--light-color) !important;
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            border: none !important;
+            padding: 1rem !important;
+        }
+        
+        .table td {
+            padding: 1rem !important;
+            vertical-align: middle !important;
+            border-color: #E9ECEF !important;
+        }
+        
+        .table-responsive {
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+        }
+        
+        /* Estatísticas coloridas */
+        .stats-card {
+            background: white !important;
+            border-radius: 12px !important;
+            padding: 1.5rem !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;
+            border-left: 4px solid var(--primary-color) !important;
+        }
+        
+        .stats-number {
+            color: var(--primary-color) !important;
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+        }
+        
+        .stats-label {
+            color: var(--dark-color) !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        /* Badges com nova identidade */
+        .badge-primary {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color) !important;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        /* Formulários aprimorados */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 0.2rem rgba(85, 80, 242, 0.25) !important;
+        }
+        
+        .form-label {
+            color: var(--dark-color) !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumb {
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color) !important;
+            text-decoration: none !important;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Alertas personalizados */
+        .alert {
+            border: none !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }
+        
+        .alert-success {
+            background-color: var(--success-color) !important;
+            color: white !important;
+        }
+        
+        .alert-warning {
+            background-color: var(--warning-color) !important;
+            color: var(--dark-color) !important;
+        }
+        
+        .alert-info {
+            background-color: var(--info-color) !important;
+            color: white !important;
+        }
+        
+        /* Responsividade aprimorada */
+        @media (max-width: 768px) {
+            .sidebar {
+                border-radius: 0 0 12px 12px !important;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        /* Animações de carregamento */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Efeitos hover para cards */
+        .card:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar responsiva -->
+            <div class="col-12 col-lg-2 sidebar">
+                <div class="d-flex flex-column">
+                    <h4 class="mb-4">
+                        <i class="bi bi-building"></i> DURALUX
+                    </h4>
+                    
+                    <nav class="nav flex-column nav-pills">
+                        <a class="nav-link " href="index.html">
+                            <i class="bi bi-speedometer2"></i> Painel de Controle
+                        </a>
+                        <a class="nav-link " href="leads.html">
+                            <i class="bi bi-person-plus"></i> Leads
+                        </a>
+                        <a class="nav-link " href="customers.html">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                        <a class="nav-link " href="projects.html">
+                            <i class="bi bi-folder"></i> Projetos
+                        </a>
+                        <a class="nav-link " href="proposal.html">
+                            <i class="bi bi-file-text"></i> Propostas
+                        </a>
+                        <a class="nav-link " href="analytics.html">
+                            <i class="bi bi-graph-up"></i> Analytics
+                        </a>
+                        <a class="nav-link " href="reports.html">
+                            <i class="bi bi-file-earmark-bar-graph"></i> Relatórios
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="col-12 col-lg-10">
+                <header class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-0">Dashboard</h1>
+                        <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;">
+                            <nav aria-label="breadcrumb" style="margin-bottom: 1.5rem;"><ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol></nav>
+                        </nav>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                            <i class="bi bi-bell"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> Usuário
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configurações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                
+                <main>
+                    
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎯 Duralux CRM</div>
+            <div class="subtitle">Sistema de Gestão de Relacionamento com Clientes</div>
+        </div>
+
+        <div class="status success">
+            <span class="icon">✅</span>
+            <div>
+                <strong>Sistema Integrado com Sucesso!</strong><br>
+                Frontend e Backend conectados com API funcional
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 15px rgba(0, 0, 0, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.07)'">
+                <h3>
+                    <span class="icon">🎨</span>
+                    Interface Administrativa
+                </h3>
+                <p>
+                    Interface completa in Bootstrap com sistema de clientes integrado à API backend.
+                    Inclui busca in tempo real, filtros avançados e paginação.
+                </p>
+                <a href="customers.html" class="btn">
+                    <span class="icon">👥</span> Acessar Clientes
+                </a>
+            </div>
+
+            <div class="card" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 15px rgba(0, 0, 0, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.07)'">
+                <h3>
+                    <span class="icon">🔧</span>
+                    API Backend
+                </h3>
+                <p>
+                    API RESTful completa in PHP com SQLite. Inclui autenticação segura,
+                    CRUD de clientes e produtos, validação e logs de atividade.
+                </p>
+                <a href="../backend/api/test.html" class="btn btn-success" style="background-color: var(--success-color); border: none;">
+                    <span class="icon">🧪</span> Testar APIs
+                </a>
+            </div>
+
+            <div class="card" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 15px rgba(0, 0, 0, 0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.07)'">
+                <h3>
+                    <span class="icon">📊</span>
+                    Painel de Controle
+                </h3>
+                <p>
+                    Painel de Controle com estatísticas in tempo real, gráficos interativos
+                    e métricas de desempenho do CRM.
+                </p>
+                <a href="index.html" class="btn btn-info">
+                    <span class="icon">📈</span> Ver Painel de Controle
+                </a>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>🚀 Funcionalidades Implementadas</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Sistema de Autenticação Completo</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>CRUD de Clientes com Validação</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>CRUD de Produtos com SKU Automático</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>API RESTful Documentada</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Banco SQLite com Dados de Exemplo</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Interface Responsiva Bootstrap</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Busca e Filtros Avançados</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Paginação Dinâmica</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Exportaração de Dados</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Logs de Atividade</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Validação e Sanitização</span>
+                </div>
+                <div class="feature-item">
+                    <span class="check">✓</span>
+                    <span>Proteção CSRF</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="status warning" style="margin-top: 40px;">
+            <span class="icon">💡</span>
+            <div>
+                <strong>Próximos Passos:</strong><br>
+                Sistema pronto para produção! Continue com Leads, projetos, propostas e relatórios.
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #dee2e6;">
+            <p style="color: #2C3E50; margin: 0;">
+                <strong>Duralux CRM v1.0</strong> - Sistema de Gestão Completo<br>
+                Desenvolvido com PHP, SQLite, Bootstrap e JavaScript
+            </p>
+        </div>
+    </div>
+
+        <!-- Notification Center v6.0 JavaScript -->
+        
+
+                </main>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Painel de notificações -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Notificações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Novo lead cadastrado</h6>
+                        <small>5 min atrás</small>
+                    </div>
+                    <p class="mb-1">João Silva enviou uma solicitação de orçamento.</p>
+                </div>
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Projeto aprovado</h6>
+                        <small>1 hora atrás</small>
+                    </div>
+                    <p class="mb-1">Projeto "Reforma Comercial" foi aprovado pelo cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts customizados -->
+    <script>
+        // Funcionalidades modernas do sistema
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Auto-salvar formulários
+            const forms = document.querySelectorAll('form[data-auto-save]');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        const formData = new FormData(form);
+                        console.log('Auto-salvando...', Object.fromEntries(formData));
+                        // Implementar auto-save aqui
+                    });
+                });
+            });
+            
+            // Confirmar ações críticas
+            const deleteButtons = document.querySelectorAll('[data-action="delete"]');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Tem certeza que deseja excluir este item?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Responsividade da sidebar
+            function handleSidebarToggle() {
+                const sidebar = document.querySelector('.sidebar');
+                if (window.innerWidth < 992) {
+                    sidebar.classList.add('d-none', 'd-lg-block');
+                } else {
+                    sidebar.classList.remove('d-none');
+                }
+            }
+            
+            window.addEventListener('resize', handleSidebarToggle);
+            handleSidebarToggle();
+        });
+        
+        // Função para atualizar gráficos responsivos
+        function updateChartsOnResize() {
+            if (typeof Chart !== 'undefined') {
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    instance.resize();
+                });
+            }
+        }
+        
+        window.addEventListener('resize', updateChartsOnResize);
+        
+        // Performance: Lazy loading de imagens
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+    
+    
+
+        <script>
+        // Melhorias de UX da identidade Duralux 2025
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Efeito ripple nos botões
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Feedback visual para formulários
+            document.querySelectorAll('.form-control, .form-select').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-color)';
+                    this.style.boxShadow = '0 0 0 0.2rem rgba(85, 80, 242, 0.25)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.style.borderColor = '#dee2e6';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+            
+            // Animação de carregamento para botões
+            document.querySelectorAll('.btn[type="submit"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Processando...';
+                    this.disabled = true;
+                    
+                    // Simular carregamento (remover em produção real)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            });
+            
+        });
+        
+        // CSS para animação de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        </script>
+        
+</body>
+</html>
