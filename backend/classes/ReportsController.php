@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Duralux CRM - ReportsController
