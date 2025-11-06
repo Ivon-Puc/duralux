@@ -1,0 +1,58 @@
+# Dependências
+node_modules/
+vendor/
+
+# Logs e debug
+*.log
+*.lock
+debug/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.cache
+
+# Backups automáticos
+backup_*/
+*.backup
+*.bak
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+*$py.class
+
+# IDE e editores
+.vscode/
+.idea/
+*.sublime-*
+.DS_Store
+Thumbs.db
+
+# Arquivos do sistema
+*.swp
+*.swo
+*~
+
+# Configurações locais
+.env
+.env.local
+.env.*.local
+
+# Builds e distribuições
+dist/
+build/
+*.dist
+
+# Testes
+coverage/
+.nyc_output/
+.coverage
+
+# Arquivos específicos do projeto
+api_keys.json
+config_local.php
