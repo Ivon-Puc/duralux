@@ -1,11 +1,11 @@
 {
-  "name": "duralux",
-  "version": "1.0.0",
-  "description": "Duralux Dashboard",
+  "name": "duralux-dashboard",
+  "version": "2.0.0",
+  "description": "Duralux Management Dashboard",
   "scripts": {
-    "build": "echo 'Static site build complete'"
+    "build": "echo 'Build complete - Node 22.x'"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "22.x"
   }
 }
